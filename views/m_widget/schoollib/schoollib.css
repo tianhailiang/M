@@ -1,0 +1,52 @@
+.schoollib {
+  width: 100%;
+  height: 120px;
+  background: #fff;
+  padding: 10px 10px 10px;
+  box-sizing: border-box;
+  position:relative;
+}
+.schoollib-con {
+  height: 120px;
+  padding: 10px 0;
+  background: #f9f9f9;
+}
+.sckoollib-left {
+  height: 90px;
+  padding: 0 10px;
+  border-left:1px solid #d51821;
+}
+.schoollib-con a {
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: flex;
+}
+.sckoollib-left img {
+  width: 120px;
+  height: 90px;
+}
+.sckoollib-right {
+  width: 1px;
+  flex: 1;
+}
+.sckoollib-right .schoollib-p1 {
+  font-size: 14px;
+  color: #333;
+  margin-top: -2px;
+  width:60%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
+}
+.sckoollib-right P {
+  font-size: 12px;
+  color: #666;
+
+}
+.school-con {
+  height: 23px;
+  position: absolute;
+  top:10px;
+  right: 20px;
+  line-height: 20px;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/common.css">
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/canzan_column.css">
+<body style="background: #f5f5f5;">
+    {% include "m_widget/top/top.html" %}
+
+  {% import "m_widget/top_tab/top_tab.html" as top_tab %}
+  {{top_tab.top_tab({'tab_type':"参赞", 'n': country},helper)}}
+
+<div id="app">
+  <!-- 文章列表 -->
+ <section id=articleList>
+  	<ul>
+      {% include "m_widget/canzan_list/canzan_list.html" %}
+  	</ul>
+    <!-- 加载更多 -->
+  	 {% include "m_widget/load_more/load_more.html" %}
+  </section>
+  <!--最新活动 成功案例  大学排名 start-->
+  {%esi helper.include(esikey,'fragment/list_public','c='+tdk.cityid)%}
+  <!--footer start-->
+  {% import "m_widget/footer/footer.html" as footer %}
+  {{footer.footer([{'nav_text':'参赞列表页','nav_path': 'canzan'}],tdk,helper)}}
+  <!--footer end-->
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+{% import "m_widget/select_pop/select_pop.html" as select_pop %}
+{{ select_pop.select_pop({'n': country, 'path': 'canzan'}, helper) }}
+<script type="text/javascript">
+/*加载更多函数*/
+function loadMore (cur_page) {
+    var n = $('#select-pop').find('.focus-on').data('id') || '';
+    var now_page = cur_page+1;
+    var per_page = 6;
+    var area = $.cookie('currentarea');
+    $.ajax({
+      url: '/ucapi/ucapi_agent_common',
+      type: 'get',
+      datatype: 'json',
+      data: {
+      	"m": "userlist",
+        "usertype": 3,
+		    "pagesize":per_page,
+        "page": now_page
+      },
+      success: function (result) {
+      	console.log(result.data)
+        if (result.code == 0 && result.data.list.length !=0) {
+            addNewslist(result.data.list);
+            $('#load-more-btn').data('cur_page', now_page);
+        }
+        else {
+            $('#load-more-btn').find('span').text('没有更多内容了');
+        }
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert('服务器开小差了，请重试');
+      }
+    })
+}
+
+/*加载更多拼接字符串函数*/
+function addNewslist (canzan_list) {
+    var canzan_html = '';
+    $.each(canzan_list, function (i, canzanitem, arr) {
+        canzan_html += '<li>'+'<a href="'+fn.urlgen("canzan", canzanitem.uid.toString())+'">'+
+  				'<img src="'+fn.avaterimg(canzanitem.uid, 'big')+'" alt="{{helper.realname}}">'+
+  				'<div class="acticle-itmes">'+
+  					'<p><strong>'+canzanitem.realname+'</strong><span>'+canzanitem.job_number+'</span></p>'+
+  					'<p class="itmes-clamp">'+canzanitem.introduce+'</p>'+
+  				'</div>'
+  			'</a>'
+  		'</li>';
+    });
+    $('#articleList ul').append($(canzan_html));
+}
+</script>
+</body>
+</html>

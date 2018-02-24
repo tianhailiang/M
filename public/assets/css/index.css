@@ -1,0 +1,240 @@
+
+.index-nav{
+	border-bottom: 1px solid #e5e5e5;
+	height:29px;
+	display: flex;
+	padding:0 15px;
+	background:#d51821;
+   display: flex;
+   align-items: center;
+	
+}
+.index-nav a{
+   display: block;
+   flex:1;
+   line-height: 17px;
+   text-align: center;
+   font-size: 12px;
+   color:#fff;
+   height:17px;
+   border-right: 0.5px solid rgba(255,255,255,0.58);
+}
+.index-nav a:last-child{
+	border-right:none;
+}
+.country-ul{
+	/*display: flex;
+	flex-wrap: wrap;*/
+	background:#fff;
+	padding-bottom: 15px;
+	
+}
+.country-ul:after {
+
+      content: "";
+      display: block;
+      clear: both;
+   }
+
+.country-ul li{
+	margin-top: 18px;
+	width:25%;
+	float:left;
+}
+.country-ul li a{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width:100%;
+}
+
+.country-ul li span{
+	display: block;
+	font-size: 10px;
+	color:#333;
+	margin-top:10px;
+}
+
+.country-ul li img{
+	width:40px;
+	height:32px;
+}
+
+.country-ul li.gd-li{
+	display: none;
+}
+/*===========最新动态==============*/
+.new-dynamic{
+	padding:0 10px;
+	height:29px;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+.active-container-1{
+	margin-right: 0;
+	margin-left: 0;
+    height:16px;
+}
+.active-btn{
+	width:35px;
+	height:16px;
+	border:1px solid #d51821;
+	border-radius:2px;
+	margin-right:7px;
+}
+.active-container-1 .swiper-slide{
+	font-size: 10px;
+	color:#d51821;
+	/*text-align:center;
+	line-height: 16px;*/
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.dynmic-ul-box{
+	height:16px;
+	overflow: hidden;
+	flex:1;
+}
+.active-container-2{
+	margin-right: 0;
+	margin-left: 0;
+    height:16px;
+}
+.active-container-2-title{
+	font-size: 12px;
+	color:#333;
+	
+	height:16px;
+	line-height: 16px;
+}
+.dynamic-right{
+	height:14px;
+	padding-left:12px;
+	border-left:1px solid #e5e5e5;
+	display: flex;
+	align-items: center;
+}
+.dynamic-right i{
+	display: block;
+	width:52.5px;
+	height:12px;
+	background:url(../images/icon_dynamic.png) no-repeat 0 0;
+	background-size:52.5px 12px;
+}
+/*=======轮播大学堂=======*/
+.harvard-college{
+	background:#fff;
+	padding-top: 10px;
+	padding-bottom: 21px;
+}
+.harvard-img{
+	width:100%;
+	height:140px;
+}
+.harvard-college .swiper-pagination-bullet{
+	width:6px;
+	height:6px;
+	background:#f4f4f4;
+	opacity: 1;
+}
+.harvard-college .swiper-pagination-bullet-active{
+	background:#d51821;
+}
+.harvard-college>.swiper-pagination-bullets{
+	bottom:3px;
+}
+.team-top{
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 10px;
+    padding:15px 10px 0;
+    background:#fff;
+}
+.team-top h2{
+    height:17px;
+    border-left:2.5px solid #d51821;
+    padding:0 10px 0 7px;
+    font-size: 15px;
+    color:#333;
+    font-weight: bold;
+    line-height: 17px;
+    flex: 1;
+}
+.team-top .team-right {
+    display: block;
+    width: 20px;
+}
+.gdBtn-box{
+    height:44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top:1px solid #eee;
+    background:#fff;
+}
+.gdBtn{
+    width:115px;
+    height:24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.gdBtn span{
+    font-size: 14px;
+    color:#666;
+}
+.expert-team {
+    padding: 18.5px 10px 15px;
+    background: #fff;
+}
+#swiper-container2 .swiper-slide{
+    width:112px;
+}
+.slide-box{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background:#fff;
+    box-sizing: border-box;
+    border:1px solid #e5e5e5;
+    border-radius: 2px;
+    position: relative;
+    z-index:1000;
+    box-shadow: 0 2px 2px #f5f5f5;
+    padding:7.5px 7.5px 10px;
+}
+.team-img{
+    width:96px;
+    height:120px;
+    border-radius: 2px;
+    background:#e5e5e5;
+}
+.team-name{
+    width: 100%;
+    height:46px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.team-name span{
+    margin-top: 5px;
+    font-size: 13px;
+    color:#666;
+}
+.team-consultation-btn{
+    width:100%;
+    height:20px;
+    text-align: center;
+    font-size: 11px;
+    color:#fff;
+    line-height: 20px;
+    background:#d51821;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    margin-top: 5px;
+} 

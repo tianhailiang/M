@@ -1,0 +1,19 @@
+#info-list{
+    background: #000 url("../../../assets/img/friend-btn-bj.png");
+    background-repeat: repeat;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+#info-list .info-item {
+    border-bottom: 1px solid #907e5e;
+}
+#info-list .info-item .info-content{
+    color: #fff;
+}
+#info-list .info-item .info-title{
+    color: #ecc580;
+}
+.info-ad{
+    width: 100%;
+    padding: 10px 0;
+}

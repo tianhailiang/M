@@ -1,0 +1,266 @@
+.activity-detail-banner{
+    width: 100%;
+    height: 174px;
+    background: #007aff;
+}
+.activity-detail-banner img{
+    width: 100%;
+    height: 100%;
+}
+.index-nav{
+    border-bottom: 1px solid #e5e5e5;
+    height:29px;
+    display: flex;
+    padding:0 15px;
+    background:#d51821;
+    display: flex;
+    align-items: center;
+
+}
+.index-nav a{
+    display: block;
+    flex:1;
+    line-height: 17px;
+    text-align: center;
+    font-size: 12px;
+    color:#fff;
+    height:17px;
+    border-right: 0.5px solid rgba(255,255,255,0.58);
+}
+.index-nav a:last-child{
+    border-right:none;
+}
+.gonglue_warp{
+    width: 100%;
+    height:75px;
+    padding-top: 25px;
+    background:#ffffff url("../img/channel_other_background@2x.png");
+    background-size: cover;
+}
+.gonglue_bottom_tlite{
+    padding: 0 15px;
+    display: flex;
+}
+.gonglue_bottom_tlite_line{
+    flex: 1;
+    height: 1px;
+    background: #d51825;
+    float: left;
+}
+.gonglue_bottom_tlite_p{
+    width: 118px;
+    float: left;
+    padding: 0 5px;
+    font-size: 14px;
+    margin-top: -10px;
+    text-align: center;
+}
+.gonglue_bottom_tlite_p2{
+    font-size: 10px;
+    margin-top: 5px;
+    color: #d51825;
+}
+.gonglue_bottom_tlite_dian{
+    display:block;
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+    float: right;
+    background: #d51825;
+    margin-top: -2px;
+}
+.gonglue_bottom_p2_img{
+    border-radius: 50%;
+    position: absolute;
+    left: 30.9%;
+    top: 10%;
+    animation: myConsultation 1s infinite;
+}
+@keyframes myConsultation {
+    0% {
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.advise-line{
+    display: inline-block;
+    width: 2.5px;
+    height: 15px;
+    vertical-align: middle;
+    margin-right: 5px;
+    background: #d15821;
+    margin-top: -3px;
+}
+.advise-center-top p{
+    line-height: 44px;
+    display: inline-block;
+    font-size: 14px;
+    color: #333333;
+    font-weight: bold;
+}
+.xuexijihua{
+    background: #ffffff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.branch-product-list{
+    display: none;
+}
+.branch-liuxue-top{
+    background: #f9f9f9;
+    line-height: 35px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /*margin-bottom: 10px;*/
+    width: 100%;
+}
+.branch-liuxue-top-ul{
+    /*display: flex;*/
+    display: -moz-box;
+    display: -webkit-box;
+    display: -o-box;
+    display: box;
+}
+.branch-liuxue-top-ul li{
+    display: block;
+    height: 35px;
+    flex: 1;
+    -webkit-box-flex: 1;
+    text-align: center;
+    /*border-bottom: 2px solid #d15821;*/
+}
+.active1{
+    border-bottom: 2px solid #d15821;
+    color: #d15821 !important;
+    font-weight: bold;
+}
+.branch-liuxue-top-ul li:first-child{
+    width: 40px;
+    -webkit-box-flex: 0;
+    text-align: left;
+}
+.branch-liuxue-top-ul li:last-child{
+    text-align: right;
+    width: 30px;
+    -webkit-box-flex: 0;
+}
+.dui-text-warning-s{
+    color: #333333;
+    font-size: 14px;
+    height: 35px;
+    padding-bottom: 5px;
+}
+.activity-list-genduo{
+    color: #333333;
+    line-height: 44px;
+    font-size: 20px;
+    float: right;
+}
+.liuxue_fangan_genduo{
+    text-align: center;
+    line-height: 49px;
+    background: #ffffff;
+}
+.liuxue_fangan_genduo a{
+    color: #333333;
+    font-size: 13px;
+}
+.branch-product-list{
+    display: none;
+}
+.tou_tab{
+    width: 100%;
+    height: 30px;
+    background-color: #d61822;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    display: flex;
+}
+.tou_tab ul{
+    width: 100%;
+    display: flex;
+}
+.tou_tab li.tou_tab_item{
+    flex: 1;
+}
+.tou_tab a{
+    color: #fff;
+}
+.tou_tab li a.active{
+    padding-bottom: 2px;
+    border-bottom: 2px #fff solid;
+}
+.team-top{
+    width: 100%;
+    align-items: center;
+    position: relative;
+    margin-top: 10px;
+    padding:15px 10px;
+    background:#fff;
+    border-bottom: 1px #eee solid;
+}
+.team-top h2{
+    height:17px;
+    border-left:2.5px solid #d51821;
+    padding:0 10px 0 7px;
+    font-size: 15px;
+    color:#333;
+    font-weight: bold;
+    line-height: 17px;
+    float: left;
+}
+.liuxue_1_con, .liuxue_2_con {
+    background-color: #fff;
+    margin-bottom: 0px;
+}
+/*五大攻略*/
+.edu_gonglue_warp{
+    width: 100%;
+    background:#ffffff url("../img/channel_other_background@2x.png");
+    background-size: cover;
+    padding-bottom: 15px;
+}
+.edu_gonglue{
+    display: flex;
+    margin: 0 36px ;
+}
+.edu_gonglue div{
+    margin: 0 auto;
+    position: relative;
+}
+.edu_gonglue div a{
+    color: #333333;
+}
+.edu_gonglue div img{
+    width: 100%;
+    /*height: 100%;*/
+}
+.edu_gonglue_span1{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top:60%;
+    font-size: 10px;
+}
+.edu_gonglue_span3{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top:55%;
+    font-size: 10px;
+}
+.edu_gonglue_span2{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top:58%;
+    font-size: 12px;
+    color: #ffffff;
+}

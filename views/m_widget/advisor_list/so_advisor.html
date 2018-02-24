@@ -1,0 +1,85 @@
+<style>
+    .news-list{
+        width: 100%;
+        padding: 10px 10px 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background-color: #fff;
+    }
+    .advisor-item{
+        width: 100%;
+        padding: 10px 0;
+        border-bottom: 1px #eee solid;
+        display: flex;
+        background: #fff;
+    }
+    .advisor-item a.main{
+        width: 100%;
+        height: 100%;
+        display: flex;
+    }
+    .advisor-item-left{
+        width: 80px;
+        height: 100px;
+        float: left;
+        background-color: #dcdcdc;
+        margin-right: 10px;
+    }
+    .advisor-item-left img{
+        width: 80px;
+        height: 100px;
+    }
+    .advisor-item-right {
+        width: 1px;
+        flex: 1;
+    }
+    .advisor-item-right a{
+
+    }
+    .advisor-name {
+        font-size: 15px;
+        color: #333;
+        float: left;
+    }
+    .advise-btn{
+        width: 55px;
+        height: 20px;
+        text-align: center;
+        background-color: #C13232;
+        font-size: 12px;
+        color: #fff;
+        float: right;
+        line-height: 20px;
+    }
+    .skillful-ct{
+        margin-top: 10px;
+        font-size: 13px;
+        color: #333;
+    }
+    .advisor-desc{
+        margin-top: 10px;
+        font-size: 13px;
+        color: #666;
+        line-height: 20px;
+    }
+</style>
+{% for adItem in advisor_list.list %}
+<div class="advisor-item clearfix">
+    <a class="main" href="{{helper.urlgen('adviser', adItem.id | string)}}">
+        <div class="advisor-item-left">
+            <img src="{{ helper.avaterimg(adItem.id, 'big',adItem.status) }}" alt=""/>
+        </div>
+        <div class="advisor-item-right ">
+            <div class="advisor-top clearfix">
+                <div class="advisor-name">{{adItem.realname}}</div>
+                <!--<a class="advise-btn" href="http://jesong.jjl.cn/live/chat.dll?c={{area}}&n={{adItem.job_number}}" onclick="return fasle">我要咨询</a>-->
+                <div class="advise-btn" data-onzixun="{{adItem.job_number}}">我要咨询</div>
+
+            </div>
+            <div class="skillful-ct line-clamp-1">擅长国家：{{adItem.skilful_country}}</div>
+            <div class="advisor-desc line-clamp-2">{{adItem.introduce}}</div>
+        </div>
+    </a>
+</div>
+{% endfor %}

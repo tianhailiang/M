@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include "header.html" %}
+  <!--<link rel="stylesheet" type="text/css" href="{{helper.cdnhost}}/assets/css/swiper-3.4.2.min.css">-->
+  <link rel="stylesheet" type="text/css" href="{{helper.cdnhost}}/assets/css/channel_edu_graduate.css">
+<body>
+<div id="app">
+  <!--头部-->
+  {% include "m_widget/top/top.html" %}
+  <div class="activity-detail-banner">
+    <img src="http://www.jjl.cn/statics//njjlmt/img/slider-20.jpg" alt="">
+  </div>
+{#  {% include "m_widget/swiper/swiper.html" %}  #}
+  <!-- ===搜索框==== -->
+  {% include "m_widget/search/search.html" %}
+  <div class="index-nav" >
+    <a href="{{helper.urlgen('glue')}}">
+      必读攻略
+    </a>
+    <a href="{{helper.urlgen('product')}}">
+      学习计划
+    </a>
+    <a href="{{helper.urlgen('activity')}}">
+      活动预告
+    </a>
+    <a href="{{helper.urlgen('news')}}">
+      最新资讯
+    </a>
+  </div>
+  <div class="gonglue_warp">
+    <div class="gonglue_bottom">
+      <div class="gonglue_bottom_tlite">
+        <div class="gonglue_bottom_tlite_line"><span class="gonglue_bottom_tlite_dian"></span></div>
+        <div class="gonglue_bottom_tlite_p"><p>{{edu | getEdu}}学历频道</p><p class="gonglue_bottom_tlite_p2">五大必读攻略</p></div>
+        <div class="gonglue_bottom_tlite_line" style="float: right"><span class="gonglue_bottom_tlite_dian" style="float: left"></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="edu_gonglue_warp">
+    <div class="edu_gonglue">
+      <div><a href="{{edu_strategy[0].url}}"><img src="{{helper.cdnhost}}/assets/img/channel_other_picture1@2x.png" alt=""> <span class="edu_gonglue_span1 line-clamp-1">{{edu_strategy[0].name}}</span></a></div>
+      <div><img src="{{helper.cdnhost}}/assets/img/channel_other_consulting@2x.png" alt=""><span class="edu_gonglue_span2"><a href="http://jesong.jjl.cn/live/chat.dll?c=1" style="color: #ffffff">在线咨询</a></span>
+        <a href="http://jesong.jjl.cn/live/chat.dll?c=1"><img  style="width: 39%;height: 39%;" class="gonglue_bottom_p2_img" src="{{helper.cdnhost}}/assets/img/channel_graphs_consultation.png" alt=""></a></div>
+      <div ><a href="{{edu_strategy[1].url}}"><img src="{{helper.cdnhost}}/assets/img/channel_other_picture2@2x.png" alt=""><span class="edu_gonglue_span1 line-clamp-1">{{edu_strategy[1].name}}</span></a></div>
+    </div>
+    <div class="edu_gonglue">
+      <div ><a href="{{edu_strategy[2].url}}"><img src="{{helper.cdnhost}}/assets/img/channel_other_picture3@2x.png" alt=""><span class="edu_gonglue_span3 line-clamp-1">{{edu_strategy[2].name}}</span></a></div>
+      <div><a href="{{edu_strategy[3].url}}"><img src="{{helper.cdnhost}}/assets/img/channel_other_picture4@2x.png" alt=""><span class="edu_gonglue_span1 line-clamp-1">{{edu_strategy[3].name}}</span></a></div>
+      <div><a href="{{edu_strategy[4].url}}"><img src="{{helper.cdnhost}}/assets/img/channel_other_picture5@2x.png" alt=""><span class="edu_gonglue_span3 line-clamp-1">{{edu_strategy[4].name}}</span></a></div>
+    </div>
+  </div>
+  <!--学习计划-->
+  <div  class="xuexijihua">
+    <div style="padding: 0 10px;">
+      <div class="advise-center-top">
+        <i class="advise-line"></i>
+        <p>适合你的学习计划</p>
+      </div>
+    </div>
+    <div class="branch-liuxue-top clearfix " >
+      <ul class="branch-liuxue-top-ul branch-product-country" >
+        <li>
+          <a href="javascript:void(0);" class="dui-text-warning-s active1" >
+            推荐
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="dui-text-warning-s" >
+            美
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="dui-text-warning-s" >
+            英
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="dui-text-warning-s" >
+            澳
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="dui-text-warning-s" >
+            新
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="dui-text-warning-s" >
+            亚
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="dui-text-warning-s" style="border-right:0;">
+            欧
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!--留学方案列表-->
+    <div class="branch-product-list" style="display: block;">
+      {% import "m_widget/liuxuefangan/liuxuefangan.html" as hot_liuxuefangan %}
+      {{ hot_liuxuefangan.fangan(hot_liuxuefangan_list0,helper) }}
+      <div class="liuxue_fangan_genduo">
+        <a href="{{helper.urlgen('product')}}" rel="nofollow">更多学习计划
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-jiantou"></use>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="branch-product-list" >
+      {% import "m_widget/liuxuefangan/liuxuefangan.html" as hot_liuxuefangan %}
+      {{ hot_liuxuefangan.fangan(hot_liuxuefangan_list1,helper) }}
+      <div class="liuxue_fangan_genduo">
+        <a href="{{helper.urlgen('product')}}" rel="nofollow">更多学习计划
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-jiantou"></use>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="branch-product-list" >
+      {% import "m_widget/liuxuefangan/liuxuefangan.html" as hot_liuxuefangan %}
+      {{ hot_liuxuefangan.fangan(hot_liuxuefangan_list2,helper) }}
+      <div class="liuxue_fangan_genduo">
+        <a href="{{helper.urlgen('product')}}" rel="nofollow">更多学习计划
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-jiantou"></use>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="branch-product-list" >
+      {% import "m_widget/liuxuefangan/liuxuefangan.html" as hot_liuxuefangan %}
+      {{ hot_liuxuefangan.fangan(hot_liuxuefangan_list3,helper) }}
+      <div class="liuxue_fangan_genduo">
+        <a href="{{helper.urlgen('product')}}" rel="nofollow">更多学习计划
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-jiantou"></use>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="branch-product-list" >
+      {% import "m_widget/liuxuefangan/liuxuefangan.html" as hot_liuxuefangan %}
+      {{ hot_liuxuefangan.fangan(hot_liuxuefangan_list4,helper) }}
+      <div class="liuxue_fangan_genduo">
+        <a href="{{helper.urlgen('product')}}" rel="nofollow">更多学习计划
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-jiantou"></use>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="branch-product-list" >
+      {% import "m_widget/liuxuefangan/liuxuefangan.html" as hot_liuxuefangan %}
+      {{ hot_liuxuefangan.fangan(hot_liuxuefangan_list5,helper) }}
+      <div class="liuxue_fangan_genduo">
+        <a href="{{helper.urlgen('product')}}" rel="nofollow">更多学习计划
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-jiantou"></use>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="branch-product-list">
+      {% import "m_widget/liuxuefangan/liuxuefangan.html" as hot_liuxuefangan %}
+      {{ hot_liuxuefangan.fangan(hot_liuxuefangan_list6,helper) }}
+      <div class="liuxue_fangan_genduo">
+        <a href="{{helper.urlgen('product')}}" rel="nofollow">更多学习计划
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-jiantou"></use>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--活动列表 start-->
+  <div style="padding: 0 10px;background: #ffffff;">
+  <div class="advise-center-top" style="border-bottom: 1px solid #eee;">
+    <i class="advise-line"></i>
+    <p>活动预告</p>
+    <a class="activity-list-genduo" href="{{helper.urlgen('activity')}}" rel="nofollow">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-biaoduan"></use>
+      </svg>
+    </a>
+  </div>
+  </div>
+  <div class="activity-list" style="margin-bottom: 10px">
+    {% import  "m_widget/activity/activity.html" as activity_list %}
+    {{ activity_list.activity_item(liuxuehuodong_list.list,helper) }}
+  </div>
+  <!--活动列表 end-->
+  <!--最新资讯/成功案例/留学方案/申请攻略-->
+  <div class="tou_tab liuxue_1 clearfix">
+    <ul>
+      <li class="tou_tab_item"><a href="javascript:void(0)" class="active">最新资讯</a></li>
+      <li>|</li>
+      <li class="tou_tab_item"><a href="javascript:void(0)">成功案例</a></li>
+      <li>|</li>
+      <li class="tou_tab_item"><a href="javascript:void(0)">留学方案</a></li>
+      <li>|</li>
+      <li class="tou_tab_item"><a href="javascript:void(0)">申请攻略</a></li>
+    </ul>
+  </div>
+  <div class="liuxue_1_con list-conten">
+    <ul>
+      {% for item in zuixinzixun_list.list %}
+      <li class="line-clamp-1">
+        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-dian-copy-copy-copy"></use></svg>
+        <a href="{{helper.urlgen('news', item.id.toString(),'n=' + item.country)}}">{{item.title}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="liuxue_1_con"></div>
+  <div class="liuxue_1_con list-conten" style="display: none;">
+    <ul>
+      {% for item in chenggonganli_list.list %}
+      <li class="line-clamp-1">
+        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-dian-copy-copy-copy"></use></svg>
+        <a href="{{helper.urlgen('case', item.id.toString())}}">{{item.title}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="liuxue_1_con"></div>
+  <div class="liuxue_1_con list-conten" style="display: none;">
+    <ul>
+      {% for item in liuxuefangan_list.list %}
+      <li class="line-clamp-1">
+        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-dian-copy-copy-copy"></use></svg>
+        <a href="{{helper.urlgen('product', item.id.toString())}}">{{item.title}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="liuxue_1_con"></div>
+  <div class="liuxue_1_con list-conten" style="display: none;">
+    <ul>
+      {% for item in gonglue_list.list %}
+      <li class="line-clamp-1">
+        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-dian-copy-copy-copy"></use></svg>
+        <a href="{{helper.urlgen('glue', item.id.toString(),'n=' + item.country)}}">{{item.title}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="load-more-bar" id="load-more-btn" data-cur_page="0" style="border-top: 1px solid #eee">
+    <span>查看更多</span>
+    <svg class="icon" aria-hidden="true"><use xlink:href="#icon-jiantou"></use></svg>
+  </div>
+  <!--热门院校/签证指导/申请条件/留学费用-->
+  <div class="tou_tab liuxue_2 clearfix" style="margin-top: 10px">
+    <ul>
+      <li class="tou_tab_item"><a href="javascript:void(0)" class="active">热门院校</a></li>
+      <li>|</li>
+      <li class="tou_tab_item"><a href="javascript:void(0)">签证指导</a></li>
+      <li>|</li>
+      <li class="tou_tab_item"><a href="javascript:void(0)">申请条件</a></li>
+      <li>|</li>
+      <li class="tou_tab_item"><a href="javascript:void(0)">留学费用</a></li>
+    </ul>
+  </div>
+  <div class="liuxue_2_con list-conten">
+    <ul>
+      {% for item in remenyuanxiao_list %}
+      <li class="line-clamp-1">
+        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-dian-copy-copy-copy"></use></svg>
+        <a href="{{helper.urlgen('schoollib', item.id.toString(),'n='+ item.country)}}">{{item.title}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="liuxue_2_con"></div>
+  <div class="liuxue_2_con list-conten" style="display: none;">
+    <ul>
+      {% for item in qianzhengzhidao_list.list %}
+      <li class="line-clamp-1">
+        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-dian-copy-copy-copy"></use></svg>
+        <a href="{{helper.urlgen('visa', item.id.toString(),'n=' + item.country_id)}}">{{item.title}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="liuxue_2_con"></div>
+  <div class="liuxue_2_con list-conten" style="display: none;">
+    <ul>
+      {% for item in shenqingtiaojian_list.list %}
+      <li class="line-clamp-1">
+        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-dian-copy-copy-copy"></use></svg>
+        <a href="{{helper.urlgen('prereq', item.id.toString(),'n=' + item.country_id)}}">{{item.title}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="liuxue_2_con"></div>
+  <div class="liuxue_2_con list-conten" style="display: none;">
+    <ul>
+      {% for item in liuxuefeiyong_list.list %}
+      <li class="line-clamp-1">
+        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-dian-copy-copy-copy"></use></svg>
+        <a href="{{helper.urlgen('cost', item.id.toString(),'n=' + item.country_id)}}">{{item.title}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="load-more-bar" id="load-more-btn1" data-cur_page="0" style="border-top: 1px solid #eee">
+    <span>查看更多</span>
+    <svg class="icon" aria-hidden="true"><use xlink:href="#icon-jiantou"></use></svg>
+  </div>
+  <!--尾部-->
+  {% import "m_widget/footer/footer.html" as footer %}
+  {{footer.footer([{'nav_text':'学历频道页','nav_path': ''}],tdk,helper)}}
+</div>
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+<!--<script  src="{{helper.cdnhost}}/dep/js/swiper-3.4.2.jquery.min.js"></script>-->
+<script>
+    $(function(){
+//        var mySwiper = new Swiper('#swiper-container', {
+//            //banner图轮播
+//            autoplay: 3000,//可选选项，自动滑动
+//            width : window.innerWidth,
+//            pagination : '.swiper-pagination',
+//            loop:true,
+//        });
+    // 留学方案列表 切换
+      $(".branch-product-country li").on("click",function(){
+          $(".branch-product-country li").find("a").removeClass("active1");
+          $(this).find("a").addClass("active1");
+          $(".branch-product-list").css({"display":"none"});
+          $(".branch-product-list").eq($(this).index()).css({"display":"block"});
+      });
+    });
+    $(function() {
+        var liuxue1 = 0;
+        $(".liuxue_1 li.tou_tab_item").on("click", function () {
+            $(".liuxue_1 li.tou_tab_item").find("a").removeClass("active");
+            $(this).find("a").addClass("active");
+            $(".liuxue_1_con").css({"display": "none"});
+            $(".liuxue_1_con").eq($(this).index()).css({"display": "block"});
+            liuxue1 = $(this).index();
+            console.log('liuxue1', liuxue1);
+        });
+        $("#load-more-btn").on("click", function () {
+            console.log('222222222')
+            if (liuxue1 === 0) {
+                window.location = '/news';
+            } else if (liuxue1 === 2) {
+                window.location = '/case';
+            } else if (liuxue1 === 4) {
+                window.location = '/product';
+            } else if (liuxue1 === 6) {
+                window.location = '/glue';
+            }
+        });
+        var liuxue2 = 0;
+        $(".liuxue_2 li.tou_tab_item").on("click", function () {
+            $(".liuxue_2 li.tou_tab_item").find("a").removeClass("active");
+            $(this).find("a").addClass("active");
+            $(".liuxue_2_con").css({"display": "none"});
+            $(".liuxue_2_con").eq($(this).index()).css({"display": "block"});
+            liuxue2 = $(this).index();
+            console.log('liuxue2', liuxue2);
+        });
+        $("#load-more-btn1").on("click", function () {
+            if (liuxue2 === 0) {
+                window.location = '/schoollib';
+            } else if (liuxue2 === 2) {
+                window.location = '/visa';
+            } else if (liuxue2 === 4) {
+                window.location = '/prereq';
+            } else if (liuxue2 === 6) {
+                window.location = '/cost';
+            }
+        })
+    });
+</script>
+</body>
+</html>

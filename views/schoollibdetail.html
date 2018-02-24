@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<link rel="stylesheet" type="text/css" href="{{helper.cdnhost}}/dep/css/swiper-3.4.2.min.css">
+<style>
+  .lib-con {
+    width: 100%;
+    background: #ffffff;
+    margin: 10px 0;
+  }
+  .lib-p1{
+    text-align: center;
+    font-size: 16px;
+    color: #333333;
+    font-weight: bold;
+    padding: 15px 40px 0px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+  .lib-p2 {
+    padding:10px 79px 0px;
+    text-align: center;
+    font-size: 12px;
+    color: #333333;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+  .lib-p3 {
+    padding:10px 79px;
+    font-size: 12px;
+    color: #333333;
+  }
+  .lib-p4 {
+    padding:0 79px;
+    font-size: 12px;
+    color: #333333;
+  }
+  .lib-ing div{
+    width: 1px;
+    flex: 1;
+    height: 20px;
+    background: #d51821;
+    text-align: center;
+    color: #fff2f2;
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 3px;
+  }
+  .lib-ing {
+    width: 100%;
+    display: flex;
+    padding: 20px 15px;
+  }
+  .lib-jianjie {
+    width: 100%;
+    background: #ffffff;
+    margin: 10px 0;
+  }
+  .lib-jianjie h1 {
+    font-size: 15px;
+    color: #333;
+    padding: 15px 0 10px 0;
+    font-weight: bold;
+  }
+  .lib-jianjie i{
+    width: 2.5px;
+    height: 15px;
+    display: block;
+    float: left;
+    background: #d51821;
+    margin: 2px 10px;
+  }
+  .lib-neirong {
+    padding: 0 15px 5px;
+    width:100%;
+    font-size: 13px;
+    color: #666;
+    line-height: 26px;
+  }
+  .lib-neirong img {
+    display: block;
+    width: 100%;
+    margin: 15px 0;
+  }
+  .lib-neirong p {
+    text-indent: 2rem;
+  }
+
+
+/*轮播*/
+  .swiper-schoollib {
+    width: 100%;
+    height: 170px;
+    background: #fff;
+    margin-bottom: 10px;
+  }
+  .swiper-slide-school {
+    width: 135px;
+    height: 170px;
+    margin-left: 10px;
+  }
+  .swiper-slide-school img {
+    display: block;
+    width: 135px;
+    height: 102px;
+  }
+  .swiper-slide-school .name {
+    font-size: 14px;
+    width: 135px;
+    margin-top: 10px;
+  }
+  .swiper-slide-school .name a {
+    color: #333;
+  }
+  .swiper-slide-school .area {
+    font-size: 12px;
+    width: 135px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+  .swiper-slide-school .area a {
+    color: #666;
+  }
+</style>
+<body>
+<div id="app" >
+  {% include "m_widget/top/top.html" %}
+  <!-- ===学校==== -->
+  <div class="lib-con">
+    <p class="lib-p1">{{ wenzhangdiye.list.title }}</p>
+    <p class="lib-p2">{{ wenzhangdiye.list.schoolenname }}</p>
+    <p class="lib-p3">所在国家: {{ wenzhangdiye.list.country | getCountry }}</p>
+    <p class="lib-p4">所在区域: {{ wenzhangdiye.list.schoolarea }}</p>
+    <div class="lib-ing">
+      <div>咨询热线: 400-010-8000</div>
+      <div style="margin-left: 17px">
+        <a style="display: block;line-height: 20px;color: #fff" target="_blank" href="http://jesong.jjl.cn/live/chat.dll?c=1">我要去</a>
+      </div>
+    </div>
+  </div>
+  <!-- ===学校==== -->
+
+  <!-- ===学校简介==== -->
+  <div class="lib-jianjie">
+    <h1><i></i>学校简介</h1>
+    <div class="lib-neirong">{{ wenzhangdiye.list.content | safe }}</div>
+  </div>
+  <!-- ===学校简介==== -->
+  <!--相关推荐-->
+  <div class="lib-jianjie" style="margin-bottom: 0;padding-bottom: 7px">
+    <h1><i></i>相关热门院校推荐</h1>
+  </div>
+  <div style="background: #fff">
+    <div style="border-top: 1px solid #dcdcdc;padding: 10px 0 25px;background: #fff;margin: 0 10px">
+
+    </div>
+  </div>
+
+  <div class="swiper-schoollib branch-expert-lunbo">
+    <div class="swiper-container" id="g-swiper">
+      <div class="swiper-wrapper">
+        {% for item in daxuepaiming_list.list %}
+        <div class="swiper-slide  swiper-slide-school" >
+          <a href="{{helper.urlgen('schoollib', item.id | string, 'n=' + item.country)}}" class="top-item" style="color: #333333;" rel="nofollow">
+            <dl class="advisor-star-school">
+              <dt>
+                {% if item.logo %}
+                <img src="{{ item.logo }}" alt="{{item.title}}">
+                {% else %}
+                <img src="{{helper.cdnhost}}/assets/img/default_school_thumb.jpg" alt="{{item.title}}">
+                {% endif %}
+              </dt>
+              <dd class="name"><a href="{{helper.urlgen('schoollib', item.id | string, 'n=' + item.country)}}">{{item.title | shorten(9) }}</a></dd>
+              <dd class="area"><a href="{{helper.urlgen('schoollib', item.id | string, 'n=' + item.country)}}">{{item.schoolenname}}</a></dd>
+            </dl>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!--footer start-->
+  {% import "m_widget/footer/footer.html" as footer %}
+  {{footer.footer([{'nav_text':'热门院校列表页','nav_path': 'schoollib'},{'nav_text':wenzhangdiye.list.title ,'nav_path': ''}],tdk,helper)}}
+  <!--footer end-->
+  <!-- ===app end== -->
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+<script  src="{{helper.cdnhost}}/dep/js/swiper-3.4.2.jquery.min.js"></script>
+<script>
+  var mySwiper1 = new Swiper('#g-swiper',{
+    autoplay : 3000,
+    loop : true,
+    slidesPerView:'auto',
+    autoplayDisableOnInteraction : false
+
+  })
+</script>
+<script>
+
+</script>
+</body>
+</html>
+

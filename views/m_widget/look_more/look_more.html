@@ -1,0 +1,8 @@
+{% macro look_more(options, helper) %}
+<a class="look-more-bar" href="{{helper.urlgen(options.path)}}">
+    <span>查看更多</span>
+    <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-jiantou"></use>
+    </svg>
+</a>
+{% endmacro %}

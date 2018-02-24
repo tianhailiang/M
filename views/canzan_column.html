@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/common.css">
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/canzan_column.css">
+<body style="background: #f5f5f5;">
+<div id="app">
+  {% include "m_widget/top/top.html" %}
+  <section id="colContent">
+  	<img src="{{ helper.avaterimg(canzan_detail.uid, 'big') }}">
+  	<div class="zancan-info">
+  		<h2>{{canzan_detail.nickname}}</h2>
+      <p>{{canzan_detail.job_number}}</p>
+  		<!-- <p>{{canzan_detail.introduce | ellipsis(19)}}</p> -->
+  		<a href="javascript:;" class="btn-default">在线评估</a>
+  	</div>
+  </section>
+  <!-- 在线评估弹窗 -->
+  <div class="open-moudel" >
+      <div class="close-model">
+          <a href="javascript:;" class="btn-close">X</a>
+          {% include "m_widget/evaluate_form/evaluate_form.html" %}
+      </div>
+  </div>
+  <!--  -->
+  <section id="colList">
+  	<!-- 文章Tab切换 -->
+  	<nav>
+  		<ul class="nav-item">
+  			<li data-index="0" class="item-active"><a href="javascript:;">简介</a></li>
+  			<li data-index="1"><a href="javascript:;">专栏</a></li>
+  		</ul>
+  	</nav>
+  	<!-- 文章列表 -->
+  	<section class="tab-content">
+    <!-- 参赞简介 -->
+  	<article>
+  		  <div class="canzan-jianjie">
+          <p>{{canzan_detail.introduce}}</p>  
+        </div>
+  	</article>
+    <!-- 参赞专栏 -->
+    	<article style="display: none">
+          {% for zhuanlanitem in zhuanlanlist.list %}
+          <div class="list">
+              <img src="{{zhuanlanitem.img_list[0]}}" alt="">
+              <div class="art-list">
+                <h2>{{zhuanlanitem.title}}</h2>
+                <p>{{zhuanlanitem.introduce}}</p>
+                <div class="time">
+                  <span>{{zhuanlanitem.add_time | shorten(10) | replace('-', '.')}}</span>
+                <span>
+                  <span class="icon-svg"><svg class="icon" aria-hidden="true">
+                  <use xlink:href="#icon-liulan1"></use>
+                  </svg></span>{{zhuanlanitem.user_info.status}}</span>
+                </div>
+              </div>
+          </div>
+          {% endfor %}
+    	</article>
+  	</section>
+  </section>
+   <!-- 相关资讯推荐 -->
+   {% import "m_widget/xiangguan_tuijian/xiangguan_tuijian.html" as xiangguan %}
+   {{ xiangguan.tuijianlist1(pageType,tuijian,pageroute,helper)}}
+  <!--footer start-->
+  {% import "m_widget/footer/footer.html" as footer %}
+  {{footer.footer([{'nav_text':'参赞底页','nav_path': 'news'},{'nav_text':canzan_detail.realname,'nav_path': ''}],tdk,helper)}}
+  <!--footer end-->
+</div>
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+<!-- <script src="{{helper.cdnhost}}/assets/js/jquery.min.js"></script> -->
+<script type="text/javascript">
+	$(function(){
+		$(".nav-item li").on('click',function(){
+			var $dataIndex = $(this).data('index')
+			$(".nav-item li").removeClass('item-active')
+			$(this).addClass('item-active')
+			$(".tab-content article").eq($dataIndex).show().siblings().hide()
+    })
+    
+    $(".btn-default").on('click',function(){
+      $(".open-moudel").show()
+      $("html, body").css('overflow','hidden')
+    })
+    
+    $(".btn-close").on('click',function(){
+      $(".open-moudel").hide()
+      $("html, body").css('overflow','auto')
+    })
+	})
+</script>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+</body>
+</html>

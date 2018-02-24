@@ -1,0 +1,13 @@
+<div class="load-more-bar" id="load-more-btn" data-cur_page="1">
+    <span>点击加载更多</span>
+    <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-qianjin-copy1"></use>
+    </svg>
+</div>
+<script>
+    $('#load-more-btn').click(function () {
+        var cur_page = $(this).data('cur_page');
+        console.log('当前页 ', cur_page);
+        loadMore(cur_page);
+    })
+</script>

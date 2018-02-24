@@ -1,0 +1,45 @@
+.liuxue_fangan_warp{
+    width: 100%;
+    background: #FFFFFF;
+}
+.liuxue_fangan_warp:first-child .liuxue_fangan{
+    margin-top: 10px;
+}
+.liuxue_fangan{
+    margin:5px 10px 5px 10px;
+    /*width: 355px;*/
+    height: 117px;
+    background: #f9f9f9;
+
+}
+.liuxue_fangan_center{
+    padding: 0 10px;
+    border-left: 1px solid #d51825;
+    margin: 10px 0px;
+}
+.liuxue_fangan_center_left{
+    width: 129px;
+    height: 97px;
+    /*background: #0a8ddf;*/
+    float: left;
+    margin-right: 10px;
+}
+.liuxue_fangan_center_left img{
+    width: 129px;
+    height: 97px;
+}
+.liuxue_fangan_center_right_title{
+    font-weight: 400;
+    font-size:14px ;
+    color: #333333;
+}
+.liuxue_fangan_center_right p{
+    font-size: 12px;
+    line-height: 20px;
+    color: #666666;
+    height: 20px;
+}
+.liuxue_fangan_center_right_span{
+    font-size: 12px;
+    color: #666666;
+}

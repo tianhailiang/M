@@ -1,0 +1,128 @@
+
+.footer-box{
+	width:100%;
+	height:49px;
+	background:#d51821;
+	position: fixed;
+	bottom: 0;
+	left:0;
+	z-index:120;
+	box-sizing: border-box;
+}
+.footer-ul{
+	display: flex;
+	align-items: center;
+	height:100%;
+}
+
+.footer-ul li{
+	flex:1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-right: 0.5px solid #fff;
+	position: relative;
+	height:100%;
+}
+.footer-ul li:last-child{
+	border-right:none;
+}
+
+.footer-logo-information{
+	display: block;
+	width:15px;
+	height:12px;
+	background:url(./../../assets/images/home_tab_service.png) no-repeat 0 0;
+	background-size: 15px 12px;
+	margin-right: 7.5px;
+}
+
+.footer-ul li span{
+  font-size: 14px;
+  color:#fff;
+}
+
+.footer-logo-online{
+	display: block;
+	width:12px;
+	height:12px;
+	background:url(./../../assets/images/home_tab_assess.png) no-repeat 0 0;
+	background-size: 12px 12px;
+	margin-right:8px;
+}
+
+.footer-logo-phone{
+	display: block;
+	width:11px;
+	height:12px;
+	background:url(./../../assets/images/home_tab_phone.png) no-repeat 0 0;
+	background-size:11px 12px;
+	margin-right: 7.5px; 
+}
+
+.consultation-news{
+	position:absolute;
+	right:7px;
+	top:7px;
+	display: block;
+	width:18px;
+	height:18px;
+	background:#ffe400;
+	border-radius: 50%;
+	font-size: 10px;
+	color:#d51821;
+	font-weight: bold;
+	line-height: 18px;
+	text-align: center;
+	animation: myNews 1s infinite;
+}
+
+@keyframes myNews {
+    0% { 
+    	transform: scale(1);
+    }  
+    50%{
+    	transform: scale(1.5);
+    }
+    100% {
+    	transform: scale(1);
+    }
+}
+
+.consultation-ul{
+	position:fixed;
+	width:31.5%;
+	left:10px;
+	background:#d51821;
+	bottom:49px;
+	z-index:120;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	display: none;
+}
+
+.consultation-ul li{
+	padding:0 10px;
+	height:45px;
+}
+.consultation-ul li span{
+	height:100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 13px;
+    color:#fff;
+    flex-wrap:nowrap;
+    border-bottom: 0.5px solid #fff;
+    text-overflow: ellipsis;
+
+}
+.consultation-ul li:last-child span{
+	border-bottom:none;
+}
+.telphone a{
+	display: flex;
+	height:100%;
+	align-items: center;
+	justify-content: center;
+}

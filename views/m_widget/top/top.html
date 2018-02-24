@@ -1,0 +1,493 @@
+
+<header class="header">
+	<div class="header-Catalog" >
+		<span></span>
+	</div>
+	<div class="header-logo" >
+    <a style="display: block;width: 93px;height: 27px;" href="/"></a>
+	</div>
+	<div class="header-phone" >
+    <a href="tel:4000108000" >
+			<div class="header-phone-logo" ></div>
+			<div class="header-phone-number" >
+				<span>全国热线电话</span>
+				<i>400-010-8000</i>
+			</div>
+    </a>   
+	</div>
+	<div class="header-city" >
+		<span></span>
+		<i>北京</i>
+	</div>
+</header>
+{% set cityList=[
+  {
+  "companyAddress":"北京市建国门外大街永安东里米阳大厦5层（永安里地铁C口向南50米）",
+  "companyTel": "010-65685656",
+  "companyName": "B-北京",
+  "companyId": "1"
+  },
+  {
+  "companyAddress": "成都市总府路2号时代广场A座18层",
+  "companyTel": "028-85595757",
+  "companyName": "C-成都",
+  "companyId": "5"
+  },
+  {
+  "companyAddress": "重庆市渝中区民权路28号英利国际金融中心37-7，37-8",
+  "companyTel": "023-60335656",
+  "companyName": "C-重庆",
+  "companyId": "7"
+  },
+  {
+  "companyAddress": "长沙市芙蓉区定王大厦28楼28-29-30",
+  "companyTel": "0731-82563355",
+  "companyName": "C-长沙",
+  "companyId": "19"
+  },
+  {
+  "companyAddress": "长春市西安大路727号中银大厦A座22层",
+  "companyTel": "0431-81811818",
+  "companyName": "C-长春",
+  "companyId": "25"
+  },
+  {
+  "companyAddress": "常州市钟楼区延陵西路99号嘉业国贸大厦23层2307-2308",
+  "companyTel": "0519-83335656",
+  "companyName": "C-常州",
+  "companyId": "41"
+  },
+  {
+  "companyAddress": "大连市中山区人民路平安大厦25层",
+  "companyTel": "0411-39865959",
+  "companyName": "D-大连",
+  "companyId": "13"
+  },
+  {
+  "companyAddress": "广东省东莞市南城区金盈大厦C区7层",
+  "companyTel": "0769-22905656",
+  "companyName": "D-东莞",
+  "companyId": "43"
+  },
+  {
+  "companyAddress": "佛山市禅城区城门头路18号ICC国际商业中心17层",
+  "companyTel": "0757-82030588",
+  "companyName": "F-佛山",
+  "companyId": "37"
+  },
+  {
+  "companyAddress": "福州市鼓楼区五四路128号恒力城写字楼27F",
+  "companyTel": "0591-83625656",
+  "companyName": "F-福州",
+  "companyId": "39"
+  },
+  {
+  "companyAddress": "广州市天河区体育西路191号中石化大厦b座33楼3310—3321",
+  "companyTel": "020-38175656",
+  "companyName": "G-广州",
+  "companyId": "3"
+  },
+  {
+  "companyAddress": "贵阳市云岩区中华北路284号天毅大厦20层",
+  "companyTel": "0851-82215656",
+  "companyName": "G-贵阳",
+  "companyId": "35"
+  },
+  {
+  "companyAddress": "杭州市杭大路15号嘉华国际商务中心706",
+  "companyTel": "0571-28887999",
+  "companyName": "H-杭州",
+  "companyId": "6"
+  },
+  {
+  "companyAddress": "合肥市包河区万达广场7号写字楼22层2204",
+  "companyTel": "0551-62866565",
+  "companyName": "H-合肥",
+  "companyId": "22"
+  },
+  {
+  "companyAddress": "哈尔滨市道里区上海街7号海上银座B座2001室",
+  "companyTel": "0451-58669777",
+  "companyName": "H-哈尔滨",
+  "companyId": "24"
+  },
+  {
+  "companyAddress": "内蒙古呼和浩特市中山西路1号海亮大厦A座1801",
+  "companyTel": "0471-3817676",
+  "companyName": "H-呼市",
+  "companyId": "26"
+  },
+  {
+  "companyAddress": "邯郸市人民东路350号嘉华大厦806室",
+  "companyTel": "0310-5709558",
+  "companyName": "H-邯郸",
+  "companyId": "32"
+  },
+  {
+  "companyAddress": "海南省海口市龙华区滨海大道103号财富广场28楼A室",
+  "companyTel": "0898-68635656",
+  "companyName": "H-海南",
+  "companyId": "46"
+  },
+  {
+  "companyAddress": "济南市市中区泺源大街229号金龙大厦29层",
+  "companyTel": "0531-81851155",
+  "companyName": "J-济南",
+  "companyId": "9"
+  },
+  {
+  "companyAddress": "吉林市昌邑区财富广场B栋8层803-807",
+  "companyTel": "0432-62885656",
+  "companyName": "J-吉林",
+  "companyId": "30"
+  },
+  {
+  "companyAddress":"昆明市盘龙区东风东路36号，建工大厦28层，2808-2811号办公楼",
+  "companyTel": "0871-63536688",
+  "companyName": "K-昆明",
+  "companyId": "21"
+  },
+  {
+  "companyAddress": "兰州市城关区张掖路1号保利大厦a座15层",
+  "companyTel": "0931-8185656",
+  "companyName": "L-兰州",
+  "companyId": "27"
+  },
+  {
+  "companyAddress": "河南省洛阳市西工区升龙广场E区汇金中心1211",
+  "companyTel": "0379-65165656",
+  "companyName": "L-洛阳",
+  "companyId": "48"
+  },
+  {
+  "companyAddress": "南京市鼓楼区汉中路8号金轮国际广场2401室",
+  "companyTel": "025-85552299",
+  "companyName": "N-南京",
+  "companyId": "16"
+  },
+  {
+  "companyAddress": "南昌市广场南路恒茂国际中心16栋B座27层",
+  "companyTel": "0791-86665966",
+  "companyName": "N-南昌",
+  "companyId": "29"
+  },
+  {
+  "companyAddress": "宁波市海曙区药行街42号银亿环球中心B座803",
+  "companyTel": "0574-87008686",
+  "companyName": "N-宁波",
+  "companyId": "34"
+  },
+  {
+  "companyAddress": "南宁市青秀区金湖路59号地王国际商会中心30层CD",
+  "companyTel": "0771-5775656",
+  "companyName": "N-南宁",
+  "companyId": "38"
+  },
+  {
+  "companyAddress": "青岛市香港中路40号数码旗舰大厦19层A1室",
+  "companyTel": "0532-86667776",
+  "companyName": "Q-青岛",
+  "companyId": "10"
+  },
+  {
+  "companyAddress": "上海市黄浦区徐家汇路555号广发大厦三层",
+  "companyTel": "021-61581818",
+  "companyName": "S-上海",
+  "companyId": "2"
+  },
+  {
+  "companyAddress": "沈阳分公司：沈阳市和平区和平北大街69号总统大厦A座14层",
+  "companyTel": "024-22812866",
+  "companyName": "S-沈阳",
+  "companyId": "8"
+  },
+  {
+  "companyAddress": "石家庄市新华区中华北大街50号军创国际商务花园1202室",
+  "companyTel": "0311-85368866",
+  "companyName": "S-石家庄",
+  "companyId": "12"
+  },
+  {
+  "companyAddress": "深圳市福田区福华一路138号国际商会大厦A座25层",
+  "companyTel": "0755-82931818",
+  "companyName": "S-深圳",
+  "companyId": "20"
+  },
+  {
+  "companyAddress": "苏州市工业园区苏州大道西8号中银惠龙大厦6层",
+  "companyTel": "0512-62893339",
+  "companyName": "S-苏州",
+  "companyId": "23"
+  },
+  {
+  "companyAddress": "天津市河西区大沽南路362号天津图书大厦10层1088室",
+  "companyTel": "022-23263399",
+  "companyName": "T-天津",
+  "companyId": "4"
+  },
+  {
+  "companyAddress": "太原市南内环街100号恒地大厦12层",
+  "companyTel": "0351-7668080",
+  "companyName": "T-太原",
+  "companyId": "17"
+  },
+  {
+  "companyAddress": "唐山市路南区新华西道32号新华贸写字楼16层",
+  "companyTel": "0315-6328566",
+  "companyName": "T-唐山",
+  "companyId": "18"
+  },
+  {
+  "companyAddress": "武汉市解放大道航空路新世界中心C座20层",
+  "companyTel": "027-83805656",
+  "companyName": "W-武汉",
+  "companyId": "14"
+  },
+  {
+  "companyAddress": "武汉市洪山区珞瑜路10号群光中心百脑汇23层",
+  "companyTel": "027-67811600",
+  "companyName": "W-武昌",
+  "companyId": "50"
+  },
+  {
+  "companyAddress": "无锡市崇安区中山路531号红豆国际广场办公楼19层",
+  "companyTel": "0510-81805656",
+  "companyName": "W-无锡",
+  "companyId": "33"
+  },
+  {
+  "companyAddress": "温州市鹿城区车站大道577号财富中心1302",
+  "companyTel": "0577-88815656",
+  "companyName": "W-温州",
+  "companyId": "42"
+  },
+  {
+  "companyAddress": "西安市碑林区南关正街88号长安国际C座808",
+  "companyTel": "029-87995656",
+  "companyName": "X-西安",
+  "companyId": "15"
+  },
+  {
+  "companyAddress": "厦门市思明区鹭江道100号财富中心5层",
+  "companyTel": "0592-2115656",
+  "companyName": "X-厦门",
+  "companyId": "28"
+  },
+  {
+  "companyAddress": "徐州市泉山区建国西路75号财富广场A座四楼",
+  "companyTel": "0516-85785656",
+  "companyName": "X-徐州",
+  "companyId": "36"
+  },
+  {
+  "companyAddress":"青海省西宁市城中区西大街42号三田世纪广场写字楼13层1307-1308号",
+  "companyTel": "0971-4925656",
+  "companyName": "X-西宁",
+  "companyId": "45"
+  },
+  {
+  "companyAddress": "乌鲁木齐市红山路16号广汇时代广场D座24层",
+  "companyTel": "0991-2655656",
+  "companyName": "X-新疆",
+  "companyId": "47"
+  },
+  {
+  "companyAddress": "烟台市芝罘区海港路25号阳光100A座2907室",
+  "companyTel": "0535-6275656",
+  "companyName": "Y-烟台",
+  "companyId": "31"
+  },
+  {
+  "companyAddress": "银川市兴庆区文化西街国际贸易中心C栋7层",
+  "companyTel": "0951-7616655",
+  "companyName": "Y-银川",
+  "companyId": "40"
+  },
+  {
+  "companyAddress": "宜昌市沿江大道特168-5号，万达广场A座2505室",
+  "companyTel": "0717-6625656",
+  "companyName": "Y-宜昌",
+  "companyId": "44"
+  },
+  {
+  "companyAddress": "郑州市金水区经三路68号2号楼招商银行大厦12层1202室",
+  "companyTel": "0371-60228686",
+  "companyName": "Z-郑州",
+  "companyId": "11"
+  }
+] %}
+<!--选择城市 start-->
+<div class="change_city" id="change_city" >
+  <div class="city_title">
+    <svg class="icon icon-jiantou1" aria-hidden="true" id="city_go_back">
+       <use xlink:href="#icon-qianjin-copy"></use>
+    </svg>
+    <h1>切换城市</h1>
+  </div>
+  <ul class="city_list" >
+    {% for item in cityList %}
+      <li data-id="{{item.companyId}}" >
+        <span class="city-name">{{item.companyName}}</span>
+        <div class="city-li-right" >
+          <span class="city-phone">{{item.companyTel}}</span>  
+          <i class="city-address">
+            {{item.companyAddress}}
+          </i>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+<!--选择城市 end-->
+<!-- ====定位=== -->
+<div id="popupTipsLocation" style="display:none">
+  <div class="m_popup_wrap">
+    <div class="m_popup_box">
+      <div class="title">获取定位<b class="close before"></b></div>
+      <div class="text">
+        <p>距离您当前位置最近的分公司:<br>金吉列
+          <span id="fengongsi">北京</span>
+        </p>
+       </div>
+       <div class="btn_box">
+          <a id="selBySelf" class="btn_public btn_general">手动选择</a>
+          <a id="selByIp" class="btn_public btn_highlight">好</a>
+       </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(function(){
+    FastClick.attach(document.body);
+    //lbs定位
+    var iDcity = {
+      1:'北京',
+      25:'长春',
+      5:'成都',
+      7:'重庆',
+      41:'常州',
+      19:'长沙',
+      13:'大连',
+      43:'东莞',
+      37:'佛山',
+      39:'福州',
+      3:'广州',
+      35:'贵州',
+      32:'邯郸',
+      24:'哈尔滨',
+      22:'合肥',
+      46:'海南',
+      26:'呼市',
+      6:'杭州',
+      30:'吉林',
+      9:'济南',
+      21:'昆明',
+      27:'兰州',
+      48:'洛阳',
+      34:'宁波',
+      29:'南昌',
+      16:'南京',
+      38:'南宁',
+      10:'青岛',
+      2:'上海',
+      12:'石家庄',
+      8:'沈阳',
+      20:'深圳',
+      23:'苏州',
+      4:'天津',
+      18:'唐山',
+      17:'太原',
+      14:'武汉',
+      114:'武昌',
+      33:'无锡',
+      42:'温州',
+      15:'西安',
+      47:'新疆',
+      28:'厦门',
+      45:'西宁',
+      36:'徐州',
+      44:'宜昌',
+      40:'银川',
+      31:'烟台',
+      11:'郑州'
+    };
+    var oLdnum = $.cookie('currentarea');
+    // console.log(oLdnum)
+    $(".header-city").find("i").text(iDcity[oLdnum]);
+
+    $(".city_list").height($(window).height()-92);
+    $(".header-city").on("click",function(){
+      //选择城市
+      $("#change_city").css({"display":"block"}).animate({right:0},500);
+    });
+    $("#city_go_back").on("click",function(){
+      $("#change_city").animate({right:"-100%"},500);
+      setTimeout(function(){
+        $("#change_city").css({"display":"none"});
+      },500)
+    });
+    $(".city_list li").on("click",function(index){
+      //选取城市
+      var currentarea = $(this).attr("data-id");
+      console.log(currentarea)
+      $.cookie('currentarea', currentarea, { path: '/'});
+      window.location.reload();
+    });
+    $(".city_list li").each(function(i){
+      // 点击城市让他变红
+      if($(this).attr("data-id")==$.cookie('currentarea')){
+        // console.log(10000)
+        $(this).find(".city-name").attr("style","color:red");
+        // $(this).find(".city-phone").attr("style","color:red");
+        // $(this).find(".city-address").attr("style","color:red");
+      }else{
+        $(this).find(".city-name").removeAttr("style");
+        // $(this).find(".city-phone").removeAttr("style");
+        // $(this).find(".city-address").removeAttr("style");
+      }
+    });
+    //定位
+    var _selByIp_code=null;
+    var n=document.getElementById("popupTipsLocation");
+    function closePopup(){
+      var a=document.querySelector("#popupTipsLocation");
+      a.parentNode.removeChild(a);
+    }
+    $('.close').on('click', function () {
+      //关闭按钮
+      closePopup();
+      $.cookie('currentarea', _selByIp_code, {path: '/'});
+      window.location.reload();
+    });
+    $('#selByIp').on('click', function () {
+      //确定按钮
+      closePopup();
+      $.cookie('currentarea', _selByIp_code, {path: '/'});
+      window.location.reload();
+    });
+    $('#selBySelf').on('click', function () {
+      //手动选择
+      closePopup();
+      $("#change_city").css({"display":"block"}).animate({right:0},500);
+    });
+    $.ajax({
+      type: "get",
+      async: false,
+      url:ajaxUrlPrefix.nodeapi+"/ip_geter",
+      dataType: "json",
+      success: function(result){
+        console.log(result)
+        if(!$.cookie('currentarea')){
+          $("#fengongsi").html(iDcity[result.data]);
+          $("#popupTipsLocation").css("display","block"); 
+            _selByIp_code=result.data;
+        }
+      },
+      error: function(error){
+        console.log(error)
+      }
+    }); 
+  })
+  
+</script>
+

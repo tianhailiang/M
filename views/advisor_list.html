@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<body style="background: #f5f5f5">
+{% include "m_widget/top/top.html" %}
+
+{% import "m_widget/top_tab/top_tab.html" as top_tab %}
+{{top_tab.top_tab({'tab_type':"顾问", 'n': country},helper)}}
+
+
+<div id="app">
+  <div class="app-in">
+  <div class="news-list" id="advisor_list">
+    {% include "m_widget/advisor_list/advisor_list.html" %}
+  </div>
+  <div style="background: #fff">
+    <div id="country" data-country="{{country}}"></div>
+    {% include "m_widget/load_more/load_more.html" %}
+  </div>
+  <!--最新活动 成功案例  大学排名 start-->
+  {%esi helper.include(esikey,'fragment/list_public','c='+tdk.cityid)%}
+  {% import "m_widget/footer/footer.html" as footer %}
+  {{footer.footer([{'nav_text':'顾问列表页','nav_path': 'adviser'}],tdk,helper)}}
+  </div>
+</div>
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+{% import "m_widget/select_pop/select_pop.html" as select_pop %}
+{{ select_pop.select_pop({'n': country, 'path': 'adviser'}, helper) }}
+<script>
+
+
+  function loadMore (cur_page) {
+    var now_page = cur_page+1;
+    var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
+    var country = $('#country').data('country');
+    console.log('country', country)
+    console.log('now_page', now_page)
+    console.log('area', area)
+    $.ajax({
+      url: '/ucapi/ucapi_agent',
+      type: 'GET',
+      datatype: 'json',
+      data: {
+        "m": "getguwenlist",
+        "country": country,
+        "organid": area,
+        "pagesize": 7,
+        "page":now_page
+      },
+      success: function (result) {
+        var add = '';
+        console.log('ssss', result.data.list);
+        var datalist = result.data.list;
+        if (result.data.list.length > 0) {
+          $('#load-more-btn').data('cur_page', now_page);
+          for (var i = 0;i < datalist.length;i++) {
+            add += '<div class="advisor-item clearfix">'+
+            '<a class="main" href="'+fn.urlgen("adviser", datalist[i].uid.toString())+'">'+
+            '<div class="advisor-item-left">'+
+            '<img src="'+fn.avaterimg(datalist[i].uid, "small", 0, datalist[i].status)+'" alt=""/>'+
+            '</div>'+
+            '<div class="advisor-item-right ">'+
+            '<div class="advisor-top clearfix">'+
+            '<div class="advisor-name">'+datalist[i].realname+'</div>'+
+            '<div class="advise-btn" data-onzixun="'+ datalist[i].job_number +'">我要咨询</div>'+
+            '</div>'+
+            '<div class="skillful-ct line-clamp-1">擅长国家：'+datalist[i].skilful_country+'</div>'+
+            '<div class="advisor-desc line-clamp-2">'+datalist[i].introduce+'</div>'+
+            '</div>'+
+            '</a>'+
+            '</div>'
+          }
+          $('#advisor_list').append($(add));
+        } else {
+          $('#load-more-btn').html('没有更多顾问');
+        }
+
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert('服务器开小差了，请重试');
+      }
+    })
+  }
+
+    $(".app-in").on('click', '.advise-btn', function(event){
+      event.preventDefault();
+      var onzixun = $(this).data('onzixun');
+      console.log('onzixun', onzixun);
+      var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
+      console.log('area', area)
+      window.location = "http://jesong.jjl.cn/live/chat.dll?c="+ area +"&n="+ onzixun
+    });
+
+</script>
+
+
+</body>
+</html>

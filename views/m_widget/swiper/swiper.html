@@ -1,0 +1,28 @@
+
+<style type="text/css">
+    .banner-img{
+        height:175px;
+        width:100%;
+    }
+    #swiper-container .swiper-pagination-bullet {
+        background:#fff;
+        opacity: 1;
+        width:6px;
+        height:6px;
+    }
+    #swiper-container .swiper-pagination-bullet-active{
+        background:#d51821;
+    }
+</style>
+<div class="swiper-container" id="swiper-container">
+  <div class="swiper-wrapper">
+    {% for item in lunbo_list %}
+    <div class="swiper-slide">
+        <a href="{{item.linkurl}}" >
+    	  <img class="banner-img" src="{{item.imageurl}}" alt="{{item.alt}}">
+        </a>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="swiper-pagination"></div>
+</div>

@@ -1,0 +1,26 @@
+{
+  apps : [
+    {
+      name      : "m_fragsvr",
+      script    : "./bin/fragsvr",
+      cwd: "./",           //根目录
+      watch:[
+            "bin",
+            "common",
+            "configs",
+            "public",
+            "routes",
+            "views"
+        ],
+      env: {
+        COMMON_VARIABLE: "true"
+      },
+      env_production : {
+        NODE_ENV: "production"
+      },
+      env_test : {
+        NODE_ENV: "test"
+      }
+    },
+  ],  
+}

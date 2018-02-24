@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<style>
+    .sckoollib-right .schoollib-p1 {
+        color: #ecc580;
+    }
+    .schoollib {
+        background:#000 url(../../../assets/img/friend-btn-bj.png) repeat-y;
+        position: relative;
+
+    }
+    /*.schoollib:after{*/
+        /*display: block;*/
+        /*content: "";*/
+        /*border-bottom: solid 1px #ecc580;*/
+        /*position: absolute;*/
+        /*width: 100%;*/
+        /*transform:scaleY(0.5);*/
+        /*-webkit-transform:scaleY(0.5);*/
+        /*-moz-transform:scaleY(0.5);*/
+        /*-o-transform:scaleY(0.5);*/
+        /*-ms-transform:scaleY(0.5);*/
+        /*transform-origin: 0 0;*/
+        /*-webkit-transform-origin: 0 0;*/
+        /*-moz-transform-origin: 0 0;*/
+        /*-o-transform-origin: 0 0;*/
+        /*-ms-transform-origin: 0 0;*/
+        /*bottom: 4px;*/
+    /*}*/
+    .schoollib-con {
+        background:#000 url(../../../assets/img/friend-btn-bj.png) repeat-y;
+    }
+    .sckoollib-right P{
+        color: #ffffff;
+    }
+    .school-con i{
+        color: #ecc580 !important;
+    }
+</style>
+<body>
+{% include "m_widget/top/top.html" %}
+<div id="app" >
+    <!--引导banner start-->
+    <!--引导banner end-->
+    <!--评估表单 start-->
+    {% include "m_widget/evaluate_form/evaluate_form.html" %}
+    <!--评估表单 end-->
+    <!--引导列表 start-->
+    <div class="info-list" id="info-list">
+        {% include "m_widget/schoollib/schoollib.html" %}
+        {% import "m_widget/look_more/look_more.html" as look_more %}
+        {{ look_more.look_more({'path': 'schoollib'}, helper)}}
+    </div>
+
+    <!--引导列表 end-->
+    <!--footer start-->
+    {% import "m_widget/footer/footer.html" as footer %}
+    {{footer.footer([{'nav_text':'院校库列表页','nav_path': 'schoollib'}],tdk,helper)}}
+    <!--footer end-->
+    <!-- ===app end== -->
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+</body>
+</html>

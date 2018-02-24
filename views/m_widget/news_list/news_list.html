@@ -1,0 +1,48 @@
+{% macro newslist(channel_list,route,helper) %}
+{% for newItem in channel_list.list %}
+<div class="news-item info-item">
+    <a href="{{helper.urlgen(route, newItem.id | string, 'n=' + newItem.country)}}">
+        <div class="news-item-left">
+            <img src="{{newItem.thumb}}" alt="{{newItem.title}}"/>
+        </div>
+        <div class="news-item-right">
+            <div class="news-title line-ellpisis info-title">{{newItem.title}}</div>
+            <div class="news-desc line-clamp-2 info-content">{{newItem.description}}</div>
+            <div class="news-info clearfix">
+                <div class="news-time info-content">{{newItem.inputtime | getDefaultFormat('YYYY.MM.DD')}}</div>
+                <div class="news-views info-content">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-liulan1"></use>
+                    </svg>
+                    <span>{{newItem.hits}}</span></div>
+            </div>
+        </div>
+    </a>
+</div>
+{% endfor %}
+{% endmacro %}
+
+<!--大学排名-->
+{% macro schoollist(channel_list,route,helper) %}
+{% for newItem in channel_list.list %}
+<div class="news-item info-item">
+    <a href="{{helper.schoolrankUrlgen(route,'school', 'id='+newItem.id | string, 'n=' + newItem.country)}}">
+        <div class="news-item-left">
+            <img src="{{newItem.thumb}}" alt="{{newItem.title}}"/>
+        </div>
+        <div class="news-item-right">
+            <div class="news-title line-ellpisis info-title">{{newItem.title}}</div>
+            <div class="news-desc line-clamp-2 info-content">{{newItem.description}}</div>
+            <div class="news-info clearfix">
+                <div class="news-time info-content">{{newItem.inputtime | getDefaultFormat('YYYY.MM.DD')}}</div>
+                <div class="news-views info-content">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-liulan1"></use>
+                    </svg>
+                    <span>{{newItem.hits}}</span></div>
+            </div>
+        </div>
+    </a>
+</div>
+{% endfor %}
+{% endmacro %}

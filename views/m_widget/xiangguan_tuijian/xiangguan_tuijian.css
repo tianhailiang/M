@@ -1,0 +1,38 @@
+.xiangguan-zixun{
+    padding:15px 10px 0px;
+    background: #ffffff;
+    margin-bottom: 10px;
+}
+.xiangguan-zixun .xiangguan-zixun-tit{
+    height:15px;
+    font-size: 15px;
+    border-left:2.5px solid #D51821;
+    line-height: 15px;
+    padding-left:10px;
+    color:#333333;
+    margin-bottom: 15px;
+}
+.xiangguan-zixun ul li{
+    width: 100%;
+    display: flex;
+    padding:15px 0;
+    border-top:1px solid #eeeeee;
+    line-height: 14px;
+}
+.xiangguan-zixun ul a{
+    flex: 1;
+    font-size: 14px;
+    color:#333333;
+    margin-right:10px;
+    height: 14px;
+}
+.xiangguan-zixun ul a .icon{
+    font-size: 3px;
+    margin-right: 7px;
+}
+.xiangguan-zixun ul li span{
+    width: 68px;
+    font-size: 12px;
+    color:#999999;
+    margin-top:1px;
+}

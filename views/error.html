@@ -1,0 +1,13 @@
+<h1>{{ message}}</h1>
+<h2>{{ error.status }}</h2>
+<pre>{{ error.stack }}</pre>
+{#<!DOCTYPE html>
+<html lang="en">
+{% include "header_new.html" %}
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/error.css">
+<body>
+<div class="error-con"><img src="{{helper.cdnhost}}/assets/img/404.png" alt=""></div>
+<p class="error-btn"><a  href="javascript:history.go(-1);" class="dui-btn btn-xlarge btn-appointment go-back-btn">返回上页</a></p>
+</body>
+
+</html>#}

@@ -1,0 +1,122 @@
+{% macro select_pop(options, helper) %}
+{%
+set countryList = [
+{
+"id": 1,
+"country": "美国"
+},
+{
+"id": 2,
+"country": "英国"
+},
+{
+"id": '3',
+"country": "加拿大"
+},
+{
+"id": 4,
+"country": "澳大利亚"
+},
+{
+"id": 5,
+"country": "新西兰"
+},
+{
+"id": 50,
+"country": "韩国"
+},
+{
+"id": 51,
+"country": "日本"
+},
+{
+"id": 52,
+"country": "新加坡"
+},
+{
+"id": 53,
+"country": "马来西亚"
+},
+{
+"id": 54,
+"country": "中国香港"
+},
+{
+"id": 100,
+"country": "俄罗斯"
+},
+{
+"id": 101,
+"country": "乌克兰"
+},
+{
+"id": 102,
+"country": "白俄罗斯"
+},
+{
+"id": 103,
+"country": "德国"
+},
+{
+"id": 104,
+"country": "法国"
+},
+{
+"id": 105,
+"country": "挪威"
+},
+{
+"id": 106,
+"country": "瑞典"
+},
+{
+"id": 107,
+"country": "芬兰"
+},
+{
+"id": 108,
+"country": "爱尔兰"
+},
+{
+"id": 109,
+"country": "荷兰"
+},
+{
+"id": 110,
+"country": "丹麦"
+},
+{
+"id": 111,
+"country": "意大利"
+},
+{
+"id": 112,
+"country": "西班牙"
+},
+{
+"id": 113,
+"country": "瑞士"
+}
+]
+%}
+<div class="select-pop" id="select-pop">
+    <div class="select-type">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-32pxquanqiuzhicai"></use>
+        </svg>
+        <span>所属国家</span>
+    </div>
+    <div class="select-item-box">{% for item in countryList %}{% if options.n == item.id %}<a class="select-item focus-on" data-id="{{item.id}}" href="{{helper.urlgen(options.path, 'n=' + item.id)}}">{{item.country}}</a>{% else %}<a class="select-item" data-id="{{item.id}}"  href="{{helper.urlgen(options.path, 'n=' + item.id)}}">{{item.country}}</a>{% endif %}{% endfor %}
+    </div>
+</div>
+<script>
+    FastClick.attach(document.body);
+    $(".select-pop").height($(window).height()-84-49);
+//    $(".select-item-box")
+    $('#select-btn').on('click', function () {
+        $('#app').css('position', 'fixed');
+        $(this).addClass('active');
+        $('#select-pop').show();
+    })
+</script>
+{% endmacro %}

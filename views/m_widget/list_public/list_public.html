@@ -1,0 +1,43 @@
+<div class="list-nav">
+  <span><a href="javascript:void(0);" class="active">最新活动</a></span>
+  <span><a href="javascript:void(0);">成功案例</a></span>
+  <span><a href="javascript:void(0);">大学排名</a></span>
+</div>
+<div class="list-conten">
+  <ul>
+    {% for item in zuixinhuodong_public.list %}
+    <li class="line-clamp-1"><svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-dian-copy-copy-copy"></use>
+    </svg>
+      <a href="{{helper.urlgen('activity','c='+item.organid,item.id | string)}}">[{{item.country | getCountry}}]&nbsp;&nbsp;{{ item.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="list-conten" style="display: none">
+  <ul>
+    {% for item in chenggonganli_public.list %}
+    <li class="line-clamp-1"><svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-dian-copy-copy-copy"></use>
+    </svg>
+      <a href="{{ helper.urlgen('case', item.id | string) }}">{{item.title}}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="list-conten" style="display: none">
+  <ul>
+    {% for item in schoolpaiming_public.list %}
+    <li class="line-clamp-1"><svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-dian-copy-copy-copy"></use>
+    </svg>
+      <a href="{{helper.schoolrankUrlgen('schoolrank','school', 'id='+item.id | string, 'n=' + item.country)}}">{{item.title}}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+<script>
+$(".list-nav span").click(function(){
+  var index=$(this).index();
+  $(this).find('a').addClass('active').parent("span").siblings("span").find('a').removeClass('active');
+  $(".list-conten").eq(index).show().siblings(".list-conten").hide()
+})
+</script>

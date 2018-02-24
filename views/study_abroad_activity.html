@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<body>
+{% include "m_widget/top/top.html" %}
+<!--顶部tab切换 start-->
+{% import "m_widget/top_tab/top_tab.html" as top_tab %}
+{{top_tab.top_tab({'tab_type':"活动", 'n': country},helper)}}
+<!--顶部tab切换 end-->
+<div id="app">
+  <div class="app-in">
+
+  <!--活动列表 start-->
+  <div class="activity-list" id="activity-list">
+    {% import  "m_widget/activity/activity.html" as activity_list %}
+    {{ activity_list.activity_item(liuxuehuodong_list.list,helper) }}
+  </div>
+  <!--活动列表 end-->
+  <!--加载更多 start-->
+  {% include "m_widget/load_more/load_more.html" %}
+  <!--加载更多 end-->
+  <!--最新活动 成功案例  大学排名 start-->
+   {%esi helper.include(esikey,'fragment/list_public','c='+tdk.cityid)%}
+   {#{%  include "m_widget/list_public/list_public.html" %}#}
+  <!--footer start-->
+  {% import "m_widget/footer/footer.html" as footer %}
+  {{footer.footer([{'nav_text':'留学活动列表页','nav_path': 'activity'}],tdk,helper)}}
+  <!--footer end-->
+    </div>
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+{% import "m_widget/select_pop/select_pop.html" as select_pop %}
+{{ select_pop.select_pop({'n': country, 'path': 'activity'}, helper) }}
+<script>
+  /*加载更多函数*/
+  function loadMore (cur_page) {
+    var now_page = cur_page+1;
+    var per_page = 7;
+    var area = $.cookie('currentarea');
+    $.ajax({
+      url: '/cmsapi/more_activity',
+      type: 'get',
+      datatype: 'json',
+      data: {
+        "cityid": area,
+        "perpage": per_page,
+        "page":now_page
+      },
+      success: function (result) {
+        if (result.code == 0 && result.data.list.length !=0) {
+          addNewslist(result.data.list);
+          $('#load-more-btn').data('cur_page', now_page);
+        }
+        else {
+          $('#load-more-btn').find('span').text('没有更多内容了');
+        }
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert('服务器开小差了，请重试');
+      }
+    })
+  }
+  /*加载更多拼接字符串函数*/
+  function addNewslist (news_list) {
+    var activity_html = '';
+    $.each(news_list, function (i, newItem, arr) {
+      activity_html+='<div class="activity-item">'
+          +'<a href="'+fn.urlgen("activity", newItem.id.toString(), "c=" + newItem.organid)+'">'
+       +'<div class="activity-item-left">'
+        +'<img src="'+newItem.thumb+'" alt="">'
+        +'</div>'
+        +'<div class="activity-item-right">'
+          +'<h3 class="line-clamp-1">【'+fn.getCountryChinese(newItem.country)+'】'+newItem.title+'</h3>'
+         +'<ul>'
+        +'<li> <svg class="icon" aria-hidden="true">'
+          +'<use xlink:href="#icon-shijian"></use>'
+           +'</svg><span>'+ fn.getFormatDate(newItem.start_time, 6) +'</span></li>'
+           +'<li> <svg class="icon" aria-hidden="true">'
+            +'<use xlink:href="#icon-dianhua2"></use>'
+            +'</svg><span>'+newItem.telephone+'</span></li>'
+           +'<li><svg class="icon" aria-hidden="true">'
+             +'<use xlink:href="#icon-dingwei"></use>'
+            +'</svg><span class="line-clamp-1">'+newItem.address_des+'</span></li>'
+          +'</ul>'
+          +'<div class="activity-booking-btn">点击预约</div>'
+        +'</div>'
+          +'</a>'
+      +'</div>'
+    });
+
+    $('#activity-list').append($(activity_html));
+  }
+</script>
+<script>
+  $(".app-in").on("click",".activity-booking-btn",function(event){
+    event.preventDefault();
+    var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
+    window.location = "http://jesong.jjl.cn/live/chat.dll?c="+ area+"&chatUrl="+window.encodeURIComponent(window.location.href)+"g=246"
+  });
+
+</script>
+</body>
+</html>

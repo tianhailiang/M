@@ -1,0 +1,16 @@
+.idea
+.DS_Store
+.git
+node_modules
+sh.exe.stackdump
+bucketDist
+public/bucketDist
+views/dist/
+logdata/
+logdata/*
+logs/
+logs/*
+nohup.out
+package-lock.json
+dist
+dist/*

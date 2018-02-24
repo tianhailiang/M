@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<style>
+  .productdetail {
+    width: 100%;
+    background: #ffffff;
+    margin: 10px 0;
+  }
+  .productdetail h2{
+    font-size: 15px;
+    color: #333;
+    padding: 12px 10px 0;
+    font-weight: bold;
+  }
+  .productdetail-p {
+    color: #666;
+    font-size: 13px;
+    padding: 8px 10px 12px;
+  }
+  .lib-jianjie {
+    width: 100%;
+    background: #ffffff;
+    position: relative;
+  }
+  .lib-jianjie-con {
+    border-top: 0.5px solid #dcdcdc;
+  }
+  .lib-jianjie:after{  //  单边框
+    content: '';
+    position: absolute;
+    bottom: 0;
+    background: #DCDCDC;
+    width: 100%;
+    height: 1px;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+  }
+  .lib-jianjie h1 {
+    font-size: 15px;
+    color: #333;
+    font-weight: bold;
+    padding: 15px 0 6px 0;
+  }
+  .lib-jianjie i{
+    width: 2.5px;
+    height: 15px;
+    display: block;
+    float: left;
+    background: #d51821;
+    margin: 2px 10px;
+  }
+  .lib-neirong {
+    padding: 0 15px 5px;
+    width:100%;
+    font-size: 13px;
+    color: #666;
+    line-height: 26px;
+  }
+  .lib-neirong img {
+    display: block;
+    width: 100%;
+    margin: 15px 0;
+  }
+  .lib-neirong p {
+    text-indent: 2rem;
+  }
+  .program-flows {
+    width: 100%;
+    display: flex;
+    padding: 0 7.5px;
+  }
+  .program-flow h1 {
+    padding-bottom: 7.5px;
+  }
+  .program-tupian {
+    width: 210px;
+    height: 122px;
+    float: left;
+    flex: 1;
+    background: #fff;
+    margin:7.5px 7.5px 7.5px;
+    box-shadow: 0px 1px 7px 3px rgba(0,0,0,0.1)
+  }
+  .program-tupian img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .scheme-advantage {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .scheme-advantage-con {
+    display: flex;
+    width: 100%;
+    padding: 0px 7.5px;
+  }
+  .scheme-advantage-ing {
+    width: 165px;
+    height: 164px;
+    flex: 1 ;
+    margin:0 7.5px 15px;
+    background: url("{{helper.cdnhost}}/assets/img/fanandiye.png");
+    background-size: 100% 99.99999999%;
+  }
+  .scheme-advantage h1{
+    padding-bottom: 15px;
+    font-weight: bold;
+  }
+  .superioritying {
+    text-align: center;
+    line-height: 32px;
+    font-size: 13px;
+    color: #fff;
+  }
+  .superioritying2 {
+    margin: 20px 8px 0;
+    font-size: 12px;
+    line-height: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    color: #333;
+  }
+</style>
+<body>
+{% include "m_widget/top/top.html" %}
+<div id="app" >
+  <!-- ===方案简介==== -->
+  <div class="productdetail">
+    <h2>{{ wenzhangdiye.list.title }}</h2>
+    <p class="productdetail-p" >{{ wenzhangdiye.list.inputtime | getDefaultFormat() }}</p>
+    <!-- ===学校简介==== -->
+    <div class="lib-jianjie lib-jianjie-con">
+      <h1><i></i>方案简介</h1>
+      <div class="lib-neirong">{{ wenzhangdiye.list.content | safe }}</div>
+    </div>
+    <!-- ===学校简介==== -->
+  </div>
+  <!-- ===方案简介==== -->
+  <div class="scheme-advantage">
+    <div class="lib-jianjie">
+      <h1><i></i>方案优势</h1>
+    </div>
+    <div class="scheme-advantage-con" style="background: #fff">
+        <div class="scheme-advantage-ing">
+          <p class="superioritying">{{ wenzhangdiye.list.youshi_title1  | shorten(8) }}</p>
+          <p class="superioritying2">{{ wenzhangdiye.list.youshi_content1 | ellipsis(100) }}</p>
+        </div>
+        <div class="scheme-advantage-ing">
+          <p class="superioritying">{{ wenzhangdiye.list.youshi_title2 | shorten(8) }}</p>
+          <p class="superioritying2">{{ wenzhangdiye.list.youshi_content2 | ellipsis(100) }}</p>
+        </div>
+    </div>
+    <div class="scheme-advantage-con" style="background: #fff">
+      <div class="scheme-advantage-ing">
+        <p class="superioritying">{{ wenzhangdiye.list.youshi_title3 | shorten(8) }}</p>
+        <p class="superioritying2">{{ wenzhangdiye.list.youshi_content3 | ellipsis(100) }}</p>
+      </div>
+      <div class="scheme-advantage-ing">
+        <p class="superioritying">{{ wenzhangdiye.list.youshi_title4 | shorten(8) }}</p>
+        <p class="superioritying2">{{ wenzhangdiye.list.youshi_content4 | ellipsis(100) }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="program-flow">
+    <div class="lib-jianjie">
+      <h1><i></i>方案流程</h1>
+    </div>
+    <div class="program-flows" style="background: #fff">
+        <div class="program-tupian">
+          <img src="{{wenzhangdiye.list.liucheng_img1}}" alt="">
+        </div>
+        <div class="program-tupian">
+          <img src="{{wenzhangdiye.list.liucheng_img2}}" alt="">
+        </div>
+        <div class="program-tupian">
+          <img src="{{wenzhangdiye.list.liucheng_img3}}" alt="">
+        </div>
+    </div>
+    <div class="program-flows" style="background: #fff;padding-bottom: 7.5px">
+        <div class="program-tupian">
+          <img src="{{wenzhangdiye.list.liucheng_img4}}" alt="">
+        </div>
+        <div class="program-tupian">
+          <img src="{{wenzhangdiye.list.liucheng_img5}}" alt="">
+        </div>
+        <div class="program-tupian">
+          <img src="{{wenzhangdiye.list.liucheng_img6}}" alt="">
+        </div>
+    </div>
+  </div>
+  {% import "m_widget/xiangguan_tuijian/xiangguan_tuijian.html" as xiangguan %}
+  {{ xiangguan.tuijianlist1(pageType,tuijian,pageroute,helper)}}
+  <!--footer start-->
+  {% import "m_widget/footer/footer.html" as footer %}
+  {{footer.footer([{'nav_text':'留学方案列表页','nav_path': pageroute},{'nav_text':wenzhangdiye.list.title,'nav_path': ''}],tdk,helper)}}
+  <!--footer end-->
+  <!-- ===app end== -->
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+</body>
+</html>
+

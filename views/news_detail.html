@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/common.css">
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/news_detail.css">
+<style>
+
+</style>
+<body style="background: #f5f5f5;">
+<div id="app">
+  {% include "m_widget/top/top.html" %}
+    <!-- 页面主体部分 -->
+    <section class="new-details">
+      <h1>{{wenzhangdiye.list.title}}</h1>
+      <p class="new-details-p1">
+        <span style="margin-right: 17px">作者：<span>{{wenzhangdiye.list.username}}</span></span>
+        <span>阅读：<span>{{wenzhangdiye.list.hits}}</span></span>
+      </p>
+      <p class="new-details-p2">{{wenzhangdiye.list.inputtime|getDefaultFormat('YYYY-MM-DD')}}</p>
+      <article class="news-content">
+        <p>{{wenzhangdiye.list.content | safe}}</p>
+        <!--<img src="{{wenzhangdiye.list.thumb}}" alt="{{wenzhangdiye.list.title}}" class="img-responsive">-->
+      </article>
+    </section>
+  {% if pageroute!="schoolrank/school" %}
+  {% import "m_widget/xiangguan_tuijian/xiangguan_tuijian.html" as xiangguan %}
+  {{ xiangguan.tuijianlist1(pageType,tuijian,pageroute,helper)}}
+  {% else %}
+  {% import "m_widget/xiangguan_tuijian/xiangguan_tuijian.html" as xiangguan %}
+  {{ xiangguan.tuijianschoolrank(pageType,tuijian,helper)}}
+  {% endif %}
+
+  <!--footer start-->
+  {% import "m_widget/footer/footer.html" as footer %}
+  {{footer.footer([{'nav_text':pageType+'列表页','nav_path': pageroute},{'nav_text':wenzhangdiye.list.title,'nav_path': ''}],tdk,helper)}}
+  <!--footer end-->
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+</body>
+</html>

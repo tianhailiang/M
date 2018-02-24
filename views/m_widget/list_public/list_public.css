@@ -1,0 +1,57 @@
+.list-nav{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  height: 44px;
+  line-height: 44px;
+  background: #ffffff;
+  border-bottom: 1px solid #eeeeee;
+}
+.list-nav span{
+  flex:1;
+  width: 59px;
+  display: block;
+  text-align: center;
+  position: relative;
+}
+.list-nav span a{
+  color:#666666;
+}
+.list-nav span a.active{
+  color: #D51821;
+}
+.list-nav span a.active:after{
+  display: block;
+  position: absolute;
+  content: "";
+  width: 59px;
+  bottom:0;
+  left: 50%;
+  margin-left:-29.5px;
+  height: 2px;
+  background: #D51821;
+
+}
+.list-conten{
+  width: 100%;
+  padding:0 10px;
+  background: #ffffff;
+  margin-bottom: 10px;
+}
+.list-conten li{
+  height: 44px;
+  line-height: 44px;
+  border-bottom:1px solid #eeeeee;
+}
+.list-conten li a{
+  color:#333333;
+  font-size: 14px;
+  padding-left:6px;;
+}
+.list-conten li .icon{
+  font-size: 3px;
+  color:#D51821;
+}
+.list-conten li:last-child{
+  border-bottom: none;
+}

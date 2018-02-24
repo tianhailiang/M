@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<body>
+{% include "m_widget/top/top.html" %}
+<!--顶部tab切换 start-->
+{% import "m_widget/top_tab/top_tab.html" as top_tab %}
+{{top_tab.top_tab({'tab_type':"排名", 'n': country},helper)}}
+<!--顶部tab切换 end-->
+<div id="app" >
+    <div class="app-in">
+    <!--资讯列表 start-->
+    <div class="news-list" id="news-list">
+        {% import "m_widget/news_list/news_list.html" as news %}
+        {{ news.schoollist(channel_list,pageroute,helper) }}
+    </div>
+    <!--资讯列表 end-->
+
+    <!--加载更多 start-->
+    {% include "m_widget/load_more/load_more.html" %}
+    <!--加载更多 end-->
+    <!--最新活动 成功案例  大学排名 start-->
+    {%esi helper.include(esikey,'fragment/list_public','c='+tdk.cityid)%}
+    <!--footer start-->
+    {% import "m_widget/footer/footer.html" as footer %}
+    {{footer.footer([{'nav_text':'大学排名列表页','nav_path': 'schoolrank/school'}],tdk,helper)}}
+    <!--footer end-->
+    </div>
+    <!-- ===app end== -->
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+{% import "m_widget/select_pop/select_pop.html" as select_pop %}
+{{ select_pop.select_pop({'n': country, 'path': 'schoolrank/school'}, helper) }}
+</body>
+<script>
+    /*加载更多函数*/
+    function loadMore (cur_page) {
+        var n = $('#select-pop').find('.focus-on').data('id') || '';
+        var now_page = cur_page+1;
+        var per_page = 7;
+        var area = $.cookie('currentarea');
+        $.ajax({
+            url: '/cmsapi/more_school',
+            type: 'get',
+            datatype: 'json',
+            data: {
+                "catid": 66,
+                "cityid": area,
+                "country": n,
+                "page": now_page,
+                "perpage": per_page,
+                "orderby":1
+            },
+            success: function (result) {
+                if (result.code == 0 && result.data.list.length !=0) {
+                    addNewslist(result.data.list);
+                    $('#load-more-btn').data('cur_page', now_page);
+                }
+                else {
+                    $('#load-more-btn').find('span').text('没有更多内容了');
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert('服务器开小差了，请重试');
+            }
+        })
+    }
+    /*加载更多拼接字符串函数*/
+    function addNewslist (news_list) {
+        var news_html = '';
+        $.each(news_list, function (i, newItem, arr) {
+            news_html += '<div class="news-item">'
+            +'<a href="'+fn.schoolrankUrlgen("schoolrank","school", "id="+newItem.id.toString(), "n=" + newItem.country)+'">'
+            +'<div class="news-item-left">'
+            +'<img src="'+ newItem.thumb +'" alt=""/>'
+            +'</div>'
+            +'<div class="news-item-right">'
+            +'<div class="news-title line-ellpisis">'+ newItem.title +'</div>'
+            +'<div class="news-desc line-clamp-2">'+ newItem.description +'</div>'
+            +'<div class="news-info clearfix">'
+            +'<div class="news-time">'+ fn.getFormatDate(newItem.inputtime, 6) +'</div>'
+            +'<div class="news-views"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-liulan1"></use></svg><span>'+ newItem.hits +'</span></div>'
+            +'</div>'
+            +'</div>'
+            +'</a>'
+            +'</div>';
+        });
+        $('#news-list').append($(news_html));
+    }
+</script>
+</html>

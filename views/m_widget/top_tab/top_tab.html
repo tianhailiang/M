@@ -1,0 +1,80 @@
+{% macro top_tab(options,helper) %}
+{%
+set tabType = [
+{
+"route": "news",
+"type": "资讯"
+},
+{
+"route": "visa",
+"type": "签证"
+},
+{
+"route": "cost",
+"type": "费用"
+},
+{
+"route": "product",
+"type": "方案"
+},
+{
+"route": "schoolrank/school",
+"type": "排名"
+},
+{
+"route": "glue",
+"type": "攻略"
+},
+{
+"route": "activity",
+"type": "活动"
+},
+{
+"route": "case",
+"type": "案例"
+},
+{
+"route": "prereq",
+"type": "条件"
+},
+{
+"route": "adviser",
+"type": "顾问"
+},
+{
+"route": "canzan",
+"type": "参赞"
+},
+{
+"route": "schoollib",
+"type": "院校"
+}
+]
+%}
+<div class="top-tab">
+    <div class="tab-bar-show">
+    <div class="tab-bar clearfix">
+        {% for tab in tabType %}
+            {% if options.tab_type == tab.type %}
+                {% if options.tab_type == '排名' %}
+                    <a href="{{helper.schoolrankUrlgen('schoolrank', 'school', 'n=' + options.n)}}" class="top-tab-item active">{{tab.type}}</a>
+                {% else %}
+                    <a href="{{helper.urlgen(tab.route, 'n=' + options.n)}}" class="top-tab-item active">{{tab.type}}</a>
+                {% endif %}
+            {% else %}
+                {% if options.tab_type == '排名' %}
+                    <a href="{{helper.schoolrankUrlgen(tab.route, 'n=' + options.n)}}" class="top-tab-item">{{tab.type}}</a>
+                {% else %}
+                    <a href="{{helper.urlgen(tab.route, 'n=' + options.n)}}" class="top-tab-item">{{tab.type}}</a>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    </div>
+    <div class="select-btn" id="select-btn">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-shaixuan1"></use>
+        </svg>
+    </div>
+</div>
+{% endmacro %}

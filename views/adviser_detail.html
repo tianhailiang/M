@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<link rel="stylesheet" type="text/css" href="{{helper.cdnhost}}/assets/css/adviser_detail.css">
+<!-- <script src="{{helper.cdnhost}}/assets/js/jquery.min.js"></script> -->
+<body>
+<div id="app">
+  {% include "m_widget/top/top.html" %}
+  <section id="guwenDetails">
+    <div class="people-info">
+      <img src="{{ helper.avaterimg(adviser_detail.uid, 'small', 0, adviser_detail.status) }}" class="people-img" alt="{{adviser_detail.realname}}顾问">
+      <div class="people-details">
+        <div class="people-name"><strong>{{adviser_detail.realname}}</strong><span>{{adviser_detail.organid | getCity()}}分公司</span></div>
+        <div class="people-coutry"><span>擅长国家：{{adviser_detail.skilful_country}}</span></div>
+        <div class="people-email"><span>邮箱：{{adviser_detail.email}}</span></div>
+        <div class="people-tell" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width: 159px;">电话：{{adviser_detail.tel}}</div>
+        <a href="http://jesong.jjl.cn/live/chat.dll?c={{area}}&amp;n={{adviser_detail.job_number}}" class="btn-default">我要咨询</a>
+      </div>
+    </div>
+    <div class="tabContent">
+          <ul class="tab-controll">
+            <li data-index="0" class="tabs-current">简介</li>
+            <li data-index="1">专栏</li>
+            <li data-index="2">案例</li>
+          </ul>
+          <div class="tabitems">
+            <div class="items-gruop">
+                <p>{{adviser_detail.introduce | safe }}</p>
+            </div>
+            <div class="items-gruop" style="display: none;">
+              <ul class="column-news">
+                {% for guwenitems in zhuanlanlist.list %}
+                  <li>
+                    <a href="javascript:;" style="display:-webkit-flex;">
+                    <img src="{{ helper.avaterimg(guwenitems.uid, 'small', 0, guwenitems.views) }}" alt="" class="column-pictuer">
+                    <div class="column-list">
+                      <h2>{{guwenitems.title}}</h2> 
+                      <p>{{guwenitems.introduce}}</p>
+                      <div class="details-zllist">
+                        <span>{{guwenitems.add_time | shorten(10) | replace('-', '.')}}</span>
+                        <span>
+                          <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-liulan1"></use>
+                          </svg>
+                          <em>{{guwenitems.views}}</em>
+                        </span>
+                      </div>
+                    </div>
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="items-gruop" style="display: none;">
+              <ul class="column-news anli-column">
+                {% for anliItem in case_list.list %}
+                <li> 
+                  <a href="{{ helper.urlgen('case', anliItem.id | string) }}" class="href-items">
+                  <img src="{{helper.school_logo(anliItem.school_id)}}" alt="" class="img-responsive">
+                  <div class="anli-item">
+                    <h2>{{anliItem.title}}</h2>
+                    <div class="anli-legend">
+                      <span>顾问：</span><span>{{anliItem.user_info.realname}}</span>
+                      <span>学位：</span><span>{{anliItem.edu_id | getEdu}}</span>
+                    </div>
+                    <div class="anli-legend">
+                      <span>录取国家：</span>
+                      <span>{{anliItem.country_id | getCountry}}</span>
+                    </div>
+                    <div class="anli-legend">
+                      <span>录取时间：</span>
+                      <span>{{anliItem.introduce.admission_time | shortentime()}}</span>
+                    </div>
+                    <a href="http://jesong.jjl.cn/live/chat.dll?c=1&amp;n={{anliItem.user_info.job_number}}" class="anlibtn-danger">案例咨询</a>
+                  </div>
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+    </div>
+  </section>
+  <!-- 相关资讯 -->
+  {% import "m_widget/xiangguan_tuijian/xiangguan_tuijian.html" as xiangguan %}
+  {{ xiangguan.tuijianlist(pageType,tuijian,pageroute,helper) }}
+  <div>
+    <!--footer start-->
+    {% import "m_widget/footer/footer.html" as footer %}
+    {{footer.footer([{'nav_text':'顾问列表','nav_path': 'adviser'},{'nav_text':adviser_detail.realname,'nav_path': ''}],tdk,helper)}}
+    <!--footer end-->
+  </div>
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+<script>
+    $(function(){
+      $(".tab-controll li").on('click',function(){
+        var $dataIndex = $(this).data('index')
+        $(".tab-controll li").removeClass('tabs-current')
+        $(this).addClass('tabs-current')
+        $(".tabitems .items-gruop").eq($dataIndex).show().siblings().hide()
+      })
+  })
+</script>
+</body>
+</html>

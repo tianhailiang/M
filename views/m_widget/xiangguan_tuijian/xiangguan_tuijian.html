@@ -1,0 +1,81 @@
+
+{% macro tuijianlist(pageType,tuijian,pageroute,helper) %}
+<div class="xiangguan-zixun">
+  <h3 class="xiangguan-zixun-tit">相关{{pageType}}推荐</h3>
+  <ul>
+    {% for Item in tuijian %}
+    <li><a class="line-clamp-1"href="{{helper.urlgen(pageroute,Item.id | string,'n=' + Item.country_id)}}"><svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-dian-copy-copy-copy"></use>
+    </svg>
+      {{Item.title}}</a>
+      <span>{{Item.add_time |  shorten(10)}}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endmacro %}
+
+{% macro tuijianlist1(pageType,tuijian,pageroute,helper) %}
+<div class="xiangguan-zixun">
+  <h3 class="xiangguan-zixun-tit">相关{{pageType}}推荐</h3>
+  <ul>
+    {% for Item in tuijian %}
+    <li><a class="line-clamp-1"href="{{helper.urlgen(pageroute,Item.id | string,'n=' + Item.country)}}"><svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-dian-copy-copy-copy"></use>
+    </svg>
+      {{Item.title}}</a>
+      <span>{{Item.inputtime | getDefaultFormat('YYYY-MM-DD')}}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endmacro %}
+<!--大学排名-->
+{% macro tuijianschoolrank(pageType,tuijian,helper) %}
+<div class="xiangguan-zixun">
+  <h3 class="xiangguan-zixun-tit">相关{{pageType}}推荐</h3>
+  <ul>
+    {% for Item in tuijian %}
+    <li><a class="line-clamp-1"href="{{helper.schoolrankUrlgen('schoolrank','school', 'id='+Item.id | string, 'n=' + Item.country)}}"><svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-dian-copy-copy-copy"></use>
+    </svg>
+      {{Item.title}}</a>
+      <span>{{Item.inputtime | getDefaultFormat('YYYY-MM-DD')}}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endmacro %}
+<!--案例相关推荐-->
+{% macro tuijianlist3(pageType,tuijian,pageroute,helper) %}
+<div class="xiangguan-zixun">
+  <h3 class="xiangguan-zixun-tit">相关{{pageType}}推荐</h3>
+  <ul>
+    {% for Item in tuijian %}
+    <li><a class="line-clamp-1"href="{{helper.urlgen(pageroute,Item.id | string)}}"><svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-dian-copy-copy-copy"></use>
+    </svg>
+      {{Item.title}}</a>
+      <span>{{Item.add_time |  shorten(10)}}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endmacro %}
+
+<!--活动相关推荐-->
+{% macro tuijianlist2(pageType,tuijian,pageroute,helper) %}
+<div class="xiangguan-zixun">
+  <h3 class="xiangguan-zixun-tit">相关{{pageType}}推荐</h3>
+  <ul>
+    {% for Item in tuijian %}
+    <li><a class="line-clamp-1"href="{{helper.urlgen(pageroute,'c='+Item.organid,Item.id | string)}}"><svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-dian-copy-copy-copy"></use>
+    </svg>
+      [{{ Item.country | getCountry }}]{{Item.title}}</a>
+      <span>{{ Item.start_time | getDefaultFormat('YYYY-MM-DD')}}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endmacro %}

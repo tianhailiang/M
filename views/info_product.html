@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<style>
+    .liuxue_fangan_center_right_title{
+        color: #ecc580;
+    }
+    .liuxue_fangan{
+        background: url(../../../assets/img/friend-btn-bj.png) repeat-y;
+        position: relative;
+    }
+    .liuxue_fangan:after{
+        display: block;
+        content: "";
+        border-bottom: solid 1px #ecc580;
+        position: absolute;
+        width: 100%;
+        transform:scaleY(0.5);
+        -webkit-transform:scaleY(0.5);
+        -moz-transform:scaleY(0.5);
+        -o-transform:scaleY(0.5);
+        -ms-transform:scaleY(0.5);
+        transform-origin: 0 0;
+        -webkit-transform-origin: 0 0;
+        -moz-transform-origin: 0 0;
+        -o-transform-origin: 0 0;
+        -ms-transform-origin: 0 0;
+        bottom: -5px;
+    }
+    .liuxue_fangan_warp{
+        background: url(../../../assets/img/friend-btn-bj.png) repeat-y;
+    }
+    .liuxue_fangan_center_right p{
+        color: #ffffff;
+    }
+    .liuxue_fangan_center_right_span{
+        color: #ffffff;
+    }
+</style>
+<body>
+{% include "m_widget/top/top.html" %}
+<div id="app" >
+    <!--引导banner start-->
+    <!--引导banner end-->
+    <!--评估表单 start-->
+    {% include "m_widget/evaluate_form/evaluate_form.html" %}
+    <!--评估表单 end-->
+    <!--引导列表 start-->
+    <div class="info-list" id="info-list">
+        {% import "m_widget/liuxuefangan/liuxuefangan.html" as hot_liuxuefangan %}
+        {{ hot_liuxuefangan.fangan(hot_liuxuefangan_list.list,helper) }}
+        {% import "m_widget/look_more/look_more.html" as look_more %}
+        {{ look_more.look_more({'path': 'product'}, helper)}}
+    </div>
+    <!--引导列表 end-->
+    <!--footer start-->
+    {% import "m_widget/footer/footer.html" as footer %}
+    {{footer.footer([{'nav_text':'留学方案列表页','nav_path': 'product'}],tdk,helper)}}
+    <!--footer end-->
+    <!-- ===app end== -->
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+</body>
+</html>

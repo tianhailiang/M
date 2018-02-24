@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/canzan_column.css">
+<style>
+    #articleList{
+        margin-top:0px;
+        background: #000 url(../../../assets/img/friend-btn-bj.png);
+        background-repeat: repeat;
+        -webkit-background-size: 100% 100%;
+        background-size: 100% 100%;
+    }
+    .acticle-itmes p:first-child span,.acticle-itmes strong{
+        color: #ecc580;
+    }
+    #articleList .itmes-clamp{
+        color: #ffffff;
+    }
+    #articleList li a:after{
+        border-bottom: solid 1px #ecc580
+    }
+</style>
+<body>
+{% include "m_widget/top/top.html" %}
+<div id="app" >
+    <!--引导banner start-->
+    <!--引导banner end-->
+    <!--评估表单 start-->
+    {% include "m_widget/evaluate_form/evaluate_form.html" %}
+    <!--评估表单 end-->
+    <!--引导列表 start-->
+    <div class="info-list" id="info-list">
+        <div id="articleList">
+            {% include "m_widget/canzan_list/canzan_list.html" %}
+        </div>
+
+        {% import "m_widget/look_more/look_more.html" as look_more %}
+        {{ look_more.look_more({'path': 'canzan'}, helper)}}
+    </div>
+    <!--引导列表 end-->
+    <!--引导页广告图start-->
+    <div class="info-ad">
+        <a href="">
+            <img src="" alt="最新资讯广告图"/>
+        </a>
+    </div>
+    <!--引导页广告图end-->
+    <!--footer start-->
+    {% import "m_widget/footer/footer.html" as footer %}
+    {{footer.footer([{'nav_text':'参赞列表页','nav_path': 'canzan'}],tdk,helper)}}
+    <!--footer end-->
+    <!-- ===app end== -->
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+</body>
+</html>

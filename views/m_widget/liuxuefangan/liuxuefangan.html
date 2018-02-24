@@ -1,0 +1,38 @@
+<!--留学方案-->
+{% macro fangan(hot_liuxuefangan_list,helper) %}
+{% for fanganItem in hot_liuxuefangan_list %}
+<div class="liuxue_fangan_warp clearfix">
+  <div class="liuxue_fangan clearfix">
+    <div class="liuxue_fangan_center clearfix">
+      <!--<i></i>-->
+      <div class="liuxue_fangan_center_left">
+        <a href="{{helper.urlgen('product', fanganItem.id | string, 'n=' + fanganItem.country)}}" rel="nofollow">
+          <img src="{{fanganItem.thumb}}" alt="{{fanganItem.title}}">
+        </a>
+      </div>
+      <div class="liuxue_fangan_center_right">
+        <a href="{{helper.urlgen('product', fanganItem.id | string, 'n=' + fanganItem.country)}}">
+          <h3 class="liuxue_fangan_center_right_title line-clamp-1">{{fanganItem.title}}</h3>
+        </a>
+        <p class="line-clamp-1">所属国家：{{fanganItem.country | getCountry}}</p>
+        <p class="line-clamp-1">适宜学历：{{fanganItem.suitable_education}}</p>
+        <p class="line-clamp-1">适宜专业：{{fanganItem.suitable_major}}</p>
+        <div class="liuxue_fangan_center_right_span line-clamp-1">
+          <span style="margin-right: 20px"><svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-guanzhu1"></use>
+                    </svg>
+            {{fanganItem.follow_peoples}}
+          </span>
+          <span>
+            <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-xiaoxi1"></use>
+                 </svg>
+            {{fanganItem.consult_peoples}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endmacro %}

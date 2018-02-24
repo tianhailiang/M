@@ -1,0 +1,147 @@
+<!-- ======侧边栏===== -->
+<div class="sidebar-box" >
+  <div class="mask" >
+  </div>
+  <div class="sidebar" >
+    <div class="sidebar-logo" >
+    </div>
+    <div class="index-home" >
+      <a href="/">
+        <i></i>
+        <span>首页</span>
+      </a>   
+    </div>  
+    <div class="sidebar-nav" >
+      <div class="sidebar-nav-title" >
+        <i class="sidebar-apply-i"></i>
+        <span>我要申请</span>
+      </div>  
+      <ul class="sidebar-ul" >
+        <li>
+          <a href="{{ helper.urlgen('middle','n=1') }}" >
+            <span>中小学</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ helper.urlgen('under','n=1') }}" >
+            <span>本科</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ helper.urlgen('master','n=1') }}" >
+            <span>研究生</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-nav" >
+      <div class="sidebar-nav-title" >
+        <i class="sidebar-study-i"></i>
+        <span>我要留学</span>
+      </div>  
+      <ul class="sidebar-ul" >
+        <li>
+          <a href="{{ helper.urlgen('glue') }}" >
+            <span>申请攻略</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ helper.urlgen('visa') }}" >
+            <span>签证指导</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ helper.urlgen('prereq') }}" >
+            <span>申请条件</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ helper.urlgen('cost') }}" >
+            <span>留学费用</span>
+          </a>
+        </li>
+       <!--  <li>
+          <a href="{{ helper.urlgen('cost') }}" >
+            <span>留学奖学金</span>
+          </a>
+        </li> -->
+        <li>
+          <a href="{{ helper.urlgen('schoolrank/school') }}" >
+            <span>大学排名</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-nav" >
+      <div class="sidebar-nav-title" >
+        <i class="sidebar-understand-i"></i>
+        <span>我要了解更多</span>
+      </div>  
+      <ul class="sidebar-ul" >
+        <li>
+          <a href="http://m.jjl.cn/forum.php?mod=viewthread&amp;tid=328&amp;page=1&amp;extra=#pid331" > 
+            <span>关于金吉列</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{helper.urlgen('canzan')}}" >
+            <span>专家团队</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{helper.urlgen('product')}}" >   
+            <span>留学方案</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{helper.urlgen('case')}}" >
+            <span>成功案例</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{helper.urlgen('activity')}}" > 
+            <span>留学活动</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{helper.urlgen('news')}}" >
+            <span>最新资讯</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script >
+  //侧边栏
+  $(".sidebar").height($(window).height());
+  $(".header-Catalog").on("click",function(){  
+    document.querySelector("#app").style.position="fixed";
+    document.querySelector("#app").style.animation="appLeft 0.3s forwards";
+    document.querySelector("#app").style.webkitAnimation="appLeft 0.3s forwards";
+    document.querySelector(".header").style.animation="appLeft 0.3s forwards";
+    document.querySelector(".header").style.webkitAnimation="appLeft 0.3s forwards";
+    // document.querySelector(".search-box").style.animation="appLeft 0.3s forwards";
+    // document.querySelector(".search-box").style.webkitAnimation="appLeft 0.3s forwards";
+    document.querySelector(".sidebar-box").style.animation="sidebarLeft 0.3s forwards";
+    document.querySelector(".sidebar-box").style.webkitAnimation="sidebarLeft 0.3s forwards";    
+  });
+  $(document).on('swipeLeft',function(){
+    document.querySelector("#app").style.position="absolute";
+    document.querySelector("#app").style.animation="appRight 0.3s forwards";
+    document.querySelector("#app").style.webkitAnimation="appRight 0.3s forwards";
+    document.querySelector(".sidebar-box").style.webkitAnimation="sidebarRight 0.3s forwards";
+    document.querySelector(".sidebar-box").style.animation="sidebarRight 0.3s forwards";
+  });
+  $(".mask").on("click",function(){
+    document.querySelector("#app").style.position="absolute";
+    document.querySelector("#app").style.animation="appRight 0.3s forwards";
+    document.querySelector("#app").style.webkitAnimation="appRight 0.3s forwards";
+    document.querySelector(".header").style.animation="appRight 0.3s forwards";
+    document.querySelector(".header").style.webkitAnimation="appRight 0.3s forwards";
+    // document.querySelector(".search-box").style.animation="appRight 0.3s forwards";
+    // document.querySelector(".search-box").style.webkitAnimation="appRight 0.3s forwards";
+    document.querySelector(".sidebar-box").style.animation="sidebarRight 0.3s forwards";
+    document.querySelector(".sidebar-box").style.webkitAnimation="sidebarRight 0.3s forwards";
+  });
+</script>

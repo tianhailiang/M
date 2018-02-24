@@ -1,0 +1,27 @@
+{% for item in daxuepaiming_list.list %}
+<div class="schoollib" id="schoollibs">
+  <div class="schoollib-con">
+    <a href="{{helper.urlgen('schoollib', item.id | string, 'n=' + item.country)}}">
+      <div class="sckoollib-left">
+        {% if item.logo %}
+        <img src="{{ item.logo }}" alt="{{item.title}}">
+        {% else %}
+        <img src="{{helper.cdnhost}}/assets/img/default_school_thumb.jpg" alt="{{item.title}}">
+        {% endif %}
+      </div>
+      <div class="sckoollib-right">
+        <p class="schoollib-p1">{{ item.title }}</p>
+        <p style="margin-top: 4px;width: 100%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{ item.schoolenname }}</p>
+        <p class="line-clamp-1" style="margin-top: 2px">位于: {{ item.country | getCountry }} {{ item.address }}</p>
+        <p style="margin-top: 2px">建校年份: {{ item.build_start }}</p>
+        <p style="margin-top: 2px">院校性质: {{ item.schoolnature }}</p>
+        <div class="school-con" style="margin-top: 10px">
+          <i style="display: block;float: right;color: #0096ff;font-size: 14px"> <svg style="margin-right: 5px" class="icon" aria-hidden="true">
+            <use xlink:href="#icon-huangguan"></use>
+          </svg>人气 : {{ item.hits }}</i>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+{% endfor %}

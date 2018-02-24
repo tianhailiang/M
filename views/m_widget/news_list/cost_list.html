@@ -1,0 +1,23 @@
+{% macro costlist(channel_list,route,helper) %}
+{% for newItem in channel_list.list %}
+<div class="news-item info-item">
+    <a href="{{helper.urlgen(route, newItem.id | string, 'n=' + newItem.country_id)}}">
+        <div class="news-item-left">
+            <img src="{{newItem.thumb}}" alt=""/>
+        </div>
+        <div class="news-item-right">
+            <div class="news-title line-ellpisis info-title">{{newItem.title}}</div>
+            <div class="news-desc line-clamp-2 info-content">{{newItem.introduce}}</div>
+            <div class="news-info clearfix info-content">
+                <div class="news-time">{{newItem.add_time | shorten(10) | replace('-', '.')}}</div>
+                <div class="news-views">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-liulan1"></use>
+                    </svg>
+                    <span>{{newItem.views}}</span></div>
+            </div>
+        </div>
+    </a>
+</div>
+{% endfor %}
+{% endmacro %}

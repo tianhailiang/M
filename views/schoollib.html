@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<style>
+  .load-more-bar {
+    position: relative;
+  }
+</style>
+<body>
+{% include "m_widget/top/top.html" %}
+<!--顶部tab切换 start-->
+{% import "m_widget/top_tab/top_tab.html" as top_tab %}
+{{top_tab.top_tab({'tab_type':"院校"},helper)}}
+<!--顶部tab切换 end-->
+      <div id="app" >
+        <div class="app-in">
+        <!--院校列表 start-->
+        <div class="schoollib-list" id="schoollibs-list">
+          {% include "m_widget/schoollib/schoollib.html" %}
+        </div>
+        <!--院校列表 end-->
+        <!--加载更多 start-->
+        {% include "m_widget/load_more/load_more.html" %}
+        <!--加载更多 end-->
+        <!--最新活动 成功案例  大学排名 start-->
+        {%esi helper.include(esikey,'fragment/list_public','c='+tdk.cityid)%}
+        <!--footer start-->
+        {% import "m_widget/footer/footer.html" as footer %}
+        {{footer.footer([{'nav_text':'热门院校列表页','nav_path': 'schoollib'}],tdk,helper)}}
+        <!--footer end-->
+        <!-- ===app end== -->
+        </div>
+      </div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+{% import "m_widget/select_pop/select_pop.html" as select_pop %}
+{{ select_pop.select_pop({'n': country, 'path': 'schoollib'}, helper) }}
+</body>
+</html>
+<script>
+  /*加载更多函数*/
+  function loadMore (cur_page) {
+    var n = $('#select-pop').find('.focus-on').data('id') || '';
+    var now_page = cur_page+1;
+    var per_page = 7;
+    var area = $.cookie('currentarea');
+    $.ajax({
+      url: '/cmsapi/more_daxuepaiming',
+      type: 'get',
+      datatype: 'json',
+      data: {
+        "country": n,
+        "perpage": per_page,
+        "page":now_page
+      },
+      success: function (result) {
+        console.log(result);
+        if (result.code == 0 && result.data.list.length !=0) {
+          addNewslist(result.data.list);
+          $('#load-more-btn').data('cur_page', now_page);
+        }
+        else {
+          $('#load-more-btn').find('span').text('没有更多内容了');
+        }
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert('服务器开小差了，请重试');
+      }
+    })
+  }
+  /*加载更多拼接字符串函数*/
+  function addNewslist (daxuepaiming_list) {
+    var news_html = '';
+    $.each(daxuepaiming_list, function (i, newItem, arr) {
+      news_html +='<div class="schoollib" id="schoollibs">'
+        +'<div class="schoollib-con">'
+        +'<a href="'+fn.urlgen("schoollib", newItem.id.toString(), "n=" + newItem.country)+'">'
+        +'<div class="sckoollib-left">';
+        if (newItem.logo) {
+          news_html += '<img src="'+ newItem.logo +'" alt="'+ newItem.title +'">';
+        }
+        else {
+          news_html += '<img src="'+ ajaxUrlPrefix.cdnhost +'/assets/img/default_school_thumb.jpg" alt="'+ newItem.title +'">';
+        }
+      news_html+= '</div>'
+        +'<div class="sckoollib-right">'
+        +'<p class="schoollib-p1">'+ newItem.title +'</p>'
+        +'<p style="margin-top: 4px;width: 100%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">'+ newItem.schoolenname +'</p>'
+        +'<p class="line-clamp-1" style="margin-top: 2px">位于: 【'+ fn.getCountryChinese(newItem.country) +'】'+ newItem.address +'</p>'
+        +'<p style="margin-top: 2px">建校年份: '+ newItem.build_start +'</p>'
+        +'<p style="margin-top: 2px">院校性质: '+ newItem.schoolnature +'</p>'
+        +'<div class="school-con" style="margin-top: 8px">'
+        +'<i style="display: block;float: right;color: #0096ff;font-size: 14px">'
+        +'<svg style="margin-right: 5px" class="icon" aria-hidden="true">'
+        +'<use xlink:href="#icon-huangguan"></use></svg>'
+        +'人气: '+ newItem.hits +''
+        +'</i>'
+        +'</div>'
+        +'</div>'
+        +'</a>'
+        +'</div>'
+        +'</div>';
+    });
+    $('#schoollibs-list').append($(news_html));
+  }
+</script>

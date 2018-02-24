@@ -1,0 +1,285 @@
+<style>
+    .evaluate-form-popContainer{
+        width: 90%;
+        background-color: #fff;
+        padding: 25px 0;
+        position: absolute;
+        top: 50%;
+        margin-top: -86px;
+        left: 5%;
+    }
+    .evaluate-form{
+        width: 310px;
+        margin: 0 auto;
+    }
+    .evaluate-form .form-body .form-bar {
+        margin-bottom: 15px;
+        display: flex;
+    }
+    .evaluate-form .form-body .input-item {
+        padding: 0 10px;
+        width: 150px;
+        height: 29px;
+        border: 1px solid #ecc580;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+    }
+    .evaluate-form .form-body .input-item.error-item {
+        border: 1px solid #d52821;
+    }
+    .evaluate-form .form-body .input-item-space {
+        margin-left: 10px;
+    }
+    .evaluate-form .form-body .input-item.getEvaCode{
+        color: #D7AA58;
+    }
+    .evaluate-form .form-body .input-item .need-icon {
+        /*height: 29px;*/
+        /*line-height: 29px;*/
+        display: flex;
+        width: 6px;
+        font-size: 6px;
+        color: #d52821;
+        margin-right: 10px;
+    }
+    .evaluate-form .form-body .input-item input {
+        display: flex;
+        width: 1px;
+        flex: 1;
+        height: 29px;
+        line-height: 29px;
+    }
+    .evaluate-form .evaluate-btn{
+        width: 310px;
+        height: 29px;
+        text-align: center;
+        line-height: 29px;
+        margin: 20px auto 0;
+        color: #fff;
+        font-size: 15px;
+        background-color: #ecc580;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+    }
+    .dialog-success{
+        width: 90%;
+        height: 172px;
+        position: absolute;
+        top: 50%;
+        margin-top: -86px;
+        left: 5%;
+        background-color: #fff;
+        display: none;
+    }
+    .dialog-success .success-img img{
+        width: 72px;
+        height: 49px;
+        display: block;
+        margin:20px auto;
+    }
+    .dialog-success .success-mes{
+        font-size: 16px;
+        text-align: center;
+        color:#2EAF49;
+    }
+    .dialog-success .success-con{
+        margin-top:6.5px;
+    }
+    .dialog-success .success-con p{
+        font-size: 13px;
+        line-height: 20px;
+        color: #666666;
+        text-align: center;
+    }
+</style>
+<div class="evaluate-form-popContainer" id="evaluate-form-popContainer">
+    <div class="evaluate-form">
+        <div class="form-body">
+            <div class="form-bar clearfix">
+                <div class="input-item">
+                    <span class="need-icon">*</span><input type="text" placeholder="请输入姓名" id="u_name-pop"/>
+                </div>
+                <div class="input-item input-item-space">
+                    <span class="need-icon">*</span><input type="text" placeholder="请输入手机号" id="u_phone-pop"/>
+                </div>
+            </div>
+            <div class="form-bar clearfix">
+                <div class="input-item">
+                    <span class="need-icon">*</span><input type="text" placeholder="请输入验证码" id="u_code-pop"/>
+                </div>
+                <div class="input-item  input-item-space getEvaCode" id="getEvaCode-pop">获取验证码</div>
+            </div>
+        </div>
+        <div class="evaluate-btn" id="evaluate-btn-pop">立即在线评估</div>
+    </div>
+</div>
+<!--提示弹框 start-->
+<div class="dialog-success" id="dialog-success">
+    <div class="success-img"><img src="{{helper.cdnhost}}/assets/img/success.png" alt=""></div>
+    <div class="success-mes">您的信息已成功提交！</div>
+    <div class="success-con">
+        <p>专业留学顾问将会尽快与您联系</p>
+        <p>请您保持电话畅通！</p>
+    </div>
+</div>
+<!--提示弹框 end-->
+<script>
+    //关闭提示弹框
+    $('#dialogs-pop').on('click', '.weui-dialog__btn', function(){
+        $(this).parents('.js_dialog').fadeOut(200);
+    });
+    //倒计时
+    var cutTimerpop;
+    var phone_check = {
+        phone: function(phone){
+            if(!/^1(3|4|5|7|8)\d{9}$/.test(phone)){
+                return false;
+            }
+            return true;
+        }
+    };
+    function countDownPop () {
+        $('#getEvaCode-pop').unbind('click');
+        var countDownTime = 60;
+        cutTimerpop = window.setInterval(function () {
+            countDownTime--;
+            $('#getEvaCode-pop').html(countDownTime+'s');
+            if (countDownTime <= 0) {
+                clearTimerpop(cutTimerpop);
+            }
+        }, 1000)
+    }
+    function clearTimerpop (timer) {
+        clearInterval(timer);
+        $('#getEvaCode-pop').html('重新获取');
+        //获取验证码点击绑定
+        $('#getEvaCode-pop').bind('click',function () {
+            getPopEvaCodeFn();
+        })
+    }
+    //获取验证码事件
+    function getPopEvaCodeFn () {
+        var phone = $('#u_phone-pop').val().trim();
+        if (!phone_check.phone(phone)) {
+            $('#u_phone-pop').focus();
+            return false;
+        }
+        else {
+            countDownPop();
+        }
+        //获取验证码
+        $.ajax({
+            url: ajaxUrlPrefix.nodeapi+'/ucapi/ucapi_agent',
+            type:'get',
+            data:{
+                m: 'sendcode',
+                phone:phone
+            },
+            dataType:'json',
+            success:function(msg){
+                console.log(msg);
+                if(msg.code === 0){
+                    $('#success-pop').show(200);
+                } else {
+                    $('#error-pop').show(200);
+                }
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
+                clearTimerpop(cutTimerpop);
+            }
+        });
+    }
+    //获取验证码点击绑定
+    $('#getEvaCode-pop').bind('click',function () {
+        getPopEvaCodeFn();
+    });
+    var assessmentPop = function (name, phone) {
+        $.ajax({
+            url:  ajaxUrlPrefix.nodeapi+'/cmsapi/assessment',
+            type:'POST',
+            data:{
+                name: name,
+                phone: phone
+            },
+            dataType:'json',
+            success:function(msg){
+                if(msg.code === 0){
+                    $('#evaluate-form-popContainer').hide();
+                    $('#dialog-success').show();
+                    $("#u_name-pop").val('');
+                    $('#u_phone-pop').val('');
+                    $('#u_code-pop').val('');
+                    clearInterval(cutTimerpop);
+                    $('#getEvaCode-pop').html('获取验证码');
+                    setTimeout(function () {
+                        $('#dialog-success').hide();
+                        $(".mark").hide();
+                        $(".mark-box").hide();
+                        $('#evaluate-form-popContainer').show();
+                    }, 3000)
+                } else {
+                    alert(msg.message);
+                }
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status);
+                console.log(textStatus);
+                console.log(errorThrown);
+            }
+        });
+    };
+    var checkCodePop = function (phoneCode, u_phone, u_name) {
+        $.ajax({
+            url: ajaxUrlPrefix.nodeapi+'/ucapi/ucapi_agent',
+            type:'get',
+            data:{
+                m: 'check_code',
+                code: phoneCode,
+                phone: u_phone
+            },
+            dataType:'json',
+            success:function(msg){
+                console.log(msg);
+                if(msg.code === 0){
+                    assessmentPop(u_name, u_phone);
+                } else {
+                    alert(msg.message);
+                }
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
+            }
+        });
+    };
+    //立即评估点击绑定
+    $('#evaluate-btn-pop').bind('click', function () {
+        var name = $('#u_name-pop').val().trim();
+        var phone = $('#u_phone-pop').val().trim();
+        var code = $('#u_code-pop').val().trim();
+        if(name==''){
+            //判断姓名
+            $("#u_name-pop").val('请输入姓名').focus();
+            return false;
+
+        }
+        if(!phone_check.phone(phone)){
+            //判断手机号
+            $('#u_phone-pop').html("请输入手机号").focus();
+            return false;
+        };
+        if (code == '') {
+            $('#u_code-pop').focus();
+            return false;
+        }
+        else {
+            checkCodePop(code, phone, name);
+        }
+    })
+</script>

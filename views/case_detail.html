@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include "header.html" %}
+  <link rel="stylesheet" type="text/css" href="{{helper.cdnhost}}/assets/css/case_detail.css">
+<body>
+<div id="app">
+  {% include "m_widget/top/top.html" %}
+  <div class="case_detail_title">
+    <h1>{{ article.article_info.title }}</h1>
+    <p>时间：{{article.article_info.add_time | shorten(10)}}</p>
+  </div>
+  <div class="lib-jianjie">
+    <h1><i></i>学生录取情况</h1>
+    <div class="lib-neirong">
+      <div class="case_detail_student">
+        <div class="case_detail_student_span1">
+          <span> 姓名</span>
+          <span style="border-right:1px transparent ;"> 录取院校</span>
+        </div>
+        <div class="case_detail_student_span2">
+          <span> {{article.article_info.introduce.stu_name}}</span>
+          <span style="border-right:1px transparent ;"> {{article.article_info.introduce.school_1}}&nbsp;</span>
+        </div>
+      </div>
+      <table style="width: 100%;border: 1px solid #dcdcdc;border-top:0;" cellspacing="0">
+        <tr class="case_detail_th">
+          <th>录取专业</th>
+          <th>学历</th>
+          <th style="border-right:0">录取时间</th>
+        </tr>
+        <tr class="case_detail_td">
+          <td style="border-bottom: 0">{{article.article_info.introduce.dep_1}}</td>
+          <td style="border-bottom: 0">{{ article.article_info.edu_id | getEdu()}}</td>
+          <td style="border-right:0;border-bottom: 0">{{article.article_info.introduce.admission_time}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="lib-jianjie">
+    <h1><i></i>学生背景</h1>
+    <p class="case_detail_p">就读院校：{{article.article_info.introduce.pre_school}}</p>
+    <p class="case_detail_p">所学专业：{{article.article_info.introduce.pre_dep}}</p>
+    <p class="case_detail_p" style="margin-bottom: 0">成绩概况：{{article.article_info.introduce.score}}</p>
+    <div class="case_detail_offer">
+      <ul class="adviser-case-offer-ul clearfix">
+        {% for item in article.article_info.introduce.offer_img %}
+        <li>
+          <a href="{{item}}"  class="clearfix">
+            <img src="{{item}}" />
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="lib-neirong">{{ article.article_info.message | safe}}</div>
+  </div>
+  {% import "m_widget/xiangguan_tuijian/xiangguan_tuijian.html" as xiangguan %}
+  {{ xiangguan.tuijianlist3(pageType,tuijian,pageroute,helper) }}
+  <!--footer start-->
+  {% import "m_widget/footer/footer.html" as footer %}
+  {{footer.footer([{'nav_text':'成功案例列表页','nav_path': 'case'},{'nav_text':article.article_info.title,'nav_path': ''}],tdk,helper)}}
+  <!--footer end-->
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+</body>
+</html>

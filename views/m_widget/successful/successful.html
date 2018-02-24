@@ -1,0 +1,25 @@
+<!--成功案例-->
+{% macro successful(chenggonganli,helper) %}
+{% for Item in chenggonganli %}
+<div class="successful_warp clearfix">
+  <div class="successful clearfix">
+    <div class="successful_center clearfix">
+      <div class="successful_center_img">
+        <a href="{{ helper.urlgen('case', Item.id | string) }}" rel="nofollow" target="_blank" >
+          <img src="{{helper.school_logo(Item.school_id)}}" alt="{{Item.title}}">
+        </a>
+      </div>
+      <div class="successful_center_right">
+        <a href="{{ helper.urlgen('case', Item.id | string) }}"><h1 class="successful_center_right_title line-clamp-1">{{Item.title}}</h1></a>
+        <p><span style="margin-right: 10px">顾问：{{Item.user_info.nickname}}</span><span>学位：{{Item.edu_id | getEdu}}</span></p>
+        <p><span>录取国家：{{Item.country_id | getCountry}}</span></p>
+        <p>
+          <span style="float: left">录取时间：{{Item.add_time | shortentime(7) }}</span>
+          <a class="successful_btn" rel="nofollow" target="_blank" href="http://jesong.jjl.cn/live/chat.dll?c=1&amp;n={{Item.user_info.job_number}}">案例咨询</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endmacro %}

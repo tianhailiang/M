@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include "header.html" %}
+<body>
+<div id="app">
+  <div class="app-in">
+    {% include "m_widget/top/top.html" %}
+    <!--顶部tab切换 start-->
+    {% import "m_widget/top_tab/top_tab.html" as top_tab %}
+    {{top_tab.top_tab({'tab_type':"案例"},helper)}}
+    <!--顶部tab切换 end-->
+    <!--案例列表-->
+    <div id="cases-list" class="clearfix" >
+        {% import "m_widget/successful/successful.html" as successful %}
+        {{ successful.successful(chenggonganli.list,helper) }}
+    </div>
+    <!--<div class="successful_genduo">-->
+      <!--<a href="">点击加载更多-->
+        <!--<svg class="icon" aria-hidden="true">-->
+        <!--<use xlink:href="#icon-jiantou"></use>-->
+      <!--</svg></a>-->
+    <!--</div>-->
+    <!--加载更多 start-->
+    {% include "m_widget/load_more/load_more.html" %}
+    <!--加载更多 end-->
+    <!--最新活动 成功案例  大学排名 start-->
+    {%esi helper.include(esikey,'fragment/list_public','c='+tdk.cityid)%}
+    <!--footer start-->
+    {% import "m_widget/footer/footer.html" as footer %}
+    {{footer.footer([{'nav_text':'成功案例列表页','nav_path': 'case'}],tdk,helper)}}
+    <!--footer end-->
+  </div>
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+{% import "m_widget/select_pop/select_pop.html" as select_pop %}
+{{ select_pop.select_pop({'n': country, 'path': 'case'}, helper) }}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+<script>
+    /*加载更多函数*/
+    function loadMore (cur_page) {
+        var n = $('#select-pop').find('.focus-on').data('id') || '';
+        var now_page = cur_page+1;
+        var per_page = 6;
+        var area = $.cookie('currentarea');
+        $.ajax({
+            url: '/cmsapi/more_case',
+            type: 'get',
+            datatype: 'json',
+            data: {
+                "country_id": n,
+                "category_id": 17,
+                "city_id": area,
+                "edu_id": 0,
+                "per_page": per_page,
+                "page": now_page,
+                "order":"add_time"+" desc"
+            },
+            success: function (result) {
+                if (result.code == 0 && result.data.list.length !=0) {
+                    addNewslist(result.data.list);
+                    $('#load-more-btn').data('cur_page', now_page);
+                }
+                else {
+                    $('#load-more-btn').find('span').text('没有更多内容了');
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert('服务器开小差了，请重试');
+            }
+        })
+    }
+    /*加载更多拼接字符串函数*/
+    function addNewslist (cases_list) {
+        var cases_html = '';
+        $.each(cases_list, function (i, Item, arr) {
+            cases_html +='<div class="successful_warp clearfix">'
+                      +'<div class="successful clearfix">'
+                      +'<div class="successful_center clearfix">'
+                      +'<div class="successful_center_img">'
+                      +'<a href="'+fn.urlgen("case", Item.id.toString())+'">'
+                      +'<img src="'+fn.getSchool_logo(Item.school_id)+'" alt="'+Item.title+'">'
+                      +'</a>'
+                      +'</div>'
+                      +'<div class="successful_center_right">'
+                      +'<a href="'+fn.urlgen("case", Item.id.toString())+'"><h1 class="successful_center_right_title line-clamp-1">'+ Item.title +'</h1></a>'
+                      +'<p><span style="margin-right: 10px">顾问：'+Item.user_info.nickname+'</span><span>学位：'+ fn.getEdu(Item.edu_id) +'</span></p>'
+                      +'<p><span>录取国家：'+ fn.getCountryChinese(Item.country_id) +'</span></p>'
+                      +'<p>'
+                      + '<span style="float: left">录取时间：'+ fn.getTimeYM(Item.add_time) +'</span>'
+                      +'<a class="successful_btn" rel="nofollow" target="_blank" href="http://jesong.jjl.cn/live/chat.dll?c=1&amp;n='+Item.user_info.job_number+'">案例咨询</a>'
+                      + '</p>'
+                      +'</div>'
+                      +'</div>'
+                      +'</div>'
+                      +'</div>';
+        });
+        $('#cases-list').append($(cases_html));
+    }
+</script>
+</body>
+</html>

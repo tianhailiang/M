@@ -1,0 +1,95 @@
+<!--活动列表页-->
+{% macro activity_item(liuxuehuodong,helper) %}
+{% for item in liuxuehuodong %}
+<div class="activity-item">
+  <a href="{{helper.urlgen('activity',item.id | string,'c='+item.organid)}}">
+    <div class="activity-item-left">
+      <img src="{{item.thumb}}" alt="{{item.title}}">
+    </div>
+    <div class="activity-item-right">
+      <h3 class="line-clamp-1">【{{item.country | getCountry()}}】{{item.title}}</h3>
+      <ul>
+        <li> <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-shijian"></use>
+        </svg><span>{{ item.start_time | getDefaultFormat('YYYY-MM-DD HH:mm')}}</span></li>
+        <li> <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-dianhua2"></use>
+        </svg><span>{{item.telephone}}</span></li>
+        <li><svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-dingwei"></use>
+        </svg><span class="line-clamp-1">{{item.address_des}}</span></li>
+      </ul>
+      <div class="activity-booking-btn">点击预约</div>
+    </div>
+  </a>
+</div>
+<script>
+  $(function(){
+    $(".activity-booking-btn").on('click',function(event){
+      event.preventDefault();
+      var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
+      window.location = "http://jesong.jjl.cn/live/chat.dll?c="+ area+"&chatUrl="+window.encodeURIComponent(window.location.href)+"g=246"
+    });
+  })
+</script>
+{% endfor %}
+{% endmacro %}
+<!--首页活动-->
+{% macro activity_home(liuxuehuodong,helper) %}
+{% for item in liuxuehuodong %}
+{% if loop.index==1 %}
+<a href="{{helper.urlgen('activity',item.id | string,'c='+item.organid)}}" style="display: block;">
+  <div class="activity_home">
+      <div class="activity_home_img">
+        <img src="{{item.thumb}}" alt="{{item.title}}">
+      </div>
+      <h3 class="activity_home_title line-clamp-1">{{item.title}}</h3>
+      <div class="activity_home_content">
+        <ol>
+          <li><svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-dingwei"></use>
+          </svg><span class="line-clamp-1">{{item.address_des}}</span></li>
+          <li> <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-shijian"></use>
+          </svg><span>{{item.start_time | getDefaultFormat('YYYY-MM-D HH:mm')}}</span></li>
+        </ol>
+        <div class="activity-booking-btn">点击预约</div>
+      </div>
+  </div>
+</a>
+{% endif %}
+{% if loop.index>=2 and loop.index<=4 %}
+<div class="activity-item">
+  <a href="{{helper.urlgen('activity',item.id | string,'c='+item.organid)}}">
+    <div class="activity-item-left">
+      <img src="{{item.thumb}}" alt="{{item.title}}">
+    </div>
+    <div class="activity-item-right">
+      <h3 class="line-clamp-1">【{{item.country | getCountry()}}】{{item.title}}</h3>
+      <ul>
+        <li> <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-shijian"></use>
+        </svg><span>{{item.start_time | getDefaultFormat('YYYY-MM-DD HH:mm')}}</span></li>
+        <li> <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-dianhua2"></use>
+        </svg><span>{{item.telephone}}</span></li>
+        <li><svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-dingwei"></use>
+        </svg><span class="line-clamp-1">{{item.address_des}}</span></li>
+      </ul>
+      <div class="activity-booking-btn">点击预约</div>
+    </div>
+  </a>
+</div>
+{% endif %}
+{% endfor %}
+<script>
+  $(function(){
+    $(".activity-booking-btn").on('click',function(event){
+      event.preventDefault();
+      var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
+      window.location = "http://jesong.jjl.cn/live/chat.dll?c="+ area+"&chatUrl="+window.encodeURIComponent(window.location.href)+"g=246"
+    });
+  })
+</script>
+{% endmacro %}

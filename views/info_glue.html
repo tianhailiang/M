@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<body>
+{% include "m_widget/top/top.html" %}
+<div id="app" >
+    <!--引导banner start-->
+    <!--引导banner end-->
+    <!--评估表单 start-->
+    {% include "m_widget/evaluate_form/evaluate_form.html" %}
+    <!--评估表单 end-->
+    <!--引导列表 start-->
+    <div class="info-list" id="info-list">
+        {% import "m_widget/news_list/cost_list.html" as cost %}
+        {{ cost.costlist(channel_list,pageroute,helper) }}
+        {% import "m_widget/look_more/look_more.html" as look_more %}
+        {{ look_more.look_more({'path': 'glue'}, helper)}}
+    </div>
+    <!--引导列表 end-->
+    <!--引导页广告图start-->
+    <div class="info-ad">
+        <a href="">
+            <img src="" alt="最新资讯广告图"/>
+        </a>
+    </div>
+    <!--引导页广告图end-->
+    <!--footer start-->
+    {% import "m_widget/footer/footer.html" as footer %}
+    {{footer.footer([{'nav_text':'申请攻略列表页','nav_path': 'glue'}],tdk,helper)}}
+    <!--footer end-->
+    <!-- ===app end== -->
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+</body>
+</html>
