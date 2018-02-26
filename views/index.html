@@ -7,24 +7,9 @@
 </head>
 <body>
     {% include "m_widget/top/top.html" %}
-    <!-- ===搜索框==== -->
-    {% include "m_widget/search/search.html" %}
+    
 	<div id="app">
 	    {% include "m_widget/swiper/swiper.html" %}
-	    <div class="index-nav" >
-	       	<a href="#">
-	       	  	金吉列优势
-	       	</a> 
-       	    <a href="{{helper.urlgen('case')}}">
-       	  	 成功案例
-       	    </a> 
-       	    <a href="{{helper.urlgen('product')}}">
-       	  	 留学方案
-       	    </a> 
-       	    <a href="{{helper.urlgen('schoollib')}}">
-       	  	 院校库
-       	    </a> 
-        </div>
         {% set countryList = [
         	{
         		name:"美国",
@@ -61,6 +46,11 @@
         		imgurl:"rb",
         		id:"51"
         	},
+            {
+                name:"更多",
+                imgurl:"gd",
+                id:""
+            },
         	{
         		name:"法国",
         		imgurl:"fb",
@@ -81,11 +71,7 @@
         		imgurl:"xjp",
         		id:"52"
         	},
-        	{
-        		name:"更多",
-        		imgurl:"gd",
-        		id:""
-        	},
+        	
         	{
         		name:"爱尔兰",
         		imgurl:"ael",
@@ -149,14 +135,14 @@
         ] %}
         <ul class="country-ul" >
             {% for item in countryList %}
-                {% if loop.index < 12%}
+                {% if loop.index < 8%}
 		       	    <li>
 		                <a href="{{helper.urlgen('nationrank','n='+item.id)}}" >
 			       	   	   <img src="{{helper.cdnhost}}/assets/images/country/home_icon_{{item.imgurl}}.png" >
 			       	   	   <span>{{item.name}}</span>
 		                </a>
 		       	    </li>
-                {% elif loop.index ==12  %}
+                {% elif loop.index ==8  %}
 		            <li id="gd">
 		                <a href="#" >
 			       	   	   <img src="{{helper.cdnhost}}/assets/images/country/home_icon_{{item.imgurl}}.png" >
@@ -173,110 +159,37 @@
 		       	{% endif %}
 		    {% endfor %}
         </ul>
-        <!-- ======最新动态==== -->
-        <div class="new-dynamic" >
-         	<div class="active-btn" >
-	            <div class="swiper-container active-container-1" >
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide swiper-no-swiping">
-                            活动
-                        </div>
-                        <div class="swiper-slide swiper-no-swiping">
-                            专家
-                        </div>
+        <!--国家学历表 -->
+        <div class="team-top" >
+            <h2>美国留学</h2>
+            <ul class="team-top-ul">
+                <li class="active">推荐</li>
+                <li>中学</li>
+                <li>本科</li>
+                <li>研究生</li>
+                <li>博士</li>
+            </ul>
+        </div>
+        <ul class="country-edu-ul">
+            <li>
+                <div class="adviser-touxiang" style="background:url({{helper.cdnhost}}/assets/mockimg/touxiang1.png) no-repeat center;background-size: 60px 60px;">
+                </div>
+                <div class="adviser-right" >
+                    <div class="adviser-name" >
+                        <span>一卫</span>
+                        <i></i>
                     </div>
-	            </div>
-            </div>
-            <div class="dynmic-ul-box" >
-                <div class="swiper-container active-container-2" >
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide swiper-no-swiping">
-                        	<a href="#" >
-                          		<div class="active-container-2-title">高考后留学美国选择双录取还是桥梁
-                          		</div>
-                            </a> 
-                        </div>
-                        <div class="swiper-slide swiper-no-swiping">
-                        	<a href="#" >
-                            	<div class="active-container-2-title">田海亮</div>
-                            </a>  
-                        </div>
+                    <div class="adviser-title">
+                        2018美国留学新政一栏，现在不看你就亏了！
+                    </div>
+                    <div class="adviser-label">
+                        留学实训
                     </div>
                 </div>
-            </div>
-       	</div>
-       	<!-- ====大学堂轮播=== -->
-        <div class="swiper-container harvard-college" id="swiper-container1">
-	        <div class="swiper-wrapper">
-	        {% for item in lunbo_list2 %}
-	            <div class="swiper-slide">
-	            	<a href="{{item.linkurl}}" >
-	               		<img class="harvard-img" src="{{item.imageurl}}" alt="{{item.alt}}">
-	                </a>
-	            </div>
-	        {% endfor %}
-	        </div>
-        	<div class="swiper-pagination"></div>
-        </div>
-        <!--资讯列表 start-->
-        <div class="team-top" >
-            <h2>最新资讯</h2>
-        </div>
-        <div class="news-list" id="news-list">
-					{% import "m_widget/news_list/news_list.html" as news %}
-					{{ news.newslist(channel_list,pageroute,helper) }}
-        </div>
-        <div class="gdBtn-box" >
-            <a class="gdBtn"  href="{{helper.urlgen('news')}}">
-                <span>查看更多</span>
-            </a>
-        </div>  
-        <!--活动列表 start-->
-        <div class="team-top" >
-            <h2>活动预告</h2>
-        </div>
-        <div class="activity-list" >
-            {% import  "m_widget/activity/activity.html" as activity %}
-            {{ activity.activity_home(liuxuehuodong_list.list,helper) }}
-        </div>
-        <div class="gdBtn-box" >
-            <a class="gdBtn"  href="{{helper.urlgen('activity')}}">
-                <span>查看更多</span>
-            </a>
-        </div>
-        <!-- =====专家团队==== -->
-        <div class="team-top" >
-            <h2>专家团队</h2>
-            <a class="team-right" href="{{helper.urlgen('adviser')}}">
-				<svg class="icon icon-sousuo" aria-hidden="true">
-					<use xlink:href="#icon-jiantou-"></use>
-				</svg>
-            </a>
-        </div>
-        <div class="expert-team" >
-            <div class="swiper-container" id="swiper-container2">
-                <div class="swiper-wrapper">
-                {% for item in advisor_list.list %}
-                    <div class="swiper-slide">
-                        <a href="{{helper.urlgen('adviser', item.uid | string)}}" class="slide-box">
-                            <img class="team-img" src="{{helper.avaterimg(item.uid,'small',item.status,item.version)}}">
-                            <div class="team-name">
-                                <span>{{item.realname}}</span>
-                               	<div class="team-consultation-btn" data-jobNumber ="{{item.job_number}}">
-				                    立即咨询
-				                </div>
-                            </div>
-                        </a>        
-                    </div>
-                {% endfor %}
-                </div>
-            </div>
-        </div>
+            </li>
+        </ul>
         <!--footer -->
-        <div style="margin-top: 10px;">
-            {% import "m_widget/footer/footer.html" as footer %}
-            {{footer.footer([],tdk, helper)}}
-        </div>
+        {% include "m_widget/footer/footer.html" %}
 	</div>
 	<!-- ===侧边栏==== -->
     {% include "m_widget/slidebar/slidebar.html" %}
@@ -306,49 +219,7 @@
                     $("body").animate({scrollTop:0}, 300);
                 }
             });
-            //最新动态
-            var activeSwiper1 = new Swiper('.active-container-1', {
-                autoplay: 1000,
-                autoplayDisableOnInteraction : false,
-                loop:true,
-                noSwiping : true,
-                direction: 'vertical'
-            });
-            var activeSwiper2 = new Swiper('.active-container-2', {
-                autoplay: 1000,
-                autoplayDisableOnInteraction : false,
-                loop:true,
-                noSwiping : true,
-                direction: 'vertical'
-            });
-            var mySwiper1 = new Swiper('#swiper-container1', {
-                // 大学堂轮播
-                autoplay: 3000,
-                autoplayDisableOnInteraction : false,
-                width : window.innerWidth,
-                pagination : '.swiper-pagination',
-                loop:true,
-            });
-            var mySwiper2 = new Swiper('#swiper-container2', {
-                // 专家团队轮播
-                autoplay: 10000,
-                autoplayDisableOnInteraction : false,
-                effect: 'coverflow',
-                centeredSlides: true,
-                loop:true,
-                slidesPerView: 'auto',
-                loopedSlides :11,
-                coverflow: {
-                    rotate: 0,
-                    stretch: 0,
-                    depth: 200,
-                    modifier: 1,
-                    slideShadows:false
-                },
-                onSlideChangeStart: function(swiper){ 
-                    // console.log(swiper.realIndex)
-                }
-            });
+        
             $(".team-consultation-btn").on("click",function(event){
                 //点击咨询
                 event.preventDefault();

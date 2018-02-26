@@ -31,55 +31,27 @@
     background:url(../../../assets/images/home_bar_menu.png) no-repeat 0 0;
     background-size: 21px 14px;
   }
-  .header-logo{
-    width:93px;
-    height:27px;
-    background:url(../../../assets/images/home_bar_logo.png) no-repeat 0 0;
-    background-size:93px 27px;
-  }
-  .header-phone{
-    /*margin-left: 26px;
-    margin-right: 18.5px;*/
-  }
-  .header-phone a{
-    display: flex;
-    align-items: center;
-  }
-  .header-phone-logo{
-    width:29px;
-    height:29px;
-    background:url(../../../assets/images/home_bar_phone.png) no-repeat 0 0;
-    background-size:29px 29px;
-  }
-  .header-phone-number{
-    display: flex;
-    flex-direction: column;
-  }
-  .header-phone-number span{
-    font-size: 10px;
-    color:#333;
-    line-height: 10px;
-  }
-  .header-phone-number i{
-    font-size: 11px;
-    color:#d51821;
-    line-height: 11px;
-    margin-top:5px;
+  .header-jjl{
+    background:#d51821;
+    color:#fff;
+    width:80px;
+    height:20px;
+    border-radius: 25px;
+    font-size: 13px;
+    text-align: center;
+    line-height: 20px;
   }
   .header-city{
     display: flex;
     align-items: center;
     height:100%;
   }
-  .header-city span{
-    display: block;
-    width:9px;
-    height:13px;
-    background:url(../../../assets/images/home_bar_location@2x.png) no-repeat 0 0;
-    background-size:9px 13px;
+  .header-city .header-location{
+    font-size: 13px;
+    color:#d51821;
   }
   .header-city i{
-    font-size: 13px;
+    font-size: 14px;
     color:#d51821;
     margin-left:5px;
   }

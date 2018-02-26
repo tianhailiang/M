@@ -21,7 +21,6 @@ exports.home = function(req,res,next){
   log.debug("首页")
   var data = {};
   var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
-  log.info(area)
   if(!comfunc.cityid_invalidcheck(area)){
     return res.redirect('/404');
   }

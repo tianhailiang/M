@@ -1,40 +1,12 @@
-{% macro footer(paths, tdk, helper) %}
+
 <div class="footer">
-    <div class="position">
-        <span>当前位置：</span>
-        <a href="/">首页</a>
-        {% for path in paths %}
-        <a href="{{helper.urlgen(path.nav_path) if (path.nav_path != '') else 'javascript:void(0)'}}">>{{path.nav_text}}</a>
-        {% endfor %}
-    </div>
-    {% set linkList = helper.getLink(tdk.pagekey) %}
-    {% if linkList %}
-    <div class="friend-link">
-        <span>友情链接</span>{% for item in  linkList %}{% if loop.index == 2 %}<a href="{{item.url}}" title="{{item.name}}" class="friend-btn middle-btn">{{item.name}}</a>{% else %}<a href="{{item.url}}" title="{{item.name}}" class="friend-btn">{{item.name}}</a>{% endif %}{% endfor %}
-    </div>
-    {% endif %}
-    <div class="footer-info clearfix">
-        <div class="info-left">
-            <div class="phone-icon">
-                <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-dianhua"></use>
-                </svg>
-            </div>
-            <div class="computer-icon">
-                <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-diannaoban"></use>
-                </svg>
-                <div style="padding-top: 7.5px;font-size: 10px;">电脑版</div>
-            </div>
-        </div>
-        <div class="info-right">
-            <div class="phone-text">全国统一热线：400-010-8000</div>
-            <p class="location-phone"><span class="choice-city" id="choice-city-name">北京分公司</span><span class="choice-city-phone" id="choice-city-phone"></span></p>
-            <p class="location-detail" id="choice-city-address"></p>
-            <p>留学投诉电话：4006-213-315</p>
-        </div>
-    </div>
-    <div class="copy-right">@2009 金吉列出国留学咨询服务有限公司 版权所有 京ICP备05010035号</div>
+    <a class="footer-phone" href="tel:4000108000" >
+        <i>400-010-8000</i>
+    </a>
+    <a class="footer-city-phone" >
+        <i>010-6568565</i>
+    </a>
+    <div class="copy-right">&copy;2009 金吉列出国留学咨询服务有限公司 版权所有 京ICP备05010035号</div>
 </div>
 <script>
     var footerCity = {
@@ -96,4 +68,3 @@
         $('#choice-city-address').text(cityAddress);
     }
 </script>
-{% endmacro %}
