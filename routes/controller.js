@@ -21,6 +21,8 @@ exports.home = function(req,res,next){
   log.debug("首页")
   var data = {};
   var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
+  [data.country=1] = [req.query.n];
+  // log.info(data.country)
   if(!comfunc.cityid_invalidcheck(area)){
     return res.redirect('/404');
   }
@@ -28,10 +30,6 @@ exports.home = function(req,res,next){
     lunbo_list: function (callback) {
       // 轮播图接口
       cms.lunbo_list({"ad_page":"HOME","ad_seat":"SEAT1"},callback);
-    },
-    lunbo_list2: function (callback) {
-      // 轮播图接口
-      cms.lunbo_list({"ad_page":"HOME","ad_seat":"SEAT2"},callback);
     },
     //资讯列表
     zuixinzixun_list: function (callback) {
@@ -50,21 +48,10 @@ exports.home = function(req,res,next){
         "perpage":4
       }, callback);
     },
-    advisor_list: function (callback) {
-      cms.adviser_list({
-        "country":"0" ,
-        "organid":area,
-        "pagesize": "11",
-        "page":"1"
-      }, callback);
-    }
   }, function (err, result) {
     data.lunbo_list =returnData(result.lunbo_list,'lunbo_list');
-    data.lunbo_list2 =returnData(result.lunbo_list2,'lunbo_list2');
     data.channel_list = returnData(result.zuixinzixun_list,'zuixinzixun_list');
     data.liuxuehuodong_list = returnData(result.liuxuehuodong_list,'liuxuehuodong_list');
-    data.advisor_list = returnData(result.advisor_list,'advisor_list');
-    data.pageroute="news";
     data.tdk = {
       pagekey: 'HOME',
       cityid: area,

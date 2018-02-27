@@ -31,6 +31,12 @@
     background:url(../../../assets/images/home_bar_menu.png) no-repeat 0 0;
     background-size: 21px 14px;
   }
+  .header-logo{
+    width:93px;
+    height:27px;
+    background:url(../../../assets/images/home_bar_logo.png) no-repeat 0 0;
+    background-size:93px 27px;
+  }
   .header-jjl{
     background:#d51821;
     color:#fff;

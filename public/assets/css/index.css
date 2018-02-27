@@ -32,7 +32,9 @@
 	color:#333;
 	margin-top:10px;
 }
-
+.country-ul li span.active{
+    color:#d51821;
+}
 .country-ul li img{
 	width:40px;
 	height:32px;
@@ -82,7 +84,7 @@
 }
 .country-edu-ul li{
     padding:10px 0;
-    margin-top: 1px solid #eee;
+    border-top: 1px solid #eee;
     display: flex;
 }
 

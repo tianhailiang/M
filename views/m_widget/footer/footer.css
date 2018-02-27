@@ -8,13 +8,32 @@
 .footer-phone{
     display: flex;
 }
-
-.footer p {
-    line-height: 21px;
+.footer-phone svg{
+    color:#999;
 }
-.footer .copy-right {
-    width: 100%;
+.footer-phone i{
+    font-size: 13px;
+    line-height: 13px;
+    color:#ecc580;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+.footer-location{
+    display: flex;
+}
+.footer-location svg{
+    color:#999;
+}
+.footer-location i{
+    font-size: 12px;
+    color:#999;
+    margin-left: 10px;
+    line-height: 20px;
+}
+
+.copy-right {
     color: #999;
-    text-align: center;
-    font-size: 10px;
+    font-size: 12px;
+    line-height: 20px;
+    padding-left:20px;
 }

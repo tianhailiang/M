@@ -3,7 +3,7 @@
  */
 var controller = require('./controller.js');
 exports = module.exports = function (app) {// routes
-  //首页 home
+  //首页 home 
   app.get('/',controller.home);
   //国家频道页 nationrank
   app.get(/^\/((?!yimin)usa|uk|canada|australia|newzealand|korea|japan|singapore|malaysia|hongkong|russion|ukraine|belarus|germany|france|norway|sweden|finland|ireland|netherlands|denmark|italy|spain|switzerland|greece|malta|portugal|cyprus|antigua|dominica|saintkitts|grenada)(\/*)$/, controller.nationrank);//国家频道

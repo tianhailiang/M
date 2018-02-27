@@ -7,7 +7,6 @@
 </head>
 <body>
     {% include "m_widget/top/top.html" %}
-    
 	<div id="app">
 	    {% include "m_widget/swiper/swiper.html" %}
         {% set countryList = [
@@ -131,29 +130,34 @@
         		name:"意大利",
         		imgurl:"ydl",
         		id:"111"
-        	}
+        	},
+            {
+                name:"荷兰",
+                imgurl:"hl",
+                id:"109"
+            }
         ] %}
         <ul class="country-ul" >
             {% for item in countryList %}
                 {% if loop.index < 8%}
 		       	    <li>
-		                <a href="{{helper.urlgen('nationrank','n='+item.id)}}" >
+		                <a href="/?n={{item.id}}" >
 			       	   	   <img src="{{helper.cdnhost}}/assets/images/country/home_icon_{{item.imgurl}}.png" >
-			       	   	   <span>{{item.name}}</span>
+			       	   	   <span class="{% if item.id ==country %}active{% endif %}">{{item.name}}</span>
 		                </a>
 		       	    </li>
                 {% elif loop.index ==8  %}
 		            <li id="gd">
-		                <a href="#" >
+		                <a href="javascript:void(0);" >
 			       	   	   <img src="{{helper.cdnhost}}/assets/images/country/home_icon_{{item.imgurl}}.png" >
 			       	   	   <span>{{item.name}}</span>
 		                </a>
 		       	    </li>
 		       	{% else %}
-		            <li class="gd-li">
-		                <a href="{{helper.urlgen('nationrank','n='+item.id)}}" >
+		            <li class="gd-li" style="{% if country >51 %}display: block;{% endif %}">
+		                <a href="/?n={{item.id}}" >
 		           	   	   <img src="{{helper.cdnhost}}/assets/images/country/home_icon_{{item.imgurl}}.png" >
-		           	   	   <span>{{item.name}}</span>
+		           	   	   <span class="{% if item.id ==country %}active{% endif %}">{{item.name}}</span>
 		                </a>    
 		       	   </li>
 		       	{% endif %}
@@ -161,7 +165,7 @@
         </ul>
         <!--国家学历表 -->
         <div class="team-top" >
-            <h2>美国留学</h2>
+            <h2>{{country|getCountry}}留学</h2>
             <ul class="team-top-ul">
                 <li class="active">推荐</li>
                 <li>中学</li>
@@ -182,7 +186,7 @@
                     <div class="adviser-title">
                         2018美国留学新政一栏，现在不看你就亏了！
                     </div>
-                    <div class="adviser-label">
+                    <div class="adviser-label" style="color:#d51821;">
                         留学实训
                     </div>
                 </div>

@@ -25,24 +25,14 @@
 .activity_home_content li span{font-size:13px;padding-left:10px;flex:1}
 .activity-more{text-align:center;font-size:13px;padding:15px 0;color:#666}
 .activity-more a{color:#666}
-.footer{width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;background:#000 url(../../../assets/img/friend-btn-bj.png);background-size:100% 100%;padding:0 10px 20px;margin-bottom:49px}
-.footer .position{padding:15px 0;border-bottom:1px solid rgba(255,255,255,.25);overflow:hidden;-ms-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap}
-.footer .position span{font-size:13px;color:#fff}
-.footer .position a{font-size:13px;color:#ecc580}
-.footer .friend-link{padding:10px 0 10px 5px;border-bottom:1px solid rgba(255,255,255,.25)}
-.footer .friend-link span{font-size:13px;color:#fff;margin-right:30px}
-.footer .friend-link .friend-btn{display:inline-block;width:55px;height:25px;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;background-color:#665251;font-size:12px;color:#B8B8B8;text-align:center;line-height:25px}
-.footer .friend-link .friend-btn.middle-btn{margin:0 45px}
-.footer .footer-info{width:100%;display:flex;color:#999;padding-bottom:11px}
-.footer .footer-info .info-left{width:30px;margin:0 29px 0 20px;text-align:center}
-.footer .footer-info .info-left .phone-icon{width:30px;padding-top:13px;padding-bottom:15px}
-.footer .footer-info .info-left .phone-icon .icon{width:20px;height:20px}
-.footer .footer-info .info-left .computer-icon .icon{width:19px;height:18px}
-.footer .footer-info .info-right{width:1px;flex:1;padding-right:20px;font-size:13px}
-.footer .footer-info .info-right .phone-text{font-size:16px;color:#fcc580;padding:15px 0 14px;line-height:16px}
-.footer .footer-info .info-right .location-phone .choice-city-phone{color:#fcc580}
-.footer p{line-height:21px}
-.footer .copy-right{width:100%;color:#999;text-align:center;font-size:10px}
+.footer{background:#000 url(../../../assets/img/friend-btn-bj.png);background-size:100% 100%;padding:20px 10px 15px;margin-bottom:49px;margin-top:10px}
+.footer-phone{display:flex}
+.footer-phone svg{color:#999}
+.footer-phone i{font-size:13px;line-height:13px;color:#ecc580;margin-bottom:15px;margin-left:10px}
+.footer-location{display:flex}
+.footer-location svg{color:#999}
+.footer-location i{font-size:12px;color:#999;margin-left:10px;line-height:20px}
+.copy-right{color:#999;font-size:12px;line-height:20px;padding-left:20px}
 .footer-box{width:100%;height:49px;background:#d51821;position:fixed;bottom:0;left:0;z-index:120;box-sizing:border-box}
 .footer-ul{display:flex;align-items:center;height:100%}
 .footer-ul li{flex:1;display:flex;align-items:center;justify-content:center;border-right:.5px solid #fff;position:relative;height:100%}
@@ -51,7 +41,7 @@
 .footer-ul li span{font-size:14px;color:#fff}
 .footer-logo-online{display:block;width:12px;height:12px;background:url(../../assets/images/home_tab_assess.png) no-repeat 0 0;background-size:12px 12px;margin-right:8px}
 .footer-logo-phone{display:block;width:11px;height:12px;background:url(../../assets/images/home_tab_phone.png) no-repeat 0 0;background-size:11px 12px;margin-right:7.5px}
-.consultation-news{position:absolute;right:7px;top:7px;display:block;width:18px;height:18px;background:#ffe400;border-radius:50%;font-size:10px;color:#d51821;font-weight:700;line-height:18px;text-align:center;animation:myNews 1s infinite}
+.consultation-news{position:absolute;right:7px;top:7px;display:block;width:18px;height:18px;background:#ecc580;border-radius:50%;font-size:10px;color:#d51821;font-weight:700;line-height:18px;text-align:center;animation:myNews 1s infinite}
 @keyframes myNews{0%{transform:scale(1)}
 50%{transform:scale(1.5)}
 100%{transform:scale(1)}
@@ -129,14 +119,10 @@
 .header-Catalog{height:100%;display:flex;align-items:center;z-index:2000;position:relative}
 .header-Catalog span{display:block;width:21px;height:14px;background:url(../../../assets/images/home_bar_menu.png) no-repeat 0 0;background-size:21px 14px}
 .header-logo{width:93px;height:27px;background:url(../../../assets/images/home_bar_logo.png) no-repeat 0 0;background-size:93px 27px}
-.header-phone a{display:flex;align-items:center}
-.header-phone-logo{width:29px;height:29px;background:url(../../../assets/images/home_bar_phone.png) no-repeat 0 0;background-size:29px 29px}
-.header-phone-number{display:flex;flex-direction:column}
-.header-phone-number span{font-size:10px;color:#333;line-height:10px}
-.header-phone-number i{font-size:11px;color:#d51821;line-height:11px;margin-top:5px}
+.header-jjl{background:#d51821;color:#fff;width:80px;height:20px;border-radius:25px;font-size:13px;text-align:center;line-height:20px}
 .header-city{display:flex;align-items:center;height:100%}
-.header-city span{display:block;width:9px;height:13px;background:url(../../../assets/images/home_bar_location@2x.png) no-repeat 0 0;background-size:9px 13px}
-.header-city i{font-size:13px;color:#d51821;margin-left:5px}
+.header-city .header-location{font-size:13px;color:#d51821}
+.header-city i{font-size:14px;color:#d51821;margin-left:5px}
 .change_city{display:none;position:fixed;top:0;right:-100%;width:100%;z-index:2300}
 .city_title{background:#d52821;position:relative;height:43px;display:flex;align-items:center;padding:0 10px}
 .icon-jiantou1{font-size:24px;color:#fff;z-index:10}
