@@ -31,27 +31,8 @@ exports.home = function(req,res,next){
       // 轮播图接口
       cms.lunbo_list({"ad_page":"HOME","ad_seat":"SEAT1"},callback);
     },
-    //资讯列表
-    zuixinzixun_list: function (callback) {
-      cms.zuixinzixun_list({
-        "catid": 45,
-        "cityid": area,
-        "perpage": 6,
-        "page": 1
-      }, callback);
-    },
-    //留学活动
-    liuxuehuodong_list: function (callback) {
-      cms.liuxuehuodong_list({
-        "cityid": area,
-        "page":1,
-        "perpage":4
-      }, callback);
-    },
   }, function (err, result) {
     data.lunbo_list =returnData(result.lunbo_list,'lunbo_list');
-    data.channel_list = returnData(result.zuixinzixun_list,'zuixinzixun_list');
-    data.liuxuehuodong_list = returnData(result.liuxuehuodong_list,'liuxuehuodong_list');
     data.tdk = {
       pagekey: 'HOME',
       cityid: area,
