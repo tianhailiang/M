@@ -211,12 +211,14 @@
                     $("body").animate({scrollTop:0}, 300);
                 }
             });
-        
-            $(".team-consultation-btn").on("click",function(event){
-                //点击咨询
-                event.preventDefault();
-            	window.location.href="http://jesong.jjl.cn/live/chat.dll?c=1&amp;n="+$(this).attr("data-jobNumber");
+            $('.team-top-ul li').on('click',function(){
+                //切换列表
+                $('.team-top-ul li').removeClass('active');
+                $(this).addClass('active');
+                $('.country-edu-ul').css({'display':'none'});
+                $('.country-edu-ul').eq($(this).index()).css({'display':'block'});
             });
+            
         })
     </script>
 </body>

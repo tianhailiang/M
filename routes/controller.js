@@ -45,9 +45,18 @@ exports.home = function(req,res,next){
   }, function (err, result) {
     data.lunbo_list =returnData(result.lunbo_list,'lunbo_list');
     data.shouye = JSON.parse(result.shouye);
-    log.info(data.shouye.list[0])
-    log.info('aaaaaaaaa')
-    log.info(data.shouye.list[0].list)
+    
+    log.info(data.shouye.list[0].list[0])
+     log.info('111111')
+    log.info(data.shouye.list[0].list[1])
+    log.info('2222222')
+    log.info(data.shouye.list[0].list[2])
+     log.info('333333')
+    log.info(data.shouye.list[0].list[3])
+     log.info('444444')
+    log.info(data.shouye.list[0].list[4])
+    log.info('55555')
+    log.info(data.shouye.list[0].list[5])
     data.tdk = {
       pagekey: 'HOME',
       cityid: area,

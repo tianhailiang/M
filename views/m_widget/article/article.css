@@ -49,9 +49,30 @@
     color:#666;
     line-height: 13px;
 }
-.adviser-label{
+.art-tag{   
+    margin-top: 8px;
+    position: relative;
+    padding:0 7.5px;
+}
+.art-tag-bg{
+  position: absolute;
+  left:0;
+  top:0;
+  background:#c13232;
+  opacity: 0.06;
+  filter: alpha(opacity=6); 
+  display: block;
+  width: 100%;
+  height: 15px;
+  border-radius: 12px;
+}
+.art-tag-list{
+  font-size: 12px;
+  color:#999;
+  line-height: 15px;
+}
+.art-bg-tag{
+    margin-top: 8px;
     font-size: 12px;
     color:#999;
-    margin-top: 8px;
-    line-height: 12px;
 }
