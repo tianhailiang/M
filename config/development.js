@@ -66,6 +66,7 @@ var apis = {
   "get_shenqingfangan_yz": prefix + 'fangan_country',
   "get_shenqingfangan_oz": prefix + 'fangan_country',
   //"get_liuxuehuodong": prefix + 'liuxuehuodong',
+  "adviser_main": shequ_prefix + 'article/list/', // 社区 首页
 
   //最新资讯栏目页
   "get_zuixinzixun_list": prefix + 'zuixinzixun_list',

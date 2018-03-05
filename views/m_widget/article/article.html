@@ -1,0 +1,105 @@
+{% macro article(list,helper) %}
+ <ul class="country-edu-ul">
+ 	{% for item in list[0] %}
+	    <li>
+	    	<a href="{{helper.urlgen('article',item.id|string)}}" >
+		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size: 60px 60px;">
+		        </div>
+		        <div class="adviser-right" >
+		            <div class="adviser-name" >
+		                <span>{{item.user_info.realname}}</span>
+		                <i></i>
+		            </div>
+		            <div class="adviser-title">
+		               {{item.title}}
+		            </div>
+		            <div class="art-tag">
+		                <span class="art-tag-bg" ></span>
+	             		<span class="art-tag-list" style="color:#d51821;">{{item.tag_list}}</span>
+		            </div>
+		        </div>
+		    </a>
+	    </li>
+	{% endfor %}
+	{% for item in list[1] %}
+	    <li>
+	    	<a href="{{helper.urlgen('article',item.id|string)}}" >
+		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size: 60px 60px;">
+		        </div>
+		        <div class="adviser-right" >
+		            <div class="adviser-name" >
+		                <span>{{item.user_info.realname}}</span>
+		                <i></i>
+		            </div>
+		            <div class="adviser-title">
+		               {{item.title}}
+		            </div>
+		            <div class="art-bg-tag">
+	             		{{item.tag_list}}
+		            </div>
+		        </div>
+		    </a>
+	    </li>
+	{% endfor %}
+	{% for item in list[2] %}
+	    <li>
+	    	<a href="{{helper.urlgen('article',item.id|string)}}" >
+		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size: 60px 60px;">
+		        </div>
+		        <div class="adviser-right" >
+		            <div class="adviser-name" >
+		                <span>{{item.user_info.realname}}</span>
+		                <i></i>
+		            </div>
+		            <div class="adviser-title">
+		               {{item.title}}
+		            </div>
+		            <div class="art-bg-tag">
+	             		{{item.tag_list}}
+		            </div>
+		        </div>
+		    </a>
+	    </li>
+	{% endfor %}
+	{% for item in list[3] %}
+	    <li>
+	    	<a href="{{helper.urlgen('article',item.id|string)}}" >
+		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size: 60px 60px;">
+		        </div>
+		        <div class="adviser-right" >
+		            <div class="adviser-name" >
+		                <span>{{item.user_info.realname}}</span>
+		                <i></i>
+		            </div>
+		            <div class="adviser-title">
+		               {{item.title}}
+		            </div>
+		            <div class="art-bg-tag">
+	             		{{item.tag_list}}
+		            </div>
+		        </div>
+		    </a>
+	    </li>
+	{% endfor %}
+	{% for item in list[4] %}
+	    <li>
+	    	<a href="{{helper.urlgen('article',item.id|string)}}" >
+		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size: 60px 60px;">
+		        </div>
+		        <div class="adviser-right" >
+		            <div class="adviser-name" >
+		                <span>{{item.user_info.realname}}</span>
+		                <i></i>
+		            </div>
+		            <div class="adviser-title">
+		               {{item.title}}
+		            </div>
+		            <div class="art-bg-tag">
+	             		{{item.tag_list}}
+		            </div>
+		        </div>
+		    </a>
+	    </li>
+	{% endfor %}
+</ul>
+{% endmacro %}
