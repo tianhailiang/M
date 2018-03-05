@@ -91,5 +91,6 @@ exports = module.exports = function (app) {// routes
   app.get('/cmsapi/more_product', controller.more_product);//留学方案更多
   app.get('/cmsapi/more_so_news', controller.more_so_news);//搜索资讯更多
   app.get('/cmsapi/more_so_advisor', controller.more_so_advisor);//搜索顾问更多
+  app.get('/about', controller.about);//金吉列简介
 };
 

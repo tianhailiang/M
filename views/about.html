@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<style>
+  .load-more-bar {
+    position: relative;
+  }
+  .lib-jianjie {
+    width: 100%;
+    background: #ffffff;
+    margin: 10px 0;
+  }
+  .lib-jianjie h1 {
+    font-size: 15px;
+    color: #333;
+    padding: 15px 0 10px 0;
+    font-weight: bold;
+
+  }
+  .lib-jianjie i{
+    width: 2.5px;
+    height: 15px;
+    display: block;
+    float: left;
+    background: #d51821;
+    margin: 2px 10px;
+  }
+  .lib-jianjie p {
+    margin: 0px 15px;
+    font-size: 12px;
+    line-height: 18px;
+
+  }
+  .about-p {
+    border-top: 1px solid #C13232;
+    padding-top: 10px;
+  }
+  .jianjie-img{
+    width: 100%;
+    display: flex;
+    padding:0 15px;
+  }
+  .jianjie-img div{
+    flex: 1;
+    justify-content:center;
+    margin-top: 10px;
+  }
+  .jianjie-img div img{
+    display: block;
+    width: 100%;
+    margin:0 auto;
+  }
+  .rongyu-box{
+    display: flex;
+    padding:0 15px;
+  }
+  .rongyu-box dl{
+    flex: 1;
+  }
+  .rongyu-box dl dt img{
+    width: 100%;
+  }
+  .rongyu-box dl dd{
+    text-align: center;
+    font-size: 12px;
+    color:#333333;
+    line-height: 18px;
+    margin:12px 0;
+  }
+
+</style>
+<body>
+{% include "m_widget/top/top.html" %}
+<!--顶部tab切换 end-->
+<div id="app" >
+  <div style="height: 175px;background:#f2aaaa">
+    <div id="AD_PROFILE_SEAT1"></div>
+  </div>
+  <div class="lib-jianjie clearfix" style="padding-bottom: 15px;">
+    <h1><i></i>金吉列简介</h1>
+    <p class="about-p" style="color: #666666;">金吉列出国留学咨询服务有限公司是获得教育部、公安部和国家工商行政管理总局资质认证的留学服务企业，是留学行业3.15标志服务品牌的企业,是全国诚信企业奖牌获得者、全国用户满意服务明星单位平均m每年向数千万个家庭提供数十个国家（数千所海外院校）的免费咨询国外留学。</p>
+    <p style="color: #666666;">并且是中国消费者协会《社会责任导则》全国教育行业签署单位。我们拥有数十年留学管理经验的驻外十国使馆前大使、教育参赞作为特约咨询专家，千余名专业咨询师,数十万海外留学成功案例留学服务企业，是留学行业3.15标志服务品牌的企业,是全国诚信企业奖牌获得者。
+    </p>
+    <div class="jianjie-img">
+      <div style="margin-right:10px;"><img src="../assets/img/profile1.jpg" alt=""></div>
+      <div><img src="../assets/img/profile2.jpg" alt=""></div>
+    </div>
+    <div class="jianjie-img">
+      <div style="margin-right:10px;"><img src="../assets/img/profile3.jpg" alt=""></div>
+      <div><img src="../assets/img/profile4.jpg" alt=""></div>
+    </div>
+  </div>
+  <div class="lib-jianjie clearfix" style="padding-bottom: 15px;">
+    <h1><i></i>董事长简介</h1>
+    <p class="about-p" style="color: #666666;">
+      <img style="float: left;margin-right:7.5px;width: 109px;" src="../assets/img/boss.jpg" alt="">
+      张世杰，金吉列企业集团董事长，现任政协北京市第十二届委员会委员、北京市工商业联合会（商会）副会长，北京侨商会常务副会长、北京市企业发展促进会副会长、北京市私营个体经济协会副会长、全国教育服务标准化技术委员会委员、北京市工商联企业家高尔夫球会副会长，时任全国青联委员、北京市人大代表、
+      朝阳区政协常委、北京市工商联常委、北京市青年企业家协会理事、北京海外联谊会理事、北京国际友好联络会常务理事、北京市人民对外友好协会理事等社会职务。曾先后荣获中国优秀民营企业家、
+      全国用户满意杰出管理者、北京市优秀青年企业家银奖、首都五一劳动奖章、五四青年奖章、首都精神文明建设奖、中国教育机构影响力品牌领袖、60年60人中国教育成就奖、教育产业十大领军人物、改革开放30年中国10大民营教育家、2010中国杰出教育家等多项荣誉,金吉列出国留学咨询服务有限公司是获得教育部、公安部和国家工商行政管理总局资质认证的留学服务企业，是留学行业3.15标志服务品牌的企业,是全国诚信企业奖牌获得者、全国用户满意服务明星单位，并且是中国消费者协会《社会责任导则》全国教育行业签署单位吉列出国留学咨询服务有限公司是获得教育部、公安部和国家工商行政管理总局资质认证的留学服务企改革开放30年中国10大民营教育家、2010中国杰出。
+    </p>
+  </div>
+  <div class="lib-jianjie  clearfix">
+    <h1><i></i>企业荣誉</h1>
+    <p class="about-p">
+    <div class="rongyu-box">
+      <dl style="margin-right: 15px;">
+        <dt><img src="../assets/img/honor2.jpg" alt=""></dt>
+        <dd>500家最大私营企业</dd>
+      </dl>
+      <dl>
+        <dt><img src="../assets/img/honor6.jpg" alt=""></dt>
+        <dd>重合同守信誉单位</dd>
+      </dl>
+    </div>
+    <div class="rongyu-box">
+      <dl style="margin-right: 15px;">
+        <dt><img src="../assets/img/honor1.jpg" alt=""></dt>
+        <dd>《留学服务术语》与《留学中介服务规范》</dd>
+      </dl>
+      <dl>
+        <dt><img src="../assets/img/honor3.jpg" alt=""></dt>
+        <dd>北京留学服务行业协会常务理事单位</dd>
+      </dl>
+    </div>
+    <div class="rongyu-box">
+      <dl style="margin-right: 15px;">
+        <dt><img src="../assets/img/honor4.jpg" alt=""></dt>
+        <dd>消费者满意单位</dd>
+      </dl>
+      <dl>
+        <dt><img src="../assets/img/honor5.jpg" alt=""></dt>
+        <dd>消费教育学校</dd>
+      </dl>
+    </div>
+    </p>
+  </div>
+  {% include "m_widget/footer/footer.html" %}
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+{% import "m_widget/select_pop/select_pop.html" as select_pop %}
+{{ select_pop.select_pop({'n': country, 'path': 'schoollib'}, helper) }}
+</body>
+</html>
+
