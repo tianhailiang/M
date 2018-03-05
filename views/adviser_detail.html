@@ -34,7 +34,7 @@
                     <a href="javascript:;" style="display:-webkit-flex;">
                     <img src="{{ helper.avaterimg(guwenitems.uid, 'small', 0, guwenitems.views) }}" alt="" class="column-pictuer">
                     <div class="column-list">
-                      <h2>{{guwenitems.title}}</h2> 
+                      <h2>{{guwenitems.title}}</h2>
                       <p>{{guwenitems.introduce}}</p>
                       <div class="details-zllist">
                         <span>{{guwenitems.add_time | shorten(10) | replace('-', '.')}}</span>
@@ -54,7 +54,7 @@
             <div class="items-gruop" style="display: none;">
               <ul class="column-news anli-column">
                 {% for anliItem in case_list.list %}
-                <li> 
+                <li>
                   <a href="{{ helper.urlgen('case', anliItem.id | string) }}" class="href-items">
                   <img src="{{helper.school_logo(anliItem.school_id)}}" alt="" class="img-responsive">
                   <div class="anli-item">
