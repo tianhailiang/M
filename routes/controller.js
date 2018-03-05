@@ -1228,7 +1228,7 @@ exports.adviser_detail = function (req, res, next) {
     // var nquery = comfunc.getReqQuery(req.params[3]);
     // var edu = nquery && nquery.e ? nquery.e : 0;
     // var page = nquery && nquery.page ? nquery.page : 1;
-    var uid = req.params.id;
+    var uid = req.params[0];
 
     if ( req.cookies.login_ss !== undefined) {
         console.log('有cookie')
