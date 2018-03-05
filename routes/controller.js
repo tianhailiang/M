@@ -21,18 +21,42 @@ exports.home = function(req,res,next){
   log.debug("首页")
   var data = {};
   var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
-  [data.country=1] = [req.query.n];
-  // log.info(data.country)
   if(!comfunc.cityid_invalidcheck(area)){
     return res.redirect('/404');
   }
+  log.info(req.params);
+  if(req.params[2]){
+    [data.country=1] = [comfunc.getCountryIdParams(req.params[2].replace('/', ''))];
+  }else{
+    data.country=1;
+  }
+  log.info(data.country)
   async.parallel({
     lunbo_list: function (callback) {
       // 轮播图接口
       cms.lunbo_list({"ad_page":"HOME","ad_seat":"SEAT1"},callback);
     },
+    shouye:function(callback) {
+        cms.mShouye({
+            "city_id": area,
+            "country_id":data.country
+        }, callback);
+    },
   }, function (err, result) {
     data.lunbo_list =returnData(result.lunbo_list,'lunbo_list');
+    data.shouye = JSON.parse(result.shouye);
+    
+    log.info(data.shouye.list[0].list[0])
+     log.info('111111')
+    log.info(data.shouye.list[0].list[1])
+    log.info('2222222')
+    log.info(data.shouye.list[0].list[2])
+     log.info('333333')
+    log.info(data.shouye.list[0].list[3])
+     log.info('444444')
+    log.info(data.shouye.list[0].list[4])
+    log.info('55555')
+    log.info(data.shouye.list[0].list[5])
     data.tdk = {
       pagekey: 'HOME',
       cityid: area,

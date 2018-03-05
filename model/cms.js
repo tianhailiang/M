@@ -1462,6 +1462,30 @@ exports.edu_strategy = function (data, callback) {
     }
     api.apiRequest(url, callback);
 }
+
+var redisPool = require('redis-connection-pool')('home_all_city_id', {
+  host: config.redisCache.host,
+  port: config.redisCache.port || 6379,
+  max_clients: config.redisCache.max || 30,
+  perform_checks: false,
+  database: 7 // database number to use
+});
+/*
+ 浏览量统计detail_count
+ * */
+exports.mShouye = function (data, callback) {
+  //redis 缓存文章浏览数````·
+  //判断用户访问是否在限制条件内 10min 5
+    log.debug('city_id ',data.city_id,'country_id ',data.country_id)
+    redisPool.get('home_' + data.city_id+'_'+data.country_id, function(err, reply){
+      if(reply){
+        callback(null, reply);
+      }else{
+        callback(null, '暂无数据');
+      }
+    })
+};
+
 // 顾问主页列表
 exports.adviser_main=function(data,callback){
   var url = _api_path_url_shequ(data, config.apis.adviser_main);
@@ -1472,3 +1496,4 @@ exports.adviser_main=function(data,callback){
   api.apiRequest(url, callback);
   console.log('url-----', url);
 }
+
