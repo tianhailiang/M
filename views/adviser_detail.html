@@ -39,8 +39,8 @@
                   {% for item in zhuanlanlist.list%}
                   <li>
                       <a href="{{helper.urlgen('article',item.id | string)}}">
-                          <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, userinfo.status) }}" alt="" class="column-pictuer"> -->
-                          <!-- <span class="spanpicter"></span> -->
+                          <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, adviser_detail.status) }}" alt="" class="column-pictuer">
+                          
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
                             <p>{{item.title | ellipsis(15) }}</p>
@@ -56,8 +56,7 @@
                   {% for item in caselist.list%}
                   <li>
                       <a href="{{helper.urlgen('article',item.id | string)}}">
-                          <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, userinfo.status) }}" alt="" class="column-pictuer"> -->
-                          <!-- <span class="spanpicter" style="{{background:url(helper.avaterimg(item.uid, 'small', 0, userinfo.status)}}"></span> -->
+                          <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, adviser_detail.status) }}" alt="" class="column-pictuer">
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
                             <p>{{item.title | ellipsis(15) }}</p>
@@ -74,7 +73,7 @@
                   <li>
                       <a href="{{helper.urlgen('article',item.id | string)}}">
                           <!-- <span class="spanpicter"></span> -->
-                          <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, userinfo.status) }}" alt="" class="column-pictuer"> -->
+                          <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, userinfo.status) }}" alt="" class="column-pictuer">
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
                             <p>{{item.title | ellipsis(15) }}</p>
