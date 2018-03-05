@@ -1147,59 +1147,52 @@ exports.advisor_list_moer = function (req, res, next) {
 };
 /*资讯底页（rongfa）*/
 exports.news_detail = function (req, res, next) {
-  log.debug(req.params);
+  log.debug( '文章底页', req.params);
   var data = [];
   var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
-  var country = comfunc.getCountryIdParams(req.params[1]);
-  // var nquery = comfunc.getReqQuery(req.params[3]);
-  // var order = nquery && nquery.order ? nquery.order : 1;
-  var articleId = req.params[2];
-  data.login_nickname = '';
-  if ( req.cookies.login_ss !== undefined) {
-    var login_a = JSON.parse(req.cookies.login_ss);
-    data.login_nickname = login_a;
-  }
+    if(req.cookies.login_ss != undefined){
+        data.login_info =JSON.parse(req.cookies.login_ss);
+    }else{
+        data.login_info ={};
+        data.login_info.uid = 0;
+    }
+    data.article_id = req.params.id; //获取文章id
   async.parallel({
     wenzhangdiye: function (callback) {
-      cms.wenzhangdiye ({
-        "catid":45,
-        "id": articleId
+      cms.article ({
+          "u_id":data.login_info.uid,
+          "article_id":data.article_id
       }, callback);
     },
-    zuixinzixun_list: function (callback) {
-      cms.zuixinzixun_list({
-          "catid": 45,
-          "country": country,
-          "orderby": 1,
-          "perpage": 5,
-          "page": 1
-      }, callback);
-    }
-
   }, function (err, result){
     if(err || result.wenzhangdiye.code != 0){
-
       return res.redirect('/404');
     }
-    //log.info(result)
     data.wenzhangdiye =returnData(result.wenzhangdiye,'wenzhangdiye');
-    data.tuijian =returnData(result.zuixinzixun_list,'zuixinzixun_list');
-    data.tuijian=data.tuijian.list;
-    data.country=country;
-    data.path = 'NEWSDETAIL';
-    data.pageType = '最新资讯';
-    data.pageroute="news";
-    data.id = articleId;
-    data.catid = data.wenzhangdiye.list.catid;
-    data.tdk = {
-      pagekey: 'NEWSDETAIL', //key 同意规定，具体找郭亚超
-      cityid: area, //cityid
-      nationid: country,//nationi
-      title: data.wenzhangdiye.list.title,
-      description: data.wenzhangdiye.list.description,
-    };
-    data.esikey = esihelper.esikey();
-    res.render('news_detail', data);
+      async.parallel({
+          //获取用户信息（普通用户，顾问，参赞）
+          userinfo:function(callback){
+              cms.userinfo({
+                  "u_id":data.login_info.uid,
+                  "to_uid":data.wenzhangdiye.article_info.uid
+              },callback);
+          }
+      },function (err,result) {
+          data.userinfo =returnData(result.userinfo,'userinfo');
+          data.path = 'NEWSDETAIL';
+          data.pageType = '最新资讯';
+          data.pageroute="news";
+          data.id = data.article_id;
+          data.tdk = {
+              pagekey: 'NEWSDETAIL', //key 同意规定，具体找郭亚超
+              cityid: area, //cityid
+              // nationid: country,//nationi
+              title: data.wenzhangdiye.article_info.title,
+              description: data.wenzhangdiye.article_info.description,
+          };
+          data.esikey = esihelper.esikey();
+          res.render('news_detail', data);
+      })
   });
 };
 

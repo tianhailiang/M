@@ -11,14 +11,28 @@
   {% include "m_widget/top/top.html" %}
     <!-- 页面主体部分 -->
     <section class="new-details">
-      <h1>{{wenzhangdiye.list.title}}</h1>
-      <p class="new-details-p1">
-        <span style="margin-right: 17px">作者：<span>{{wenzhangdiye.list.username}}</span></span>
-        <span>阅读：<span>{{wenzhangdiye.list.hits}}</span></span>
+      <div class="head_portrait">
+        <div class="head_portrait_left" style="background:url({{helper.avaterimg(item.user_info.uid, 'small', 0,item.user_info.version)}}) no-repeat 0 0;background-size:cover"></div>
+        <div class="head_portrait_centen">
+          <p style="">{{userinfo.nickname}}</p>
+          <i></i>
+        </div>
+        <div class="head_portrait_right"><div class="adviser-label" style="color:#d51821;">
+          {{wenzhangdiye.article_info.tag_list}}
+        </div></div>
+      </div>
+      <h1>{{wenzhangdiye.article_info.title}}</h1>
+      <p class="new-details-p2">
+        {{wenzhangdiye.article_info.add_time|shorten(10)}}
       </p>
-      <p class="new-details-p2">{{wenzhangdiye.list.inputtime|getDefaultFormat('YYYY-MM-DD')}}</p>
-      <article class="news-content">
-        <p>{{wenzhangdiye.list.content | safe}}</p>
+      <p class="new-details-p1">
+        <span>阅读：<em>{{wenzhangdiye.article_info.views}}</em></span>
+        <span>收藏：<em>{{wenzhangdiye.article_info.favorites}}</em></span>
+        <span>评论：<em>{{wenzhangdiye.article_info.comments}}</em></span>
+        <span>点赞：<em>{{wenzhangdiye.article_info.votes}}</em></span>
+      </p>
+      <article class="news-content" style="clear: both">
+        <p>{{wenzhangdiye.article_info.message | safe}}</p>
         <!--<img src="{{wenzhangdiye.list.thumb}}" alt="{{wenzhangdiye.list.title}}" class="img-responsive">-->
       </article>
     </section>
