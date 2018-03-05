@@ -1283,7 +1283,7 @@ exports.adviser_detail = function (req, res, next) {
             data.tdk = {
                 pagekey: 'ADVISOR_CENTER', //key
             };
-            log.info(data.userinfo)
+            // log.info(data.userinfo)
             res.render('adviser_detail', data);
         })
     });
