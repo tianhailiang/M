@@ -1,0 +1,22 @@
+{% macro article(list,helper) %}
+ <ul class="country-edu-ul">
+ 	{% for item in list %}
+	    <li>
+	        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size: 60px 60px;">
+	        </div>
+	        <div class="adviser-right" >
+	            <div class="adviser-name" >
+	                <span>{{item.user_info.realname}}</span>
+	                <i></i>
+	            </div>
+	            <div class="adviser-title">
+	               {{item.title}}
+	            </div>
+	            <div class="adviser-label" style="color:#d51821;">
+	                留学实训
+	            </div>
+	        </div>
+	    </li>
+	{% endfor %}
+</ul>
+{% endmacro %}

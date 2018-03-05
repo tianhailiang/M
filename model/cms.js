@@ -1462,3 +1462,25 @@ exports.edu_strategy = function (data, callback) {
     }
     api.apiRequest(url, callback);
 }
+
+var redisPool = require('redis-connection-pool')('home_all_city_id', {
+  host: config.redisCache.host,
+  port: config.redisCache.port || 6379,
+  max_clients: config.redisCache.max || 30,
+  perform_checks: false,
+  database: 7 // database number to use
+});
+/*
+ 浏览量统计detail_count
+ * */
+exports.mShouye = function (data, callback) {
+  //redis 缓存文章浏览数````·
+  //判断用户访问是否在限制条件内 10min 5
+    redisPool.get('home_' + data.city_id+'_'+data.country_id, function(err, reply){
+      if(reply){
+        callback(null, reply);
+      }else{
+        callback(null, '暂无数据');
+      }
+    })
+};

@@ -19,6 +19,7 @@
 		<i>北京</i>
 	</div>
 </header>
+
 {% set cityList=[
   {
   "companyAddress":"北京市建国门外大街永安东里米阳大厦5层（永安里地铁C口向南50米）",
@@ -129,6 +130,12 @@
   "companyId": "46"
   },
   {
+  "companyAddress": "武汉市航空路新世界中心C座20层",
+  "companyTel": "027-83805656",
+  "companyName": "H-汉口",
+  "companyId": "51"
+  },
+  {
   "companyAddress": "济南市市中区泺源大街229号金龙大厦29层",
   "companyTel": "0531-81851155",
   "companyName": "J-济南",
@@ -235,12 +242,6 @@
   "companyTel": "0315-6328566",
   "companyName": "T-唐山",
   "companyId": "18"
-  },
-  {
-  "companyAddress": "武汉市解放大道航空路新世界中心C座20层",
-  "companyTel": "027-83805656",
-  "companyName": "W-武汉",
-  "companyId": "14"
   },
   {
   "companyAddress": "武汉市洪山区珞瑜路10号群光中心百脑汇23层",
@@ -396,8 +397,8 @@
       4:'天津',
       18:'唐山',
       17:'太原',
-      14:'武汉',
-      114:'武昌',
+      50:'武昌',
+      51:'汉口',
       33:'无锡',
       42:'温州',
       15:'西安',
@@ -430,19 +431,15 @@
       var currentarea = $(this).attr("data-id");
       console.log(currentarea)
       $.cookie('currentarea', currentarea, { path: '/'});
-      window.location.reload();
+      window.location.href= fn.urlgen('branch_home','c=' + currentarea);
     });
     $(".city_list li").each(function(i){
       // 点击城市让他变红
       if($(this).attr("data-id")==$.cookie('currentarea')){
         // console.log(10000)
         $(this).find(".city-name").attr("style","color:red");
-        // $(this).find(".city-phone").attr("style","color:red");
-        // $(this).find(".city-address").attr("style","color:red");
       }else{
         $(this).find(".city-name").removeAttr("style");
-        // $(this).find(".city-phone").removeAttr("style");
-        // $(this).find(".city-address").removeAttr("style");
       }
     });
     //定位
