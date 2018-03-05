@@ -1217,49 +1217,44 @@ exports.adviser_detail = function (req, res, next) {
         console.log('有cookie')
         data.login_info = JSON.parse(req.cookies.login_ss);
     }else{
-        // console.log('无cookie')
-        // res.redirect(config.wwhost+'/login');
-        // return false;
     }
     async.parallel({
-        adviser_detail: function (callback) {
-            cms.user_detail({
-              "m": 'get_user_detail',
-              "uid":uid
-            }, callback);
+        // guwen_list:function (callback){
+        //     cms.adviser_main({
+        //         "per_page":6, 
+        //         "order":"add_time desc", 
+        //         "uid": uid
+        //     },callback)
+        // },
+        zhuanlanlist:function(callback){
+            cms.adviser_main({
+                "type":2,
+                "order":"add_time desc"
+            },callback)
         },
-        zhuanlanlist: function (callback) {
-            cms.user_article_list({
-                "u_id": uid,
-                "page": 1, 
-                "per_page": 7, 
-                "type": 2
-            }, callback);
+        caselist:function(callback){
+            cms.adviser_main({
+                "type":1,
+                "order":"add_time desc"
+            },callback)
         },
-        case_list: function (callback) {
-            cms.user_article_list({
-                "u_id": uid,
-                "page": 1,
-                "per_page": 4,
-                "type": 1
-            }, callback);
-        }
+        jinxuanlist:function(callback){
+            cms.adviser_main({
+                "order":"views desc"
+            },callback)
+        },
     }, function (err, result) {
-        if(err || result.adviser_detail.code != 0){
-            return res.redirect('/404');
-        }
-        data.adviser_detail = returnData(result.adviser_detail,'adviser_detail');
-        data.zhuanlanlist = returnData(result.zhuanlanlist,'zhuanlanlist');
-        data.tuijian = returnData(result.zhuanlanlist,'zhuanlanlist');
-        data.tuijian = data.tuijian.list;
-        data.case_list = returnData(result.case_list,'case_list')
+        // data.userinfo = returnData(result.userinfo,'userinfo');
+        data.jinxuanlist = returnData(result.jinxuanlist,'jinxuanlist');
+        data.caselist = returnData(result.caselist,'caselist');
+        data.zhuanlanlist = returnData(result.zhuanlanlist,'zhuanlanlist')
         data.area=area;
         data.pageType = '资讯';
         data.pageroute = 'news';
         data.tdk = {
             pagekey: 'ADVISOR_CENTER', //key
         };
-        log.info(data.case_list)
+        log.info(data.caselist)
         res.render('adviser_detail', data);
 
     });
