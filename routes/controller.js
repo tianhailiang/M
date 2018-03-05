@@ -1246,34 +1246,46 @@ exports.adviser_detail = function (req, res, next) {
         zhuanlanlist:function(callback){
             cms.adviser_main({
                 "type":2,
-                "order":"add_time desc"
+                "order":encodeURI("add_time desc")
             },callback)
         },
         caselist:function(callback){
             cms.adviser_main({
                 "type":1,
-                "order":"add_time desc"
+                "order":encodeURI("add_time desc"),
+                "per_page":6
             },callback)
         },
         jinxuanlist:function(callback){
             cms.adviser_main({
-                "order":"views desc"
+                "order":encodeURI("views desc"),
+                "per_page":5
             },callback)
         },
     }, function (err, result) {
         // data.userinfo = returnData(result.userinfo,'userinfo');
         data.jinxuanlist = returnData(result.jinxuanlist,'jinxuanlist');
         data.caselist = returnData(result.caselist,'caselist');
-        data.zhuanlanlist = returnData(result.zhuanlanlist,'zhuanlanlist')
-        data.area=area;
-        data.pageType = '资讯';
-        data.pageroute = 'news';
-        data.tdk = {
-            pagekey: 'ADVISOR_CENTER', //key
-        };
-        log.info(data.caselist)
-        res.render('adviser_detail', data);
-
+        data.zhuanlanlist = returnData(result.zhuanlanlist,'zhuanlanlist');
+        // data.get_userinfo = returnData(result.get_userinfo,'get_userinfo');
+        async.parallel({
+            userinfo:function(callback){
+                cms.userinfo({
+                    "u_id":uid,
+                    "to_uid":uid
+                },callback);
+            }
+        },function(err, result){
+            data.userinfo = returnData(result.userinfo,'userinfo');
+            data.area=area;
+            data.pageType = '资讯';
+            data.pageroute = 'news';
+            data.tdk = {
+                pagekey: 'ADVISOR_CENTER', //key
+            };
+            log.info(data.userinfo)
+            res.render('adviser_detail', data);
+        })
     });
 };
 
