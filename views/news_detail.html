@@ -22,17 +22,9 @@
         <!--<img src="{{wenzhangdiye.list.thumb}}" alt="{{wenzhangdiye.list.title}}" class="img-responsive">-->
       </article>
     </section>
-  {% if pageroute!="schoolrank/school" %}
-  {% import "m_widget/xiangguan_tuijian/xiangguan_tuijian.html" as xiangguan %}
-  {{ xiangguan.tuijianlist1(pageType,tuijian,pageroute,helper)}}
-  {% else %}
-  {% import "m_widget/xiangguan_tuijian/xiangguan_tuijian.html" as xiangguan %}
-  {{ xiangguan.tuijianschoolrank(pageType,tuijian,helper)}}
-  {% endif %}
 
   <!--footer start-->
-  {% import "m_widget/footer/footer.html" as footer %}
-  {{footer.footer([{'nav_text':pageType+'列表页','nav_path': pageroute},{'nav_text':wenzhangdiye.list.title,'nav_path': ''}],tdk,helper)}}
+  {% include "m_widget/footer/footer.html" %}
   <!--footer end-->
 </div>
 <!-- ===侧边栏==== -->
