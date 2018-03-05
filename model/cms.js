@@ -1485,3 +1485,15 @@ exports.mShouye = function (data, callback) {
       }
     })
 };
+
+// 顾问主页列表
+exports.adviser_main=function(data,callback){
+  var url = _api_path_url_shequ(data, config.apis.adviser_main);
+  if (url == null) {
+    callback('404');
+    return;
+  }
+  api.apiRequest(url, callback);
+  console.log('url-----', url);
+}
+
