@@ -1201,8 +1201,14 @@ exports.news_detail = function (req, res, next) {
           data.pageType = '最新资讯';
           data.pageroute="news";
           data.id = data.article_id;
+          var pagekey = null;
+          if(data.wenzhangdiye.article_info.type == 1){
+              pagekey = 'ADVISOR_P_CASE_DETAIL';
+          }else if(data.wenzhangdiye.article_info.type == 2){
+              pagekey = 'ADVISOR_P_ARTICLE_DETAIL';
+          }
           data.tdk = {
-              pagekey: 'NEWSDETAIL', //key 同意规定，具体找郭亚超
+              pagekey: pagekey, //key 同意规定，具体找郭亚超
               cityid: area, //cityid
               // nationid: country,//nationi
               title: data.wenzhangdiye.article_info.title,
@@ -1240,12 +1246,14 @@ exports.adviser_detail = function (req, res, next) {
         zhuanlanlist:function(callback){
             cms.adviser_main({
                 "type":2,
+                "uid":uid,
                 "order":encodeURI("add_time desc")
             },callback)
         },
         caselist:function(callback){
             cms.adviser_main({
                 "type":1,
+                "uid":uid,
                 "order":encodeURI("add_time desc"),
                 "per_page":6
             },callback)
@@ -1253,7 +1261,8 @@ exports.adviser_detail = function (req, res, next) {
         jinxuanlist:function(callback){
             cms.adviser_main({
                 "order":encodeURI("views desc"),
-                "per_page":5
+                "per_page":5,
+                "uid":uid
             },callback)
         },
     }, function (err, result) {
@@ -1261,7 +1270,6 @@ exports.adviser_detail = function (req, res, next) {
         data.jinxuanlist = returnData(result.jinxuanlist,'jinxuanlist');
         data.caselist = returnData(result.caselist,'caselist');
         data.zhuanlanlist = returnData(result.zhuanlanlist,'zhuanlanlist');
-        // data.get_userinfo = returnData(result.get_userinfo,'get_userinfo');
         async.parallel({
             userinfo:function(callback){
                 cms.userinfo({
@@ -1277,7 +1285,7 @@ exports.adviser_detail = function (req, res, next) {
             data.tdk = {
                 pagekey: 'ADVISOR_CENTER', //key
             };
-            // log.info(data.userinfo)
+            // log.info(data.caselist)
             res.render('adviser_detail', data);
         })
     });
