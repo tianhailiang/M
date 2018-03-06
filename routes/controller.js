@@ -1211,7 +1211,9 @@ exports.news_detail = function (req, res, next) {
               cityid: area, //cityid
               // nationid: country,//nationi
               title: data.wenzhangdiye.article_info.title,
-              description: data.wenzhangdiye.article_info.description,
+              // description: data.wenzhangdiye.article_info.description,
+              description: helperfunc.cut(data.wenzhangdiye.article_info.message,80),
+              keywords: data.wenzhangdiye.article_info.keywords
           };
           data.esikey = esihelper.esikey();
           res.render('news_detail', data);
@@ -1283,6 +1285,7 @@ exports.adviser_detail = function (req, res, next) {
             data.pageroute = 'news';
             data.tdk = {
                 pagekey: 'ADVISOR_CENTER', //key
+                realname: data.userinfo.realname
             };
             // log.info(data.caselist)
             res.render('adviser_detail', data);
