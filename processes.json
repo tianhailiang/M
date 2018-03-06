@@ -4,7 +4,7 @@
       name      : "m_new",
       script    : "./bin/www",
       cwd: "./",           //根目录
-      instances: 4,
+      instances: 2,
       watch:[
             "bin",
             "common",
