@@ -9,12 +9,9 @@ var common = require('./common');
 
 // filters add here
 var customFilters = {
-
-  //example: can be delete.
-  /*
-  * str : data ,pipe in
+ /* str : data ,pipe in
   * count: param for filter
-  * */
+  */
   shorten: function(str, count) {
       if (str) {
           return str.slice(0, count || 5);
@@ -59,11 +56,6 @@ var customFilters = {
   getHuodongTimeFormat: function (str, count) {
     return moment.unix(str).format(count || 'MM.DD');
   },
-  //截取字符串
-  substrs:function(str,count){
-    return str.substring(count)
-  },
-
   //根据id获取国家名
   getCountry: common.getCountryChinese,
   //根据id获取国家名
