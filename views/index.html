@@ -141,7 +141,7 @@
             {% for item in countryList %}
                 {% if loop.index < 8%}
 		       	    <li>
-		                <a href="/?n={{item.id}}" >
+		                <a href="{{helper.urlgen('branch_home','c='+tdk.cityid,'n='+item.id)}}" >
 			       	   	   <img src="{{helper.cdnhost}}/assets/images/country/home_icon_{{item.imgurl}}.png" >
 			       	   	   <span class="{% if item.id ==country %}active{% endif %}">{{item.name}}</span>
 		                </a>
@@ -155,7 +155,7 @@
 		       	    </li>
 		       	{% else %}
 		            <li class="gd-li" style="{% if country >51 %}display: block;{% endif %}">
-		                <a href="/?n={{item.id}}" >
+		                <a href="{{helper.urlgen('branch_home','c='+tdk.cityid,'n='+item.id)}}" >
 		           	   	   <img src="{{helper.cdnhost}}/assets/images/country/home_icon_{{item.imgurl}}.png" >
 		           	   	   <span class="{% if item.id ==country %}active{% endif %}">{{item.name}}</span>
 		                </a>    
@@ -174,24 +174,12 @@
                 <li>博士</li>
             </ul>
         </div>
-        <ul class="country-edu-ul">
-            <li>
-                <div class="adviser-touxiang" style="background:url({{helper.cdnhost}}/assets/mockimg/touxiang1.png) no-repeat center;background-size: 60px 60px;">
-                </div>
-                <div class="adviser-right" >
-                    <div class="adviser-name" >
-                        <span>一卫</span>
-                        <i></i>
-                    </div>
-                    <div class="adviser-title">
-                        2018美国留学新政一栏，现在不看你就亏了！
-                    </div>
-                    <div class="adviser-label" style="color:#d51821;">
-                        留学实训
-                    </div>
-                </div>
-            </li>
-        </ul>
+        <div class="country-edu-box">
+            {% for item in shouye.list %}
+                {% import 'm_widget/article/article.html' as article %}
+                {{article.article(item.list,helper)}}
+            {% endfor %}
+        </div>
         <!--footer -->
         {% include "m_widget/footer/footer.html" %}
 	</div>
@@ -223,12 +211,14 @@
                     $("body").animate({scrollTop:0}, 300);
                 }
             });
-        
-            $(".team-consultation-btn").on("click",function(event){
-                //点击咨询
-                event.preventDefault();
-            	window.location.href="http://jesong.jjl.cn/live/chat.dll?c=1&amp;n="+$(this).attr("data-jobNumber");
+            $('.team-top-ul li').on('click',function(){
+                //切换列表
+                $('.team-top-ul li').removeClass('active');
+                $(this).addClass('active');
+                $('.country-edu-ul').css({'display':'none'});
+                $('.country-edu-ul').eq($(this).index()).css({'display':'block'});
             });
+            
         })
     </script>
 </body>
