@@ -1202,8 +1202,15 @@ exports.news_detail = function (req, res, next) {
           data.pageType = '最新资讯';
           data.pageroute="news";
           data.id = data.article_id;
+          var pagekey = null;
+          if(data.wenzhangdiye.article_info.type == 1){
+              pagekey = 'ADVISOR_P_CASE_DETAIL';
+          }else if(data.wenzhangdiye.article_info.type == 2){
+              pagekey = 'ADVISOR_P_ARTICLE_DETAIL';
+          }
+          log.info(data.wenzhangdiye)
           data.tdk = {
-              pagekey: 'NEWSDETAIL', //key 同意规定，具体找郭亚超
+              pagekey: pagekey, //key 同意规定，具体找郭亚超
               cityid: area, //cityid
               // nationid: country,//nationi
               title: data.wenzhangdiye.article_info.title,
