@@ -19,7 +19,7 @@
             <use xlink:href="#icon-fans"></use>
           </svg>
           粉丝<em class="focus-number">{{userinfo.fans_count}}</em></span>
-          <span>
+          <span style="margin-right:10px;">
               <svg class="icon" aria-hidden="true">
                   <use xlink:href="#icon-article"></use>
                 </svg>
@@ -39,7 +39,6 @@
                   {% for item in zhuanlanlist.list%}
                   <li>
                       <a href="{{helper.urlgen('article',item.id | string)}}">
-                          <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, adviser_detail.status) }}" alt="" class="column-pictuer"> -->
                           <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
