@@ -1208,7 +1208,6 @@ exports.news_detail = function (req, res, next) {
           }else if(data.wenzhangdiye.article_info.type == 2){
               pagekey = 'ADVISOR_P_ARTICLE_DETAIL';
           }
-          log.info(data.wenzhangdiye)
           data.tdk = {
               pagekey: pagekey, //key 同意规定，具体找郭亚超
               cityid: area, //cityid
