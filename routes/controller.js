@@ -1286,6 +1286,7 @@ exports.adviser_detail = function (req, res, next) {
             data.pageroute = 'news';
             data.tdk = {
                 pagekey: 'ADVISOR_CENTER', //key
+                realname: data.userinfo.realname
             };
             // log.info(data.caselist)
             res.render('adviser_detail', data);
