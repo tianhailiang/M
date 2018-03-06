@@ -414,13 +414,15 @@
   $(function(){
     FastClick.attach(document.body);
     $(".header-city").find("i").text(cityList[area][0]);
-    $(".city_list").height($(window).height()-92);
+    $(".city_list").height($(window).height()-98);
     $(".header-city").on("click",function(){
       //选择城市
       $("#change_city").css({"display":"block"}).animate({right:0},500);
+      document.querySelector("#app").style.position="fixed";
     });
     $("#city_go_back").on("click",function(){
       $("#change_city").animate({right:"-100%"},500);
+      document.querySelector("#app").style.position="absolute";
       setTimeout(function(){
         $("#change_city").css({"display":"none"});
       },500)
