@@ -1,6 +1,6 @@
 
 
-.new-details{background:#fff;padding:15px;margin-top: 10px;margin-bottom: 10px;}
+.new-details{background:#fff;padding:15px;margin-top: 10px;margin-bottom: 10px;min-height: 363px}
 .new-details>h1{color:#333;font-size:15px;margin-bottom:15px;line-height: 25px}
 .new-details-p1{color:#666;font-size:11px;float: right}
 .new-details-p1 span{margin-left: 10px}
