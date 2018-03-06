@@ -9,14 +9,14 @@ const redisCache = {
   "port": 6379
 };
 
-var wwhost = 'http://mm.jjlvip.cn';
-var yiminhostname = 'yimin.jjlvip.cn';
+var wwhost = 'http://m.jjl.cn';
+var yiminhostname = 'yimin.jjl.cn';
 // var cdnhost = 'http://192.168.100.84:7000';
-var cdnhost = 'http://mm.jjlvip.cn:7000';
+var cdnhost = 'http://m.jjl.cn:7000';
 var imageshost = 'http://images.jjl.cn';
-var prefix = 'http://internal-jjl-elb-api-1494687011.cn-north-1.elb.amazonaws.com.cn/cms/api/';//'http://cmsapi.jjlvip.cn/api/';
+var prefix = 'http://internal-jjl-elb-api-1494687011.cn-north-1.elb.amazonaws.com.cn/cms/api/';
 var uc_prefix = 'http://internal-jjl-elb-api-1494687011.cn-north-1.elb.amazonaws.com.cn/uc/api/';
-var shequ_prefix = 'http://internal-jjl-elb-api-1494687011.cn-north-1.elb.amazonaws.com.cn/so/?/api/';//http://soapi.jjlvip.cn/?/api/';
+var shequ_prefix = 'http://internal-jjl-elb-api-1494687011.cn-north-1.elb.amazonaws.com.cn/so/?/api/';
 
 var apis = {
   "oauth": uc_prefix + 'index.php',
