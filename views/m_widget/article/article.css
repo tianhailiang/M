@@ -43,6 +43,9 @@
     background:url(../img/v.png) no-repeat 0 0;
     background-size:11px 11px;
 }
+.country-edu-ul li .adviser-title-box{
+  flex-direction: column;
+}
 .adviser-title{
     margin-top:10px;
     font-size: 13px;

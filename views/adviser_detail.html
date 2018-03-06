@@ -35,52 +35,93 @@
           </ul>
           <div class="tabitems">
             <div class="items-gruop">
-                <ul>
+                <ul class="column-news">
                   {% for item in zhuanlanlist.list%}
-                  <li>
+                  {% if loop.index == 1 %}
+                    <li>
                       <a href="{{helper.urlgen('article',item.id | string)}}">
                           <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
                             <p>{{item.title | ellipsis(15) }}</p>
-                            <p>{{item.tag_list}}</p>
+                            <p class="gw-active">{{item.tag_list}}</p>
                           </div>
                       </a>      
+                    </li>
+                  {%else%}
+                  <li>
+                    <a href="{{helper.urlgen('article',item.id | string)}}">
+                        <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                        <div class="column-list">
+                          <h2>{{userinfo.realname}}<span></span></h2> 
+                          <p>{{item.title | ellipsis(15) }}</p>
+                          <p style="color:#999">{{item.tag_list}}</p>
+                        </div>
+                    </a>      
                   </li>
+                  {%endif%}
                   {% endfor %}
                 </ul>
             </div>
             <div class="items-gruop" style="display: none;">
               <ul class="column-news">
                   {% for item in caselist.list%}
-                  <li>
+                  {% if loop.index == 1 %}
+                    <li>
                       <a href="{{helper.urlgen('article',item.id | string)}}">
                           <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, adviser_detail.status) }}" alt="" class="column-pictuer"> -->
                           <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
                             <p>{{item.title | ellipsis(15) }}</p>
-                            <p>{{item.tag_list}}</p>
+                            <p class="gw-active">{{item.tag_list}}</p>
                           </div>
                       </a>
+                    </li>
+                  {%else%}
+                  <li>
+                    <a href="{{helper.urlgen('article',item.id | string)}}">
+                        <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, adviser_detail.status) }}" alt="" class="column-pictuer"> -->
+                        <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                        <div class="column-list">
+                          <h2>{{userinfo.realname}}<span></span></h2> 
+                          <p>{{item.title | ellipsis(15) }}</p>
+                          <p style="color:#999;">{{item.tag_list}}</p>
+                        </div>
+                    </a>
                   </li>
+                  {%endif%}
                   {% endfor %}
               </ul>
             </div>
             <div class="items-gruop" style="display: none;">
               <ul class="column-news anli-column">
                   {% for item in jinxuanlist.list%}
-                  <li>
+                    {% if loop.index == 1 %}
+                      <li>
+                        <a href="{{helper.urlgen('article',item.id | string)}}">
+                            <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                            <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, userinfo.status) }}" alt="" class="column-pictuer"> -->
+                            <div class="column-list">
+                              <h2>{{userinfo.realname}}<span></span></h2> 
+                              <p>{{item.title | ellipsis(15) }}</p>
+                              <p class="gw-active">{{item.tag_list | ellipsis(4)}}</p>
+                            </div>
+                        </a>      
+                      </li>
+                    {%else%}
+                    <li>
                       <a href="{{helper.urlgen('article',item.id | string)}}">
                           <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
                           <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, userinfo.status) }}" alt="" class="column-pictuer"> -->
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
                             <p>{{item.title | ellipsis(15) }}</p>
-                            <p>{{item.tag_list}}</p>
+                            <p style="color:#999;">{{item.tag_list}}</p>
                           </div>
                       </a>      
-                  </li>
+                    </li>
+                    {%endif%}
                   {% endfor %}
               </ul>
             </div>
@@ -93,7 +134,7 @@
 <!-- ===侧边栏==== -->
 {% include "m_widget/slidebar/slidebar.html" %}
 <!-- ======乐语底栏======= -->
-{% include 'm_widget/funtalk/funtalk.html' %}
+{% include 'm_widget/funtalk/funtalk1.html' %}
 <script>
     $(function(){
       $(".tab-controll li").on('click',function(){

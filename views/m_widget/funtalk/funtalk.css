@@ -126,3 +126,7 @@
 	align-items: center;
 	justify-content: center;
 }
+.footer-consultation-a{
+	display: flex;
+	align-items: center;
+}

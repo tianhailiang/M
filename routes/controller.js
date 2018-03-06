@@ -51,7 +51,6 @@ exports.home = function(req,res,next){
   }, function (err, result) {
     data.lunbo_list =returnData(result.lunbo_list,'lunbo_list');
     data.shouye = JSON.parse(result.shouye);
-    data.city_id = area;
     data.tdk = {
       pagekey: 'HOME',
       cityid: area,
@@ -1202,8 +1201,14 @@ exports.news_detail = function (req, res, next) {
           data.pageType = '最新资讯';
           data.pageroute="news";
           data.id = data.article_id;
+          var pagekey = null;
+          if(data.wenzhangdiye.article_info.type == 1){
+              pagekey = 'ADVISOR_P_CASE_DETAIL';
+          }else if(data.wenzhangdiye.article_info.type == 2){
+              pagekey = 'ADVISOR_P_ARTICLE_DETAIL';
+          }
           data.tdk = {
-              pagekey: 'NEWSDETAIL', //key 同意规定，具体找郭亚超
+              pagekey: pagekey, //key 同意规定，具体找郭亚超
               cityid: area, //cityid
               // nationid: country,//nationi
               title: data.wenzhangdiye.article_info.title,
@@ -1279,6 +1284,7 @@ exports.adviser_detail = function (req, res, next) {
             data.pageroute = 'news';
             data.tdk = {
                 pagekey: 'ADVISOR_CENTER', //key
+                realname: data.userinfo.realname
             };
             // log.info(data.caselist)
             res.render('adviser_detail', data);

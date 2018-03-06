@@ -2,14 +2,16 @@
  <ul class="country-edu-ul">
  	{% for item in list[0] %}
 	    <li>
-	    	<a href="{{helper.urlgen('article',item.id|string)}}" >
+	    	<a href="{{helper.urlgen(item.uid|string)}}" >
 		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size: 60px 60px;">
 		        </div>
-		        <div class="adviser-right" >
-		            <div class="adviser-name" >
-		                <span>{{item.user_info.realname}}</span>
-		                <i></i>
-		            </div>
+		    </a>
+	        <div class="adviser-right" >
+	            <a class="adviser-name" href="{{helper.urlgen(item.uid|string)}}">
+	                <span>{{item.user_info.realname}}</span>
+	                <i></i>
+	            </a>
+	            <a href="{{helper.urlgen('article',item.id|string)}}" class="adviser-title-box" >
 		            <div class="adviser-title">
 		               {{ item.title |shorten(24) }}
 		            </div>
@@ -17,88 +19,96 @@
 		                <span class="art-tag-bg" ></span>
 	             		<span class="art-tag-list" style="color:#d51821;">{{item.tag_list}}</span>
 		            </div>
-		        </div>
-		    </a>
+		        </a>
+	        </div>
 	    </li>
 	{% endfor %}
 	{% for item in list[1] %}
 	    <li>
-	    	<a href="{{helper.urlgen('article',item.id|string)}}" >
+	    	<a href="{{helper.urlgen(item.uid|string)}}" >
 		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size: 60px 60px;">
 		        </div>
-		        <div class="adviser-right" >
-		            <div class="adviser-name" >
-		                <span>{{item.user_info.realname}}</span>
-		                <i></i>
-		            </div>
+		    </a>
+	        <div class="adviser-right" >
+	            <a class="adviser-name" href="{{helper.urlgen(item.uid|string)}}">
+	                <span>{{item.user_info.realname}}</span>
+	                <i></i>
+	            </a>
+	            <a href="{{helper.urlgen('article',item.id|string)}}" class="adviser-title-box" >
 		            <div class="adviser-title">
 		               {{item.title |shorten(24)}}
 		            </div>
 		            <div class="art-bg-tag">
 	             		{{item.tag_list}}
 		            </div>
-		        </div>
-		    </a>
+		        </a>
+	        </div>
 	    </li>
 	{% endfor %}
 	{% for item in list[2] %}
 	    <li>
-	    	<a href="{{helper.urlgen('article',item.id|string)}}" >
+	    	<a href="{{helper.urlgen(item.uid|string)}}" >
 		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size: 60px 60px;">
 		        </div>
-		        <div class="adviser-right" >
-		            <div class="adviser-name" >
-		                <span>{{item.user_info.realname}}</span>
-		                <i></i>
-		            </div>
+		    </a>
+	        <div class="adviser-right" >
+	            <a class="adviser-name" href="{{helper.urlgen(item.uid|string)}}">
+	                <span>{{item.user_info.realname}}</span>
+	                <i></i>
+	            </a>
+	             <a href="{{helper.urlgen('article',item.id|string)}}" class="adviser-title-box" >
 		            <div class="adviser-title">
 		               {{item.title |shorten(24)}}
 		            </div>
 		            <div class="art-bg-tag">
 	             		{{item.tag_list}}
 		            </div>
-		        </div>
-		    </a>
+		        </a>
+	        </div>
 	    </li>
 	{% endfor %}
 	{% for item in list[3] %}
 	    <li>
-	    	<a href="{{helper.urlgen('article',item.id|string)}}" >
+	    	<a href="{{helper.urlgen(item.uid|string)}}" >
 		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size: 60px 60px;">
 		        </div>
-		        <div class="adviser-right" >
-		            <div class="adviser-name" >
-		                <span>{{item.user_info.realname}}</span>
-		                <i></i>
-		            </div>
+		    </a>
+	        <div class="adviser-right" >
+	            <a class="adviser-name" href="{{helper.urlgen(item.uid|string)}}">
+	                <span>{{item.user_info.realname}}</span>
+	                <i></i>
+	            </a>
+	            <a href="{{helper.urlgen('article',item.id|string)}}" class="adviser-title-box" >
 		            <div class="adviser-title">
 		               {{item.title |shorten(24)}}
 		            </div>
 		            <div class="art-bg-tag">
 	             		{{item.tag_list}}
 		            </div>
-		        </div>
-		    </a>
+		        </a>
+	        </div>
 	    </li>
 	{% endfor %}
 	{% for item in list[4] %}
 	    <li>
-	    	<a href="{{helper.urlgen('article',item.id|string)}}" >
+	    	<a href="{{helper.urlgen(item.uid|string)}}" >
 		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size: 60px 60px;">
 		        </div>
-		        <div class="adviser-right" >
-		            <div class="adviser-name" >
-		                <span>{{item.user_info.realname}}</span>
-		                <i></i>
-		            </div>
+		    </a>
+	        <div class="adviser-right" >
+	            <a class="adviser-name" href="{{helper.urlgen(item.uid|string)}}">
+	                <span>{{item.user_info.realname}}</span>
+	                <i></i>
+	            </a>
+	            <a href="{{helper.urlgen('article',item.id|string)}}" class="adviser-title-box" >
 		            <div class="adviser-title">
 		               {{item.title |shorten(24)}}
 		            </div>
 		            <div class="art-bg-tag">
 	             		{{item.tag_list}}
 		            </div>
-		        </div>
-		    </a>
+		        </a>
+	        </div>
 	    </li>
 	{% endfor %}
 </ul>

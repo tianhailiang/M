@@ -443,6 +443,7 @@ function pageTDK(flag, tdkParam) {
   var description = tdkParam.description;
   var keywords = tdkParam.keywords;
   var pageNum = tdkParam.pageNum;
+  var realname = tdkParam.realname;
 
   if(!page_name){
     //console.log("page_name is null !");
@@ -469,12 +470,12 @@ function pageTDK(flag, tdkParam) {
     var nationName = common.getCountryEn(nationid);
   }
   if(cityid){
-    var cityName = common.getCityEn(cityid);
+    var cityName = common.getCityChinese(cityid);
   }
-  return tdk_param_replace(tdk_string, nationName, cityName, title, description, keywords, pageNum);
+  return tdk_param_replace(tdk_string, nationName, cityName, title, description, keywords, pageNum, realname);
 }
 
-function tdk_param_replace(tdk_string, nationName, cityName, title, description, keywords, pageNum) {
+function tdk_param_replace(tdk_string, nationName, cityName, title, description, keywords, pageNum, realname) {
   var ret = tdk_string;
   if(nationName){
     ret = ret.replace(/\{nationName\}/g, nationName);
@@ -501,6 +502,19 @@ function tdk_param_replace(tdk_string, nationName, cityName, title, description,
   }else{
     ret = ret.replace(/\{keywords\}/g, "");
   }
+
+  //替换字符串中的{realname}
+  if(realname){
+    ret = ret.replace(/\{realname\}/g, realname);
+  }else{
+    ret = ret.replace(/\{realname\}/g, "");
+  }
+
+  //替换year
+  var date=new Date;
+  var year=date.getFullYear();
+  ret = ret.replace(/\{year\}/g, year);
+
   if(pageNum){
     if(pageNum > 1){
       ret = ret.replace(/\{pageNum\}/g, pageNum);
