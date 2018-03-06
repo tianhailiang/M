@@ -66,6 +66,7 @@
 .consultation-ul li span{height:100%;display:flex;justify-content:center;align-items:center;font-size:13px;color:#fff;flex-wrap:nowrap;border-bottom:.5px solid #fff;text-overflow:ellipsis}
 .consultation-ul li:last-child span{border-bottom:none}
 .telphone a{display:flex;height:100%;align-items:center;justify-content:center}
+.footer-consultation-a{display:flex;align-items:center}
 .list-nav{width:100%;display:flex;justify-content:space-around;height:44px;line-height:44px;background:#fff;border-bottom:1px solid #eee}
 .list-nav span{flex:1;width:59px;display:block;text-align:center;position:relative}
 .list-nav span a{color:#666}
