@@ -65,6 +65,7 @@ var apis = {
   "get_shenqingfangan_yz": prefix + 'fangan_country',
   "get_shenqingfangan_oz": prefix + 'fangan_country',
   //"get_liuxuehuodong": prefix + 'liuxuehuodong',
+  "adviser_main": shequ_prefix + 'article/list/', // 社区 首页
 
   //最新资讯栏目页
   "get_zuixinzixun_list": prefix + 'zuixinzixun_list',
@@ -188,7 +189,7 @@ var apis = {
   //搜索结果页（院校）
   "get_search_school": prefix + 'yuanxkList',
   //顾问聚合页
-  // "get_search_adviser_simple": shequ_prefix + 'search/search_adviser_simple/',换接口
+ // "get_search_adviser_simple": shequ_prefix + 'search/search_adviser_simple/',换接口
   "get_adviser_list":uc_prefix+'index.php?m=getguwenlist',
 
   //关于我们(联系我们)
@@ -205,13 +206,13 @@ var apis = {
   "get_canzanlist":uc_prefix+'index.php?m=userlist',
   //移民案例接口
   "get_yiminanlist": prefix + 'immi_case_list',
-  //移民-国家介绍
+ //移民-国家介绍
   "get_imminationlist": prefix + 'immi_nation_list',
   //移民-国家频道-活动预告
   "get_immiactivitylist": prefix + 'immi_activity_list',
   //移民案例底页接口
   "get_yiminanlidiye": prefix + 'immi_case_detail',
-  //移民案例底页接口
+    //移民案例底页接口
   "get_yiminguwendiye": prefix + 'immi_adviser_detail',
   //移民专家解读
   "get_yiminzhuanjiajiedu": prefix + 'immi_interpret_list',
@@ -251,7 +252,7 @@ var apis = {
   //参赞专栏
   "user_article_list": shequ_prefix + 'account/user_article_list/',
   //学历频道页五大攻略
-  "get_edu":prefix + 'common_sense'
+  "get_edu":prefix + 'common_sense',
 };
 module.exports = {
   redisCache: redisCache,

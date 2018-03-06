@@ -20,25 +20,23 @@ function returnData(obj,urlName){
 exports.home = function(req,res,next){
   log.debug("首页")
   var data = {};
-  var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
-  // if (req.params[0]) {
-  //   var cityId = comfunc.getCityId(req.params[0]);
-  //   if(cityId && cityId !== comfunc.INVALID_ID){
-  //       iparea = cityId;
-  //       area = cityId;
-  //       res.cookie("currentarea", cityId, {domain: '.jjlvip.cn'});
-  //   }
-  // }
-  if(!comfunc.cityid_invalidcheck(area)){
-    return res.redirect('/404');
-  }
   log.info(req.params);
+  var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
+  if (req.params[0]) {
+    var cityId = comfunc.getCityId(req.params[0]);
+    if(!comfunc.cityid_invalidcheck(cityId)){
+        return res.redirect('/404');
+    }
+    area = cityId;
+    res.cookie("currentarea", cityId);
+  }
+ 
   if(req.params[2]){
     [data.country=1] = [comfunc.getCountryIdParams(req.params[2].replace('/', ''))];
   }else{
     data.country=1;
   }
-  log.info('country  ',data.country)
+  // log.info('country  ',data.country)
   async.parallel({
     lunbo_list: function (callback) {
       // 轮播图接口
@@ -1243,12 +1241,14 @@ exports.adviser_detail = function (req, res, next) {
         zhuanlanlist:function(callback){
             cms.adviser_main({
                 "type":2,
+                "uid":uid,
                 "order":encodeURI("add_time desc")
             },callback)
         },
         caselist:function(callback){
             cms.adviser_main({
                 "type":1,
+                "uid":uid,
                 "order":encodeURI("add_time desc"),
                 "per_page":6
             },callback)
@@ -1256,7 +1256,8 @@ exports.adviser_detail = function (req, res, next) {
         jinxuanlist:function(callback){
             cms.adviser_main({
                 "order":encodeURI("views desc"),
-                "per_page":5
+                "per_page":5,
+                "uid":uid
             },callback)
         },
     }, function (err, result) {
@@ -1264,7 +1265,6 @@ exports.adviser_detail = function (req, res, next) {
         data.jinxuanlist = returnData(result.jinxuanlist,'jinxuanlist');
         data.caselist = returnData(result.caselist,'caselist');
         data.zhuanlanlist = returnData(result.zhuanlanlist,'zhuanlanlist');
-        // data.get_userinfo = returnData(result.get_userinfo,'get_userinfo');
         async.parallel({
             userinfo:function(callback){
                 cms.userinfo({
@@ -1280,7 +1280,7 @@ exports.adviser_detail = function (req, res, next) {
             data.tdk = {
                 pagekey: 'ADVISOR_CENTER', //key
             };
-            // log.info(data.userinfo)
+            // log.info(data.caselist)
             res.render('adviser_detail', data);
         })
     });
