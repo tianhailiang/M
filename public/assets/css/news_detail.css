@@ -10,20 +10,20 @@
 .news-content p{color:#666;line-height:20px;margin-top:15px;font-size:13px;margin-bottom:15px;word-wrap:break-word}
 .news-content img{display:table;max-width:100%;height:auto;}
 .head_portrait{
-    padding: 15px 0;
+    padding: 0 0 15px 0;
     height: 57px;
     /*display: flex;*/
 }
 .head_portrait_left{
     float: left;
-    width: 27px;
-    height: 27px;
+    width: 37px;
+    height: 37px;
     border-radius: 50%;
     background: #3cc51f;
 }
 .head_portrait_centen{
     float: left;
-    line-height: 27px;
+    line-height: 37px;
     margin-left: 10px;
 }
 .head_portrait_centen p{
@@ -36,7 +36,7 @@
     height:11px;
     background:url(../img/v.png) no-repeat 0 0;
     background-size:11px 11px;
-    margin-top: 9px;
+    margin-top: 13px;
     margin-left: 5px;
 }
 .head_portrait_right{
@@ -44,10 +44,10 @@
 }
 .adviser-label{
     font-size: 12px;
-    color:#999;
-    margin-top: 5px;
-    line-height: 12px;
+    /*color:#999;*/
+    margin-top: 10px;
+    line-height: 15px;
     background: #fdf3f4;
-    padding: 2px 10px;
-    border-radius: 5px;
+    padding: 2px 8px;
+    border-radius: 2px;
 }

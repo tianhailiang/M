@@ -30,7 +30,6 @@ exports.home = function(req,res,next){
     area = cityId;
     res.cookie("currentarea", cityId);
   }
- 
   if(req.params[2]){
     [data.country=1] = [comfunc.getCountryIdParams(req.params[2].replace('/', ''))];
   }else{
@@ -1212,7 +1211,9 @@ exports.news_detail = function (req, res, next) {
               cityid: area, //cityid
               // nationid: country,//nationi
               title: data.wenzhangdiye.article_info.title,
-              description: data.wenzhangdiye.article_info.description,
+              // description: data.wenzhangdiye.article_info.description,
+              description: helperfunc.cut(data.wenzhangdiye.article_info.message,80),
+              keywords: data.wenzhangdiye.article_info.keywords
           };
           data.esikey = esihelper.esikey();
           res.render('news_detail', data);
