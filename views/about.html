@@ -67,19 +67,24 @@
     line-height: 18px;
     margin:12px 0;
   }
-
+.about-img img{
+  width: 100%;
+}
 </style>
+<script>
+  var AD_PAGE_NAME = "PROFILE";
+</script>
+<script src="{{helper.cdnhost}}/assets/js/show_advert.js"></script>
 <body>
 {% include "m_widget/top/top.html" %}
 <!--顶部tab切换 end-->
 <div id="app" >
-  <div style="height: 175px;background:#f2aaaa">
-    <div id="AD_PROFILE_SEAT1"></div>
+  <div style="width:100%;overflow: hidden;background:#f2aaaa">
+    <div id="AD_PROFILE_SEAT1" class="about-img"></div>
   </div>
   <div class="lib-jianjie clearfix" style="padding-bottom: 15px;">
     <h1><i></i>金吉列简介</h1>
-    <p class="about-p" style="color: #666666;">金吉列出国留学咨询服务有限公司是获得教育部、公安部和国家工商行政管理总局资质认证的留学服务企业，是留学行业3.15标志服务品牌的企业,是全国诚信企业奖牌获得者、全国用户满意服务明星单位平均m每年向数千万个家庭提供数十个国家（数千所海外院校）的免费咨询国外留学。</p>
-    <p style="color: #666666;">并且是中国消费者协会《社会责任导则》全国教育行业签署单位。我们拥有数十年留学管理经验的驻外十国使馆前大使、教育参赞作为特约咨询专家，千余名专业咨询师,数十万海外留学成功案例留学服务企业，是留学行业3.15标志服务品牌的企业,是全国诚信企业奖牌获得者。
+    <p class="about-p" style="color: #666666;">金吉列出国留学咨询服务有限公司（简称金吉列留学），成立于1999年，2000年1月由教育部、公安部、国家工商行政管理总局资质认证的出国留学专业服务机构。公司现员工总数2600余人，业务涉及出国留学、海外移民、签证申请服务等领域，在海内外设有54家直营分、子公司。金吉列企业集团是国家工商总局公示认定的“重信用守合同”企业。金吉列留学商标是北京市工商局连续多年认定的“北京市著名商标”。
     </p>
     <div class="jianjie-img">
       <div style="margin-right:10px;"><img src="{{helper.cdnhost}}/assets/img/profile1.jpg" alt=""></div>
