@@ -3,7 +3,7 @@
  	{% for item in list[0] %}
 	    <li>
 	    	<a href="{{helper.urlgen(item.uid|string)}}" >
-		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size:cover">
+		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat 0 0;background-size:cover">
 		        </div>
 		    </a>
 	        <div class="adviser-right" >
@@ -13,7 +13,7 @@
 	            </a>
 	            <a href="{{helper.urlgen('article',item.id|string)}}" class="adviser-title-box" >
 		            <div class="adviser-title">
-		               {{ item.title |shorten(24) }}
+		               {{ item.title |shorten(24)}}
 		            </div>
 		            <div class="art-tag">
 		                <span class="art-tag-bg" ></span>
@@ -26,7 +26,7 @@
 	{% for item in list[1] %}
 	    <li>
 	    	<a href="{{helper.urlgen(item.uid|string)}}" >
-		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size:cover">
+		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat 0 0;background-size:cover">
 		        </div>
 		    </a>
 	        <div class="adviser-right" >
@@ -48,7 +48,7 @@
 	{% for item in list[2] %}
 	    <li>
 	    	<a href="{{helper.urlgen(item.uid|string)}}" >
-		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size:cover">
+		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat 0 0;background-size:cover">
 		        </div>
 		    </a>
 	        <div class="adviser-right" >
@@ -58,7 +58,7 @@
 	            </a>
 	             <a href="{{helper.urlgen('article',item.id|string)}}" class="adviser-title-box" >
 		            <div class="adviser-title">
-		               {{item.title |shorten(24)}}
+		                {{item.title |shorten(24)}}
 		            </div>
 		            <div class="art-bg-tag">
 	             		{{item.tag_list}}
@@ -70,7 +70,7 @@
 	{% for item in list[3] %}
 	    <li>
 	    	<a href="{{helper.urlgen(item.uid|string)}}" >
-		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size:cover">
+		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat 0 0;background-size:cover">
 		        </div>
 		    </a>
 	        <div class="adviser-right" >
@@ -79,7 +79,7 @@
 	                <i></i>
 	            </a>
 	            <a href="{{helper.urlgen('article',item.id|string)}}" class="adviser-title-box" >
-		            <div class="adviser-title">
+		            <div class="adviser-title"> 
 		               {{item.title |shorten(24)}}
 		            </div>
 		            <div class="art-bg-tag">
@@ -92,7 +92,7 @@
 	{% for item in list[4] %}
 	    <li>
 	    	<a href="{{helper.urlgen(item.uid|string)}}" >
-		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat center;background-size:cover">
+		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat 0 0;background-size:cover">
 		        </div>
 		    </a>
 	        <div class="adviser-right" >

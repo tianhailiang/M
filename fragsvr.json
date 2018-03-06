@@ -4,6 +4,7 @@
       name      : "m_fragsvr",
       script    : "./bin/fragsvr",
       cwd: "./",           //根目录
+      instances: 1,
       watch:[
             "bin",
             "common",

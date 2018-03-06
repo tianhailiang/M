@@ -11,7 +11,7 @@ const redisCache = {
 
 var wwhost = 'http://m.jjl.cn';
 var yiminhostname = 'yimin.jjl.cn';
-// var cdnhost = 'http://192.168.100.84:7000';
+// var cdnhost = 'http://192.168.100.127:7000';
 var cdnhost = 'http://m.jjl.cn:7000';
 var imageshost = 'http://images.jjl.cn';
 var prefix = 'http://internal-jjl-elb-api-1494687011.cn-north-1.elb.amazonaws.com.cn/cms/api/';
