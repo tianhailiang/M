@@ -30,7 +30,6 @@ exports.home = function(req,res,next){
     area = cityId;
     res.cookie("currentarea", cityId);
   }
- 
   if(req.params[2]){
     [data.country=1] = [comfunc.getCountryIdParams(req.params[2].replace('/', ''))];
   }else{

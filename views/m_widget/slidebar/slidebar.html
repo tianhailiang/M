@@ -10,7 +10,7 @@
        "name":"金吉列留学",
        "icon":"icon-boshimao1",
        "router":"HOME",
-       "url":helper.urlgen('branch_home','c='+tdk.area)
+       "url":helper.urlgen('branch_home','c='+tdk.cityid)
       },
       {
        "name":"关于金吉列",
@@ -20,7 +20,7 @@
       }
     ] %}
     {% for item in routerList %}
-        <div class="sidebar-nav" >
+        <div class="sidebar-nav">
           <a class="sidebar-nav-title" href="{{item.url}}">
             <svg class="icon sidebar-liuxue-icon" aria-hidden="true" style="{% if item.router ==  tdk.pagekey %}color:#d51821;{% endif %}">
               <use xlink:href="#{{item.icon}}"></use>
