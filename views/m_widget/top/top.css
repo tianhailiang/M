@@ -311,6 +311,16 @@
     height:44px;
     border-top:0.5px solid #eee;
   }
+  .sidebar-liuxue-icon{
+    font-size: 15px;
+    margin-right: 10px;
+    color:#d51821;
+  }
+  .sidebar-about-icon{
+    font-size: 15px;
+    margin-right: 10px;
+    color:#999;
+  }
   .sidebar-apply-i{
     width:15px;
     height:15px;
@@ -336,7 +346,7 @@
     margin-right: 10px;
   }
   .sidebar-nav-title span{
-    font-size: 15px;
+    font-size: 16px;
     color:#333;
   } 
   .sidebar-ul li{
