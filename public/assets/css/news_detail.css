@@ -8,7 +8,7 @@
 .new-details-p2{position:relative;color:#999;font-size:12px;padding-bottom: 15px; float: left}
 /*.new-details-p2:after{content:"";display:block;position:absolute;bottom:1px;width:100%;-webkit-transform:scaleY(.5);transform:scaleY(.5);-webkit-transform-origin:0 0;transform-origin:0 0;border-bottom:solid 1px #e5e5e5}*/
 .news-content p{color:#666;line-height:20px;margin-top:15px;font-size:13px;margin-bottom:15px;word-wrap:break-word}
-.news-content img{display:table;max-width:100%;height:auto;width:100%}
+.news-content img{display:table;max-width:100%;height:auto;}
 .head_portrait{
     padding: 15px 0;
     height: 57px;
