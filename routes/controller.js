@@ -21,6 +21,14 @@ exports.home = function(req,res,next){
   log.debug("首页")
   var data = {};
   var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
+  // if (req.params[0]) {
+  //   var cityId = comfunc.getCityId(req.params[0]);
+  //   if(cityId && cityId !== comfunc.INVALID_ID){
+  //       iparea = cityId;
+  //       area = cityId;
+  //       res.cookie("currentarea", cityId, {domain: '.jjlvip.cn'});
+  //   }
+  // }
   if(!comfunc.cityid_invalidcheck(area)){
     return res.redirect('/404');
   }
@@ -30,7 +38,7 @@ exports.home = function(req,res,next){
   }else{
     data.country=1;
   }
-  log.info(data.country)
+  log.info('country  ',data.country)
   async.parallel({
     lunbo_list: function (callback) {
       // 轮播图接口
@@ -45,18 +53,7 @@ exports.home = function(req,res,next){
   }, function (err, result) {
     data.lunbo_list =returnData(result.lunbo_list,'lunbo_list');
     data.shouye = JSON.parse(result.shouye);
-    
-    log.info(data.shouye.list[0].list[0])
-     log.info('111111')
-    log.info(data.shouye.list[0].list[1])
-    log.info('2222222')
-    log.info(data.shouye.list[0].list[2])
-     log.info('333333')
-    log.info(data.shouye.list[0].list[3])
-     log.info('444444')
-    log.info(data.shouye.list[0].list[4])
-    log.info('55555')
-    log.info(data.shouye.list[0].list[5])
+    data.city_id = area;
     data.tdk = {
       pagekey: 'HOME',
       cityid: area,

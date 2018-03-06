@@ -141,7 +141,7 @@ function active_urlgen(){
 //   return url;
 // }
 function urlgen() {
-  var url = '',chan = '',param = '';
+  var url = '',chan = '',param = '',nation = '',city = '',nationid='',cityid='';
   if(arguments.length == 0){
     return ;
   }
@@ -158,6 +158,9 @@ function urlgen() {
   }
   // i is hold
   for(i; i < arguments.length;i++){
+    if (nationid = seo_to_url(arguments[i], 'n')) {
+      nation = common.getCountryEn(nationid);
+    }
     if (cityid = seo_to_url(arguments[i], 'c')) {
       city = common.getCityEn(cityid);
     }
@@ -175,7 +178,7 @@ function urlgen() {
   url += chan + param;
 
   if(chan=='/branch_home'){
-    url = ((city && city != 0)?"/"+city:"")+"/";
+    url = ((city && city != 0)?"/"+city:"") + (nation?"/"+nation:"") + "/";
   }
 
   if (config.version == 'development') { //如果是開發環境

@@ -172,10 +172,12 @@
 .index-home i{display:block;width:15px;height:15px;background:url(../../../assets/images/home_icon_sydj.png) no-repeat 0 0;background-size:15px 15px;margin-right:10px}
 .index-home span{font-size:16px;color:#d51821}
 .sidebar-nav-title{display:flex;align-items:center;height:44px;border-top:.5px solid #eee}
+.sidebar-liuxue-icon{font-size:15px;margin-right:10px;color:#d51821}
+.sidebar-about-icon{font-size:15px;margin-right:10px;color:#999}
 .sidebar-apply-i{width:15px;height:15px;display:block;background:url(../../../assets/images/home_sideslip_sq@2x.png) no-repeat 0 0;background-size:15px 15px;margin-right:10px}
 .sidebar-understand-i{width:15px;height:15px;display:block;background:url(../../../assets/images/home_sideslip_lj@2x.png) no-repeat 0 0;background-size:15px 15px;margin-right:10px}
 .sidebar-study-i{width:15px;height:15px;display:block;background:url(../../../assets/images/home_aircraft.png) no-repeat 0 0;background-size:15px 15px;margin-right:10px}
-.sidebar-nav-title span{font-size:15px;color:#333}
+.sidebar-nav-title span{font-size:16px;color:#333}
 .sidebar-ul li{padding-left:25px;height:44px;border-top:.5px solid #eee}
 .sidebar-ul li a{display:flex;align-items:center;height:100%}
 .sidebar-ul li a:active{background:#e5e5e5}
