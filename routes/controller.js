@@ -20,25 +20,23 @@ function returnData(obj,urlName){
 exports.home = function(req,res,next){
   log.debug("首页")
   var data = {};
-  var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
-  // if (req.params[0]) {
-  //   var cityId = comfunc.getCityId(req.params[0]);
-  //   if(cityId && cityId !== comfunc.INVALID_ID){
-  //       iparea = cityId;
-  //       area = cityId;
-  //       res.cookie("currentarea", cityId, {domain: '.jjlvip.cn'});
-  //   }
-  // }
-  if(!comfunc.cityid_invalidcheck(area)){
-    return res.redirect('/404');
-  }
   log.info(req.params);
+  var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
+  if (req.params[0]) {
+    var cityId = comfunc.getCityId(req.params[0]);
+    if(!comfunc.cityid_invalidcheck(cityId)){
+        return res.redirect('/404');
+    }
+    area = cityId;
+    res.cookie("currentarea", cityId);
+  }
+ 
   if(req.params[2]){
     [data.country=1] = [comfunc.getCountryIdParams(req.params[2].replace('/', ''))];
   }else{
     data.country=1;
   }
-  log.info('country  ',data.country)
+  // log.info('country  ',data.country)
   async.parallel({
     lunbo_list: function (callback) {
       // 轮播图接口
