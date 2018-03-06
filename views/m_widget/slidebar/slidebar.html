@@ -5,22 +5,30 @@
   <div class="sidebar" >
     <div class="sidebar-logo" >
     </div>
-    <div class="sidebar-nav" >
-      <a class="sidebar-nav-title" href="{{helper.urlgen('branch_home','c='+city_id)}}">
-        <svg class="icon sidebar-liuxue-icon" aria-hidden="true">
-          <use xlink:href="#icon-boshimao1"></use>
-        </svg>
-        <span style="color:#d51821;">金吉列留学</span>
-      </a>
-    </div>
-    <div class="sidebar-nav" >
-      <a class="sidebar-nav-title" href="{{helper.urlgen('about')}}">
-        <svg class="icon sidebar-about-icon" aria-hidden="true">
-          <use xlink:href="#icon-wenda"></use>
-        </svg>
-        <span >关于金吉列</span>
-      </a> 
-    </div>
+    {% set routerList = [
+      {
+       "name":"金吉列留学",
+       "icon":"icon-boshimao1",
+       "router":"HOME",
+       "url":helper.urlgen('branch_home','c='+tdk.area)
+      },
+      {
+       "name":"关于金吉列",
+       "icon":"icon-wenda",
+       "router":"PROFILE",
+       "url":helper.urlgen('about')
+      }
+    ] %}
+    {% for item in routerList %}
+        <div class="sidebar-nav" >
+          <a class="sidebar-nav-title" href="{{item.url}}">
+            <svg class="icon sidebar-liuxue-icon" aria-hidden="true" style="{% if item.router ==  tdk.pagekey %}color:#d51821;{% endif %}">
+              <use xlink:href="#{{item.icon}}"></use>
+            </svg>
+            <span style="{% if item.router ==  tdk.pagekey %}color:#d51821;{% endif %}">{{item.name}}</span>
+          </a>
+      </div>
+    {% endfor %}
   </div>
 </div>
 <script >

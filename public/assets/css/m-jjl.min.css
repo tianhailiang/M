@@ -34,6 +34,7 @@
 .adviser-name{display:flex;margin-top:4px;align-items:center}
 .adviser-name span{font-size:14px;color:#333;margin-right:5px;line-height:14px}
 .adviser-name i{display:block;width:11px;height:11px;background:url(../img/v.png) no-repeat 0 0;background-size:11px 11px}
+.country-edu-ul li .adviser-title-box{flex-direction:column}
 .adviser-title{margin-top:10px;font-size:13px;color:#666;line-height:13px}
 .art-tag{margin-top:8px;position:relative;padding:0 7.5px}
 .art-tag-bg{position:absolute;left:0;top:0;background:#c13232;opacity:.06;filter:alpha(opacity=6);display:block;width:100%;height:15px;border-radius:12px}
@@ -172,8 +173,7 @@
 .index-home i{display:block;width:15px;height:15px;background:url(../../../assets/images/home_icon_sydj.png) no-repeat 0 0;background-size:15px 15px;margin-right:10px}
 .index-home span{font-size:16px;color:#d51821}
 .sidebar-nav-title{display:flex;align-items:center;height:44px;border-top:.5px solid #eee}
-.sidebar-liuxue-icon{font-size:15px;margin-right:10px;color:#d51821}
-.sidebar-about-icon{font-size:15px;margin-right:10px;color:#999}
+.sidebar-liuxue-icon{font-size:15px;margin-right:10px;color:#999}
 .sidebar-apply-i{width:15px;height:15px;display:block;background:url(../../../assets/images/home_sideslip_sq@2x.png) no-repeat 0 0;background-size:15px 15px;margin-right:10px}
 .sidebar-understand-i{width:15px;height:15px;display:block;background:url(../../../assets/images/home_sideslip_lj@2x.png) no-repeat 0 0;background-size:15px 15px;margin-right:10px}
 .sidebar-study-i{width:15px;height:15px;display:block;background:url(../../../assets/images/home_aircraft.png) no-repeat 0 0;background-size:15px 15px;margin-right:10px}
