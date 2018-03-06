@@ -51,7 +51,6 @@ exports.home = function(req,res,next){
   }, function (err, result) {
     data.lunbo_list =returnData(result.lunbo_list,'lunbo_list');
     data.shouye = JSON.parse(result.shouye);
-    data.city_id = area;
     data.tdk = {
       pagekey: 'HOME',
       cityid: area,

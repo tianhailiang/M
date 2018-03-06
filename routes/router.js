@@ -5,7 +5,7 @@ var controller = require('./controller.js');
 exports = module.exports = function (app) {// routes
   //首页 home 
   app.get('/',controller.home);
-  app.get(/^\/(bj|cd|cq|cs|cc|cz|dl|dg|fs|fz|gz|gy|hz|hf|heb|hs|gc|hn|jn|jl|km|lz|ly|nj|nc|nb|nn|qd|sh|sy|sjz|suz|sz|tj|ty|ts|hk|wc|wx|wz|xa|sm|xz|xn|xj|yt|yc|yic|zz)(\/*)(.*)(\/*)$/, controller.home);
+  app.get(/^\/(bj|cd|cq|cs|cc|cz|dl|dg|fs|fz|gz|gy|hz|hf|heb|hs|hd|hn|jn|jl|km|lz|ly|nj|nc|nb|nn|qd|sh|sy|sjz|shz|sz|tj|ty|ts|hk|wh|wx|wz|xa|xm|xz|xn|xj|yt|yc|yic|zz)(\/*)(.*)(\/*)$/, controller.home);
   //国家频道页 nationrank
   app.get(/^\/((?!yimin)usa|uk|canada|australia|newzealand|korea|japan|singapore|malaysia|hongkong|russion|ukraine|belarus|germany|france|norway|sweden|finland|ireland|netherlands|denmark|italy|spain|switzerland|greece|malta|portugal|cyprus|antigua|dominica|saintkitts|grenada)(\/*)$/, controller.nationrank);
   //搜索页
