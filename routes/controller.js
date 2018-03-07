@@ -1213,7 +1213,7 @@ exports.news_detail = function (req, res, next) {
               title: data.wenzhangdiye.article_info.title,
               // description: data.wenzhangdiye.article_info.description,
               description: helperfunc.cut(data.wenzhangdiye.article_info.message,80),
-              keywords: data.wenzhangdiye.article_info.keywords
+              keywords: data.wenzhangdiye.article_info.title
           };
           data.esikey = esihelper.esikey();
           res.render('news_detail', data);

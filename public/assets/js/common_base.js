@@ -86,7 +86,7 @@
             "47": ["新疆", "xj"],
             "31": ["烟台", "yt"],
             "40": ["银川", "yc"],
-            "44": ["宜昌", "yic"],
+            "44": ["宜昌", "ych"],
             "11": ["郑州", "zz"]
         },
         /*
@@ -156,15 +156,6 @@
                     url = url.replace(/branch_home.html/g, "");
                 }
             }
-
-            // if (!isyimin && js_api_config.version == 'development') { //如果是開發環境
-            //     if( (chan.indexOf('/p/') != -1 || chan.indexOf('/p1/') != -1 || chan.indexOf('/article/') != -1 || chan.indexOf('/case/') != -1 || chan.indexOf('center') != -1) && chan.indexOf('/yimin/')==-1) {
-            //         url = js_api_config.wwhost + ':4000' + url;//social
-            //     }
-            //     else {
-            //         url = js_api_config.wwhost + ':7000' + url;//web
-            //     }
-            // }
 
             if (!isyimin && js_api_config.version == 'development') { //如果是開發環境
                 url = js_api_config.wwhost + ':7000' + url;//web
