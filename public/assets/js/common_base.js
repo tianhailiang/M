@@ -306,17 +306,16 @@
          * @param status   用户状态，
          * @returns {string}
          */
-        avaterimg: function (uid, size, status){
+        avaterimg: function (uid, size, status,version){
             uid = prefixInteger(uid, 9);
             var dir1 = uid.substr(0, 3);
             var dir2 = uid.substr(3, 2);
             var dir3 = uid.substr(5, 2);
-            if(status == 1){
-                return js_api_config.imageshost + '/avatar/' + dir1+'/'+dir2+'/'+dir3+'/'+uid.substr(-2)+"_avatar_"+size+"_1.jpg"+"?"+new Date().getTime();
+            if(status == 1 || version == 0 || version == null){
+                return 'http://images.jjl.cn/avatar/default_avatar_small.jpg'
             }else{
-                return js_api_config.imageshost + '/avatar/' + dir1+'/'+dir2+'/'+dir3+'/'+uid.substr(-2)+"_avatar_"+size+".jpg"+"?"+new Date().getTime();
+                return ajaxUrlPrefix.imageshost + '/avatar/' + dir1+'/'+dir2+'/'+dir3+'/'+uid.substr(-2)+"_avatar_"+size+"_"+ version +".jpg";
             }
-
         },
         //根据id获取学历名
         getEdu: function (id) {

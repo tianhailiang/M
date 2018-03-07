@@ -7,7 +7,7 @@
 <div id="app">
   {% include "m_widget/top/top.html" %}
   <section id="colContent">
-  	<img src="{{ helper.avaterimg(canzan_detail.uid, 'big') }}">
+  	<img src="{{ helper.avaterimg(canzan_detail.uid, 'big',canzan_detail.status, canzan_detail.version) }}">
   	<div class="zancan-info">
   		<h2>{{canzan_detail.nickname}}</h2>
       <p>{{canzan_detail.job_number}}</p>
