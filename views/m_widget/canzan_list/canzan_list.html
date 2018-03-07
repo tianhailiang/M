@@ -1,7 +1,7 @@
 {% for canzanitem in canzanlist.list %}
 <li>
   <a href="{{ helper.urlgen('canzan', canzanitem.uid | string ) }}">
-    <img src="{{ helper.avaterimg(canzanitem.uid, 'big') }}" alt="{{canzanitem.realname}}">
+    <img src="{{ helper.avaterimg(canzanitem.uid, 'big',canzanitem.status,canzanitem.version) }}" alt="{{canzanitem.realname}}">
     <div class="acticle-itmes">
       <p><strong>{{canzanitem.realname}}</strong><span>{{canzanitem.job_number}}</span></p>
       <p class="itmes-clamp">{{canzanitem.introduce}}</p>

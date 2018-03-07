@@ -8,7 +8,7 @@
   {% include "m_widget/top/top.html" %}
   <section id="guwenDetails">
     <div class="people-info">
-      <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, adviser_detail.status) }}" class="people-img" alt="{{adviser_detail.realname}}顾问">
+      <img src="{{ helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version) }}" class="people-img" alt="{{adviser_detail.realname}}顾问">
       <div class="people-details">
         <div class="people-name"><strong>{{userinfo.realname}}</strong><span style="color:#ecc580;">{{userinfo.organid | getCity()}}分公司</span></div>
         <div class="people-email">
@@ -40,7 +40,7 @@
                   {% if loop.index == 1 %}
                     <li>
                       <a href="{{helper.urlgen('article',item.id | string)}}">
-                          <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                          <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version)}}) no-repeat 0 0;background-size: cover;"></span>
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
                             <p>{{item.title | ellipsis(15) }}</p>
@@ -51,7 +51,7 @@
                   {%else%}
                   <li>
                     <a href="{{helper.urlgen('article',item.id | string)}}">
-                        <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                        <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version)}}) no-repeat 0 0;background-size: cover;"></span>
                         <div class="column-list">
                           <h2>{{userinfo.realname}}<span></span></h2> 
                           <p>{{item.title | ellipsis(15) }}</p>
@@ -70,7 +70,7 @@
                     <li>
                       <a href="{{helper.urlgen('article',item.id | string)}}">
                           <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, adviser_detail.status) }}" alt="" class="column-pictuer"> -->
-                          <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                          <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version)}}) no-repeat 0 0;background-size: cover;"></span>
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
                             <p>{{item.title | ellipsis(15) }}</p>
@@ -82,7 +82,7 @@
                   <li>
                     <a href="{{helper.urlgen('article',item.id | string)}}">
                         <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, adviser_detail.status) }}" alt="" class="column-pictuer"> -->
-                        <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                        <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version)}}) no-repeat 0 0;background-size: cover;"></span>
                         <div class="column-list">
                           <h2>{{userinfo.realname}}<span></span></h2> 
                           <p>{{item.title | ellipsis(15) }}</p>
@@ -100,7 +100,7 @@
                     {% if loop.index == 1 %}
                       <li>
                         <a href="{{helper.urlgen('article',item.id | string)}}">
-                            <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                            <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version)}}) no-repeat 0 0;background-size: cover;"></span>
                             <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, userinfo.status) }}" alt="" class="column-pictuer"> -->
                             <div class="column-list">
                               <h2>{{userinfo.realname}}<span></span></h2> 
@@ -112,7 +112,7 @@
                     {%else%}
                     <li>
                       <a href="{{helper.urlgen('article',item.id | string)}}">
-                          <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                          <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version)}}) no-repeat 0 0;background-size: cover;"></span>
                           <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, userinfo.status) }}" alt="" class="column-pictuer"> -->
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
