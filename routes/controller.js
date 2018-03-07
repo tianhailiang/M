@@ -39,7 +39,11 @@ exports.home = function(req,res,next){
   async.parallel({
     lunbo_list: function (callback) {
       // 轮播图接口
-      cms.lunbo_list({"ad_page":"HOME","ad_seat":"SEAT1"},callback);
+      cms.lunbo_list({
+        "ad_page":"HOME",
+        "ad_seat":"SEAT1",
+        "cityid":area
+      },callback);
     },
     shouye:function(callback) {
         cms.mShouye({
