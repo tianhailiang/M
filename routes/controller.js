@@ -25,7 +25,8 @@ exports.home = function(req,res,next){
   if (req.params[0]) {
     var cityId = comfunc.getCityId(req.params[0]);
     if(!comfunc.cityid_invalidcheck(cityId)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     area = cityId;
     res.cookie("currentarea", cityId);
@@ -39,7 +40,11 @@ exports.home = function(req,res,next){
   async.parallel({
     lunbo_list: function (callback) {
       // 轮播图接口
-      cms.lunbo_list({"ad_page":"HOME","ad_seat":"SEAT1"},callback);
+      cms.lunbo_list({
+        "ad_page":"HOME",
+        "ad_seat":"SEAT1",
+        "cityid":area
+      },callback);
     },
     shouye:function(callback) {
         cms.mShouye({
@@ -626,7 +631,8 @@ exports.search_news = function (req, res, next) {
     var page = nquery && nquery.page ? nquery.page : 1;
     var keyword = nquery && nquery.q ? decodeURI(nquery.q) : '';
     if(!comfunc.cityid_invalidcheck(area)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         searcharticle: function (callback) { //1月12号产品确认搜索城市资讯
@@ -658,7 +664,8 @@ exports.search_advisor = function (req, res, next) {
     var page = nquery && nquery.page ? nquery.page : 1;
     var keyword = nquery && nquery.q ? decodeURI(nquery.q) : '';
     if(!comfunc.cityid_invalidcheck(area)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         searchadviser: function (callback) {
@@ -690,7 +697,8 @@ exports.news_list = function (req, res, next) {
   var order = nquery && nquery.order ? nquery.order : 1;
   console.log(country, nquery);
   if(!comfunc.cityid_invalidcheck(area)){
-    return res.redirect('/404');
+    next();
+    return false;
   }
   async.parallel({
     //最新资讯栏目----》列表
@@ -731,7 +739,8 @@ exports.successful_case = function (req, res, next) {
         data.login_nickname = login_a;
     }
     if(!comfunc.country_invalidcheck(country) || !comfunc.cityid_invalidcheck(area) || !comfunc.invalidNumberCheck(page)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         chenggonganli_list: function (callback) {
@@ -779,7 +788,8 @@ exports.product = function (req, res, next) {
         data.login_nickname = JSON.parse(req.cookies.login_ss);
     }
     if(!comfunc.country_invalidcheck(country) || !comfunc.cityid_invalidcheck(area) || !comfunc.invalidNumberCheck(page)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         liuxuefangan_list: function (callback) {
@@ -818,7 +828,8 @@ exports.cost_list = function (req, res, next) {
     var nquery = comfunc.getReqQuery(req.params[3]);
     var order = nquery && nquery.order ? nquery.order : 1;
     if(!comfunc.cityid_invalidcheck(area)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         liuxuefeiyong_list: function (callback) {
@@ -855,7 +866,8 @@ exports.visa_list = function (req, res, next) {
     var nquery = comfunc.getReqQuery(req.params[3]);
     var order = nquery && nquery.order ? nquery.order : 1;
     if(!comfunc.cityid_invalidcheck(area)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         qianzhengzhidao_list: function (callback) {
@@ -892,7 +904,8 @@ exports.glue_list = function (req, res, next) {
     var nquery = comfunc.getReqQuery(req.params[3]);
     var order = nquery && nquery.order ? nquery.order : "add_time";
     if(!comfunc.cityid_invalidcheck(area)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         shenqinggonglue_list: function (callback) {
@@ -929,7 +942,8 @@ exports.prereq_list = function (req, res, next) {
     var nquery = comfunc.getReqQuery(req.params[3]);
     var order = nquery && nquery.order ? nquery.order : "add_time";
     if(!comfunc.cityid_invalidcheck(area)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         shenqingtiaojian: function (callback) {
@@ -967,7 +981,8 @@ exports.school_list = function (req, res, next) {
     var nquery = comfunc.getReqQuery(req.params[2]);
     var order = nquery && nquery.order ? nquery.order : 1;
     if(!comfunc.cityid_invalidcheck(area)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         schoolpaiming: function (callback) {
@@ -1002,7 +1017,8 @@ exports.advisor_list = function (req, res, next) {
   var country = comfunc.getCountryIdParams(req.params[1]);
   var page = req.query.page || 1;
   if(!comfunc.country_invalidcheck(country) || !comfunc.cityid_invalidcheck(area) || !comfunc.invalidNumberCheck(page)){
-    return res.redirect('/404');
+    next();
+    return false;
   }
   async.parallel({//明星顾问列表
     advisor_list: function (callback) {
@@ -1033,7 +1049,8 @@ exports.study_abroad_activity = function (req, res, next) {
   var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
   var country = comfunc.getCountryIdParams(req.params[1]);
   if(!comfunc.country_invalidcheck(country) || !comfunc.cityid_invalidcheck(area)){
-    return res.redirect('/404');
+    next();
+    return false;
   }
   async.parallel({
     //成功案例
@@ -1104,7 +1121,8 @@ exports.study_abroad_activity_detail = function (req, res, next) {
     data.login_nickname = login_a;
   }
   if(!comfunc.cityid_invalidcheck(area)){
-    return res.redirect('/404');
+    next();
+    return false;
   }
 
   async.parallel({
@@ -1128,7 +1146,8 @@ exports.study_abroad_activity_detail = function (req, res, next) {
     data.pageType="活动";
     if(err || result.wenzhangdiye.code != 0){
       //log.info('mediadetail error ~',err,result.wenzhangdiye.code);
-      return res.redirect('/404');
+      next();
+      return false;
     }
     data.huodongdiye=data.wenzhangdiye.list;
     data.schoollist=data.huodongdiye.school_pic;
@@ -1183,7 +1202,8 @@ exports.news_detail = function (req, res, next) {
     },
   }, function (err, result){
     if(err || result.wenzhangdiye.code != 0){
-      return res.redirect('/404');
+      next();
+      return false;
     }
     data.wenzhangdiye =returnData(result.wenzhangdiye,'wenzhangdiye');
       async.parallel({
@@ -1471,7 +1491,8 @@ exports.gluedetail= function(req,res,next){
         log.info(data.tuijian)
         if(err || result.article.code != 0){
             //log.info('mediadetail error ~',err,result.wenzhangdiye.code);
-            return res.redirect('/404');
+            next();
+            return false;
         }
         data.memberId = data.article.article_info.uid; //获取顾问id
         data.catid = data.article.catid;
@@ -1545,7 +1566,8 @@ exports.visadetail= function(req,res,next){
         data.tuijian=data.tuijian.list;
         if(err || result.article.code != 0){
             //log.info('mediadetail error ~',err,result.wenzhangdiye.code);
-            return res.redirect('/404');
+            next();
+            return false;
         }
         data.memberId = data.article.article_info.uid; //获取顾问id
         data.catid = data.article.catid;
@@ -1618,7 +1640,8 @@ exports.prereqdetail= function(req,res,next){
         data.tuijian=data.tuijian.list;
         if(err || result.article.code != 0){
             //log.info('mediadetail error ~',err,result.wenzhangdiye.code);
-            return res.redirect('/404');
+            next();
+            return false;
         }
         data.memberId = data.article.article_info.uid; //获取顾问id
         data.catid = data.article.catid;
@@ -1693,7 +1716,8 @@ exports.costdetail= function(req,res,next){
         data.tuijian=data.tuijian.list;
         if(err || result.article.code != 0){
             //log.info('mediadetail error ~',err,result.wenzhangdiye.code);
-            return res.redirect('/404');
+            next();
+            return false;
         }
         data.memberId = data.article.article_info.uid; //获取顾问id
         data.catid = data.article.catid;
@@ -1749,7 +1773,8 @@ exports.schooldetail = function (req, res, next) {
         data.login_nickname = login_a;
     }
     if(!comfunc.country_invalidcheck(country) || !comfunc.cityid_invalidcheck(area) || !comfunc.invalidNumberCheck(articleId)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         //签证指南
@@ -1779,7 +1804,8 @@ exports.schooldetail = function (req, res, next) {
         data.tuijian=data.tuijian.list;
         if(err || result.wenzhangdiye.code != 0){
             //log.info('mediadetail error ~',err,result.wenzhangdiye.code);
-            return res.redirect('/404');
+            next();
+            return false;
         }
         data.country=country;
         data.route = 'school';
@@ -1969,7 +1995,8 @@ exports.schoollib = function (req, res, next) {
     data.login_nickname = login_a;
   }
   if(!comfunc.cityid_invalidcheck(area) || !comfunc.invalidNumberCheck(page)){
-    return res.redirect('/404');
+    next();
+    return false;
   }
   async.parallel({
     //院校库栏目----》列表
@@ -2020,7 +2047,8 @@ exports.schoollibdetail = function (req, res, next) {
     data.login_nickname = login_a;
   }
   if(!comfunc.country_invalidcheck(country) || !comfunc.cityid_invalidcheck(area) || !comfunc.invalidNumberCheck(page)){
-    return res.redirect('/404');
+    next();
+    return false;
   }
   async.parallel({
     wenzhangdiye: function (callback) {
@@ -2040,7 +2068,8 @@ exports.schoollibdetail = function (req, res, next) {
     data.wenzhangdiye =returnData(result.wenzhangdiye,'wenzhangdiye');
     data.daxuepaiming_list =returnData(result.daxuepaiming_list,'daxuepaiming_list');
     if(err || result.wenzhangdiye.code != 0){
-      return res.redirect('/404');
+      next();
+      return false;
     }
     data.country=country;
     data.route = 'schoollib';
@@ -2087,7 +2116,8 @@ exports.productdetail= function (req, res, next) {
     "id": articleId
   }, function(err,result){
     if (err || result.code != 0){
-      return res.redirect('/404');
+      next();
+      return false;
     }
     data.wenzhangdiye =returnData(result,'wenzhangdiye');
     data.cityId = data.wenzhangdiye.list.organid;
@@ -2143,7 +2173,8 @@ exports.info_news = function (req, res, next) {
     var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
     var country = comfunc.getCountryIdParams(req.params[1]);
     if(!comfunc.cityid_invalidcheck(area)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         zuixinzixun_list: function (callback) {
@@ -2182,7 +2213,8 @@ exports.info_cases = function (req, res, next) {
         data.login_nickname = login_a;
     }
     if(!comfunc.country_invalidcheck(country) || !comfunc.cityid_invalidcheck(area) || !comfunc.invalidNumberCheck(page)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         chenggonganli_list: function (callback) {
@@ -2228,7 +2260,8 @@ exports.info_product = function (req, res, next) {
         data.login_nickname = JSON.parse(req.cookies.login_ss);
     }
     if(!comfunc.country_invalidcheck(country) || !comfunc.cityid_invalidcheck(area) || !comfunc.invalidNumberCheck(page)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         liuxuefangan_list: function (callback) {
@@ -2273,7 +2306,8 @@ exports.info_schoollib = function (req, res, next) {
         data.login_nickname = login_a;
     }
     if(!comfunc.cityid_invalidcheck(area) || !comfunc.invalidNumberCheck(page)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         //院校库栏目----》列表
@@ -2309,7 +2343,8 @@ exports.info_visa = function (req, res, next) {
     var nquery = comfunc.getReqQuery(req.params[3]);
     var order = nquery && nquery.order ? nquery.order : 1;
     if(!comfunc.cityid_invalidcheck(area)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         qianzhengzhidao_list: function (callback) {
@@ -2345,7 +2380,8 @@ exports.info_cost = function (req, res, next) {
     var nquery = comfunc.getReqQuery(req.params[3]);
     var order = nquery && nquery.order ? nquery.order : 1;
     if(!comfunc.cityid_invalidcheck(area)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         liuxuefeiyong_list: function (callback) {
@@ -2381,7 +2417,8 @@ exports.info_school = function (req, res, next) {
     var nquery = comfunc.getReqQuery(req.params[3]);
     var order = nquery && nquery.order ? nquery.order : 1;
     if(!comfunc.cityid_invalidcheck(area)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         schoolpaiming: function (callback) {
@@ -2416,7 +2453,8 @@ exports.info_glue = function (req, res, next) {
     var nquery = comfunc.getReqQuery(req.params[3]);
     var order = nquery && nquery.order ? nquery.order : "add_time";
     if(!comfunc.cityid_invalidcheck(area)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         shenqinggonglue_list: function (callback) {
@@ -2452,7 +2490,8 @@ exports.info_prereq_list = function (req, res, next) {
     var nquery = comfunc.getReqQuery(req.params[3]);
     var order = nquery && nquery.order ? nquery.order : "add_time";
     if(!comfunc.cityid_invalidcheck(area)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         shenqingtiaojian: function (callback) {
@@ -2487,7 +2526,8 @@ exports.info_study_abroad_activity = function (req, res, next) {
     var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
     var country = comfunc.getCountryIdParams(req.params[1]);
     if(!comfunc.country_invalidcheck(country) || !comfunc.cityid_invalidcheck(area)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({
         // chenggonganli: function (callback) {
@@ -2528,7 +2568,8 @@ exports.info_advisor_list = function (req, res, next) {
     var country = req.query.n || 0;
     var page = req.query.page || 1;
     if(!comfunc.country_invalidcheck(country) || !comfunc.cityid_invalidcheck(area) || !comfunc.invalidNumberCheck(page)){
-        return res.redirect('/404');
+        next();
+        return false;
     }
     async.parallel({//明星顾问列表
         advisor_list: function (callback) {
