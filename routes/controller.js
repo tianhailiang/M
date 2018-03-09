@@ -1239,6 +1239,64 @@ exports.news_detail = function (req, res, next) {
           res.render('news_detail', data);
       })
   });
+};/*资讯底页（rongfa）*/
+exports.case_detail = function (req, res, next) {
+  log.debug( '案例底页', req.params);
+  var data = [];
+  var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
+    if(req.cookies.login_ss != undefined){
+        data.login_info =JSON.parse(req.cookies.login_ss);
+    }else{
+        data.login_info ={};
+        data.login_info.uid = 0;
+    }
+    data.article_id = req.params.id; //获取文章id
+  async.parallel({
+    wenzhangdiye: function (callback) {
+      cms.article ({
+          "u_id":data.login_info.uid,
+          "article_id":data.article_id
+      }, callback);
+    },
+  }, function (err, result){
+    if(err || result.wenzhangdiye.code != 0){
+      next();
+      return false;
+    }
+    data.wenzhangdiye =returnData(result.wenzhangdiye,'wenzhangdiye');
+      async.parallel({
+          //获取用户信息（普通用户，顾问，参赞）
+          userinfo:function(callback){
+              cms.userinfo({
+                  "u_id":data.login_info.uid,
+                  "to_uid":data.wenzhangdiye.article_info.uid
+              },callback);
+          }
+      },function (err,result) {
+          data.userinfo =returnData(result.userinfo,'userinfo');
+          data.path = 'NEWSDETAIL';
+          data.pageType = '最新资讯';
+          data.pageroute="news";
+          data.id = data.article_id;
+          var pagekey = null;
+          if(data.wenzhangdiye.article_info.type == 1){
+              pagekey = 'ADVISOR_P_CASE_DETAIL';
+          }else if(data.wenzhangdiye.article_info.type == 2){
+              pagekey = 'ADVISOR_P_ARTICLE_DETAIL';
+          }
+          data.tdk = {
+              pagekey: pagekey, //key 同意规定，具体找郭亚超
+              cityid: area, //cityid
+              // nationid: country,//nationi
+              title: data.wenzhangdiye.article_info.title,
+              // description: data.wenzhangdiye.article_info.description,
+              description: helperfunc.cut(data.wenzhangdiye.article_info.message,80),
+              keywords: data.wenzhangdiye.article_info.title
+          };
+          data.esikey = esihelper.esikey();
+          res.render('news_detail', data);
+      })
+  });
 };
 
 //顾问底页(rongfa)
@@ -1402,56 +1460,56 @@ exports.canzan_list = function (req, res, next) {
   });
 };
 /*成功案例底页*/
-exports.case_detail = function(req,res,next){
-    log.debug('案例底页（用户视角）~~~thl')
-    var data = {};
-    var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
-    var country = comfunc.getCountryIdParams(req.params[1]);
-    data.article_id = req.params.id;
-    async.parallel({
-        //文章详情
-        article:function(callback){
-            cms.article({
-                "u_id":"0",
-                "article_id":data.article_id,
-            },callback);
-        },
-        chenggonganli_list: function (callback) {
-            cms.channel_list({
-                "country_id": country,
-                "category_id": 17,
-                "city_id": area,
-                // "edu_id": edu,
-                "order":"add_time"+" desc",
-                "per_page": "5",
-                "page": 1,
-            }, callback);
-        },
-    },function(err, result){
-        data.article = returnData(result.article,'article');
-        data.tuijian=returnData(result.chenggonganli_list,'chenggonganli_list');
-        data.tuijian=data.tuijian.list;
-        // log.info(data.article)
-        data.pageType="案例";
-        data.pageroute="case";
-        log.info(data.article)
-        var  pagekey =null;
-        // if(data.userinfo.status == 1){
-        //     pagekey = 'PREAD_CASE_DETAIL';
-        // }else if(data.userinfo.status == 0){
-        //     pagekey = 'ADVISOR_P_CASE_DETAIL';
-        // }
-        data.tdk = {
-            pagekey: pagekey,
-            cityid: area,
-            // realname: data.login_info.realname,
-            // title: data.article.article_info.title,
-            // description: data.article.article_info.description,
-            // keywords: data.article.article_info.keywords,
-        };
-        res.render('case_detail', data);
-    });
-};
+// exports.case_detail = function(req,res,next){
+//     log.debug('案例底页（用户视角）~~~thl')
+//     var data = {};
+//     var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
+//     var country = comfunc.getCountryIdParams(req.params[1]);
+//     data.article_id = req.params.id;
+//     async.parallel({
+//         //文章详情
+//         article:function(callback){
+//             cms.article({
+//                 "u_id":"0",
+//                 "article_id":data.article_id,
+//             },callback);
+//         },
+//         chenggonganli_list: function (callback) {
+//             cms.channel_list({
+//                 "country_id": country,
+//                 "category_id": 17,
+//                 "city_id": area,
+//                 // "edu_id": edu,
+//                 "order":"add_time"+" desc",
+//                 "per_page": "5",
+//                 "page": 1,
+//             }, callback);
+//         },
+//     },function(err, result){
+//         data.article = returnData(result.article,'article');
+//         data.tuijian=returnData(result.chenggonganli_list,'chenggonganli_list');
+//         data.tuijian=data.tuijian.list;
+//         // log.info(data.article)
+//         data.pageType="案例";
+//         data.pageroute="case";
+//         log.info(data.article)
+//         var  pagekey =null;
+//         // if(data.userinfo.status == 1){
+//         //     pagekey = 'PREAD_CASE_DETAIL';
+//         // }else if(data.userinfo.status == 0){
+//         //     pagekey = 'ADVISOR_P_CASE_DETAIL';
+//         // }
+//         data.tdk = {
+//             pagekey: pagekey,
+//             cityid: area,
+//             // realname: data.login_info.realname,
+//             // title: data.article.article_info.title,
+//             // description: data.article.article_info.description,
+//             // keywords: data.article.article_info.keywords,
+//         };
+//         res.render('case_detail', data);
+//     });
+// };
 //申请攻略落地页 专栏底页
 exports.gluedetail= function(req,res,next){
     log.debug('专栏底页 (用户视角)~~~thl');
