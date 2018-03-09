@@ -16,11 +16,11 @@
 <div class="swiper-container" id="swiper-container">
   <div class="swiper-wrapper">
     {% for item in lunbo_list %}
-    <div class="swiper-slide">
-        <a href="{{item.linkurl}}" >
-    	  <img class="banner-img" src="{{item.imageurl}}" alt="{{item.alt}}">
-        </a>
-    </div>
+        <div class="swiper-slide">
+            <a href="{{item.linkurl}}" >
+        	  <img class="banner-img" src="{{item.imageurl}}" alt="{{item.alt}}">
+            </a>
+        </div>
     {% endfor %}
   </div>
   <div class="swiper-pagination"></div>

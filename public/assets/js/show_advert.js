@@ -9,6 +9,9 @@ $(function(){
 });
 
 var AD_PAGE_NAME = $("#pagekey").val();
+if(AD_PAGE_NAME == 'PROFILE'){
+    AD_PAGE_NAME = 'MOBILE_PROFILE';
+}
 var AD_CITY_ID = $("#page_cityid").val();
 function show_advert() {
     //加载广告位图片
