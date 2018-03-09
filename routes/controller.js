@@ -1362,10 +1362,9 @@ exports.adviser_detail = function (req, res, next) {
             data.pageType = '资讯';
             data.pageroute = 'news';
             data.tdk = {
-                pagekey: 'ADVISOR_CENTER', //key
+                pagekey: 'ADVISOR_P_MAIN', //key
                 realname: data.userinfo.realname
             };
-            // log.info(data.caselist)
             res.render('adviser_detail', data);
         })
     });
