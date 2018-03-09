@@ -41,7 +41,7 @@ exports.home = function(req,res,next){
     lunbo_list: function (callback) {
       // 轮播图接口
       cms.lunbo_list({
-        "ad_page":"HOME",
+        "ad_page":"MOBILE_HOME",
         "ad_seat":"SEAT1",
         "cityid":area
       },callback);
