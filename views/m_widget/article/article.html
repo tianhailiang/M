@@ -34,7 +34,7 @@
 	                <span>{{item.user_info.realname}}</span>
 	                <i></i>
 	            </a>
-	            <a href="{{helper.urlgen('article',item.id|string)}}" class="adviser-title-box" >
+	            <a href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}" class="adviser-title-box" >
 		            <div class="adviser-title">
 		               {{item.title |shorten(24)}}
 		            </div>
@@ -56,7 +56,7 @@
 	                <span>{{item.user_info.realname}}</span>
 	                <i></i>
 	            </a>
-	             <a href="{{helper.urlgen('article',item.id|string)}}" class="adviser-title-box" >
+	             <a href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}" class="adviser-title-box" >
 		            <div class="adviser-title">
 		                {{item.title |shorten(24)}}
 		            </div>
@@ -78,7 +78,7 @@
 	                <span>{{item.user_info.realname}}</span>
 	                <i></i>
 	            </a>
-	            <a href="{{helper.urlgen('article',item.id|string)}}" class="adviser-title-box" >
+	            <a href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}" class="adviser-title-box" >
 		            <div class="adviser-title"> 
 		               {{item.title |shorten(24)}}
 		            </div>
@@ -100,7 +100,7 @@
 	                <span>{{item.user_info.realname}}</span>
 	                <i></i>
 	            </a>
-	            <a href="{{helper.urlgen('article',item.id|string)}}" class="adviser-title-box" >
+	            <a href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}" class="adviser-title-box" >
 		            <div class="adviser-title">
 		               {{item.title |shorten(24)}}
 		            </div>

@@ -55,7 +55,8 @@
 .team-top h2{
     height:17px;
     border-left:2.5px solid #d51821;
-    padding:0 10px 0 7px;
+    /*padding:0 10px 0 7px;*/
+    padding: 0 0 7px 10px;
     font-size: 15px;
     color:#333;
     font-weight: bold;

@@ -68,7 +68,7 @@
                   {% for item in caselist.list%}
                   {% if loop.index == 1 %}
                     <li>
-                      <a href="{{helper.urlgen('article',item.id | string)}}">
+                      <a href="{{helper.urlgen('case',item.id | string)}}">
                           <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, adviser_detail.status) }}" alt="" class="column-pictuer"> -->
                           <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
                           <div class="column-list">
@@ -80,7 +80,7 @@
                     </li>
                   {%else%}
                   <li>
-                    <a href="{{helper.urlgen('article',item.id | string)}}">
+                    <a href="{{helper.urlgen('case',item.id | string)}}">
                         <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, adviser_detail.status) }}" alt="" class="column-pictuer"> -->
                         <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
                         <div class="column-list">
@@ -99,7 +99,7 @@
                   {% for item in jinxuanlist.list%}
                     {% if loop.index == 1 %}
                       <li>
-                        <a href="{{helper.urlgen('article',item.id | string)}}">
+                        <a href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}">
                             <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
                             <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, userinfo.status) }}" alt="" class="column-pictuer"> -->
                             <div class="column-list">
@@ -111,7 +111,7 @@
                       </li>
                     {%else%}
                     <li>
-                      <a href="{{helper.urlgen('article',item.id | string)}}">
+                      <a href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}">
                           <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
                           <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, userinfo.status) }}" alt="" class="column-pictuer"> -->
                           <div class="column-list">
