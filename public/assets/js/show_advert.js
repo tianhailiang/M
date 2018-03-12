@@ -27,8 +27,8 @@ function show_advert() {
                     for(var j in imageSetting) {
                         if(imageSetting[j].imageurl == undefined){continue;}
                         var liHtml = '<li>';
-                        liHtml += '<a rel="nofollow" data-pid="'+imageSetting[j].pid+'" href="'+imageSetting[j].linkurl+'" target="_blank">';
-                        liHtml += '<img src="'+IMG_URL+imageSetting[j].imageurl+'" alt="'+imageSetting[j].alt+'" style="width:'+ val[i].width +'px;height:'+ val[i].height +'px;display:block;overflow:hidden;"/>';
+                        liHtml += '<a rel="nofollow" data-pid="'+imageSetting[j].pid+'" href="'+imageSetting[j].linkurl+'" >';
+                        liHtml += '<img src="'+IMG_URL+imageSetting[j].imageurl+'" alt="'+imageSetting[j].alt+'" />';
                         liHtml += '</a>';
                         liHtml += '</li>';
 
@@ -44,11 +44,11 @@ function show_advert() {
                 }else{
                     for(var j in imageSetting){
                         if(imageSetting[j].imageurl == undefined){continue;}
-                        html += '<a rel="nofollow" data-pid="'+imageSetting[j].pid+'" href="'+imageSetting[j].linkurl+'" target="_blank">';
+                        html += '<a rel="nofollow" data-pid="'+imageSetting[j].pid+'" href="'+imageSetting[j].linkurl+'" >';
                         if(AD_PAGE_NAME == 'PROFILE' && val[i].ad_seat == 'SEAT1'){
-                            html += "<img src='"+IMG_URL+imageSetting[j].imageurl+"' alt='"+imageSetting[j].alt+"' style='display:block;overflow:hidden;'/>";
+                            html += "<img src='"+IMG_URL+imageSetting[j].imageurl+"' alt='"+imageSetting[j].alt+"' />";
                         }else{
-                            html += "<img src='"+IMG_URL+imageSetting[j].imageurl+"' alt='"+imageSetting[j].alt+"' style='width:"+ val[i].width +"px;height:"+ val[i].height +"px;display:block;overflow:hidden;'/>";
+                            html += "<img src='"+IMG_URL+imageSetting[j].imageurl+"' alt='"+imageSetting[j].alt+"' />";
                         }
 
                         html += '</a>';
