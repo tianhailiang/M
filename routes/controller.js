@@ -1,7 +1,6 @@
 
 var cms = require('../model/cms');
 var async = require('async');
-var cookie = require('cookie-parser');
 var log4js = require('../log/log');
 var log = log4js.getLogger();
 var esihelper = require('../middleware/esihelper');
@@ -29,7 +28,7 @@ exports.home = function(req,res,next){
         return false;
     }
     area = cityId;
-    res.cookie("currentarea", cityId);
+    res.cookie("currentarea", cityId,{expires: new Date(Date.now() + 90000000000)});
   }
   if(req.params[2]){
     [data.country=1] = [comfunc.getCountryIdParams(req.params[2].replace('/', ''))];
