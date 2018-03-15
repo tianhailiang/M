@@ -314,7 +314,12 @@
             if(status == 1 || version == 0 || version == null){
                 return 'http://images.jjl.cn/avatar/default_avatar_small.jpg'
             }else{
-                return ajaxUrlPrefix.imageshost + '/avatar/' + dir1+'/'+dir2+'/'+dir3+'/'+uid.substr(-2)+"_avatar_"+size+"_"+ version +".jpg";
+                if (version == 1) {
+                    return ajaxUrlPrefix.imageshost + '/avatar/' + dir1+'/'+dir2+'/'+dir3+'/'+uid.substr(-2)+"_avatar_"+size+".jpg";
+                }
+                else {
+                    return ajaxUrlPrefix.imageshost + '/avatar/' + dir1+'/'+dir2+'/'+dir3+'/'+uid.substr(-2)+"_avatar_"+size+"_"+ version +".jpg";
+                }
             }
         },
         //根据id获取学历名
