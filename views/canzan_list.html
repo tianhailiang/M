@@ -69,7 +69,7 @@ function addNewslist (canzan_list) {
     var canzan_html = '';
     $.each(canzan_list, function (i, canzanitem, arr) {
         canzan_html += '<li>'+'<a href="'+fn.urlgen("canzan", canzanitem.uid.toString())+'">'+
-  				'<img src="'+fn.avaterimg(canzanitem.uid, 'big')+'" alt="{{helper.realname}}">'+
+  				'<img src="'+fn.avaterimg(canzanitem.uid, 'big',canzanitem.status,canzanitem.version)+'" alt="{{helper.realname}}">'+
   				'<div class="acticle-itmes">'+
   					'<p><strong>'+canzanitem.realname+'</strong><span>'+canzanitem.job_number+'</span></p>'+
   					'<p class="itmes-clamp">'+canzanitem.introduce+'</p>'+
