@@ -120,6 +120,7 @@ gulp.task('server', ["node"], function() {
 gulp.task('revCss',function(){
   return gulp.src('public/**/*.css')
     .pipe(rev())
+    .pipe(gulp.dest('dist/public'))
     .pipe(rev.manifest())
     .pipe(gulp.dest('dist/rev/css'));
 })
@@ -129,6 +130,7 @@ gulp.task('revCss',function(){
 gulp.task('revJs',function(){
   return gulp.src('public/**/*.js')
     .pipe(rev())
+    .pipe(gulp.dest('dist/public'))
     .pipe(rev.manifest())
     .pipe(gulp.dest('dist/rev/js'));
 })
