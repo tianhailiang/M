@@ -29,6 +29,7 @@ exports.home = function(req,res,next){
     }
     area = cityId;
     res.cookie("currentarea", cityId,{expires: new Date(Date.now() + 90000000000)});
+    res.cookie("currentareast",comfunc.getCityEn(cityId),{expires: new Date(Date.now() + 90000000000)});
   }
   if(req.params[2]){
     [data.country=1] = [comfunc.getCountryIdParams(req.params[2].replace('/', ''))];
