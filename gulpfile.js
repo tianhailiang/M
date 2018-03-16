@@ -99,23 +99,21 @@ gulp.task('server', ["node"], function() {
 //rev controll
 //css generate verison in dist/rev/css/*.json
 gulp.task('revCss',function(){
-  return gulp.src('public/**/*.css')
+  return gulp.src(['public/**/*.css','!' + 'public/dep{,/**}'])
     .pipe(rev())
     .pipe(gulp.dest('dist/public'))
     .pipe(rev.manifest())
     .pipe(gulp.dest('dist/rev/css'));
 })
 
-
 //js generate verison in dist/rev/js/*.json
 gulp.task('revJs',function(){
-  return gulp.src('public/**/*.js')
+  return gulp.src(['public/**/*.js','!' + 'public/dep{,/**}'])
     .pipe(rev())
     .pipe(gulp.dest('dist/public'))
     .pipe(rev.manifest())
     .pipe(gulp.dest('dist/rev/js'));
 })
-
 
 //check fileinfo: rev-manifest.json in dist/rev,final replace js/css in html;
 gulp.task('revProduct',function(){
@@ -124,9 +122,9 @@ gulp.task('revProduct',function(){
     .pipe(gulp.dest('dist/views'));
 });
 
-gulp.task('images', function() {
-  return gulp.src(['public/assets/img/*.*'])
-    .pipe(gulp.dest('dist/public/assets/img'));
+gulp.task('distcopy', function(cb) {
+  return gulp.src(['public/**/*','!' + 'public/assets/css{,/**}','!' + 'public/assets/js{,/**}'])
+    .pipe(gulp.dest('dist/public'));
 });
 
 gulp.task('revClean', function(cb) {
@@ -136,5 +134,5 @@ gulp.task('revClean', function(cb) {
 gulp.task('default', ['clean', 'minifycss', 'minifyjs']);
 
 // build version info in html
-gulp.task('build', gulpSequence('revClean', ['revCss', 'revJs'],'revProduct','images'));
+gulp.task('build', gulpSequence('revClean', ['revCss', 'revJs'],'revProduct','distcopy'));
 
