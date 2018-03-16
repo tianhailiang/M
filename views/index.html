@@ -141,21 +141,21 @@
                 {% if loop.index < 8%}
 		       	    <li>
 		                <a href="{{helper.urlgen('branch_home','c='+tdk.cityid,'n='+item.id)}}" >
-			       	   	   <img src="{{helper.cdnhost}}/assets/img/country/home_icon_{{item.imgurl}}.png" >
+			       	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
 			       	   	   <span class="{% if item.id ==country %}active{% endif %}">{{item.name}}</span>
 		                </a>
 		       	    </li>
                 {% elif loop.index ==8  %}
 		            <li id="gd">
 		                <a href="javascript:void(0);" >
-			       	   	   <img src="{{helper.cdnhost}}/assets/img/country/home_icon_{{item.imgurl}}.png" >
+			       	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
 			       	   	   <span>{{item.name}}</span>
 		                </a>
 		       	    </li>
 		       	{% else %}
 		            <li class="gd-li" style="{% if country >51 %}display: block;{% endif %}">
 		                <a href="{{helper.urlgen('branch_home','c='+tdk.cityid,'n='+item.id)}}" >
-		           	   	   <img src="{{helper.cdnhost}}/assets/img/country/home_icon_{{item.imgurl}}.png" >
+		           	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
 		           	   	   <span class="{% if item.id ==country %}active{% endif %}">{{item.name}}</span>
 		                </a>    
 		       	   </li>

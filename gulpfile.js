@@ -126,7 +126,6 @@ gulp.task('revProduct',function(){
 
 gulp.task('images', function() {
   return gulp.src(['public/assets/img/*.*'])
-    .pipe(revCollector())
     .pipe(gulp.dest('dist/public/assets/img'));
 });
 
