@@ -35,21 +35,9 @@ gulp.task("node", function() {
 });
 
 /*
-* 打包
-* */
-gulp.task('testHtmlmin', function () {
-  var options = {
-    removeComments: true,//清除HTML注释
-    collapseWhitespace: true,//压缩HTML
-    collapseBooleanAttributes: true,//省略布尔属性的值 <input checked="true"/> ==> <input />
-    removeEmptyAttributes: true,//删除所有空格作属性值 <input id="" /> ==> <input />
-    removeScriptTypeAttributes: true,//删除<script>的type="text/javascript"
-    removeStyleLinkTypeAttributes: true//删除<style>和<link>的type="text/css"
-  };
-  return gulp.src(['views/*/*.html','views/*.html'])
-    .pipe(htmlmin(options))
-    .pipe(gulp.dest('bucketDist'));
-});
+ * 打包
+ * 
+ */
 
 gulp.task('minifycss', function() {
   return gulp.src(['views/m_widget/*/*.css']) //压缩的文件
@@ -87,13 +75,6 @@ gulp.task('minifyjs',function(){
 });
 gulp.task('clean', function(cb) {
   return del([ 'public/assets/css/nodemain.min.css', 'public/assets/js/nodemain.min.js'], cb)
-});
-gulp.task('images', function() {
-  return gulp.src(['public/statics/jjl/img/*.*', 'public/statics/jjl/images/*.*'])
-    .pipe(imagemin({
-      progressive: false
-    }))
-    .pipe(gulp.dest('public/bucketDist/img'));
 });
 
 gulp.task('server', ["node"], function() {
@@ -141,7 +122,13 @@ gulp.task('revProduct',function(){
   return gulp.src(['dist/rev/**/*.json','views/**/*.html'])
     .pipe(revCollector())
     .pipe(gulp.dest('dist/views'));
-})
+});
+
+gulp.task('images', function() {
+  return gulp.src(['public/assets/img/*.*'])
+    .pipe(revCollector())
+    .pipe(gulp.dest('dist/public/assets/img'));
+});
 
 gulp.task('revClean', function(cb) {
   return del([ 'dist/rev/*','dist/views/*'], cb)
@@ -150,5 +137,5 @@ gulp.task('revClean', function(cb) {
 gulp.task('default', ['clean', 'minifycss', 'minifyjs']);
 
 // build version info in html
-gulp.task('build', gulpSequence('revClean', ['revCss', 'revJs'],'revProduct'));
+gulp.task('build', gulpSequence('revClean', ['revCss', 'revJs'],'revProduct','images'));
 
