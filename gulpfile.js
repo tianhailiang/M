@@ -130,7 +130,7 @@ gulp.task('images', function() {
 });
 
 gulp.task('revClean', function(cb) {
-  return del([ 'dist/rev/*','dist/views/*'], cb)
+  return del([ 'dist/rev/*','dist/views/*','dist/public/*'], cb)
 });
 
 gulp.task('default', ['clean', 'minifycss', 'minifyjs']);
