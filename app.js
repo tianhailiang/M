@@ -14,9 +14,7 @@ var midesi = require('./middleware/midesi');
 var config = require('./config/config');
 var viewcache = require('./middleware/viewcache');
 var url_rewrite = require("./middleware/url_decode");
-
 var tdk_monitor = require('./tdk/tdk_monitor');
-var link_monitor = require('./tdk/link_monitor');
 app.use(favicon(path.join(__dirname,'favicon.ico')));
 
 var viewspath = 'views';
@@ -49,10 +47,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+if(process.env.NODE_ENV == 'development'){
+  app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
+  app.use('/dep', express.static(path.join(__dirname, 'public/dep')));
+}else if(process.env.NODE_ENV == 'production'){
+  app.use('/assets', express.static(path.join(__dirname, 'dist/public/assets')));
+  app.use('/dep', express.static(path.join(__dirname, 'dist/public/dep')));
+}
 
-app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
-app.use('/dep', express.static(path.join(__dirname, 'public/dep')));
-app.use('/views', express.static(path.join(__dirname, 'views')));
 /*开发环境 ajax允许跨域*/
 if (config.version == 'development') {
     app.all('*', function(req, res, next) {

@@ -429,7 +429,7 @@
       //选取城市
       var currentarea = $(this).attr("data-id");
       // console.log(currentarea)
-      $.cookie('currentarea', currentarea, { path: '/'});
+      $.cookie('currentarea', currentarea,{expires: 365,path:'/'});
       window.location.href= fn.urlgen('branch_home','c=' + currentarea);
     });
     $(".city_list li").each(function(i){
@@ -456,7 +456,7 @@
     $('#selByIp').on('click', function () {
       //确定按钮
       closePopup();
-      $.cookie('currentarea', _selByIp_code, {path: '/'});
+      $.cookie('currentarea', _selByIp_code,{expires:365,path:'/'});
       window.location.href= fn.urlgen('branch_home','c=' +  _selByIp_code);
     });
     $('#selBySelf').on('click', function () {

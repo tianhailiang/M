@@ -32,7 +32,7 @@
 	display: block;
 	width:15px;
 	height:12px;
-	background:url(./../../assets/images/home_tab_service.png) no-repeat 0 0;
+	background:url(./../../assets/img/home_tab_service.png) no-repeat 0 0;
 	background-size: 15px 12px;
 	margin-right: 7.5px;
 }
@@ -46,7 +46,7 @@
 	display: block;
 	width:12px;
 	height:12px;
-	background:url(./../../assets/images/home_tab_assess.png) no-repeat 0 0;
+	background:url(./../../assets/img/home_tab_assess.png) no-repeat 0 0;
 	background-size: 12px 12px;
 	margin-right:8px;
 }
@@ -55,7 +55,7 @@
 	display: block;
 	width:11px;
 	height:12px;
-	background:url(./../../assets/images/home_tab_phone.png) no-repeat 0 0;
+	background:url(./../../assets/img/home_tab_phone.png) no-repeat 0 0;
 	background-size:11px 12px;
 	margin-right: 7.5px; 
 }
