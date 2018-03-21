@@ -29,40 +29,44 @@
     </div>
     <div class="tabContent">
           <ul class="tab-controll">
-            <li data-index="0" class="tabs-current"><a href="javascript:;">专栏</a></li>
+            <li data-index="0"><a href="{{helper.urlgen(userinfo.uid | string)}}">专栏</a></li>
             <li data-index="1"><a href="{{helper.urlgen(userinfo.uid | string, 'case')}}">案例</a></li>
-            <li data-index="2"><a href="{{helper.urlgen(userinfo.uid | string, 'hot')}}">精选</a></li>
-          </ul
+            <li data-index="2" class="tabs-current"><a href="javascript:;">精选</a></li>
+          </ul>
           <div class="tabitems">
             <div class="items-gruop">
-                <ul class="column-news">
-                  {% for item in zhuanlanlist.list%}
-                  {% if loop.index == 1 %}
+              <ul class="column-news anli-column">
+                  {% for item in jinxuanlist.list%}
+                    {% if loop.index == 1 %}
+                      <li>
+                        <a href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}">
+                            <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                            <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, userinfo.status) }}" alt="" class="column-pictuer"> -->
+                            <div class="column-list">
+                              <h2>{{userinfo.realname}}<span></span></h2> 
+                              <p>{{item.title | ellipsis(15) }}</p>
+                              <p class="gw-active">{{item.tag_list | ellipsis(4)}}</p>
+                            </div>
+                        </a>      
+                      </li>
+                    {%else%}
                     <li>
-                      <a href="{{helper.urlgen('article',item.id | string)}}">
+                      <a href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}">
                           <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                          <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, userinfo.status) }}" alt="" class="column-pictuer"> -->
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
                             <p>{{item.title | ellipsis(15) }}</p>
-                            <p class="gw-active">{{item.tag_list}}</p>
+                            <p style="color:#999;">{{item.tag_list}}</p>
                           </div>
                       </a>      
                     </li>
-                  {%else%}
-                  <li>
-                    <a href="{{helper.urlgen('article',item.id | string)}}">
-                        <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
-                        <div class="column-list">
-                          <h2>{{userinfo.realname}}<span></span></h2> 
-                          <p>{{item.title | ellipsis(15) }}</p>
-                          <p style="color:#999">{{item.tag_list}}</p>
-                        </div>
-                    </a>      
-                  </li>
-                  {%endif%}
+                    {%endif%}
                   {% endfor %}
-                </ul>
+              </ul>
             </div>
+          </div>
+    </div>
   </section>
     <!--footer start-->
     {% include "m_widget/footer/footer.html" %}
@@ -71,5 +75,15 @@
 {% include "m_widget/slidebar/slidebar.html" %}
 <!-- ======乐语底栏======= -->
 {% include 'm_widget/funtalk/funtalk1.html' %}
+<script>
+    $(function(){
+      $(".tab-controll li").on('click',function(){
+        var $dataIndex = $(this).data('index')
+        $(".tab-controll li").removeClass('tabs-current')
+        $(this).addClass('tabs-current')
+        $(".tabitems .items-gruop").eq($dataIndex).show().siblings().hide()
+      })
+  })
+</script>
 </body>
 </html>
