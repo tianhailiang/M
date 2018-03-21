@@ -28,13 +28,13 @@
     display: block;
     width:21px;
     height:14px;
-    background:url(../../../assets/images/home_bar_menu.png) no-repeat 0 0;
+    background:url(../../../assets/img/home_bar_menu.png) no-repeat 0 0;
     background-size: 21px 14px;
   }
   .header-logo{
     width:86px;
     height:24.5px;
-    background:url(../../../assets/images/home_bar_logo.png) no-repeat 0 0;
+    background:url(../../../assets/img/home_bar_logo.png) no-repeat 0 0;
     background-size:86px 24.5px;
   }
   .header-jjl{
@@ -276,7 +276,7 @@
   .sidebar-logo{
     width:169px;
     height:53.5px;
-    background:url(../../../assets/images/home_bar_logo2.png) no-repeat 0 0;
+    background:url(../../../assets/img/home_bar_logo2.png) no-repeat 0 0;
     background-size: 169px 53.5px;
     margin-top: 29px;
     margin-bottom: 25px;
@@ -297,7 +297,7 @@
       display: block;
       width:15px;
       height:15px;
-      background:url(../../../assets/images/home_icon_sydj.png) no-repeat 0 0;
+      background:url(../../../assets/img/home_icon_sydj.png) no-repeat 0 0;
       background-size: 15px 15px;
       margin-right: 10px;
   }
@@ -320,7 +320,7 @@
     width:15px;
     height:15px;
     display: block;
-    background:url(../../../assets/images/home_sideslip_sq@2x.png) no-repeat 0 0;
+    background:url(../../../assets/img/home_sideslip_sq@2x.png) no-repeat 0 0;
     background-size: 15px 15px;
     margin-right: 10px;
   }
@@ -328,7 +328,7 @@
     width:15px;
     height:15px;
     display: block;
-    background:url(../../../assets/images/home_sideslip_lj@2x.png) no-repeat 0 0;
+    background:url(../../../assets/img/home_sideslip_lj@2x.png) no-repeat 0 0;
     background-size: 15px 15px;
     margin-right: 10px;
   }
@@ -336,7 +336,7 @@
     width:15px;
     height:15px;
     display: block;
-    background:url(../../../assets/images/home_aircraft.png) no-repeat 0 0;
+    background:url(../../../assets/img/home_aircraft.png) no-repeat 0 0;
     background-size: 15px 15px;
     margin-right: 10px;
   }

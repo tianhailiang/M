@@ -8,7 +8,7 @@
   {% include "m_widget/top/top.html" %}
   <section id="guwenDetails">
     <div class="people-info">
-      <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, adviser_detail.status) }}" class="people-img" alt="{{adviser_detail.realname}}顾问">
+      <img src="{{ helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version) }}" class="people-img" alt="{{adviser_detail.realname}}顾问">
       <div class="people-details">
         <div class="people-name"><strong>{{userinfo.realname}}</strong><span style="color:#ecc580;">{{userinfo.organid | getCity()}}分公司</span></div>
         <div class="people-email">
@@ -32,7 +32,7 @@
             <li data-index="0" class="tabs-current"><a href="javascript:;">专栏</a></li>
             <li data-index="1"><a href="{{helper.urlgen(userinfo.uid | string, 'case')}}">案例</a></li>
             <li data-index="2"><a href="{{helper.urlgen(userinfo.uid | string, 'hot')}}">精选</a></li>
-          </ul
+          </ul>
           <div class="tabitems">
             <div class="items-gruop">
                 <ul class="column-news">
@@ -40,7 +40,7 @@
                   {% if loop.index == 1 %}
                     <li>
                       <a href="{{helper.urlgen('article',item.id | string)}}">
-                          <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                          <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version)}}) no-repeat 0 0;background-size: cover;"></span>
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
                             <p>{{item.title | ellipsis(15) }}</p>
@@ -51,7 +51,7 @@
                   {%else%}
                   <li>
                     <a href="{{helper.urlgen('article',item.id | string)}}">
-                        <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                        <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version)}}) no-repeat 0 0;background-size: cover;"></span>
                         <div class="column-list">
                           <h2>{{userinfo.realname}}<span></span></h2> 
                           <p>{{item.title | ellipsis(15) }}</p>
@@ -63,6 +63,8 @@
                   {% endfor %}
                 </ul>
             </div>
+        </div>
+    </div>
   </section>
     <!--footer start-->
     {% include "m_widget/footer/footer.html" %}
