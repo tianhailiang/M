@@ -8,7 +8,7 @@
   {% include "m_widget/top/top.html" %}
   <section id="guwenDetails">
     <div class="people-info">
-      <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, adviser_detail.status) }}" class="people-img" alt="{{adviser_detail.realname}}顾问">
+      <img src="{{ helper.avaterimg(userinfo.uid, 'small', userinfo.status, userinfo.version) }}" class="people-img" alt="{{adviser_detail.realname}}顾问">
       <div class="people-details">
         <div class="people-name"><strong>{{userinfo.realname}}</strong><span style="color:#ecc580;">{{userinfo.organid | getCity()}}分公司</span></div>
         <div class="people-email">
