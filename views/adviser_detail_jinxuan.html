@@ -40,7 +40,7 @@
                     {% if loop.index == 1 %}
                       <li>
                         <a href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}">
-                            <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                            <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version)}}) no-repeat 0 0;background-size: cover;"></span>
                             <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, userinfo.status) }}" alt="" class="column-pictuer"> -->
                             <div class="column-list">
                               <h2>{{userinfo.realname}}<span></span></h2> 
@@ -52,7 +52,7 @@
                     {%else%}
                     <li>
                       <a href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}">
-                          <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.status)}}) no-repeat 0 0;background-size: cover;"></span>
+                          <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version)}}) no-repeat 0 0;background-size: cover;"></span>
                           <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, userinfo.status) }}" alt="" class="column-pictuer"> -->
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
