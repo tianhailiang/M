@@ -60,6 +60,9 @@ exports = module.exports = function (app) {// routes
   /*所有底页路由 start===========================================================================*/
   // app.get('/adviser/:id', controller.adviser_detail);//明星顾问底页
   app.get(/^\/(\d+)(\/*)$/, controller.adviser_detail);
+  app.get(/^\/(\d+)\/case/, controller.adviser_detail_case);
+  app.get(/^\/(\d+)\/hot/, controller.adviser_detail_jinxuan);
+
   app.get('/article/:id', controller.news_detail);//文章底页
   app.get('/case/:id', controller.case_detail);//案例底页
   // app.get(/^(\/*)([a-z]*)\/news\/(\d+)/, controller.news_detail);//最新资讯底页

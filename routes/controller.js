@@ -1329,25 +1329,7 @@ exports.adviser_detail = function (req, res, next) {
                 "order":encodeURI("add_time desc")
             },callback)
         },
-        caselist:function(callback){
-            cms.adviser_main({
-                "type":1,
-                "uid":uid,
-                "order":encodeURI("add_time desc"),
-                "per_page":6
-            },callback)
-        },
-        jinxuanlist:function(callback){
-            cms.adviser_main({
-                "order":encodeURI("views desc"),
-                "per_page":5,
-                "uid":uid
-            },callback)
-        },
     }, function (err, result) {
-        // data.userinfo = returnData(result.userinfo,'userinfo');
-        data.jinxuanlist = returnData(result.jinxuanlist,'jinxuanlist');
-        data.caselist = returnData(result.caselist,'caselist');
         data.zhuanlanlist = returnData(result.zhuanlanlist,'zhuanlanlist');
         async.parallel({
             userinfo:function(callback){
@@ -1359,18 +1341,95 @@ exports.adviser_detail = function (req, res, next) {
         },function(err, result){
             data.userinfo = returnData(result.userinfo,'userinfo');
             data.area=area;
-            data.pageType = '资讯';
-            data.pageroute = 'news';
             data.tdk = {
-                pagekey: 'ADVISOR_P_MAIN', //key
+                pagekey: 'ADVISOR_P_ARTICLE', //key
                 realname: data.userinfo.realname
             };
             res.render('adviser_detail', data);
         })
     });
 };
+//顾问底页--案例
+exports.adviser_detail_case = function (req, res, next) {
+    var data = [];
+    var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
+    var uid = req.params[0];
 
-/*参赞底页-专栏（rongfa）*/
+    if ( req.cookies.login_ss !== undefined) {
+        console.log('有cookie')
+        data.login_info = JSON.parse(req.cookies.login_ss);
+    }else{
+    }
+    async.parallel({
+        caselist:function(callback){
+            cms.adviser_main({
+                "type":1,
+                "uid":uid,
+                "order":encodeURI("add_time desc"),
+                "per_page":6
+            },callback)
+        },
+    }, function (err, result) {
+        // data.userinfo = returnData(result.userinfo,'userinfo');
+        data.caselist = returnData(result.caselist,'caselist');
+        async.parallel({
+            userinfo:function(callback){
+                cms.userinfo({
+                    "u_id":uid,
+                    "to_uid":uid
+                },callback);
+            }
+        },function(err, result){
+            data.userinfo = returnData(result.userinfo,'userinfo');
+            data.area=area;
+            data.tdk = {
+                pagekey: 'ADVISOR_P_CASE',
+                realname: data.userinfo.realname
+            };
+            res.render('adviser_detail_case', data);
+        })
+    });
+};
+//顾问底页--精选
+exports.adviser_detail_jinxuan = function (req, res, next) {
+    var data = [];
+    var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
+    var uid = req.params[0];
+
+    if ( req.cookies.login_ss !== undefined) {
+        console.log('有cookie')
+        data.login_info = JSON.parse(req.cookies.login_ss);
+    }else{
+    }
+    async.parallel({
+        jinxuanlist:function(callback){
+            cms.adviser_main({
+                "order":encodeURI("views desc"),
+                "per_page":5,
+                "uid":uid
+            },callback)
+        },
+    }, function (err, result) {
+        data.jinxuanlist = returnData(result.jinxuanlist,'jinxuanlist');
+        async.parallel({
+            userinfo:function(callback){
+                cms.userinfo({
+                    "u_id":uid,
+                    "to_uid":uid
+                },callback);
+            }
+        },function(err, result){
+            data.userinfo = returnData(result.userinfo,'userinfo');
+            data.area=area;
+            data.tdk = {
+                pagekey: 'ADVISOR_P_ARTICLE_HOT', //key
+                realname: data.userinfo.realname
+            };
+            res.render('adviser_detail_jinxuan', data);
+        })
+    });
+};
+/*参赞底页-*/
 exports.canzan_column = function (req, res, next) {
   log.debug(req.params);
   var data = [];
@@ -1419,7 +1478,7 @@ exports.canzan_column = function (req, res, next) {
     res.render('canzan_column', data);
   });
 };
-/*参赞列表（rongfa）*/
+/*参赞列表*/
 exports.canzan_list = function (req, res, next) {
   log.debug(req.params);
   var data = [];
