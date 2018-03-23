@@ -5,7 +5,7 @@
 <!-- <script src="{{helper.cdnhost}}/assets/js/jquery.min.js"></script> -->
 <body>
 <div id="app">
-  {% include "m_widget/top/top.html" %}
+  {% include "m_widget/top/common_top.html" %}
   <section id="guwenDetails">
     <div class="people-info">
       <img src="{{ helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version) }}" class="people-img" alt="{{adviser_detail.realname}}顾问">
@@ -30,8 +30,8 @@
     <div class="tabContent">
           <ul class="tab-controll">
             <li data-index="0" class="tabs-current"><a href="javascript:;">专栏</a></li>
-            <li data-index="1"><a href="{{helper.urlgen(userinfo.uid | string, 'case')}}">案例</a></li>
-            <li data-index="2"><a href="{{helper.urlgen(userinfo.uid | string, 'hot')}}">精选</a></li>
+            <li data-index="1"><a href="{{helper.urlgen(userinfo.uid | safeId | string, 'case')}}">案例</a></li>
+            <li data-index="2"><a href="{{helper.urlgen(userinfo.uid | safeId | string, 'hot')}}">精选</a></li>
           </ul>
           <div class="tabitems">
             <div class="items-gruop">
@@ -39,7 +39,7 @@
                   {% for item in zhuanlanlist.list%}
                   {% if loop.index == 1 %}
                     <li>
-                      <a href="{{helper.urlgen('article',item.id | string)}}">
+                      <a href="{{helper.urlgen('article',item.id | safeId | string)}}">
                           <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version)}}) no-repeat 0 0;background-size: cover;"></span>
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
@@ -50,7 +50,7 @@
                     </li>
                   {%else%}
                   <li>
-                    <a href="{{helper.urlgen('article',item.id | string)}}">
+                    <a href="{{helper.urlgen('article',item.id | safeId | string)}}">
                         <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version)}}) no-repeat 0 0;background-size: cover;"></span>
                         <div class="column-list">
                           <h2>{{userinfo.realname}}<span></span></h2> 
@@ -67,7 +67,7 @@
     </div>
   </section>
     <!--footer start-->
-    {% include "m_widget/footer/footer.html" %}
+    {% include "m_widget/footer/common_footer.html" %}
 </div>
 <!-- ===侧边栏==== -->
 {% include "m_widget/slidebar/slidebar.html" %}

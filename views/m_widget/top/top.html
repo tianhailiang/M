@@ -16,7 +16,7 @@
 		<svg class="icon header-location" aria-hidden="true">
       <use xlink:href="#icon-didian-copy"></use>
     </svg>
-		<i>北京</i>
+		<i>{{ tdk.cityid | getCity}}</i>
 	</div>
 </header>
 
@@ -404,10 +404,9 @@
     14:['武汉']
   };
   var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
-  console.log(area)
+  // console.log(area)
   $(function(){
     FastClick.attach(document.body);
-    $(".header-city").find("i").text(cityList[area][0]);
     $(".city_list").height($(window).height()-92);
     $(".header-city").on("click",function(){
       //选择城市
@@ -423,7 +422,7 @@
       //选取城市
       var currentarea = $(this).attr("data-id");
       // console.log(currentarea)
-      $.cookie('currentarea', currentarea,{expires: 365,path:'/'});
+      // $.cookie('currentarea', currentarea,{expires: 365,path:'/'});
       window.location.href= fn.urlgen('branch_home','c=' + currentarea);
     });
     $(".city_list li").each(function(i){
@@ -450,7 +449,6 @@
     $('#selByIp').on('click', function () {
       //确定按钮
       closePopup();
-      $.cookie('currentarea', _selByIp_code,{expires:365,path:'/'});
       window.location.href= fn.urlgen('branch_home','c=' +  _selByIp_code);
     });
     $('#selBySelf').on('click', function () {

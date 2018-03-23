@@ -57,10 +57,7 @@ exports = module.exports = function (app) {// routes
   app.get(/^(\/*)((?!yimin)[a-z]*)\/product(\/*)((?!rank)(?![0-9])[0-9A-Za-z\-_]*)$/, controller.product);//留学方案栏目
   /*所有栏目页路由 end*/
 
-
-
   /*所有底页路由 start===========================================================================*/
-  // app.get('/adviser/:id', controller.adviser_detail);//明星顾问底页
   app.get(/^\/(\d+)(\/*)$/, controller.adviser_detail);
   app.get(/^\/(\d+)\/case/, controller.adviser_detail_case);
   app.get(/^\/(\d+)\/hot/, controller.adviser_detail_jinxuan);
@@ -77,7 +74,6 @@ exports = module.exports = function (app) {// routes
   app.get(/^(\/*)([a-z]*)schoollib\/(\d+)/, controller.schoollibdetail);//院校文章底页
   app.get(/^\/(bj|cd|cq|cs|cc|cz|dl|dg|fs|fz|gz|gy|hz|hf|heb|hs|gc|hn|jn|jl|km|lz|ly|nj|nc|nb|nn|qd|sh|sy|sjz|suz|sz|tj|ty|ts|wh|wc|wx|wz|xa|sm|xz|xn|xj|yt|yc|yic|zz)\/activity\/(\d+)/, controller.study_abroad_activity_detail);//留学活动详情页
   app.get(/^(\/*)([a-z]*)\/product\/(\d+)/,controller.productdetail);//落地页留学方案
-  // app.get('/case/:id', controller.case_detail);//成功案例底页
   /*所有底页路由 end*/
   app.get('/online_evaluation',controller.online_evaluation);
   app.get('/online_evaluation_yimin',controller.online_evaluation_yimin);

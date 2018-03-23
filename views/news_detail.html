@@ -8,7 +8,7 @@
 </style>
 <body style="background: #f5f5f5;">
 <div id="app">
-  {% include "m_widget/top/top.html" %}
+  {% include "m_widget/top/common_top.html" %}
     <!-- 页面主体部分 -->
     <section class="new-details">
       <div class="head_portrait">
@@ -35,12 +35,11 @@
       </p>
       <article class="news-content" style="clear: both">
         <p>{{wenzhangdiye.article_info.message | safe}}</p>
-        <!--<img src="{{wenzhangdiye.list.thumb}}" alt="{{wenzhangdiye.list.title}}" class="img-responsive">-->
       </article>
     </section>
 
   <!--footer start-->
-  {% include "m_widget/footer/footer.html" %}
+  {% include "m_widget/footer/common_footer.html" %}
   <!--footer end-->
 </div>
 <!-- ===侧边栏==== -->
@@ -48,7 +47,6 @@
 <!-- ======乐语底栏======= -->
 {% include 'm_widget/funtalk/funtalk1.html' %}
 <div>
-  <!-- <input type="hidden" id="detail_catid" value="{{catid}}"/> -->
   <input type="hidden" id="detail_id" value="{{article_id}}"/>
 </div>
 <script src="{{helper.cdnhost}}/assets/js/view_count_min.js"></script>
