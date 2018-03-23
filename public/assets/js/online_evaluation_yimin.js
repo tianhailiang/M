@@ -120,8 +120,10 @@ var customize = function (name, phone, country, project) {
         success:function(msg){
             console.log(msg);
             if(msg.code === 0){
-                alert('老师将为您做专业评估。');
-
+                $('#successForm').show(200);
+                setTimeout(function () {
+                    $('#successForm').hide();
+                }, 3000)
             } else {
                 alert(msg.message);
 
