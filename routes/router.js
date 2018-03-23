@@ -80,7 +80,7 @@ exports = module.exports = function (app) {// routes
   // app.get('/case/:id', controller.case_detail);//成功案例底页
   /*所有底页路由 end*/
   app.get('/online_evaluation',controller.online_evaluation);
-
+  app.get('/online_evaluation_yimin',controller.online_evaluation_yimin);
   /*
    *  uc接口封装 index.php
    */
