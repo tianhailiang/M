@@ -395,9 +395,15 @@
   }
 
   /*========移民======*/
-   .header-yimin-logo{
+  .header-yimin-logo{
     width:98px;
     height:28px;
     background:url(../../../assets/img/yimin_logo.png) no-repeat 0 0;
     background-size:98px 28px;
+  }
+  .header-jjl-logo{
+    width:75px;
+    height:28px;
+    background:url(../../../assets/img/jjl_logo.png) no-repeat 0 0;
+    background-size:75px 28px;
   }

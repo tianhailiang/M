@@ -59,7 +59,7 @@ var customFilters = {
   getCountryEn: common.getCountryEn,
   getCountryId: common.getCountryId,
   getCity: common.getCityChinese,
-  getCitys: common.getCityEn,
+  getCityEn: common.getCityEn,
   getCityId: common.getCityId,
   getEdu: common.getEduName,
   getProject: common.getProjectName,
