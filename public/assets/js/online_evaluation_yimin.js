@@ -64,7 +64,7 @@ var timer;
 function countDown() {
     // 60s倒计时
     $("#getcode").unbind("click");
-    var countDownTime = 3;
+    var countDownTime = 60;
     timer = window.setInterval(function () {
         countDownTime--;
         $("#getcode").html('（'+countDownTime+'）s');
