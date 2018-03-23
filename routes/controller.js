@@ -2758,7 +2758,15 @@ exports.online_evaluation = function (req, res, next) {
     res.render('online_evaluation', data);
 }
 
-
+//在线评估--移民
+exports.online_evaluation_yimin = function (req, res, next) {
+  log.debug('在线评估')
+  var data ={};
+  data.tdk = {
+    pagekey: 'ONLINE_EVALUATION'
+  };
+  res.render('online_evaluation_yimin', data);
+}
 //金吉列简介
 exports.about = function (req, res, next){
     var data = [];
