@@ -197,6 +197,8 @@
 }
 .header-yimin-logo{width:98px;height:28px;background:url(../../../assets/img/yimin_logo.png) no-repeat 0 0;background-size:98px 28px}
 .header-jjl-logo{width:75px;height:28px;background:url(../../../assets/img/jjl_logo.png) no-repeat 0 0;background-size:75px 28px}
+.yimin-sidebar-logo{width:207.5px;height:53.5px;background:url(../../../assets/img/yimin_logo2.png) no-repeat 0 0;background-size:207.5px 53.5px;margin-top:29px;margin-bottom:25px}
+.jjl-sidebar-logo{width:121px;height:45px;background:url(../../../assets/img/jjl_logo2.png) no-repeat 0 0;background-size:121px 45px;margin-top:29px;margin-bottom:25px}
 .top-tab{width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:flex;height:30px;line-height:30px;border-top:1px solid #e5e5e5;position:fixed;top:43px;z-index:1000}
 .top-tab ::-webkit-scrollbar{display:none}
 .top-tab .tab-bar-show{width:1px;flex:1;height:30px;background-color:#fff;padding:0 10px}

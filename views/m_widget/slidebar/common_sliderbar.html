@@ -3,20 +3,20 @@
   <div class="mask" >
   </div>
   <div class="sidebar" >
-    <div class="yimin-sidebar-logo" >
+    <div class="jjl-sidebar-logo" >
     </div>
     {% set routerList = [
-      {
-       "name":"金吉列移民",
-       "icon":"icon-listfeiji",
-       "router":"YIMIN_HOME",
-       "url":helper.urlgen('yimin')
-      },
       {
        "name":"金吉列留学",
        "icon":"icon-boshimao1",
        "router":"HOME",
        "url":helper.urlgen('branch_home','c='+tdk.cityid)
+      },
+      {
+       "name":"金吉列移民",
+       "icon":"icon-listfeiji",
+       "router":"YIMIN_HOME",
+       "url":helper.urlgen('yimin')
       },
       {
        "name":"关于金吉列",

@@ -407,3 +407,19 @@
     background:url(../../../assets/img/jjl_logo.png) no-repeat 0 0;
     background-size:75px 28px;
   }
+  .yimin-sidebar-logo{
+    width:207.5px;
+    height:53.5px;
+    background:url(../../../assets/img/yimin_logo2.png) no-repeat 0 0;
+    background-size: 207.5px 53.5px;
+    margin-top: 29px;
+    margin-bottom: 25px;
+  }
+  .jjl-sidebar-logo{
+    width:121px;
+    height:45px;
+    background:url(../../../assets/img/jjl_logo2.png) no-repeat 0 0;
+    background-size: 121px 45px;
+    margin-top: 29px;
+    margin-bottom: 25px;
+  }
