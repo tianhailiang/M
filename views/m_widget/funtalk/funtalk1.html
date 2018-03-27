@@ -1,8 +1,8 @@
 
 <footer class="footer-box" >      
     <ul class="footer-ul" >
-        <li id="footer-consultation">
-            <a href="http://jesong.jjl.cn/live/chat.dll?c=1&n={{userinfo.job_number}}" class="footer-consultation-a">
+        <li >
+            <a  class="footer-consultation-a" id="footer-consultation" data-jobNumber="{{userinfo.job_number}}">
                 <i class="footer-logo-information"></i>
                 <span>立即咨询</span>
                 <i class="consultation-news" >3</i>
@@ -21,7 +21,9 @@
     </ul>
 </footer>
 <script> 
-   
+    $('#footer-consultation').on("click",function(){
+        openJesongChatByCus(1,$(this).attr('data-jobNumber'));
+    });
     $("#online-evaluation-li").on("click",function(){
         //点击在线评估
         window.location.href=fn.urlgen('online_evaluation');
