@@ -98,5 +98,6 @@ exports = module.exports = function (app) {// routes
   app.get('/cmsapi/more_so_news', controller.more_so_news);//搜索资讯更多
   app.get('/cmsapi/more_so_advisor', controller.more_so_advisor);//搜索顾问更多
   app.get('/about', controller.about);//金吉列简介
+  app.get('/act_form', controller.act_form);//活动表单
 };
 
