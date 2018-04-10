@@ -2847,4 +2847,31 @@ exports.about = function (req, res, next){
         res.render('about', data);
 
     });
+}//活动表单
+exports.act_form = function (req, res, next){
+    log.debug('活动表单')
+    var data = [];
+    var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
+    // var qianzhengzhinan_currentPage=req.query.page || 1;
+    // var country = req.query.n || 0;
+
+    data.login_nickname = '';
+    if ( req.cookies.login_ss !== undefined) {
+        var login_a = JSON.parse(req.cookies.login_ss);
+        //log.debug("login_a-------" + login_a.nickname)
+        data.login_nickname = login_a;
+    }
+    async.parallel({
+
+    }, function (err, result){
+        log.info(result)
+        // data.pageroute="about";
+        data.tdk = {
+            pagekey: 'FEEDBACK', //key
+            cityid: area, //cityid
+            // nationid: country//nationi
+        };
+        res.render('act_form', data);
+
+    });
 }
