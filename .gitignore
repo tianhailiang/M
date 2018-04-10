@@ -14,3 +14,5 @@ nohup.out
 package-lock.json
 dist
 dist/*
+config/interface_config.js
+public/assets/js/common_pro.js
