@@ -393,3 +393,11 @@
       transform: translateX(-150%);
     }
   }
+
+  /*========移民======*/
+   .header-yimin-logo{
+    width:98px;
+    height:28px;
+    background:url(../../../assets/img/yimin_logo.png) no-repeat 0 0;
+    background-size:98px 28px;
+  }

@@ -1470,9 +1470,7 @@ var redisPool = require('redis-connection-pool')('home_all_city_id', {
   perform_checks: false,
   database: 7 // database number to use
 });
-/*
- 浏览量统计detail_count
- * */
+
 exports.mShouye = function (data, callback) {
   //redis 缓存文章浏览数````·
   //判断用户访问是否在限制条件内 10min 5
@@ -1484,7 +1482,18 @@ exports.mShouye = function (data, callback) {
         callback(null, '暂无数据');
       }
     })
-};
+}
+exports.mYiminShouye = function (data, callback) {
+  //redis 缓存文章浏览数````·
+  //判断用户访问是否在限制条件内 10min 5
+    redisPool.get('yimin_home_' +data.country_id, function(err, reply){
+      if(reply){
+        callback(null, reply);
+      }else{
+        callback(null, '暂无数据');
+      }
+    })
+}
 
 // 顾问主页列表
 exports.adviser_main=function(data,callback){
@@ -1494,6 +1503,5 @@ exports.adviser_main=function(data,callback){
     return;
   }
   api.apiRequest(url, callback);
-  console.log('url-----', url);
 }
 

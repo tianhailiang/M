@@ -195,6 +195,7 @@
 @keyframes sidebarRight{0%{transform:translateX(0)}
 100%{transform:translateX(-150%)}
 }
+.header-yimin-logo{width:98px;height:28px;background:url(../../../assets/img/yimin_logo.png) no-repeat 0 0;background-size:98px 28px}
 .top-tab{width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:flex;height:30px;line-height:30px;border-top:1px solid #e5e5e5;position:fixed;top:43px;z-index:1000}
 .top-tab ::-webkit-scrollbar{display:none}
 .top-tab .tab-bar-show{width:1px;flex:1;height:30px;background-color:#fff;padding:0 10px}

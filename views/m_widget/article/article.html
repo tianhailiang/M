@@ -2,16 +2,16 @@
  <ul class="country-edu-ul">
  	{% for item in list[0] %}
 	    <li>
-	    	<a href="{{helper.urlgen(item.uid|string)}}" >
+	    	<a href="{{helper.urlgen(item.uid | safeId |string)}}" >
 		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat 0 0;background-size:cover">
 		        </div>
 		    </a>
 	        <div class="adviser-right" >
-	            <a class="adviser-name" href="{{helper.urlgen(item.uid|string)}}">
+	            <a class="adviser-name" href="{{helper.urlgen(item.uid | safeId |string)}}">
 	                <span>{{item.user_info.realname}}</span>
 	                <i></i>
 	            </a>
-	            <a href="{{helper.urlgen('article',item.id|string)}}" class="adviser-title-box" >
+	            <a href="{{helper.urlgen('article',item.id | safeId |string)}}" class="adviser-title-box" >
 		            <div class="adviser-title">
 		               {{ item.title |shorten(24)}}
 		            </div>
@@ -25,16 +25,17 @@
 	{% endfor %}
 	{% for item in list[1] %}
 	    <li>
-	    	<a href="{{helper.urlgen(item.uid|string)}}" >
+	    	<a href="{{helper.urlgen(item.uid | safeId |string)}}" >
 		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat 0 0;background-size:cover">
 		        </div>
 		    </a>
+		    
 	        <div class="adviser-right" >
-	            <a class="adviser-name" href="{{helper.urlgen(item.uid|string)}}">
+	            <a class="adviser-name" href="{{helper.urlgen(item.uid | safeId |string)}}">
 	                <span>{{item.user_info.realname}}</span>
 	                <i></i>
 	            </a>
-	            <a href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}" class="adviser-title-box" >
+	            <a href="{{helper.urlgen('case',item.id | safeId | string) if item.type == 1 else helper.urlgen('article',item.id | safeId | string)}}" class="adviser-title-box" >
 		            <div class="adviser-title">
 		               {{item.title |shorten(24)}}
 		            </div>
@@ -47,16 +48,16 @@
 	{% endfor %}
 	{% for item in list[2] %}
 	    <li>
-	    	<a href="{{helper.urlgen(item.uid|string)}}" >
+	    	<a href="{{helper.urlgen(item.uid | safeId |string)}}" >
 		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat 0 0;background-size:cover">
 		        </div>
 		    </a>
 	        <div class="adviser-right" >
-	            <a class="adviser-name" href="{{helper.urlgen(item.uid|string)}}">
+	            <a class="adviser-name" href="{{helper.urlgen(item.uid | safeId |string)}}">
 	                <span>{{item.user_info.realname}}</span>
 	                <i></i>
 	            </a>
-	             <a href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}" class="adviser-title-box" >
+	             <a href="{{helper.urlgen('case',item.id | safeId | string) if item.type == 1 else helper.urlgen('article',item.id | safeId | string)}}" class="adviser-title-box" >
 		            <div class="adviser-title">
 		                {{item.title |shorten(24)}}
 		            </div>
@@ -69,16 +70,16 @@
 	{% endfor %}
 	{% for item in list[3] %}
 	    <li>
-	    	<a href="{{helper.urlgen(item.uid|string)}}" >
+	    	<a href="{{helper.urlgen(item.uid | safeId |string)}}" >
 		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat 0 0;background-size:cover">
 		        </div>
 		    </a>
 	        <div class="adviser-right" >
-	            <a class="adviser-name" href="{{helper.urlgen(item.uid|string)}}">
+	            <a class="adviser-name" href="{{helper.urlgen(item.uid | safeId |string)}}">
 	                <span>{{item.user_info.realname}}</span>
 	                <i></i>
 	            </a>
-	            <a href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}" class="adviser-title-box" >
+	            <a href="{{helper.urlgen('case',item.id | safeId | string) if item.type == 1 else helper.urlgen('article',item.id | safeId | string)}}" class="adviser-title-box" >
 		            <div class="adviser-title"> 
 		               {{item.title |shorten(24)}}
 		            </div>
@@ -91,16 +92,16 @@
 	{% endfor %}
 	{% for item in list[4] %}
 	    <li>
-	    	<a href="{{helper.urlgen(item.uid|string)}}" >
+	    	<a href="{{helper.urlgen(item.uid | safeId |string)}}" >
 		        <div class="adviser-touxiang" style="background:url({{helper.avaterimg(item.uid, 'small',item.user_info.status,item.user_info.version)}}) no-repeat 0 0;background-size:cover">
 		        </div>
 		    </a>
 	        <div class="adviser-right" >
-	            <a class="adviser-name" href="{{helper.urlgen(item.uid|string)}}">
+	            <a class="adviser-name" href="{{helper.urlgen(item.uid | safeId |string)}}">
 	                <span>{{item.user_info.realname}}</span>
 	                <i></i>
 	            </a>
-	            <a href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}" class="adviser-title-box" >
+	            <a href="{{helper.urlgen('case',item.id | safeId | string) if item.type == 1 else helper.urlgen('article',item.id | safeId | string)}}" class="adviser-title-box" >
 		            <div class="adviser-title">
 		               {{item.title |shorten(24)}}
 		            </div>

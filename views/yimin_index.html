@@ -6,156 +6,116 @@
     <link rel="stylesheet" type="text/css" href="{{helper.cdnhost}}/assets/css/index.css">
 </head>
 <body>
-    {% include "m_widget/top/top.html" %}
+    {% include "m_widget/top/yimin_top.html" %}
 	<div id="app">
 	    {% include "m_widget/swiper/swiper.html" %}
         {% set countryList = [
         	{
         		name:"美国",
-        		imgurl:"home_icon_mg.png",
+        		imgurl:"mg",
         		id:"1"
         	},
-        	{
-        		name:"英国",
-        		imgurl:"home_icon_yg.png",
-        		id:"2"
-        	},
-        	{
-        		name:"加拿大",
-        		imgurl:"home_icon_jnd.png",
-        		id:"3"
-        	},
+            {
+                name:"加拿大",
+                imgurl:"jnd",
+                id:"3"
+            },
         	{
         		name:"澳大利亚",
-        		imgurl:"home_icon_adly.png",
+        		imgurl:"adly",
         		id:"4"
         	},
         	{
         		name:"新西兰",
-        		imgurl:"home_icon_xxl.png",
+        		imgurl:"xxl",
         		id:"5"
         	},
-        	{
-        		name:"日本",
-        		imgurl:"home_icon_rb.png",
-        		id:"51"
-        	},
             {
-                name:"韩国",
-                imgurl:"home_icon_hg.png",
-                id:"50"
-            },
-            {
-                name:"更多",
-                imgurl:"home_icon_gd.png",
-                id:""
-            },
-            {
-                name:"中国香港",
-                imgurl:"home_icon_xg.png",
-                id:"54"
-            },
-            {
-                name:"俄罗斯",
-                imgurl:"home_icon_els.png",
-                id:"100"
-            },
-            {
-                name:"乌克兰",
-                imgurl:"home_icon_wkl.png",
-                id:"101"
+                name:"英国",
+                imgurl:"yg",
+                id:"2"
             },
             {
                 name:"爱尔兰",
-                imgurl:"home_icon_ael.png",
+                imgurl:"ael",
                 id:"108"
             },
             {
-                name:"意大利",
-                imgurl:"home_icon_ydl.png",
-                id:"111"
+                name:"希腊",
+                imgurl:"xl",
+                id:"7"
+            },	
+            {
+                name:"更多",
+                imgurl:"gd",
+                id:""
             },
             {
+                name:"马耳他",
+                imgurl:"ael",
+                id:"8"
+            },  
+            {
                 name:"西班牙",
-                imgurl:"home_icon_xby.png",
+                imgurl:"xby",
                 id:"112"
             },
             {
-                name:"白俄罗斯",
-                imgurl:"home_icon_bels.png",
-                id:"102"
+                name:"葡萄牙",
+                imgurl:"pty",
+                id:"10"
             },
             {
-                name:"新加坡",
-                imgurl:"home_icon_xjp.png",
-                id:"52"
+                name:"塞浦路斯",
+                imgurl:"spls",
+                id:"11"
             },
             {
-                name:"马来西亚",
-                imgurl:"home_icon_mlxy.png",
-                id:"53"
+                name:"圣基茨",
+                imgurl:"xby",
+                id:"14"
             },
             {
-                name:"丹麦",
-                imgurl:"home_icon_dm.png",
-                id:"110"
+                name:"安提瓜",
+                imgurl:"atg",
+                id:"12"
             },
             {
-                name:"德国",
-                imgurl:"home_icon_dg.png",
-                id:"103"
+                name:"格林纳达",
+                imgurl:"glnd",
+                id:"15"
             },
-        	{
-        		name:"法国",
-        		imgurl:"home_icon_fb.png",
-        		id:"104"
-        	},
-        	{
-                name:"挪威",
-                imgurl:"home_icon_nw.png",
-                id:"105"
-            },
-        	{
-                name:"瑞典",
-                imgurl:"home_icon_rd.png",
-                id:"106"
-            },
-        	{
-        		name:"芬兰",
-        		imgurl:"home_icon_fl.png",
-        		id:"107"
-        	},
             {
-                name:"荷兰",
-                imgurl:"home_icon_hl.png",
-                id:"109"
+                name:"多米尼克",
+                imgurl:"dmnk",
+                id:"13"
             },
-        	{
-        		name:"瑞士",
-        		imgurl:"home_icon_rs.png",
-        		id:"113"
-        	}
+            {
+                name:"中国香港",
+                imgurl:"xg",
+                id:"54"
+            }
         ] %}
         <ul class="country-ul" >
             {% for item in countryList %}
                 {% if loop.index < 8%}
 		       	    <li>
-		                <a href="{{helper.urlgen('branch_home','c='+tdk.cityid,'n='+item.id)}}" >
-			       	   	   <img src="{{helper.cdnhost}}/assets/img/{{item.imgurl}}" >
+		                <a href="{{helper.urlgen('yimin','n='+item.id)}}" >
+			       	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
 			       	   	   <span class="{% if item.id ==country %}active{% endif %}">{{item.name}}</span>
 		                </a>
 		       	    </li>
                 {% elif loop.index ==8  %}
 		            <li id="gd">
 		                <a href="javascript:void(0);" >
-			       	   	   <img src="{{helper.cdnhost}}/assets/img/{{item.imgurl}}" >
+			       	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
 			       	   	   <span>{{item.name}}</span>
 		                </a>
 		       	    </li>
 		       	{% else %}
-		            <li class="gd-li" style="{% if country >51 %}display: block;{% endif %}">
-		                <a href="{{helper.urlgen('branch_home','c='+tdk.cityid,'n='+item.id)}}" >
-		           	   	   <img src="{{helper.cdnhost}}/assets/img/{{item.imgurl}}" >
+		            <li class="gd-li" style="{% if country >7 and country !=108 %}display: block;{% endif %}">
+		                <a href="{{helper.urlgen('yimin','n='+item.id)}}" >
+		           	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
 		           	   	   <span class="{% if item.id ==country %}active{% endif %}">{{item.name}}</span>
 		                </a>    
 		       	   </li>
@@ -164,13 +124,11 @@
         </ul>
         <!--国家学历表 -->
         <div class="team-top" >
-            <h2>{{country|getCountry}}留学</h2>
+            <h2>{{country|getCountry}}移民</h2>
             <ul class="team-top-ul">
-                <li class="active">推荐</li>
-                <li>中学</li>
-                <li>本科</li>
-                <li>硕士</li>
-                <li>博士</li>
+                {% for item in shouye.list %}
+                    <li class="{% if loop.first %}active{% endif %}">{{item.edu_name}}</li>
+                {% endfor %}
             </ul>
         </div>
         <div class="country-edu-box">
@@ -180,12 +138,12 @@
             {% endfor %}
         </div>
         <!--footer -->
-        {% include "m_widget/footer/footer.html" %}
+        {% include "m_widget/footer/yimin_footer.html" %}
 	</div>
 	<!-- ===侧边栏==== -->
-    {% include "m_widget/slidebar/slidebar.html" %}
+    {% include "m_widget/slidebar/yimin_sliderbar.html" %}
     <!-- ======乐语底栏======= -->
-    {% include 'm_widget/funtalk/funtalk.html' %}
+    {% include 'm_widget/funtalk/yimin_funtalk.html' %}
     <script  src="{{helper.cdnhost}}/dep/js/swiper-3.4.2.jquery.min.js"></script>
     <script >
         $(function(){
