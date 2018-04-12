@@ -12,127 +12,127 @@
         {% set countryList = [
         	{
         		name:"美国",
-        		imgurl:"mg",
+        		imgurl:"home_icon_mg.png",
         		id:"1"
         	},
         	{
         		name:"英国",
-        		imgurl:"yg",
+        		imgurl:"home_icon_yg.png",
         		id:"2"
         	},
         	{
         		name:"加拿大",
-        		imgurl:"jnd",
+        		imgurl:"home_icon_jnd.png",
         		id:"3"
         	},
         	{
         		name:"澳大利亚",
-        		imgurl:"adly",
+        		imgurl:"home_icon_adly.png",
         		id:"4"
         	},
         	{
         		name:"新西兰",
-        		imgurl:"xxl",
+        		imgurl:"home_icon_xxl.png",
         		id:"5"
         	},
         	{
         		name:"日本",
-        		imgurl:"rb",
+        		imgurl:"home_icon_rb.png",
         		id:"51"
         	},
             {
                 name:"韩国",
-                imgurl:"hg",
+                imgurl:"home_icon_hg.png",
                 id:"50"
             },
             {
                 name:"更多",
-                imgurl:"gd",
+                imgurl:"home_icon_gd.png",
                 id:""
             },
             {
                 name:"中国香港",
-                imgurl:"xg",
+                imgurl:"home_icon_xg.png",
                 id:"54"
             },
             {
                 name:"俄罗斯",
-                imgurl:"els",
+                imgurl:"home_icon_els.png",
                 id:"100"
             },
             {
                 name:"乌克兰",
-                imgurl:"wkl",
+                imgurl:"home_icon_wkl.png",
                 id:"101"
             },
             {
                 name:"爱尔兰",
-                imgurl:"ael",
+                imgurl:"home_icon_ael.png",
                 id:"108"
             },
             {
                 name:"意大利",
-                imgurl:"ydl",
+                imgurl:"home_icon_ydl.png",
                 id:"111"
             },
             {
                 name:"西班牙",
-                imgurl:"xby",
+                imgurl:"home_icon_xby.png",
                 id:"112"
             },
             {
                 name:"白俄罗斯",
-                imgurl:"bels",
+                imgurl:"home_icon_bels.png",
                 id:"102"
             },
             {
                 name:"新加坡",
-                imgurl:"xjp",
+                imgurl:"home_icon_xjp.png",
                 id:"52"
             },
             {
                 name:"马来西亚",
-                imgurl:"mlxy",
+                imgurl:"home_icon_mlxy.png",
                 id:"53"
             },
             {
                 name:"丹麦",
-                imgurl:"dm",
+                imgurl:"home_icon_dm.png",
                 id:"110"
             },
             {
                 name:"德国",
-                imgurl:"dg",
+                imgurl:"home_icon_dg.png",
                 id:"103"
             },
         	{
         		name:"法国",
-        		imgurl:"fb",
+        		imgurl:"home_icon_fb.png",
         		id:"104"
         	},
         	{
                 name:"挪威",
-                imgurl:"nw",
+                imgurl:"home_icon_nw.png",
                 id:"105"
             },
         	{
                 name:"瑞典",
-                imgurl:"rd",
+                imgurl:"home_icon_rd.png",
                 id:"106"
             },
         	{
         		name:"芬兰",
-        		imgurl:"fl",
+        		imgurl:"home_icon_fl.png",
         		id:"107"
         	},
             {
                 name:"荷兰",
-                imgurl:"hl",
+                imgurl:"home_icon_hl.png",
                 id:"109"
             },
         	{
         		name:"瑞士",
-        		imgurl:"rs",
+        		imgurl:"home_icon_rs.png",
         		id:"113"
         	}
         ] %}
@@ -141,21 +141,21 @@
                 {% if loop.index < 8%}
 		       	    <li>
 		                <a href="{{helper.urlgen('branch_home','c='+tdk.cityid,'n='+item.id)}}" >
-			       	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
+			       	   	   <img src="{{helper.cdnhost}}/assets/img/{{item.imgurl}}" >
 			       	   	   <span class="{% if item.id ==country %}active{% endif %}">{{item.name}}</span>
 		                </a>
 		       	    </li>
                 {% elif loop.index ==8  %}
 		            <li id="gd">
 		                <a href="javascript:void(0);" >
-			       	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
+			       	   	   <img src="{{helper.cdnhost}}/assets/img/{{item.imgurl}}" >
 			       	   	   <span>{{item.name}}</span>
 		                </a>
 		       	    </li>
 		       	{% else %}
 		            <li class="gd-li" style="{% if country >51 %}display: block;{% endif %}">
 		                <a href="{{helper.urlgen('branch_home','c='+tdk.cityid,'n='+item.id)}}" >
-		           	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
+		           	   	   <img src="{{helper.cdnhost}}/assets/img/{{item.imgurl}}" >
 		           	   	   <span class="{% if item.id ==country %}active{% endif %}">{{item.name}}</span>
 		                </a>    
 		       	   </li>
@@ -169,7 +169,7 @@
                 <li class="active">推荐</li>
                 <li>中学</li>
                 <li>本科</li>
-                <li>研究生</li>
+                <li>硕士</li>
                 <li>博士</li>
             </ul>
         </div>
