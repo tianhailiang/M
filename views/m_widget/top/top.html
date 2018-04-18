@@ -16,7 +16,7 @@
 		<svg class="icon header-location" aria-hidden="true">
       <use xlink:href="#icon-didian-copy"></use>
     </svg>
-		<i>北京</i>
+		<i>{{ tdk.cityid | getCity}}</i>
 	</div>
 </header>
 
@@ -142,7 +142,7 @@
   "companyId": "30"
   },
   {
-  "companyAddress":"昆明市盘龙区东风东路36号，建工大厦28层，2808-2811号办公楼",
+  "companyAddress":"昆明市东风东路36号建投大厦6楼金吉列留学",
   "companyTel": "0871-63536688",
   "companyName": "K-昆明",
   "companyId": "21"
@@ -372,7 +372,7 @@
     46:['海南','海南分公司','海南省海口市龙华区滨海大道103号财富广场28楼A室','0898-68635656'],
     9:['济南','济南分公司','济南市市中区泺源大街229号金龙大厦29层','0531-81851155'],
     30:['吉林','吉林分公司','吉林市昌邑区财富广场B栋8层803-807','0432-62885656'],
-    21:['昆明','昆明分公司','昆明市盘龙区东风东路36号，建工大厦28层，2808-2811号办公楼','0871-63536688'],
+    21:['昆明','昆明分公司','昆明市东风东路36号建投大厦6楼金吉列留学','0871-63536688'],
     27:['兰州','兰州分公司','兰州市城关区张掖路1号保利大厦a座15层','0931-8185656'],
     48:['洛阳','洛阳分公司','河南省洛阳市西工区升龙广场E区汇金中心1211','0379-65165656'],
     16:['南京','南京分公司','南京市鼓楼区汉中路8号金轮国际广场2401室','025-85552299'],
@@ -404,10 +404,9 @@
     14:['武汉']
   };
   var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
-  console.log(area)
+  // console.log(area)
   $(function(){
     FastClick.attach(document.body);
-    $(".header-city").find("i").text(cityList[area][0]);
     $(".city_list").height($(window).height()-92);
     $(".header-city").on("click",function(){
       //选择城市
@@ -423,7 +422,7 @@
       //选取城市
       var currentarea = $(this).attr("data-id");
       // console.log(currentarea)
-      $.cookie('currentarea', currentarea,{expires: 365,path:'/'});
+      // $.cookie('currentarea', currentarea,{expires: 365,path:'/'});
       window.location.href= fn.urlgen('branch_home','c=' + currentarea);
     });
     $(".city_list li").each(function(i){
@@ -450,7 +449,6 @@
     $('#selByIp').on('click', function () {
       //确定按钮
       closePopup();
-      $.cookie('currentarea', _selByIp_code,{expires:365,path:'/'});
       window.location.href= fn.urlgen('branch_home','c=' +  _selByIp_code);
     });
     $('#selBySelf').on('click', function () {

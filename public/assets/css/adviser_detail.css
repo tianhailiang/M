@@ -25,7 +25,7 @@
 .people-info .people-img {
 	box-sizing: border-box;
 	margin-top: 14px;
-	margin-left: 24px;
+	margin-left: 5%;
 	width: 117px;
 	height: 147px;
 	border: 2px solid #fff
@@ -201,8 +201,9 @@
 }
 
 .people-details {
-	margin: 14px 10px 8px 23px;
-	padding-left: 10px;
+	margin: 14px 10px 8px 0;
+	margin-left: 5%;
+	padding-left: 9px;
 	height: 147px;
 	background: hsla(0,0%,100%,.12);
 	color: #fff;
@@ -224,12 +225,13 @@
 .people-focus {
 	display: flex;
 	display: -webkit-flex;
-	justify-content: space-between
+	justify-content: space-between;
+	font-size: 13px;
 }
 
 .people-focus .focus-number {
 	color: #ecc580;
-	margin-left: 8px
+	margin-left: 3px;
 }
 
 .column-list {
