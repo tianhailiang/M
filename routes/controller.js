@@ -55,13 +55,67 @@ exports.home = function(req,res,next){
   }, function (err, result) {
     data.lunbo_list =returnData(result.lunbo_list,'lunbo_list');
     data.shouye = JSON.parse(result.shouye);
+    log.info(data.shouye)
     data.tdk = {
       pagekey: 'HOME',
       cityid: area,
     };
     res.render('index', data);
   });
-};
+}
+
+exports.yimin_home =function(req,res,next){
+    log.debug('移民首页')
+    var data = {};
+    log.info(req.params);
+    var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
+    if (req.params[0]) {
+        var cityId = comfunc.getCityId(req.params[0]);
+        if(!comfunc.cityid_invalidcheck(cityId)){
+            next();
+            return false;
+        }
+        area = cityId;
+        res.cookie("currentarea", cityId,{expires: new Date(Date.now() + 90000000000)});
+        res.cookie("currentareast",comfunc.getCityEn(cityId),{expires: new Date(Date.now() + 90000000000)});
+    }
+    if(req.params[2]){
+        [data.country=1] = [comfunc.getCountryIdParams(req.params[2].replace('/', ''))];
+    }else{
+        data.country=1;
+    }
+  // log.info('country  ',data.country)
+    async.parallel({
+        lunbo_list: function (callback) {
+          // 轮播图接口
+            cms.lunbo_list({
+                "ad_page":"MOBILE_YIMIN_HOME",
+                "ad_seat":"SEAT1",
+                "cityid":area
+            },callback);
+        },
+        shouye:function(callback) {
+            cms.mYiminShouye({
+                "country_id":data.country
+            }, callback);
+        },
+    }, function (err, result) {
+        data.lunbo_list =returnData(result.lunbo_list,'lunbo_list');
+        data.shouye = JSON.parse(result.shouye);
+        log.info(data.shouye)
+        log.info(data.shouye.list[0].list[2])
+        log.info(data.shouye.list[1].list[2])
+        log.info(data.shouye.list[2].list[2])
+        // log.info(data.shouye.list[0].list[1])
+        data.tdk = {
+          pagekey: 'YIMIN_HOME',
+          cityid: area,
+        };
+        res.render('yimin_index', data);
+    });
+
+}
+
 // 学历频道页--本科
 exports.channel_edu_graduate_under = function (req, res, next) {
     var data = [];

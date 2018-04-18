@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "header.html" %}
+    <link rel="stylesheet" type="text/css" href="{{helper.cdnhost}}/dep/css/swiper-3.4.2.min.css">
+    <link rel="stylesheet" type="text/css" href="{{helper.cdnhost}}/assets/css/index.css">
+</head>
+<body>
+    {% include "m_widget/top/yimin_top.html" %}
+	<div id="app">
+	    {% include "m_widget/swiper/swiper.html" %}
+        {% set countryList = [
+        	{
+        		name:"美国",
+        		imgurl:"mg",
+        		id:"1"
+        	},
+            {
+                name:"加拿大",
+                imgurl:"jnd",
+                id:"3"
+            },
+        	{
+        		name:"澳大利亚",
+        		imgurl:"adly",
+        		id:"4"
+        	},
+        	{
+        		name:"新西兰",
+        		imgurl:"xxl",
+        		id:"5"
+        	},
+            {
+                name:"英国",
+                imgurl:"yg",
+                id:"2"
+            },
+            {
+                name:"爱尔兰",
+                imgurl:"ael",
+                id:"108"
+            },
+            {
+                name:"希腊",
+                imgurl:"xl",
+                id:"7"
+            },	
+            {
+                name:"更多",
+                imgurl:"gd",
+                id:""
+            },
+            {
+                name:"马耳他",
+                imgurl:"ael",
+                id:"8"
+            },  
+            {
+                name:"西班牙",
+                imgurl:"xby",
+                id:"112"
+            },
+            {
+                name:"葡萄牙",
+                imgurl:"pty",
+                id:"10"
+            },
+            {
+                name:"塞浦路斯",
+                imgurl:"spls",
+                id:"11"
+            },
+            {
+                name:"圣基茨",
+                imgurl:"xby",
+                id:"14"
+            },
+            {
+                name:"安提瓜",
+                imgurl:"atg",
+                id:"12"
+            },
+            {
+                name:"格林纳达",
+                imgurl:"glnd",
+                id:"15"
+            },
+            {
+                name:"多米尼克",
+                imgurl:"dmnk",
+                id:"13"
+            },
+            {
+                name:"中国香港",
+                imgurl:"xg",
+                id:"54"
+            }
+        ] %}
+        <ul class="country-ul" >
+            {% for item in countryList %}
+                {% if loop.index < 8%}
+		       	    <li>
+		                <a href="{{helper.urlgen('yimin','n='+item.id)}}" >
+			       	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
+			       	   	   <span class="{% if item.id ==country %}active{% endif %}">{{item.name}}</span>
+		                </a>
+		       	    </li>
+                {% elif loop.index ==8  %}
+		            <li id="gd">
+		                <a href="javascript:void(0);" >
+			       	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
+			       	   	   <span>{{item.name}}</span>
+		                </a>
+		       	    </li>
+		       	{% else %}
+		            <li class="gd-li" style="{% if country >7 and country !=108 %}display: block;{% endif %}">
+		                <a href="{{helper.urlgen('yimin','n='+item.id)}}" >
+		           	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
+		           	   	   <span class="{% if item.id ==country %}active{% endif %}">{{item.name}}</span>
+		                </a>    
+		       	   </li>
+		       	{% endif %}
+		    {% endfor %}
+        </ul>
+        <!--国家学历表 -->
+        <div class="team-top" >
+            <h2>{{country|getCountry}}移民</h2>
+            <ul class="team-top-ul">
+                {% for item in shouye.list %}
+                    <li class="{% if loop.first %}active{% endif %}">{{item.edu_name}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="country-edu-box">
+            {% for item in shouye.list %}
+                {% import 'm_widget/article/article.html' as article %}
+                {{article.article(item.list,helper)}}
+            {% endfor %}
+        </div>
+        <!--footer -->
+        {% include "m_widget/footer/yimin_footer.html" %}
+	</div>
+	<!-- ===侧边栏==== -->
+    {% include "m_widget/slidebar/yimin_sliderbar.html" %}
+    <!-- ======乐语底栏======= -->
+    {% include 'm_widget/funtalk/yimin_funtalk.html' %}
+    <script  src="{{helper.cdnhost}}/dep/js/swiper-3.4.2.jquery.min.js"></script>
+    <script >
+        $(function(){
+	      	var mySwiper = new Swiper('#swiper-container', {
+	            //banner图轮播
+	            autoplay: 3000,
+                autoplayDisableOnInteraction : false,
+	            width : window.innerWidth,
+	            pagination : '.swiper-pagination',
+	            loop:true,
+	        });
+	          
+            $("#gd").on("click",function(event){
+                //点击更多事件
+                event.stopPropagation();
+                this.flag =!this.flag;
+                if(this.flag){
+                    $(".gd-li").css("display","block");
+                    $("body").animate({scrollTop:parseInt($(this).offset().top/2)}, 300);
+                }else{
+                    $(".gd-li").css("display","none");
+                    $("body").animate({scrollTop:0}, 300);
+                }
+            });
+            $('.team-top-ul li').on('click',function(){
+                //切换列表
+                $('.team-top-ul li').removeClass('active');
+                $(this).addClass('active');
+                $('.country-edu-ul').css({'display':'none'});
+                $('.country-edu-ul').eq($(this).index()).css({'display':'block'});
+            });
+            
+        })
+    </script>
+</body>
+</html>
