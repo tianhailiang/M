@@ -12,37 +12,37 @@
         {% set countryList = [
         	{
         		name:"美国",
-        		imgurl:"mg",
+        		imgurl:"home_icon_mg.png",
         		id:"1"
         	},
             {
                 name:"加拿大",
-                imgurl:"jnd",
+                imgurl:"home_icon_jnd.png",
                 id:"3"
             },
         	{
         		name:"澳大利亚",
-        		imgurl:"adly",
+        		imgurl:"home_icon_adly.png",
         		id:"4"
         	},
         	{
         		name:"新西兰",
-        		imgurl:"xxl",
+        		imgurl:"home_icon_xxl.png",
         		id:"5"
         	},
             {
                 name:"英国",
-                imgurl:"yg",
+                imgurl:"home_icon_yg.png",
                 id:"2"
             },
             {
                 name:"爱尔兰",
-                imgurl:"ael",
+                imgurl:"home_icon_ael.png",
                 id:"108"
             },
             {
                 name:"希腊",
-                imgurl:"xl",
+                imgurl:"home_icon_xl.png",
                 id:"7"
             },	
             {
@@ -52,47 +52,47 @@
             },
             {
                 name:"马耳他",
-                imgurl:"met",
+                imgurl:"home_icon_met.png",
                 id:"8"
             },  
             {
                 name:"西班牙",
-                imgurl:"xby",
+                imgurl:"home_icon_xby.png",
                 id:"112"
             },
             {
                 name:"葡萄牙",
-                imgurl:"pty",
+                imgurl:"home_icon_pty.png",
                 id:"10"
             },
             {
                 name:"塞浦路斯",
-                imgurl:"spls",
+                imgurl:"home_icon_spls.png",
                 id:"11"
             },
             {
                 name:"圣基茨",
-                imgurl:"sjc",
+                imgurl:"home_icon_sjc.png",
                 id:"14"
             },
             {
                 name:"安提瓜",
-                imgurl:"atg",
+                imgurl:"home_icon_atg.png",
                 id:"12"
             },
             {
                 name:"格林纳达",
-                imgurl:"glnd",
+                imgurl:"home_icon_glnd.png",
                 id:"15"
             },
             {
                 name:"多米尼克",
-                imgurl:"dmnk",
+                imgurl:"home_icon_dmnk.png",
                 id:"13"
             },
             {
                 name:"中国香港",
-                imgurl:"xg",
+                imgurl:"home_icon_xg.png",
                 id:"54"
             }
         ] %}
@@ -101,21 +101,21 @@
                 {% if loop.index < 8%}
 		       	    <li>
 		                <a href="{{helper.urlgen('yimin','n='+item.id)}}" >
-			       	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
+			       	   	   <img src="{{helper.cdnhost}}/assets/img/{{item.imgurl}}" >
 			       	   	   <span class="{% if item.id ==country %}active{% endif %}">{{item.name}}</span>
 		                </a>
 		       	    </li>
                 {% elif loop.index ==8  %}
 		            <li id="gd">
 		                <a href="javascript:void(0);" >
-			       	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
+			       	   	   <img src="{{helper.cdnhost}}/assets/img/{{item.imgurl}}" >
 			       	   	   <span>{{item.name}}</span>
 		                </a>
 		       	    </li>
 		       	{% else %}
 		            <li class="gd-li" style="{% if country >7 and country !=108 %}display: block;{% endif %}">
 		                <a href="{{helper.urlgen('yimin','n='+item.id)}}" >
-		           	   	   <img src="{{helper.cdnhost}}/assets/img/home_icon_{{item.imgurl}}.png" >
+		           	   	   <img src="{{helper.cdnhost}}/assets/img/{{item.imgurl}}" >
 		           	   	   <span class="{% if item.id ==country %}active{% endif %}">{{item.name}}</span>
 		                </a>    
 		       	   </li>
