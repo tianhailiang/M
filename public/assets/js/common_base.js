@@ -306,13 +306,18 @@
          * @param status   用户状态，
          * @returns {string}
          */
-        avaterimg: function (uid, size, status,version){
+        avaterimg: function (uid, size, status,version,usertype){
             uid = prefixInteger(uid, 9);
             var dir1 = uid.substr(0, 3);
             var dir2 = uid.substr(3, 2);
             var dir3 = uid.substr(5, 2);
             if(status == 1 || version == 0 || version == null){
-                return 'http://images.jjl.cn/avatar/default_avatar_small.jpg'
+                if (usertype == 1) {
+                    return 'http://images.jjl.cn/avatar/default_avatar_small.jpg'
+                }
+                else {
+                    return 'http://images.jjl.cn/avatar/default_jjl.png'
+                }
             }else{
                 if (version == 1) {
                     return ajaxUrlPrefix.imageshost + '/avatar/' + dir1+'/'+dir2+'/'+dir3+'/'+uid.substr(-2)+"_avatar_"+size+".jpg";
