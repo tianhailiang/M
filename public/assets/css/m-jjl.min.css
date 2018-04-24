@@ -65,7 +65,7 @@
 50%{-webkit-transform:scale(1.5);transform:scale(1.5)}
 100%{-webkit-transform:scale(1);transform:scale(1)}
 }
-.consultation-ul{position:fixed;width:31.5%;left:10px;background:#d51821;bottom:49px;z-index:120;border-top-left-radius:5px;border-top-right-radius:5px;display:none}
+.consultation-ul{position:fixed;width:31.5%;left:34.5%;background:#d51821;bottom:49px;z-index:120;border-top-left-radius:5px;border-top-right-radius:5px;display:none}
 .consultation-ul li{padding:0 10px;height:45px}
 .consultation-ul li span{height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-size:13px;color:#fff;-ms-flex-wrap:nowrap;flex-wrap:nowrap;border-bottom:.5px solid #fff;text-overflow:ellipsis}
 .consultation-ul li:last-child span{border-bottom:none}
