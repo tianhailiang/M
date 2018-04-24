@@ -3,10 +3,19 @@
 <head>
   {% include "header.html" %}
   <style type="text/css">
+  .form-yimin-text input.err {
+    border: 1px solid #c13232;
+  }
   .form-yimin{
-    padding:0px 35px 0 15px;
+    width: 100%;
+    height: 100%;
+    /*background-color: greenyellow;*/
+    padding:15px 35px 0 15px;
     background: #ffffff;
   }
+    .form-yimin-text:nth-child(1){
+      margin-top: 0;
+    }
 .form-yimin-text {
   display: flex;
   height: 27px;
@@ -66,52 +75,92 @@
     text-align: center;
     font-size: 14px;
     display: inline-block;
-  ;
   }
+    .dialog_content{
+      padding: 20px 0;
+      text-align: center;
+    }
+    .dialog_content .success-img {
+      width: 75px;
+      margin: 0 auto;
+    }
+    .dialog_content .main-info {
+      color: #2EAF49;
+      font-size: 16px;
+      margin-top: 20px;
+      margin-bottom: 4px;
+    }
+    .dialog_content .other-info {
+      font-size: 13px;
+      line-height: 25px;
+      color: #333;
+    }
   </style>
 </head>
 <body style="background: #ffffff;">
 {#{% include "m_widget/evaluate_form/evaluate_form.html" %}#}
 <div class="form-yimin">
-  <div class="form-yimin-text"><em >*</em><label for="">姓名：</label><input type="text" placeholder="请输入您的真实姓名"></div>
-  <div class="form-yimin-text"><em>*</em><label for="">手机：</label><input type="text" ><span>获取验证码</span></div>
-  <div class="form-yimin-text form-yimin-text1"><label for="">手机验证码：</label><input type="text" ></div>
-  <div class="form-yimin-text form-yimin-text1" style="position: relative"><label for="">意&nbsp;向&nbsp;国&nbsp;家：</label><select name="" id="" style=";z-index:2">
-    <option value='3'>加拿大</option>
-    <option value='1'>美国</option>
-    <option value='4'>澳大利亚</option>
-    <option value='5'>新西兰</option>
-    <option value='2'>英国</option>
-    <option value='108'>爱尔兰</option>
-    <option value='7'>希腊</option>
-    <option value='8'>马耳他</option>
-    <option value='112'>西班牙</option>
-    <option value='10'>葡萄牙</option>
-    <option value='11'>塞浦路斯</option>
-    <option value='12'>安提瓜</option>
-    <option value='13'>多米尼克</option>
-    <option value='14'>圣基茨</option>
-    <option value='15'>格林纳达</option>
-    <option value='54'>中国香港</option>
-  </select><svg class="icon" style="position: absolute;right:5px;top:5px; " aria-hidden="true">
-    <use xlink:href="#icon-qianjin-copy1"></use>
-  </svg></div>
-  <div class="form-yimin-text form-yimin-text1" style="position: relative"><label for="">移&nbsp;民&nbsp;目&nbsp;的：</label><select name="" id="" style=";z-index:2">
-    <option value='1'>投资移民</option>
-    <option value='2'>创业移民</option>
-    <option value='3'>技术移民</option>
-    <option value='4'>留学移民</option>
-    <option value='5'>杰出人才移民</option>
-    <option value='6'>团聚移民</option>
-    <option value='7'>购房移民</option>
-    <option value='8'>国债移民</option>
-    <option value='9'>护照项目</option>
-  </select><svg class="icon" style="position: absolute;right:5px;top:5px; " aria-hidden="true">
-    <use xlink:href="#icon-qianjin-copy1"></use>
-  </svg></div>
-  <div class="form-yimin-btn"><span>点击进行在线咨询</span></div>
+  <div class="form-yimin-text"><em >*</em><label for="" style="width:54px;">姓名：</label><input type="text" placeholder="请输入您的真实姓名" id="name"></div>
+  <div class="form-yimin-text"><em>*</em><label for="" style="width:54px;">手机：</label><input type="text" id="phone"><span id="getcode">获取验证码</span></div>
+  <div class="form-yimin-text form-yimin-text1"><label for="">手机验证码：</label><input type="text" id="code"></div>
+  <div class="form-yimin-text form-yimin-text1" style="position: relative">
+    <label for="">意向国家和地区：</label>
+    <select name="" style="z-index:2;" id="country">
+      <option value='3'>加拿大</option>
+      <option value='1'>美国</option>
+      <option value='4'>澳大利亚</option>
+      <option value='5'>新西兰</option>
+      <option value='2'>英国</option>
+      <option value='108'>爱尔兰</option>
+      <option value='7'>希腊</option>
+      <option value='8'>马耳他</option>
+      <option value='112'>西班牙</option>
+      <option value='10'>葡萄牙</option>
+      <option value='11'>塞浦路斯</option>
+      <option value='12'>安提瓜</option>
+      <option value='13'>多米尼克</option>
+      <option value='14'>圣基茨</option>
+      <option value='15'>格林纳达</option>
+      <option value='54'>中国香港</option>
+    </select>
+    <svg class="icon" style="position: absolute;right:5px;top:5px; " aria-hidden="true">
+      <use xlink:href="#icon-qianjin-copy1"></use>
+    </svg>
+  </div>
+  <div class="form-yimin-text form-yimin-text1" style="position: relative">
+    <label for="">移&nbsp;民&nbsp;目&nbsp;的：</label>
+    <select name="" id="project" style=";z-index:2">
+      <option value='1'>投资移民</option>
+      <option value='2'>创业移民</option>
+      <option value='3'>技术移民</option>
+      <option value='4'>留学移民</option>
+      <option value='5'>杰出人才移民</option>
+      <option value='6'>团聚移民</option>
+      <option value='7'>购房移民</option>
+      <option value='8'>国债移民</option>
+      <option value='9'>护照项目</option>
+    </select>
+    <svg class="icon" style="position: absolute;right:5px;top:5px; " aria-hidden="true">
+      <use xlink:href="#icon-qianjin-copy1"></use>
+    </svg>
+  </div>
+  <div class="form-yimin-btn"><span id="evaluationBtn">点击进行在线评估</span></div>
 </div>
-
-
+<!--提示弹框 start-->
+<div id="dialogs">
+      <div class="js_dialog" id="successForm" style="display: none;">
+          <div class="weui-mask"></div>
+          <div class="weui-dialog">
+            <div class="dialog_content">
+              <img src="{{helper.cdnhost}}/assets/img/success.png" alt="" class="success-img"/>
+              <p class="main-info">您的信息已成功提交！</p>
+              <p class="other-info">专业移民顾问将会尽快与您联系</p>
+              <p class="other-info">请您保持电话畅通！</p>
+            </div>
+          </div>
+      </div>
+</div>
+<!--提示弹框 end-->
 </body>
+<script src="{{helper.cdnhost}}/assets/js/online_evaluation_yimin.js"></script>
 </html>

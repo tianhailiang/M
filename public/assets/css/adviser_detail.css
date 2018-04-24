@@ -8,7 +8,6 @@
 
 .people-info {
 	display: flex;
-	display: -webkit-flex;
 	width: 100%;
 	max-height: 175px;
 	min-height: 175px;
@@ -25,7 +24,7 @@
 .people-info .people-img {
 	box-sizing: border-box;
 	margin-top: 14px;
-	margin-left: 24px;
+	margin-left: 5%;
 	width: 117px;
 	height: 147px;
 	border: 2px solid #fff
@@ -34,7 +33,6 @@
 .tabContent .tab-controll {
 	position: relative;
 	display: flex;
-	display: -webkit-flex;
 	margin-bottom: 15px;
 	height: 49px;
 	text-align: center;
@@ -49,9 +47,7 @@
 	width: 100%;
 	border-bottom: 1px solid #e5e5e5;
 	content: "";
-	-webkit-transform: scaleY(.5);
 	transform: scaleY(.5);
-	-webkit-transform-origin: 0 0;
 	transform-origin: 0 0
 }
 
@@ -81,7 +77,6 @@
 
 .tabContent .tab-controll li:nth-of-type(2) {
 	flex: 1;
-	-webkit-flex: 1
 }
 
 .items-gruop>p {
@@ -102,7 +97,6 @@
 	color: #d51821;
 	background: #fdf3f4;
 	padding: 2px 4px;
-	-webkit-border-radius:4px;
 	border-radius: 4px;
 	min-width: 72px;
     max-width: 100%;
@@ -125,7 +119,6 @@
 
 .items-gruop a {
 	display: flex;
-	display: -webkit-flex;
 	color: #666
 }
 
@@ -142,7 +135,6 @@
 	height: 61px;
 	width: 61px;
 	border-radius: 50%;
-	-webkit-border-radius: 50%
 }
 
 .items-gruop .column-pictuer {
@@ -150,13 +142,11 @@
 	width: 61px;
 	height: 61px;
 	border-radius: 50%;
-	-webkit-border-radius: 50%
 }
 
 .column-news li {
 	position: relative;
 	display: flex;
-	display: -webkit-flex;
 	padding: 10px 0
 }
 
@@ -176,7 +166,6 @@
 
 .column-news h2+p {
 	display: -webkit-box;
-	display: box;
 	overflow: hidden;
 	margin-bottom: 5px;
 	color: #666;
@@ -195,19 +184,18 @@
 
 .column-news .details-zllist {
 	display: flex;
-	display: -webkit-flex;
 	color: #999;
 	justify-content: space-between
 }
 
 .people-details {
-	margin: 14px 10px 8px 23px;
-	padding-left: 10px;
+	margin: 14px 10px 8px 0;
+	margin-left: 5%;
+	padding-left: 9px;
 	height: 147px;
 	background: hsla(0,0%,100%,.12);
 	color: #fff;
 	flex: 1;
-	-webkit-flex: 1
 }
 
 .people-details .people-name {
@@ -223,13 +211,13 @@
 
 .people-focus {
 	display: flex;
-	display: -webkit-flex;
-	justify-content: space-between
+	justify-content: space-between;
+	font-size: 13px;
 }
 
 .people-focus .focus-number {
 	color: #ecc580;
-	margin-left: 8px
+	margin-left: 3px;
 }
 
 .column-list {

@@ -1,12 +1,11 @@
-
 <footer class="footer-box" >      
     <ul class="footer-ul" >
         <li id="online-evaluation-li">
             <i class="footer-logo-online"></i>
-            <span>留学评估</span>
+            <span>移民评估</span>
         </li>
-        <li >
-            <a  class="footer-consultation-a" id="footer-consultation" data-jobNumber="{{userinfo.job_number}}">
+        <li class="telphone">
+            <a href="http://jesong.jjl.cn/live/chat.do?c=1&g=54" >
                 <i class="footer-logo-information"></i>
                 <span>在线咨询</span>
                 <i class="consultation-news" >3</i>
@@ -20,12 +19,10 @@
         </li>
     </ul>
 </footer>
-<script> 
-    $("#footer-consultation").on('click',function(){
-        openJesongChatByCus(1,$(this).attr('data-jobNumber'));
-    });
+<script >
     $("#online-evaluation-li").on("click",function(){
         //点击在线评估
-        window.location.href=fn.urlgen('online_evaluation');
+        window.location.href=fn.urlgen('online_evaluation_yimin');
     });   
 </script>
+

@@ -120,11 +120,7 @@
     width: 100%;
 }
 .branch-liuxue-top-ul{
-    /*display: flex;*/
-    display: -moz-box;
-    display: -webkit-box;
-    display: -o-box;
-    display: box;
+    display: flex;
 }
 .branch-liuxue-top-ul li{
     display: block;

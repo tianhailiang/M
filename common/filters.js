@@ -7,11 +7,7 @@
 var moment = require('moment');
 var common = require('./common');
 
-// filters add here
 var customFilters = {
- /* str : data ,pipe in
-  * count: param for filter
-  */
   shorten: function(str, count) {
       if (str) {
           return str.slice(0, count || 5);
@@ -63,7 +59,7 @@ var customFilters = {
   getCountryEn: common.getCountryEn,
   getCountryId: common.getCountryId,
   getCity: common.getCityChinese,
-  getCitys: common.getCityEn,
+  getCityEn: common.getCityEn,
   getCityId: common.getCityId,
   getEdu: common.getEduName,
   getProject: common.getProjectName,
@@ -77,17 +73,15 @@ var customFilters = {
       resultUrl += '&' + source
     }
     return resultUrl;
+  },
+   //string 报错判断
+  safeId: function (id = 0) {
+    return id;
   }
-
-
-};
-
-// Aliases
-// customFilters.e = customFilters.escape;
+}
 
 function loadfilters(env = null) {
   var envwrap = env;
-  
   for(var name in customFilters) {
     envwrap.addFilter(name, customFilters[name]);
   }

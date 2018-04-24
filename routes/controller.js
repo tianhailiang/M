@@ -55,13 +55,57 @@ exports.home = function(req,res,next){
   }, function (err, result) {
     data.lunbo_list =returnData(result.lunbo_list,'lunbo_list');
     data.shouye = JSON.parse(result.shouye);
+    log.info(data.shouye)
     data.tdk = {
       pagekey: 'HOME',
       cityid: area,
     };
     res.render('index', data);
   });
-};
+}
+
+exports.yimin_home =function(req,res,next){
+    log.debug('移民首页')
+    var data = {};
+    log.info(req.params);
+    
+    if(req.params[1]){
+        [data.country=1] = [comfunc.getCountryIdParams(req.params[1].replace('/', ''))];
+    }else{
+        data.country=1;
+    }
+  // log.info('country  ',data.country)
+    async.parallel({
+        lunbo_list: function (callback) {
+          // 轮播图接口
+            cms.lunbo_list({
+                "ad_page":"MOBILE_YIMIN_HOME",
+                "ad_seat":"SEAT1",
+                "cityid":1
+            },callback);
+        },
+        shouye:function(callback) {
+            cms.mYiminShouye({
+                "country_id":data.country
+            }, callback);
+        },
+    }, function (err, result) {
+        data.lunbo_list =returnData(result.lunbo_list,'lunbo_list');
+        data.shouye = JSON.parse(result.shouye);
+        // log.info(data.shouye)
+        // log.info(data.shouye.list[0].list[2])
+        // log.info(data.shouye.list[1].list[2])
+        // log.info(data.shouye.list[2].list[2])
+        // log.info(data.shouye.list[0].list[1])
+        data.tdk = {
+          pagekey: 'YIMIN_HOME',
+          cityid: 1,
+        };
+        res.render('yimin_index', data);
+    });
+
+}
+
 // 学历频道页--本科
 exports.channel_edu_graduate_under = function (req, res, next) {
     var data = [];
@@ -1185,7 +1229,6 @@ exports.advisor_list_moer = function (req, res, next) {
 exports.news_detail = function (req, res, next) {
   log.debug( '文章底页', req.params);
   var data = [];
-  var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
     if(req.cookies.login_ss != undefined){
         data.login_info =JSON.parse(req.cookies.login_ss);
     }else{
@@ -1201,7 +1244,7 @@ exports.news_detail = function (req, res, next) {
       }, callback);
     },
   }, function (err, result){
-    if(err || result.wenzhangdiye.code != 0){
+    if(err || result.wenzhangdiye.code == '1220000006'){
       next();
       return false;
     }
@@ -1216,34 +1259,22 @@ exports.news_detail = function (req, res, next) {
           }
       },function (err,result) {
           data.userinfo =returnData(result.userinfo,'userinfo');
-          data.path = 'NEWSDETAIL';
-          data.pageType = '最新资讯';
-          data.pageroute="news";
-          data.id = data.article_id;
-          var pagekey = null;
-          if(data.wenzhangdiye.article_info.type == 1){
-              pagekey = 'ADVISOR_P_CASE_DETAIL';
-          }else if(data.wenzhangdiye.article_info.type == 2){
-              pagekey = 'ADVISOR_P_ARTICLE_DETAIL';
-          }
           data.tdk = {
-              pagekey: pagekey, //key 同意规定，具体找郭亚超
-              cityid: area, //cityid
-              // nationid: country,//nationi
+              pagekey: 'ADVISOR_P_ARTICLE_DETAIL', 
+              cityid: data.userinfo.organid, 
               title: data.wenzhangdiye.article_info.title,
-              // description: data.wenzhangdiye.article_info.description,
-              description: helperfunc.cut(data.wenzhangdiye.article_info.message,80),
+              description: helperfunc.cut(data.wenzhangdiye.article_info.introduce,80),
               keywords: data.wenzhangdiye.article_info.title
           };
-          data.esikey = esihelper.esikey();
           res.render('news_detail', data);
       })
   });
-};/*资讯底页（rongfa）*/
+}
+
+/*资讯底页（rongfa）*/
 exports.case_detail = function (req, res, next) {
   log.debug( '案例底页', req.params);
   var data = [];
-  var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
     if(req.cookies.login_ss != undefined){
         data.login_info =JSON.parse(req.cookies.login_ss);
     }else{
@@ -1259,7 +1290,7 @@ exports.case_detail = function (req, res, next) {
       }, callback);
     },
   }, function (err, result){
-    if(err || result.wenzhangdiye.code != 0){
+    if(err || result.wenzhangdiye.code == '1220000006' ){
       next();
       return false;
     }
@@ -1274,54 +1305,28 @@ exports.case_detail = function (req, res, next) {
           }
       },function (err,result) {
           data.userinfo =returnData(result.userinfo,'userinfo');
-          data.path = 'NEWSDETAIL';
-          data.pageType = '最新资讯';
-          data.pageroute="news";
-          data.id = data.article_id;
-          var pagekey = null;
-          if(data.wenzhangdiye.article_info.type == 1){
-              pagekey = 'ADVISOR_P_CASE_DETAIL';
-          }else if(data.wenzhangdiye.article_info.type == 2){
-              pagekey = 'ADVISOR_P_ARTICLE_DETAIL';
-          }
           data.tdk = {
-              pagekey: pagekey, //key 同意规定，具体找郭亚超
-              cityid: area, //cityid
-              // nationid: country,//nationi
+              pagekey: 'ADVISOR_P_CASE_DETAIL', 
+              cityid: data.userinfo.organid, 
               title: data.wenzhangdiye.article_info.title,
-              // description: data.wenzhangdiye.article_info.description,
-              description: helperfunc.cut(data.wenzhangdiye.article_info.message,80),
+              description: helperfunc.cut(data.wenzhangdiye.article_info.introduce,80),
               keywords: data.wenzhangdiye.article_info.title
           };
-          data.esikey = esihelper.esikey();
           res.render('news_detail', data);
       })
   });
-};
+}
 
 //顾问底页(rongfa)
 exports.adviser_detail = function (req, res, next) {
     var data = [];
-    var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
-    // var country = comfunc.getCountryIdParams(req.params[1]);
-    // var nquery = comfunc.getReqQuery(req.params[3]);
-    // var edu = nquery && nquery.e ? nquery.e : 0;
-    // var page = nquery && nquery.page ? nquery.page : 1;
     var uid = req.params[0];
-
     if ( req.cookies.login_ss !== undefined) {
         console.log('有cookie')
         data.login_info = JSON.parse(req.cookies.login_ss);
     }else{
     }
     async.parallel({
-        // guwen_list:function (callback){
-        //     cms.adviser_main({
-        //         "per_page":6, 
-        //         "order":"add_time desc", 
-        //         "uid": uid
-        //     },callback)
-        // },
         zhuanlanlist:function(callback){
             cms.adviser_main({
                 "type":2,
@@ -1329,30 +1334,26 @@ exports.adviser_detail = function (req, res, next) {
                 "order":encodeURI("add_time desc")
             },callback)
         },
+        userinfo:function(callback){
+            cms.userinfo({
+                "u_id":uid,
+                "to_uid":uid
+            },callback);
+        }
     }, function (err, result) {
         data.zhuanlanlist = returnData(result.zhuanlanlist,'zhuanlanlist');
-        async.parallel({
-            userinfo:function(callback){
-                cms.userinfo({
-                    "u_id":uid,
-                    "to_uid":uid
-                },callback);
-            }
-        },function(err, result){
-            data.userinfo = returnData(result.userinfo,'userinfo');
-            data.area=area;
-            data.tdk = {
-                pagekey: 'ADVISOR_P_ARTICLE', //key
-                realname: data.userinfo.realname
-            };
-            res.render('adviser_detail', data);
-        })
+        data.userinfo = returnData(result.userinfo,'userinfo');
+        data.tdk = {
+            pagekey: 'ADVISOR_P_ARTICLE',
+            realname: data.userinfo.realname,
+            cityid:data.userinfo.organid
+        };
+        res.render('adviser_detail', data);
     });
-};
+}
 //顾问底页--案例
 exports.adviser_detail_case = function (req, res, next) {
     var data = [];
-    var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
     var uid = req.params[0];
 
     if ( req.cookies.login_ss !== undefined) {
@@ -1369,33 +1370,27 @@ exports.adviser_detail_case = function (req, res, next) {
                 "per_page":6
             },callback)
         },
-    }, function (err, result) {
-        // data.userinfo = returnData(result.userinfo,'userinfo');
-        data.caselist = returnData(result.caselist,'caselist');
-        async.parallel({
-            userinfo:function(callback){
+        userinfo:function(callback){
                 cms.userinfo({
                     "u_id":uid,
                     "to_uid":uid
                 },callback);
             }
-        },function(err, result){
-            data.userinfo = returnData(result.userinfo,'userinfo');
-            data.area=area;
-            data.tdk = {
-                pagekey: 'ADVISOR_P_CASE',
-                realname: data.userinfo.realname
-            };
-            res.render('adviser_detail_case', data);
-        })
+    }, function (err, result) {
+        data.caselist = returnData(result.caselist,'caselist');
+        data.userinfo = returnData(result.userinfo,'userinfo');
+        data.tdk = {
+            pagekey: 'ADVISOR_P_CASE',
+            realname: data.userinfo.realname,
+            cityid:data.userinfo.organid
+        };
+        res.render('adviser_detail_case', data);
     });
-};
+}
 //顾问底页--精选
 exports.adviser_detail_jinxuan = function (req, res, next) {
     var data = [];
-    var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
     var uid = req.params[0];
-
     if ( req.cookies.login_ss !== undefined) {
         console.log('有cookie')
         data.login_info = JSON.parse(req.cookies.login_ss);
@@ -1409,26 +1404,23 @@ exports.adviser_detail_jinxuan = function (req, res, next) {
                 "uid":uid
             },callback)
         },
+        userinfo:function(callback){
+            cms.userinfo({
+                "u_id":uid,
+                "to_uid":uid
+            },callback);
+        }
     }, function (err, result) {
         data.jinxuanlist = returnData(result.jinxuanlist,'jinxuanlist');
-        async.parallel({
-            userinfo:function(callback){
-                cms.userinfo({
-                    "u_id":uid,
-                    "to_uid":uid
-                },callback);
-            }
-        },function(err, result){
-            data.userinfo = returnData(result.userinfo,'userinfo');
-            data.area=area;
-            data.tdk = {
-                pagekey: 'ADVISOR_P_ARTICLE_HOT', //key
-                realname: data.userinfo.realname
-            };
-            res.render('adviser_detail_jinxuan', data);
-        })
+        data.userinfo = returnData(result.userinfo,'userinfo');
+        data.tdk = {
+            pagekey: 'ADVISOR_P_ARTICLE_HOT',
+            realname: data.userinfo.realname,
+            cityid:data.userinfo.organid
+        };
+        res.render('adviser_detail_jinxuan', data);
     });
-};
+}
 /*参赞底页-*/
 exports.canzan_column = function (req, res, next) {
   log.debug(req.params);

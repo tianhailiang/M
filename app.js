@@ -13,8 +13,8 @@ var esinc = require('./middleware/esitag')(nunjucks);
 var midesi = require('./middleware/midesi');
 var config = require('./config/config');
 var viewcache = require('./middleware/viewcache');
-var url_rewrite = require("./middleware/url_decode");
 var tdk_monitor = require('./tdk/tdk_monitor');
+var url_rewrite = require("./middleware/url_decode");
 app.use(favicon(path.join(__dirname,'favicon.ico')));
 
 var viewspath = 'views';
@@ -34,14 +34,12 @@ app.use(midesi({
   fragserver: 'http://127.0.0.1',
   port:'3500'
 }));
-
 url_rewrite(app);
 app.set('view engine', 'html');
 customfilters.load(env);
 app.locals.helper = helper;
 env.express(app);
 
-// uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -80,6 +78,5 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
 
 module.exports = app;
