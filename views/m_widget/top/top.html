@@ -459,14 +459,14 @@
     $.ajax({
       type: "get",
       async: false,
-      url:ajaxUrlPrefix.nodeapi+"/ip_geter",
+      url:ajaxUrlPrefix.nodeapi+"/get_ip_geter",
       dataType: "json",
       success: function(result){
         console.log(result)
         if(!$.cookie('currentarea')){
-          $("#fengongsi").html(cityList[result.data][0]);
+          $("#fengongsi").html(cityList[result][0]);
           $("#popupTipsLocation").css("display","block"); 
-            _selByIp_code=result.data;
+            _selByIp_code=result;
         }
       },
       error: function(error){
