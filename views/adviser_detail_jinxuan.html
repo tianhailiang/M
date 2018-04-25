@@ -72,15 +72,5 @@
 {% include "m_widget/slidebar/common_sliderbar.html" %}
 <!-- ======乐语底栏======= -->
 {% include 'm_widget/funtalk/funtalk1.html' %}
-<script>
-    $(function(){
-      $(".tab-controll li").on('click',function(){
-        var $dataIndex = $(this).data('index')
-        $(".tab-controll li").removeClass('tabs-current')
-        $(this).addClass('tabs-current')
-        $(".tabitems .items-gruop").eq($dataIndex).show().siblings().hide()
-      })
-  })
-</script>
 </body>
 </html>
