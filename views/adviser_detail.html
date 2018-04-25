@@ -2,12 +2,32 @@
 <html lang="en">
 {% include "header.html" %}
 <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/adviser_detail.css">
-<!-- <script src="{{helper.cdnhost}}/assets/js/jquery.min.js"></script> -->
+<style>
+.loader{ width: 100%;text-align: center;height: 40px;}
+.loading-icon{position:relative;display: inline-block;}
+.loading-icon i{position:absolute;display:block;width:10px;height:10px;border-radius:50%;background:#666;}
+.loading-icon i:nth-child(1){top:25px;left:0;animation:loading-icon 1s ease 0s infinite;}
+.loading-icon i:nth-child(2){top:17px;left:17px;animation:loading-icon 1s ease .12s infinite;}
+.loading-icon i:nth-child(3){top:0;left:25px;animation:loading-icon 1s ease .24s infinite;}
+.loading-icon i:nth-child(4){top:-17px;left:17px;animation:loading-icon 1s ease .36s infinite;}
+.loading-icon i:nth-child(5){top:-25px;left:0;animation:loading-icon 1s ease .48s infinite;}
+.loading-icon i:nth-child(6){top:-17px;left:-17px;animation:loading-icon 1s ease .6s infinite;}
+.loading-icon i:nth-child(7){top:0;left:-25px;animation:loading-icon 1s ease .72s infinite;}
+.loading-icon i:nth-child(8){top:17px;left:-17px;animation:loading-icon 1s ease .84s infinite;}
+@keyframes loading-icon{
+    50%{transform: scale(0.4);opacity: 0.3;}
+    100%{transform: scale(1);opacity: 1;}
+}
+@-webkit-keyframes loading-icon{
+    50%{transform: scale(0.4);opacity: 0.3;}
+    100%{transform: scale(1);opacity: 1;}
+}
+</style>
 <body>
 <div id="app">
   {% include "m_widget/top/common_top.html" %}
   <section id="guwenDetails">
-    <div class="people-info">
+    <div class="people-info" data-uid="{{userinfo.uid}}">
       <img src="{{ helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version) }}" class="people-img" alt="{{adviser_detail.realname}}顾问">
       <div class="people-details">
         <div class="people-name"><strong>{{userinfo.realname}}</strong><span style="color:#ecc580;">{{userinfo.organid | getCity()}}分公司</span></div>
@@ -63,6 +83,11 @@
                   {% endfor %}
                 </ul>
             </div>
+            <div class="loader">
+              <div class="loading-icon">
+                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>     
+              </div>
+          </div>      
         </div>
     </div>
   </section>
@@ -73,5 +98,64 @@
 {% include "m_widget/slidebar/common_sliderbar.html" %}
 <!-- ======乐语底栏======= -->
 {% include 'm_widget/funtalk/funtalk1.html' %}
+<script>
+  $(document).ready(function (){ 
+      var cur_page = 1
+      $(window).scroll(function(){ 
+          var scrollTop = $(window).scrollTop()
+          var clientHeight = $(window).height()
+          var docHeight = $(document).height()
+          if(scrollTop >= docHeight - clientHeight){
+              cur_page+=1
+              // $('.loader').show()
+              loadMore()
+          }  
+        });
+  function loadMore () {
+      var now_page = cur_page;
+      var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
+      var uid = $('.people-info').data('uid')
+      $.ajax({
+        url: '/soapi/loadmore',
+        type: 'GET',
+        datatype: 'json',
+        data: {
+          "type":2,
+          "uid":uid,
+          "order":encodeURI("add_time desc"),
+          "per_page":10,
+          "page":now_page
+        },
+        beforeSend: function(){
+          $('.loader').show()
+        },
+        success: function (result) {
+          var add = '';
+          var datalist = result.data.list;
+          if (result.data.list.length > 0) {
+              for (var i = 0;i < datalist.length;i++) {
+                add += '<li>'+
+                  '<a href="'+fn.urlgen("article",datalist[i].id.toString())+'">'+
+                            '<span class="spanpicter" style="background:url('+fn.avaterimg(datalist[i].user_info.uid, 'small',datalist[i].user_info.status, datalist[i].user_info.version)+') no-repeat 0 0;background-size: cover;"></span>'+
+                            '<div class="column-list">'+
+                              '<h2>'+datalist[i].user_info.realname+'<span></span></h2> '+
+                              '<p>'+datalist[i].title +'</p>'+
+                              '<p style="color:#999;">'+datalist[i].tag_list+'</p>'+
+                            '</div>'+
+                        '</a>'+
+                      '</li>'
+              }
+              $('.column-news').append($(add));
+          } else {
+              $('.loader').remove()
+          }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          alert('服务器开小差了，请重试');
+        }
+      })
+    }  
+}); 
+</script>
 </body>
 </html>

@@ -1519,4 +1519,14 @@ exports.adviser_main=function(data,callback){
   }
   api.apiRequest(url, callback);
 }
-
+//顾问加载更多
+exports.loadmore =function(req,res,next){
+  var data = req.query;
+  cms.adviser_main(data,function(err,result){
+     if(err){
+       res.send(err);
+     }else{
+       res.send(result);
+     }
+   })
+}
