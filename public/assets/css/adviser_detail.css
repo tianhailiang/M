@@ -33,3 +33,6 @@
 .column-list h2{font-size:12px;}
 .people-email{display:-webkit-box;overflow:hidden;margin-bottom:5px;font-size:12px;line-height:18px;-webkit-box-orient:vertical;-webkit-line-clamp:5;}
 .tabContent .tab-controll li a{color:#333;}
+.loader{ text-align: center;}
+.loader > span{display: inline-block;margin-bottom: 6px;color: #7b7b7b;}
+.loader > img{ margin: 0 auto;}

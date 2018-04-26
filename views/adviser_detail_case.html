@@ -2,27 +2,6 @@
 <html lang="en">
 {% include "header.html" %}
 <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/adviser_detail.css">
-<style>
-.loader{ width: 100%;text-align: center;height: 40px;}
-.loading-icon{position:relative;display: inline-block;}
-.loading-icon i{position:absolute;display:block;width:10px;height:10px;border-radius:50%;background:#666;}
-.loading-icon i:nth-child(1){top:25px;left:0;animation:loading-icon 1s ease 0s infinite;}
-.loading-icon i:nth-child(2){top:17px;left:17px;animation:loading-icon 1s ease .12s infinite;}
-.loading-icon i:nth-child(3){top:0;left:25px;animation:loading-icon 1s ease .24s infinite;}
-.loading-icon i:nth-child(4){top:-17px;left:17px;animation:loading-icon 1s ease .36s infinite;}
-.loading-icon i:nth-child(5){top:-25px;left:0;animation:loading-icon 1s ease .48s infinite;}
-.loading-icon i:nth-child(6){top:-17px;left:-17px;animation:loading-icon 1s ease .6s infinite;}
-.loading-icon i:nth-child(7){top:0;left:-25px;animation:loading-icon 1s ease .72s infinite;}
-.loading-icon i:nth-child(8){top:17px;left:-17px;animation:loading-icon 1s ease .84s infinite;}
-@keyframes loading-icon{
-    50%{transform: scale(0.4);opacity: 0.3;}
-    100%{transform: scale(1);opacity: 1;}
-}
-@-webkit-keyframes loading-icon{
-    50%{transform: scale(0.4);opacity: 0.3;}
-    100%{transform: scale(1);opacity: 1;}
-}
-</style>
 <body>
 <div id="app">
   {% include "m_widget/top/common_top.html" %}
@@ -85,10 +64,9 @@
               </ul>
               <!-- loading -->
               <div class="loader">
-                  <div class="loading-icon">
-                      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>     
-                  </div>
-              </div>   
+                  <span>加载更多...</span>
+                  <img src="{{helper.cdnhost}}/assets/img/loading.gif" alt="">
+              </div>    
             </div>
           </div>
     </div>
@@ -103,6 +81,7 @@
 <script>
   $(document).ready(function(){
       var cur_page = 1
+      $('.loader').hide()
       $(window).scroll(function(){ 
         var scrollTop = $(window).scrollTop()
         var clientHeight = $(window).height()
@@ -149,7 +128,8 @@
             }
             $('.column-news').append($(add));
           }else{
-            $('.loader').remove()
+            $('.loader > span').text('数据加载完毕！')
+            $('.loader > img').remove()
           }
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
