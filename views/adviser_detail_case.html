@@ -6,7 +6,7 @@
 <div id="app">
   {% include "m_widget/top/common_top.html" %}
   <section id="guwenDetails">
-    <div class="people-info">
+    <div class="people-info" data-uid="{{userinfo.uid}}">
       <img src="{{ helper.avaterimg(userinfo.uid, 'small', userinfo.status, userinfo.version) }}" class="people-img" alt="{{adviser_detail.realname}}顾问">
       <div class="people-details">
         <div class="people-name"><strong>{{userinfo.realname}}</strong><span style="color:#ecc580;">{{userinfo.organid | getCity()}}分公司</span></div>
@@ -39,7 +39,6 @@
                   {% if loop.index == 1 %}
                     <li>
                       <a href="{{helper.urlgen('case',item.id | safeId | string)}}">
-                          <!-- <img src="{{ helper.avaterimg(userinfo.uid, 'small', 0, adviser_detail.status) }}" alt="" class="column-pictuer"> -->
                           <span class="spanpicter" style="background:url({{helper.avaterimg(userinfo.uid, 'small', userinfo.status, userinfo.version)}}) no-repeat 0 0;background-size: cover;"></span>
                           <div class="column-list">
                             <h2>{{userinfo.realname}}<span></span></h2> 
@@ -63,6 +62,11 @@
                   {%endif%}
                   {% endfor %}
               </ul>
+              <!-- loading -->
+              <div class="loader">
+                  <span>加载更多...</span>
+                  <img src="{{helper.cdnhost}}/assets/img/load.gif" alt="">
+              </div>    
             </div>
           </div>
     </div>
@@ -74,5 +78,71 @@
 {% include "m_widget/slidebar/common_sliderbar.html" %}
 <!-- ======乐语底栏======= -->
 {% include 'm_widget/funtalk/funtalk1.html' %}
+<script>
+  $(document).ready(function(){
+      var cur_page = 1
+      var onOff = false
+      $('.loader').hide()
+      $(window).scroll(function(){ 
+        var scrollTop = $(window).scrollTop()
+        var clientHeight = $(window).height() 
+        var docHeight = $(document).height()
+        if(scrollTop >= (docHeight - clientHeight) - 155){
+          if(!onOff){
+                onOff = true
+                cur_page++
+                setTimeout(loadMore,100)
+          }
+        }  
+      });
+    //
+    function loadMore () {
+      var now_page = cur_page;
+      var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
+      var uid = $('.people-info').data('uid')
+      $.ajax({
+        url: '/soapi/loadmore',
+        type: 'GET',
+        datatype: 'json',
+        data: {
+          "type":1,
+          "uid":uid,
+          "order":encodeURI("add_time desc"),
+          "per_page":6,
+          "page":now_page
+        },
+        beforeSend: function(){
+          $('.loader').show()
+        },
+        success: function (result) {
+          var add = '';
+          var datalist = result.data.list;
+          if (result.data.list.length > 0) {
+            for (var i = 0;i < datalist.length;i++) {
+                  add += '<li>'+
+                      '<a href="'+fn.urlgen('case',datalist[i].id.toString())+'">'+
+                          '<span class="spanpicter" style="background:url('+fn.avaterimg(datalist[i].user_info.uid, 'small',datalist[i].user_info.status, datalist[i].user_info.version)+') no-repeat 0 0;background-size: cover;"></span>'+
+                          '<div class="column-list">'+
+                            '<h2>'+datalist[i].user_info.realname+'<span></span></h2> '+
+                            '<p style="width:300px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">'+datalist[i].title+'</p>'+
+                            '<p style="color:#999;">'+datalist[i].tag_list+'</p>'+
+                          '</div>'+
+                      '</a>'+
+                    '</li>'
+            }
+            $('.column-news').append($(add));
+            onOff = false
+          }else{
+            $('.loader > span').text('数据加载完毕！')
+            $('.loader > img').remove()
+          }
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert('服务器开小差了，请重试');
+      }
+    })
+  }
+  });
+</script>
 </body>
 </html>
