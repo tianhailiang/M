@@ -80,17 +80,21 @@
 <script>
   $(document).ready(function (){ 
       var cur_page = 1
+      var onOff = false
       $('.loader').hide()
       $(window).scroll(function(){ 
           var scrollTop = $(window).scrollTop()
           var clientHeight = $(window).height()
           var docHeight = $(document).height()
-          if(scrollTop >= docHeight - clientHeight){
-              cur_page+=1
-              $('.loader').show()
-              loadMore()
-          }  
-        });
+          if(scrollTop >= (docHeight - clientHeight) - 155) {
+              if(!onOff){
+                onOff = true
+                cur_page++
+                setTimeout(loadMore,100)
+              }
+          }
+
+      });
   function loadMore () {
       var now_page = cur_page;
       var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
@@ -126,6 +130,7 @@
                       '</li>'
               }
               $('.column-news').append($(add));
+              onOff = false
           } else {
               $('.loader > span').text('数据加载完毕！')
               $('.loader > img').remove()
