@@ -4,8 +4,6 @@
 //document.write('<script src="{{helper.cdnhost}}/assets/js/common_dev.js"><\/script>')
 $(function(){
 
-
-
   var validate_leyu = {
     //phone
     phone: function(phone){
@@ -41,16 +39,12 @@ $(function(){
     }
   });
 
-
-
   $("#evaluation-btn").on('click',function(){
     if($("#name").val()==''){
       //判断姓名
       $("#name-num").html('请填写您的称呼');
       return false;
-
     }else{
-
       $("#name-num").html('');
     };
     if(!validate_leyu.phone($.trim($("#phone-slide").val()))){
@@ -75,7 +69,6 @@ $(function(){
     }else{
       $("#city-num").html('');
     };
-
     //留学需求
     if($("#context").val()==''){
       $("#context-num").html("请填写留学需求");
@@ -83,12 +76,10 @@ $(function(){
     }else{
       $("#context-num").html('');
     };
-
     $.ajax({
       url: ajaxUrlPrefix.nodeapi + '/cmsapi/assessment',
       type:'POST',
       dataType:'json',
-      //jsonpCallback: 'callback',
       data:{
         name: $("#name").val(),
         phone: $("#phone-slide").val(),
@@ -99,17 +90,17 @@ $(function(){
       success:function(msg){
         console.log(msg);
         if(msg.code === 0){
-          alert('老师将为您做专业评估。');
+          setTimeout(function(){
+            alert('老师将为您做专业评估。');
+          },0);
         } else {
           alert(msg.message);
-
         }
       },
       error:function(XMLHttpRequest, textStatus, errorThrown){
         console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
       }
     });
-
   });
 
   $("#reset-btn").on("click",function(){
@@ -118,6 +109,5 @@ $(function(){
     $("#phone-slide").val("");
     $('#phoneTip').html('');
     $("#context").val("")
-  })
-
+  });
 });
