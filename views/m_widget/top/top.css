@@ -63,12 +63,13 @@
   }
   /*=====选择城市====*/
   .change_city {
-    display: none;
+   /* display: none;
     position: fixed;
     top: 0;
     right: -100%;
     width: 100%;
-    z-index: 2300;
+    z-index: 2300;*/
+    position: absolute;
   }
   .city_title {
     background: #d52821;
