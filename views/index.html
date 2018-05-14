@@ -146,7 +146,7 @@
 		                </a>
 		       	    </li>
                 {% elif loop.index ==8  %}
-		            <li id="gd">
+		            <li id="gd" style="{% if country >51 %}display: none;{% else %}display: block;{% endif %}">
 		                <a href="javascript:void(0);" >
 			       	   	   <img src="{{helper.cdnhost}}/assets/img/{{item.imgurl}}" >
 			       	   	   <span>{{item.name}}</span>
@@ -201,14 +201,17 @@
             $("#gd").on("click",function(event){
                 //点击更多事件
                 event.stopPropagation();
-                this.flag =!this.flag;
-                if(this.flag){
-                    $(".gd-li").css("display","block");
-                    $("body").animate({scrollTop:parseInt($(this).offset().top/2)}, 300);
-                }else{
-                    $(".gd-li").css("display","none");
-                    $("body").animate({scrollTop:0}, 300);
-                }
+                $(this).hide();
+                $(".gd-li").css("display","block");
+                $("body").animate({scrollTop:parseInt($(this).offset().top/2)}, 300);
+                // this.flag =!this.flag;
+                // if(this.flag){
+                //     $(".gd-li").css("display","block");
+                //     $("body").animate({scrollTop:parseInt($(this).offset().top/2)}, 300);
+                // }else{
+                //     $(".gd-li").css("display","none");
+                //     $("body").animate({scrollTop:0}, 300);
+                // }
             });
             $('.team-top-ul li').on('click',function(){
                 //切换列表

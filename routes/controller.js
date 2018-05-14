@@ -2824,3 +2824,12 @@ exports.loadmore =function(req,res,next){
        }
      })
  }
+
+ //城市切换页
+ exports.city =function(req,res,next){
+    var data ={};
+    data.tdk = {
+      pagekey: 'CITY'
+    };
+    res.render('city', data);
+ }
