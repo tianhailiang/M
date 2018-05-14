@@ -143,7 +143,7 @@
 .header-city{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:100%}
 .header-city .header-location{font-size:13px;color:#d51821}
 .header-city i{font-size:14px;color:#d51821;margin-left:5px}
-.change_city{display:none;position:fixed;top:0;right:-100%;width:100%;z-index:2300}
+.change_city{position:absolute}
 .city_title{background:#d52821;position:relative;height:43px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:0 10px}
 .icon-jiantou1{font-size:24px;color:#fff;z-index:10}
 .city_title h1{position:absolute;text-align:center;color:#fff;font-size:24px;width:100%;height:100%;line-height:43px;left:0}
