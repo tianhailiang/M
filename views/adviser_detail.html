@@ -79,23 +79,23 @@
 {% include 'm_widget/funtalk/funtalk1.html' %}
 <script>
   $(document).ready(function (){ 
-      var cur_page = 1
-      var onOff = false
-      $('.loader').hide()
-      $(window).scroll(function(){ 
-          var scrollTop = $(window).scrollTop()
-          var clientHeight = $(window).height()
-          var docHeight = $(document).height()
-          if(scrollTop >= (docHeight - clientHeight) - 155) {
-              if(!onOff){
-                onOff = true
-                cur_page++
-                setTimeout(loadMore,100)
-              }
-          }
+    var cur_page = 1
+    var onOff = false
+    $('.loader').hide()
+    $(window).scroll(function(){ 
+        var scrollTop = $(window).scrollTop()
+        var clientHeight = $(window).height()
+        var docHeight = $(document).height()
+        if(scrollTop >= (docHeight - clientHeight) - 155) {
+            if(!onOff){
+              onOff = true
+              cur_page++
+              setTimeout(loadMore,100)
+            }
+        }
 
-      });
-  function loadMore () {
+    });
+    function loadMore () {
       var now_page = cur_page;
       var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
       var uid = $('.people-info').data('uid')
@@ -141,7 +141,7 @@
         }
       })
     }  
-}); 
+  }); 
 </script>
 </body>
 </html>
