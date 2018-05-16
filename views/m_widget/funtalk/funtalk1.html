@@ -6,14 +6,14 @@
             <span>留学评估</span>
         </li>
         <li >
-            <a  class="footer-consultation-a" data-jobNumber="{{userinfo.job_number}}" id="footer-consultation">
+            <a  class="footer-consultation-a" id="footer-consultation" data-jobNumber="{{userinfo.job_number}}">
                 <i class="footer-logo-information"></i>
                 <span>在线咨询</span>
                 <i class="consultation-news" >3</i>
             </a>
         </li>
         <li class="telphone">
-            <a href="tel:4000108000" >
+            <a href="tel:{{userinfo.tel}}" >
                 <i class="footer-logo-phone"></i>
                 <span>{{userinfo.tel}}</span>
             </a>
@@ -28,4 +28,4 @@
         //点击在线评估
         window.location.href=fn.urlgen('online_evaluation');
     });   
-</script>     
+</script>
