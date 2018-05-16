@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div >thl</div>
+	<script>
+		alert('thl')
+		document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() { 
+			alert(100)
+			// 分享到朋友圈 
+			WeixinJSBridge.on('menu:share:timeline', function (argv) { 
+				WeixinJSBridge.invoke('shareTimeline', { 
+				"img_url": 'http://images.jjl.cn/ugc/2018/0327/20180327152154980.jpeg', 
+				"img_width": "160", 
+				"img_height": "160", 
+				"link": 'www.baidu.com', 
+				"desc": 'haidao', 
+				"title": 'haidao' 
+				}, function (res) { 
+					alert(500)
+				}); 
+			}); 
+		},false);
+	</script>
+	
+</body>
+</html>

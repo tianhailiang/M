@@ -7,6 +7,8 @@ var esihelper = require('../middleware/esihelper');
 var config = require('../config/config');
 var comfunc = require('../common/common');
 var helperfunc = require('../common/helper');
+const sha1 = require('sha1');
+var wechat = require('../model/wechat.js');
 function returnData(obj,urlName){
   if(obj.code==0){
     return obj.data;
@@ -1249,6 +1251,7 @@ exports.news_detail = function (req, res, next) {
       return false;
     }
     data.wenzhangdiye =returnData(result.wenzhangdiye,'wenzhangdiye');
+    data.wenzhangdiye.article_info.img_info =JSON.parse(data.wenzhangdiye.article_info.img_info);
       async.parallel({
           //获取用户信息（普通用户，顾问，参赞）
           userinfo:function(callback){
@@ -2833,3 +2836,41 @@ exports.loadmore =function(req,res,next){
     };
     res.render('city', data);
  }
+
+ //微信token认证
+exports.wxtoken = function(req,res,next){
+    log.debug('请求微信')
+    const grant_type = 'client_credential';
+    // const appid = 'wxe47804e220cb297b';
+    const appid = 'wx3cc6ed0caf890dab';
+    // const secret = '6fb02500b12cede189e82d06148cccb0';
+    const secret = '88cb06cf296b1671446622f7c0c4c3d0';
+    wechat.get_access_token(grant_type, appid, secret).then((access_token)=>{
+        wechat.get_jsapi_ticket(access_token).then((jsapi_ticket)=>{
+            let nonce_str = randomNum(6);    // 密钥，字符串任意，可以随机生成
+            let timestamp = new Date().getTime();  // 时间戳
+            log.debug('nonce_str ',nonce_str);
+            log.debug('timestamp', timestamp); 
+            log.debug('url', req.body.url); // 使用接口的url链接，不包含#后的内容
+            // 将请求以上字符串，先按字典排序，再以'&'拼接，如下：其中j > n > t > u，此处直接手动排序
+            let str = 'jsapi_ticket=' + jsapi_ticket + '&noncestr=' + nonce_str + '&timestamp='+ timestamp +'&url=' + req.body.url;
+            // 用sha1加密
+            let signature = sha1(str);
+            res.send({
+              appId: appid,
+              timestamp: timestamp,
+              nonceStr: nonce_str,
+              signature: signature,
+            });
+        })
+    });
+    function randomNum(n){ 
+        //生成随机数
+         let t=''; 
+         for(let i=0;i<n;i++){ 
+         t+=Math.floor(Math.random()*10); 
+         } 
+         return t; 
+    } 
+}
+

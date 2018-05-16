@@ -23,7 +23,7 @@
           {{wenzhangdiye.article_info.tag_list}}
         </div></div>
       </div>
-      <h1>{{wenzhangdiye.article_info.title}}</h1>
+      <h1 id="article_title" >{{wenzhangdiye.article_info.title}}</h1>
       <p class="new-details-p2">
         {{wenzhangdiye.article_info.add_time|shorten(10)}}
       </p>
@@ -33,7 +33,7 @@
         <span>评论：<em>{{wenzhangdiye.article_info.comments}}</em></span>
         <span>点赞：<em>{{wenzhangdiye.article_info.votes}}</em></span>
       </p>
-      <article class="news-content" style="clear: both">
+      <article class="news-content" style="clear: both" data-img="{{wenzhangdiye.article_info.img_info[0]}}" id="get-share-img" >
         <p>{{wenzhangdiye.article_info.message | safe}}</p>
       </article>
     </section>
@@ -51,32 +51,45 @@
 </div>
 <script src="{{helper.cdnhost}}/assets/js/view_count_min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" ></script>
-<script src="{{helper.cdnhost}}/dep/js/sha1.min.js" ></script>
-<script src="{{helper.cdnhost}}/dep/js/wxShare_data.js" ></script>
 <script>
-  wx.config({
-    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-    appId: 'wxe47804e220cb297b', // 必填，公众号的唯一标识
-    timestamp: , // 必填，生成签名的时间戳
-    nonceStr: '', // 必填，生成签名的随机串
-    signature: '',// 必填，签名
-    jsApiList: [] // 必填，需要使用的JS接口列表
-  });
-  wx.ready(function(){
-    // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
-  });
-  wx.onMenuShareTimeline({
-    title: '', // 分享标题
-    link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-    imgUrl: '', // 分享图标
-    success: function () {
-      // 用户确认分享后执行的回调函数
-      alert('分享成功')
+  console.log($("#get-share-img").attr('data-img'))
+  $.ajax({
+    type: "POST",
+    url:"/wxJssdk/getJssdk",
+    dataType: "json",
+    data:{
+      url:location.href.split('#')[0]
     },
-    cancel: function () {
-      // 用户取消分享后执行的回调函数
+    success: function(result){
+      console.log(result)
+      wx.config({
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: result.appId, // 必填，公众号的唯一标识
+        timestamp: result.timestamp, // 必填，生成签名的时间戳
+        nonceStr: result.nonceStr, // 必填，生成签名的随机串
+        signature: result.signature,// 必填，签名
+        jsApiList: ['onMenuShareTimeline'] // 必填，需要使用的JS接口列表
+      });
+      wx.ready(function(){
+        // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+        wx.onMenuShareTimeline({
+          title: $('#article_title').text(), // 分享标题
+          link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+          imgUrl: $("#get-share-img").attr('data-img'), // 分享图标
+          success: function () {
+            // 用户确认分享后执行的回调函数
+            alert('分享成功')
+          },
+          cancel: function () {
+            // 用户取消分享后执行的回调函数
+          }
+        });
+      });
+    },
+    error: function(error){
+      console.log(error)
     }
-  });
+  }); 
 </script>
 </body>
 </html>

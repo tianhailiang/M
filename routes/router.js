@@ -100,5 +100,10 @@ exports = module.exports = function (app) {// routes
   app.get('/about', controller.about);//金吉列简介
   app.get('/act_form', controller.act_form);//活动表单
   app.get('/soapi/loadmore',controller.loadmore); //顾问加载更多
-};
+  //微信token 认证
+  app.post('/wxJssdk/getJssdk',controller.wxtoken);
+  app.get('/thl',function(req,res,next){
+    res.render('wxShare')
+  })
+}
 
