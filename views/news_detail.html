@@ -65,7 +65,8 @@
   // 如果为真，则请求
   if(isWeiXin()){
       // 去获取signature签名
-      // console.log($("#get-share-img").attr('data-img'))
+      console.log($("#get-share-img").attr('data-img'))
+      getImage()
       $.ajax({
         type: "POST",
         url:"/wxJssdk/getJssdk",
