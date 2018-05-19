@@ -186,7 +186,7 @@
     {% include "m_widget/slidebar/slidebar.html" %}
     <!-- ======乐语底栏======= -->
     {% include 'm_widget/funtalk/funtalk.html' %}
-    <script  src="{{helper.cdnhost}}/dep/js/swiper_new-3.4.2.jquery.min.js"></script>
+    <script  src="{{helper.cdnhost}}/dep/js/swiper_new_1-3.4.2.jquery.min.js"></script>
     <script >
         $(function(){
 	      	var mySwiper = new Swiper('#swiper-container', {
@@ -197,7 +197,6 @@
 	            pagination : '.swiper-pagination',
 	            loop:true,
 	        });
-	          
             $("#gd").on("click",function(event){
                 //点击更多事件
                 event.stopPropagation();
