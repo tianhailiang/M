@@ -137,8 +137,8 @@
 #app{width:100%;position:absolute;padding-top:43px}
 .header{height:43px;padding:0 10px;-webkit-box-sizing:border-box;box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;position:fixed;top:0;background:#fff;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;z-index:1000;width:100%}
 .header-Catalog{height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;z-index:2000;position:relative}
-.header-Catalog span{display:block;width:21px;height:14px;background:url(../../../assets/img/home_bar_menu.png) no-repeat 0 0;background-size:21px 14px}
-.header-logo{width:86px;height:24.5px;background:url(../../../assets/img/home_bar_logo.png) no-repeat 0 0;background-size:86px 24.5px}
+.header-Catalog span{display:block;width:21px;height:14px;background:url(../../../assets/img/home_bar_menu_1.png) no-repeat 0 0;background-size:21px 14px}
+.header-logo{width:86px;height:24.5px;background:url(../../../assets/img/home_bar_logo_1.png) no-repeat 0 0;background-size:86px 24.5px}
 .header-jjl{background:#d51821;color:#fff;width:80px;height:20px;border-radius:25px;font-size:13px;text-align:center;line-height:20px}
 .header-city{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:100%}
 .header-city .header-location{font-size:13px;color:#d51821}

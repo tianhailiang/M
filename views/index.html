@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     {% include "header.html" %}
-    <link rel="stylesheet" type="text/css" href="{{helper.cdnhost}}/dep/css/swiper-3.4.2.min.css">
+    <link rel="stylesheet" type="text/css" href="{{helper.cdnhost}}/dep/css/swiper_new-3.4.2.min.css">
     <link rel="stylesheet" type="text/css" href="{{helper.cdnhost}}/assets/css/index.css">
 </head>
 <body>
@@ -12,127 +12,127 @@
         {% set countryList = [
         	{
         		name:"美国",
-        		imgurl:"home_icon_mg.png",
+        		imgurl:"home_icon_mg_1.png",
         		id:"1"
         	},
         	{
         		name:"英国",
-        		imgurl:"home_icon_yg.png",
+        		imgurl:"home_icon_yg_1.png",
         		id:"2"
         	},
         	{
         		name:"加拿大",
-        		imgurl:"home_icon_jnd.png",
+        		imgurl:"home_icon_jnd_1.png",
         		id:"3"
         	},
         	{
         		name:"澳大利亚",
-        		imgurl:"home_icon_adly.png",
+        		imgurl:"home_icon_adly_1.png",
         		id:"4"
         	},
         	{
         		name:"新西兰",
-        		imgurl:"home_icon_xxl.png",
+        		imgurl:"home_icon_xxl_1.png",
         		id:"5"
         	},
         	{
         		name:"日本",
-        		imgurl:"home_icon_rb.png",
+        		imgurl:"home_icon_rb_1.png",
         		id:"51"
         	},
             {
                 name:"韩国",
-                imgurl:"home_icon_hg.png",
+                imgurl:"home_icon_hg_1.png",
                 id:"50"
             },
             {
                 name:"更多",
-                imgurl:"home_icon_gd.png",
+                imgurl:"home_icon_gd_1.png",
                 id:""
             },
             {
                 name:"中国香港",
-                imgurl:"home_icon_xg.png",
+                imgurl:"home_icon_xg_1.png",
                 id:"54"
             },
             {
                 name:"俄罗斯",
-                imgurl:"home_icon_els.png",
+                imgurl:"home_icon_els_1.png",
                 id:"100"
             },
             {
                 name:"乌克兰",
-                imgurl:"home_icon_wkl.png",
+                imgurl:"home_icon_wkl_1.png",
                 id:"101"
             },
             {
                 name:"爱尔兰",
-                imgurl:"home_icon_ael.png",
+                imgurl:"home_icon_ael_1.png",
                 id:"108"
             },
             {
                 name:"意大利",
-                imgurl:"home_icon_ydl.png",
+                imgurl:"home_icon_ydl_1.png",
                 id:"111"
             },
             {
                 name:"西班牙",
-                imgurl:"home_icon_xby.png",
+                imgurl:"home_icon_xby_1.png",
                 id:"112"
             },
             {
                 name:"白俄罗斯",
-                imgurl:"home_icon_bels.png",
+                imgurl:"home_icon_bels_1.png",
                 id:"102"
             },
             {
                 name:"新加坡",
-                imgurl:"home_icon_xjp.png",
+                imgurl:"home_icon_xjp_1.png",
                 id:"52"
             },
             {
                 name:"马来西亚",
-                imgurl:"home_icon_mlxy.png",
+                imgurl:"home_icon_mlxy_1.png",
                 id:"53"
             },
             {
                 name:"丹麦",
-                imgurl:"home_icon_dm.png",
+                imgurl:"home_icon_dm_1.png",
                 id:"110"
             },
             {
                 name:"德国",
-                imgurl:"home_icon_dg.png",
+                imgurl:"home_icon_dg_1.png",
                 id:"103"
             },
         	{
         		name:"法国",
-        		imgurl:"home_icon_fb.png",
+        		imgurl:"home_icon_fb_1.png",
         		id:"104"
         	},
         	{
                 name:"挪威",
-                imgurl:"home_icon_nw.png",
+                imgurl:"home_icon_nw_1.png",
                 id:"105"
             },
         	{
                 name:"瑞典",
-                imgurl:"home_icon_rd.png",
+                imgurl:"home_icon_rd_1.png",
                 id:"106"
             },
         	{
         		name:"芬兰",
-        		imgurl:"home_icon_fl.png",
+        		imgurl:"home_icon_fl_1.png",
         		id:"107"
         	},
             {
                 name:"荷兰",
-                imgurl:"home_icon_hl.png",
+                imgurl:"home_icon_hl_1.png",
                 id:"109"
             },
         	{
         		name:"瑞士",
-        		imgurl:"home_icon_rs.png",
+        		imgurl:"home_icon_rs_1.png",
         		id:"113"
         	}
         ] %}
@@ -186,7 +186,7 @@
     {% include "m_widget/slidebar/slidebar.html" %}
     <!-- ======乐语底栏======= -->
     {% include 'm_widget/funtalk/funtalk.html' %}
-    <script  src="{{helper.cdnhost}}/dep/js/swiper-3.4.2.jquery.min.js"></script>
+    <script  src="{{helper.cdnhost}}/dep/js/swiper_new_1-3.4.2.jquery.min.js"></script>
     <script >
         $(function(){
 	      	var mySwiper = new Swiper('#swiper-container', {
@@ -197,7 +197,6 @@
 	            pagination : '.swiper-pagination',
 	            loop:true,
 	        });
-	          
             $("#gd").on("click",function(event){
                 //点击更多事件
                 event.stopPropagation();
