@@ -9208,4 +9208,3 @@ if ( typeof noGlobal === strundefined ) {
 return jQuery;
 
 }));
-console.log('jquery',$)
