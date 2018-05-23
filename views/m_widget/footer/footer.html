@@ -1,29 +1,29 @@
 
 <div class="footer">
-    <a class="footer-phone" href="tel:4000108000" >
+    <!-- <a class="footer-phone" href="tel:4000108000" >
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-shouji"></use>
         </svg>
         <i>400-010-8000</i>
-    </a>
-    <a class="footer-phone" href="tel:010-6568565" id="footer-fengongsi-phone">
+    </a> -->
+   <!--  <a class="footer-phone" href="tel:010-6568565" id="footer-fengongsi-phone">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-dianhua1"></use>
         </svg>
         <i id="footer-city-phone">010-6568565</i>
-    </a>
+    </a> -->
     <div class="footer-location" >
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-didian-copy"></use>
         </svg>
         <i id="footer-city-address">北京市建国门外大街永安东里米阳大厦5层（永安里地铁C口向南50米）</i>
     </div>
-    <a class="footer-phone footer-hankou-phone" style="display: none;margin-top:10px;" href="tel:027-83805656">
+   <!--  <a class="footer-phone footer-hankou-phone" style="display: none;margin-top:10px;" href="tel:027-83805656">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-dianhua1"></use>
         </svg>
         <i>027-83805656</i>
-    </a>
+    </a> -->
     <div class="footer-location footer-hankou-location" style="display: none;">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-didian-copy"></use>
@@ -40,17 +40,17 @@
     $(function(){
         var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
         if(area == 14){
-            $('#footer-city-phone').text(cityList[50][3]);
+            // $('#footer-city-phone').text(cityList[50][3]);
             $('#footer-city-address').text(cityList[50][2]);
-            $('.footer-hankou-phone').show();
+            // $('.footer-hankou-phone').show();
             $('.footer-hankou-location').show();
-            $("#footer-fengongsi-phone").attr('href','tel:'+cityList[50][3]);
+            // $("#footer-fengongsi-phone").attr('href','tel:'+cityList[50][3]);
         }else{
-            $('.footer-hankou-phone').hide();
+            // $('.footer-hankou-phone').hide();
             $('.footer-hankou-location').hide();
-            $('#footer-city-phone').text(cityList[area][3]);
+            // $('#footer-city-phone').text(cityList[area][3]);
             $('#footer-city-address').text(cityList[area][2]);
-            $("#footer-fengongsi-phone").attr('href','tel:'+cityList[area][3]);
+            // $("#footer-fengongsi-phone").attr('href','tel:'+cityList[area][3]);
         }
        
     })

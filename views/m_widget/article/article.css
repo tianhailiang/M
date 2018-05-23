@@ -15,13 +15,13 @@
 .country-edu-ul li a{
     display: flex;
 }
-.adviser-touxiang{
+.guwen-touxiang{
     width:60px;
     height:60px;
     border-radius: 50px;
     margin-right: 10px;
 }
-.adviser-right{
+.guwen-right{
     display: flex;
     flex-direction: column;
 }
@@ -46,7 +46,7 @@
 .country-edu-ul li .adviser-title-box{
   flex-direction: column;
 }
-.adviser-title{
+.guwen-title{
     margin-top:10px;
     font-size: 13px;
     color:#666;

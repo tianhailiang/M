@@ -1298,6 +1298,7 @@ exports.case_detail = function (req, res, next) {
       return false;
     }
     data.wenzhangdiye =returnData(result.wenzhangdiye,'wenzhangdiye');
+    data.wenzhangdiye.article_info.img_info =JSON.parse(data.wenzhangdiye.article_info.img_info);
       async.parallel({
           //获取用户信息（普通用户，顾问，参赞）
           userinfo:function(callback){
@@ -2841,10 +2842,8 @@ exports.loadmore =function(req,res,next){
 exports.wxtoken = function(req,res,next){
     log.debug('请求微信')
     const grant_type = 'client_credential';
-    // const appid = 'wxe47804e220cb297b';
-    const appid = 'wx3cc6ed0caf890dab';
-    // const secret = '6fb02500b12cede189e82d06148cccb0';
-    const secret = '88cb06cf296b1671446622f7c0c4c3d0';
+    const appid = 'wxe47804e220cb297b';
+    const secret = '277723032be495d87dfa132107c0c8bb';
     wechat.get_access_token(grant_type, appid, secret).then((access_token)=>{
         wechat.get_jsapi_ticket(access_token).then((jsapi_ticket)=>{
             let nonce_str = randomNum(6);    // 密钥，字符串任意，可以随机生成
