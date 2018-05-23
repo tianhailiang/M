@@ -28,13 +28,13 @@
     display: block;
     width:21px;
     height:14px;
-    background:url(../../../assets/img/home_bar_menu.png) no-repeat 0 0;
+    background:url(../../../assets/img/home_bar_menu_1.png) no-repeat 0 0;
     background-size: 21px 14px;
   }
   .header-logo{
     width:86px;
     height:24.5px;
-    background:url(../../../assets/img/home_bar_logo.png) no-repeat 0 0;
+    background:url(../../../assets/img/home_bar_logo_1.png) no-repeat 0 0;
     background-size:86px 24.5px;
   }
   .header-jjl{

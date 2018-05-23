@@ -102,8 +102,12 @@ exports = module.exports = function (app) {// routes
   app.get('/soapi/loadmore',controller.loadmore); //顾问加载更多
   //微信token 认证
   app.post('/wxJssdk/getJssdk',controller.wxtoken);
+  //测试
   app.get('/thl',function(req,res,next){
-    res.render('wxShare')
-  })
-}
+    console.log('thl shi haidao ')
+    console.log(100)
+    res.render('thl');
+  });
+};
+
 
