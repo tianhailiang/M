@@ -100,5 +100,11 @@ exports = module.exports = function (app) {// routes
   app.get('/about', controller.about);//金吉列简介
   app.get('/act_form', controller.act_form);//活动表单
   app.get('/soapi/loadmore',controller.loadmore); //顾问加载更多
+  //测试
+  app.get('/thl',function(req,res,next){
+    console.log('thl shi haidao ')
+    console.log(100)
+    res.render('thl');
+  })
 };
 
