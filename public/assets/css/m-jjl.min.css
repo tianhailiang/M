@@ -29,13 +29,13 @@
 .country-edu-box ul:nth-of-type(1){display:block}
 .country-edu-ul li{padding:10px 0;border-top:1px solid #eee;display:-webkit-box;display:-ms-flexbox;display:flex}
 .country-edu-ul li a{display:-webkit-box;display:-ms-flexbox;display:flex}
-.adviser-touxiang{width:60px;height:60px;border-radius:50px;margin-right:10px}
-.adviser-right{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}
+.guwen-touxiang{width:60px;height:60px;border-radius:50px;margin-right:10px}
+.guwen-right{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}
 .adviser-name{display:-webkit-box;display:-ms-flexbox;display:flex;margin-top:4px;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
 .adviser-name span{font-size:14px;color:#333;margin-right:5px;line-height:14px}
 .adviser-name i{display:block;width:11px;height:11px;background:url(../img/v.png) no-repeat 0 0;background-size:11px 11px}
 .country-edu-ul li .adviser-title-box{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}
-.adviser-title{margin-top:10px;font-size:13px;color:#666;line-height:13px}
+.guwen-title{margin-top:10px;font-size:13px;color:#666;line-height:13px}
 .art-tag{margin-top:8px;position:relative;text-align:center;width:60px}
 .art-tag-bg{position:absolute;left:0;top:0;background:#c13232;opacity:.06;filter:alpha(opacity=6);display:block;width:100%;height:100%;border-radius:12px}
 .art-tag-list{font-size:12px;color:#999;padding:3px 0}

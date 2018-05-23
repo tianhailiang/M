@@ -461,7 +461,7 @@
         return (Array(length).join('0') + num).slice(-length);
     }
 })(this, document);
-console.log('wo shi common_base')
+
 
 
 
