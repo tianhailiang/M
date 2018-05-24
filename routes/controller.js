@@ -2861,7 +2861,11 @@ exports.wxtoken = function(req,res,next){
               nonceStr: nonce_str,
               signature: signature,
             });
-        })
+        }).catch(error => {
+            res.send(error);
+        });
+    }).catch(error => {
+        res.send(error);
     });
     function randomNum(n){ 
         //生成随机数

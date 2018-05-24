@@ -20,6 +20,8 @@ exports.get_access_token =function(grant_type, appid, secret){
 			        cache.set('access_token', access_token, (err, success) => {
 			        });
 			        resolve(access_token);
+			      }else{
+			      	reject(err);
 			      }
 			    });
 		  	}
@@ -46,6 +48,8 @@ exports.get_jsapi_ticket = function(access_token){
 				        cache.set('jsapi_ticket', jsapi_ticket, (err, success) => {
 			        	});
 			        	resolve(jsapi_ticket);
+			      	}else{
+			      		reject(err);
 			      	}
 			    });
 	  		}
