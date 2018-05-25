@@ -35,6 +35,7 @@
       </p>
       <article class="news-content" style="clear: both" data-img="{{wenzhangdiye.article_info.img_info[0]}}" id="get-share-img" data-introduce ="{{wenzhangdiye.article_info.introduce}}" >
         <p>{{wenzhangdiye.article_info.message | safe}}</p>
+        <img src="{{helper.cdnhost}}/assets/img/share_logo.png" width="0" height="0" id ="share_img" />
       </article>
     </section>
 
@@ -87,7 +88,7 @@
             wx.onMenuShareTimeline({
               title: $('#article_title').text(), // 分享标题
               link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-              imgUrl: $("#get-share-img").attr('data-img')||getImage(), // 分享图标
+              imgUrl: $("#get-share-img").attr('data-img')||$('#share_img').attr('src'), // 分享图标
               success: function () {
                 // 用户确认分享后执行的回调函数
               },
@@ -113,10 +114,10 @@
         }
       }); 
   }
-  function getImage() {
-    // 获取图片
-    return 'http://'+location.host+'/assets/img/share_logo.png';
-  };
+  // function getImage() {
+  //   // 获取图片
+  //   return 'http://'+location.host+'/assets/img/share_logo.png';
+  // };
 </script>
 </body>
 </html>
