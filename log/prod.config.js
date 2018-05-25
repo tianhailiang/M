@@ -21,7 +21,9 @@ log4js.configure({
   },
   categories: {
     default: { appenders: ['task','just-errors'], level: 'debug' },
-  }
+  },
+  pm2: true,
+  disableClustering: true
 });
 
 module.exports = log4js;
