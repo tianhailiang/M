@@ -191,17 +191,20 @@
 <script>
   $(function () {
       $("#cancel-btn").on('click',function () {
-          $("#so-box").css("display","block");
-          $(this).addClass("cancel-btn-shou")
-          $(this).html("收起<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin: 0 8px;font-size: 15px;transform:rotate(180deg)\">\n" +
-              "      <use xlink:href=\"#icon-qianjin-copy1\"></use>\n" +
-              "    </svg>")
-      })
-      $(".cancel-btn-shou").on("click",function () {
-          $("#so-box").css("display","none");
-          $(this).html("全部活动<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin: 0 8px;font-size: 15px;transform:rotate(180deg)\">\n" +
-              "      <use xlink:href=\"#icon-qianjin-copy1\"></use>\n" +
-              "    </svg>")
+          this.flag=!this.flag;
+          if(this.flag){
+              $("#so-box").show();
+              $(this).addClass("cancel-btn-shou")
+              $(this).html("收起<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin: 0 8px;font-size: 15px;transform:rotate(180deg)\">\n" +
+                "<use xlink:href=\"#icon-qianjin-copy1\"></use>\n" +
+                "</svg>")
+          }else {
+            $(this).removeClass("cancel-btn-shou")
+            $(this).html("全部活动<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin: 0 8px;font-size: 15px;\">\n" +
+              "<use xlink:href=\"#icon-qianjin-copy1\"></use>\n" +
+              "</svg>")
+            $("#so-box").hide();
+          }
       })
   })
 </script>
