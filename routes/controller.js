@@ -1091,61 +1091,32 @@ exports.advisor_list = function (req, res, next) {
 //留学活动栏目页
 exports.study_abroad_activity = function (req, res, next) {
   //预约活动
+    log.info("活动")
   var data = [];
   var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
-  var country = comfunc.getCountryIdParams(req.params[1]);
+ /* var country = comfunc.getCountryIdParams(req.params[1]);
   if(!comfunc.country_invalidcheck(country) || !comfunc.cityid_invalidcheck(area)){
     next();
     return false;
-  }
+  }*/
   async.parallel({
-    //成功案例
-    /*chenggonganli_public: function (callback) {
-      cms.channel_list({
-        "country_id": country,
-        "city_id": area,
-        "category_id": 17,
-        "per_page": "5",
-        "page": 1,
-        "order":'add_time'+' desc'
-      }, callback);
-    },
-    //最新活动
-    zuixinhuodong_public: function (callback) {
-      cms.liuxuehuodong_list({
-        "country": country,
-        "cityid": area,
-        "page":1,
-        "perpage":5
-      }, callback);
-      },
-    //大学排名
-    schoolpaiming_public: function (callback) {
-      cms.schoolnew({
-        "catid": 66,
-        "cityid": area,
-        "orderby": 1,
-        "country": country,
-        "page": 1,
-        "perpage": 5
-      }, callback);
-    },*/
+
     //留学活动
-    liuxuehuodong_list: function (callback) {
+   /* liuxuehuodong_list: function (callback) {
       cms.liuxuehuodong_list({
         "country": country,"cityid": area, "page":1,"perpage":7
       }, callback);
-    }
+    }*/
   }, function (err, result) {
 
    /* data.chenggonganli_public = returnData(result.chenggonganli_public,'chenggonganli_public');
     data.zuixinhuodong_public= returnData(result.zuixinhuodong_public,'zuixinhuodong_public');
     data.schoolpaiming_public = returnData(result.schoolpaiming_public,'schoolpaiming_public');*/
-    data.liuxuehuodong_list = returnData(result.liuxuehuodong_list,'liuxuehuodong_list');
+   /* data.liuxuehuodong_list = returnData(result.liuxuehuodong_list,'liuxuehuodong_list');*/
     data.tdk = {
       pagekey: 'ACTIVITY', //key
       cityid: area, //cityid
-      nationid: country//nationi
+     // nationid: country//nationi
     };
     data.esikey = esihelper.esikey();
     res.render('study_abroad_activity', data);

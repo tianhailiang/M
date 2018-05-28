@@ -1,0 +1,91 @@
+.activity-list{
+  width:100%;
+  padding:10px;
+
+}
+.activity-list .activity-item{
+  width: 100%;
+  display: flex;
+  background: #ffffff;
+}
+.activity-item .activity-item-left{
+  width: 73px;
+  height: 106px;
+  background: url(../../../assets/img/activity_bg.png) no-repeat 0 0;
+}
+.activity-item-left h3{
+  font-size: 24px;
+  margin-top:24px;
+  color:#333333;
+  margin-left: 8px;
+}
+.activity-item-left h3 span{
+  font-size: 18px;
+}
+.activity-item-left p{
+  margin-top: 15px;
+  font-size: 14px;
+  color:#333333;
+  text-align: center;
+}
+.activity-item-right{
+  width: 1px;
+  flex: 1;
+  margin-left: 10px;
+
+}
+.activity-item-right h3{
+  width: 100%;
+  line-height: 34px;
+  font-size: 15px;
+  color:#333333;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  position: relative;
+
+}
+.activity-item-right h3:after{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #dcdcdc;
+  content: "";
+  transform: scaleY(.5);
+  transform-origin: 0 0;
+}
+.activity-item-right ul li{
+  font-size: 12px;
+  color:#999999;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.activity-item-right ul li{
+  margin-top: 7.5px;
+}
+.activity-item-right ul li:first-child{
+  margin-top: 10px;
+}
+.activity-item-right ul li span{
+  margin-left: 5px;
+}
+.activity-item-right ul li .icon{
+
+}
+.activity-item-right ul{
+  position: relative;
+}
+.activity-item-right ul:after{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #dcdcdc;
+  content: "";
+  transform: scaleY(.5);
+  transform-origin: 0 0;
+}
