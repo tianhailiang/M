@@ -3,6 +3,9 @@
   padding:10px;
 
 }
+.activity-list-content{
+  background: #ffffff;
+}
 .activity-list .activity-item{
   width: 100%;
   display: flex;
@@ -12,6 +15,7 @@
   width: 73px;
   height: 106px;
   background: url(../../../assets/img/activity_bg.png) no-repeat 0 0;
+  background-size:73px 106px ;
 }
 .activity-item-left h3{
   font-size: 24px;
@@ -62,6 +66,7 @@
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
+  line-height: 12px;
 }
 .activity-item-right ul li{
   margin-top: 7.5px;
@@ -75,10 +80,11 @@
 .activity-item-right ul li .icon{
 
 }
-.activity-item-right ul{
+.activity-item{
   position: relative;
+  /*box-shadow: 0px 1px 7px 3px rgba(0,0,0,0.1);*/
 }
-.activity-item-right ul:after{
+.activity-item:after{
   position: absolute;
   bottom: 0;
   left: 0;
@@ -88,4 +94,27 @@
   content: "";
   transform: scaleY(.5);
   transform-origin: 0 0;
+}
+.booking-tel{
+  width: 100%;
+  padding:10px;
+  display: flex;
+}
+.booking-tel{
+}
+
+.booking-tel p{
+  flex:1;
+  line-height: 33px;
+  border:1px solid #dcdcdc;
+
+}
+.booking-tel span{
+  width: 80px;
+  height: 33px;
+  background: #c13232;
+  color:#ffffff;
+  font-size: 14px;
+  text-align: center;
+  line-height: 33px;
 }
