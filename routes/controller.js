@@ -1123,68 +1123,6 @@ exports.study_abroad_activity = function (req, res, next) {
 
   })
 };
-//落地页留学活动
-exports.study_abroad_activity_detail = function (req, res, next) {
-  //预约活动
-  var data = [];
-  var country = comfunc.getCountryIdParams(req.params[1]);
-  var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
-  var activityId = req.params[1];
-  data.route = 'activity';
-  data.login_nickname = '';
-  if ( req.cookies.login_ss !== undefined) {
-    var login_a = JSON.parse(req.cookies.login_ss);
-    //log.debug("login_a-------" + login_a.nickname)
-    data.login_nickname = login_a;
-  }
-  if(!comfunc.cityid_invalidcheck(area)){
-    next();
-    return false;
-  }
-
-  async.parallel({
-    wenzhangdiye: function (callback) {
-      cms.wenzhangdiye ({
-        "catid":64,
-        "id": activityId
-      }, callback);
-    },
-      //留学活动
-      liuxuehuodong_list: function (callback) {
-          cms.liuxuehuodong_list({
-              "country": country, "cityid": area, "page":1,"perpage":5
-          }, callback);
-      }
-
-  }, function (err, result) {
-    data.wenzhangdiye=returnData(result.wenzhangdiye,'wenzhangdiye');
-    data.tuijian=returnData(result.liuxuehuodong_list,'liuxuehuodong_list');
-    data.tuijian=data.tuijian.list;
-    data.pageType="活动";
-    if(err || result.wenzhangdiye.code != 0){
-      //log.info('mediadetail error ~',err,result.wenzhangdiye.code);
-      next();
-      return false;
-    }
-    data.huodongdiye=data.wenzhangdiye.list;
-    data.schoollist=data.huodongdiye.school_pic;
-    data.canzanlist=data.huodongdiye.lecture_user;
-    data.maparr=data.huodongdiye.address_map.split('|');
-    data.liuxuehuodong_list = result.liuxuehuodong_list;
-    data.pageroute='activity';
-    data.tdk = {
-      pagekey: 'ACTIVITYDETAIL', //key
-      cityid: area, //cityid
-      //  nationid: country,  //nationi
-      title: data.wenzhangdiye.list.title,
-      description: data.wenzhangdiye.list.description,
-      keywords: data.wenzhangdiye.list.keywords,
-    };
-    data.esikey = esihelper.esikey();
-    res.render('study_abroad_activity_detail', data);
-
-  })
-};
 //明星顾问列表加载更多
 exports.advisor_list_moer = function (req, res, next) {
   var data = req.query;
@@ -2848,3 +2786,55 @@ exports.wxtoken = function(req,res,next){
     } 
 }
 
+//新留学活动
+//活动底页
+exports.activity_detail = function (req, res, next){
+    var data = [];
+    var uid = req.params[0];
+    var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
+    var qianzhengzhinan_currentPage=req.query.page || 1;
+    var country = req.query.n || 0;
+    if ( req.cookies.login_ss !== undefined) {
+        console.log('有cookie')
+        data.login_info = JSON.parse(req.cookies.login_ss);
+    }else{
+    }
+    async.parallel({
+        //lunbo_list:function(callback) {
+        //    cms.lunbo_list({
+        //        "ad_page": 'ACTIVITYDETAIL',
+        //        "cityid":area,
+        //        "ad_seat": "SEAT1"
+        //    }, callback);
+        //},
+        //lunbo_list2:function(callback) {
+        //    cms.lunbo_list({
+        //        "ad_page": 'ACTIVITYDETAIL',
+        //        "cityid":area,
+        //        "ad_seat": "SEAT2"
+        //    }, callback);
+        //},
+        //activitydetail: function (callback) {
+        //    cms.activity_detail({
+        //        "catid": 74,
+        //        "id":activityId,
+        //    }, callback);
+        //},
+    }, function (err, result){
+        //data.xSlider = returnData(result.lunbo_list,'lunbo_list');
+        //data.xSlider2 = returnData(result.lunbo_list2,'lunbo_list2');
+        //data.activitydetail = returnData(result.activitydetail, 'activitydetail');
+        //if(err || result.activitydetail.code != 0 || result.activitydetail.data.list.hold_city != urlcity){
+        //    return next();
+        //}
+        //data.huodongdiye=data.activitydetail.list;
+        data.tdk = {
+            pagekey: 'ACTIVITYDETAIL', //key
+            cityid: area, //cityid
+            nationid: country//nationi
+        };
+        //data.esikey = esihelper.esikey();
+        res.render('activity_detail', data);
+
+    });
+}

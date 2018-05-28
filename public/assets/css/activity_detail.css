@@ -49,10 +49,62 @@
   border-radius: 5px;
   padding:4px 106px;
 }
+.activity-detail-banner{
+  width: 100%;
+  height: 175px;
+  background: #00ff00;
+}
+.activity-detail-banner img{
+  width: 100%;
+  height:100%;
+}
+.activity-zixunxin{
+  background:#ffffff;
+  margin-top: 10px;
+  padding-bottom: 15px;
+}
+.activity-zixunxin h3{
+  font-size: 16px;
+  color:#333333;
+  text-align: center;
+  line-height: 36px;
+  padding:10px 40px 0;
+  font-weight: bold;
+}
+.activity-zixunxin p{
+  padding:0 73px;
+  font-size: 13px;
+  color:#333333;
+}
+.activity-zixunxin p:nth-child(2){
+  line-height: 20px;
+}
+.activity-zixunxin .icon-map{
+  margin-left: 15px;
+  font-size:20px;
+  line-height: 20px;
+}
+.activity-button-xin{
+  margin-top:20px;
+  height: 20px;
+  text-align: center;
+}
+.activity-button-xin a{
+  background: #D51821;
+  color:#ffffff;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 5px;
+  padding:6px 39px;
+}
+.activity—title {
+  font-size: 22px;
+}
 .activity-content{
   background: #ffffff;
   margin-top:10px;
-  padding:0 10px 15px;
+  padding:0 20px 15px;
 }
 .activity-content h3{
   font-size: 13px;
@@ -183,5 +235,22 @@
   color:#666666;
   line-height: 18px;
 }
-
-
+.activity-biaoti {
+  font-size: 16px;
+  color: #333;
+  position: relative;
+  left: -92px;
+}
+.fenxiang_con{
+  background: #fff;
+  margin-bottom: 49px;
+  height: 65px;
+  padding-left: 50px;
+}
+.fenxiang_con img{
+  width: 40px;
+  height: 40px;
+  display: block;
+  float: left;
+  margin-left: 50px;
+}

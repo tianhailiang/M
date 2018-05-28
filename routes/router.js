@@ -74,7 +74,6 @@ exports = module.exports = function (app) {// routes
   app.get(/^\/schoolrank\/school([a-z]*)\/(\d+)/, controller.schooldetail);//落地頁大学排名
   app.get('/canzan/:id', controller.canzan_column);//参赞底页（专栏）
   app.get(/^(\/*)([a-z]*)schoollib\/(\d+)/, controller.schoollibdetail);//院校文章底页
-  app.get(/^\/(bj|cd|cq|cs|cc|cz|dl|dg|fs|fz|gz|gy|hz|hf|heb|hs|gc|hn|jn|jl|km|lz|ly|nj|nc|nb|nn|qd|sh|sy|sjz|suz|sz|tj|ty|ts|wh|wc|wx|wz|xa|sm|xz|xn|xj|yt|yc|yic|zz)\/activity\/(\d+)/, controller.study_abroad_activity_detail);//留学活动详情页
   app.get(/^(\/*)([a-z]*)\/product\/(\d+)/,controller.productdetail);//落地页留学方案
   /*所有底页路由 end*/
   app.get('/online_evaluation',controller.online_evaluation);
@@ -102,6 +101,7 @@ exports = module.exports = function (app) {// routes
   app.get('/soapi/loadmore',controller.loadmore); //顾问加载更多
   //微信token 认证
   app.post('/wxJssdk/getJssdk',controller.wxtoken);
+  app.get(/^\/(bj|cd|cq|cs|cc|cz|dl|dg|fs|fz|gz|gy|hz|hf|hd|heb|hs|hn|jn|jl|km|lz|ly|nj|nc|nb|nn|qd|sh|sy|sjz|shz|sz|tj|ty|ts|wh|wx|wz|xa|xm|xz|xn|xj|yt|yc|ych|zz)\/activity\/(\d+)/,controller.activity_detail);
 };
 
 
