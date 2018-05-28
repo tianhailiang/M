@@ -1,40 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 {% include "header.html" %}
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/activity.css">
 <body>
-{% include "m_widget/top/top.html" %}
-<!--顶部tab切换 start-->
-{% import "m_widget/top_tab/top_tab.html" as top_tab %}
-{{top_tab.top_tab({'tab_type':"活动", 'n': country},helper)}}
-<!--顶部tab切换 end-->
 <div id="app">
+  {% include "m_widget/top/common_top.html" %}
   <div class="app-in">
 
   <!--活动列表 start-->
   <div class="activity-list" id="activity-list">
-    {% import  "m_widget/activity/activity.html" as activity_list %}
-    {{ activity_list.activity_item(liuxuehuodong_list.list,helper) }}
+    {#{% import  "m_widget/activity/activity.html" as activity_list %}
+    {{ activity_list.activity_item(liuxuehuodong_list.list,helper) }}#}
+    <div class="activity-item">
+      <div class="activity-item-left">
+        <h3>21/<span>05</span></h3>
+        <p>北京</p>
+      </div>
+      <div class="activity-item-right">
+        <h3>
+          高考之后，留学留学留学留学留学留学留学留学留学留学留学
+        </h3>
+      <ul>
+        <li><svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-shijian"></use>
+        </svg><span>2016-05-26 10:00至2018-03-30 11:20</span></li>
+        <li><svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-shijian"></use>
+        </svg><span>地址地址地址地址地址地址地址地址地址地址地址地址地址地址</span></li>
+        <li><svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-shijian"></use>
+        </svg><span>中学生，本科生</span></li>
+      </ul>
+      </div>
+    </div>
   </div>
   <!--活动列表 end-->
   <!--加载更多 start-->
-  {% include "m_widget/load_more/load_more.html" %}
+  {#% include "m_widget/load_more/load_more.html" %#}
   <!--加载更多 end-->
-  <!--最新活动 成功案例  大学排名 start-->
-   {%esi helper.include(esikey,'fragment/list_public','c='+tdk.cityid)%}
-   {#{%  include "m_widget/list_public/list_public.html" %}#}
   <!--footer start-->
-  {% import "m_widget/footer/footer.html" as footer %}
-  {{footer.footer([{'nav_text':'留学活动列表页','nav_path': 'activity'}],tdk,helper)}}
+
   <!--footer end-->
     </div>
+  {% include "m_widget/footer/common_footer.html" %}
 </div>
-<!-- ===侧边栏==== -->
-{% include "m_widget/slidebar/slidebar.html" %}
+{% include "m_widget/slidebar/common_sliderbar.html" %}
 <!-- ======乐语底栏======= -->
 {% include 'm_widget/funtalk/funtalk.html' %}
-{% import "m_widget/select_pop/select_pop.html" as select_pop %}
-{{ select_pop.select_pop({'n': country, 'path': 'activity'}, helper) }}
-<script>
+<!--<script>
   /*加载更多函数*/
   function loadMore (cur_page) {
     var now_page = cur_page+1;
@@ -101,6 +114,6 @@
     window.location = "http://jesong.jjl.cn/live/chat.dll?c="+ area+"&chatUrl="+window.encodeURIComponent(window.location.href)+"g=246"
   });
 
-</script>
+</script>-->
 </body>
 </html>
