@@ -2790,31 +2790,14 @@ exports.wxtoken = function(req,res,next){
 //活动底页
 exports.activity_detail = function (req, res, next){
     var data = [];
+    var uid = req.params[0];
     var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
-    var urlcity=''
-    if (req.params[0]) {
-        var cityId = comfunc.getCityId(req.params[0]);
-        if(cityId && cityId !== comfunc.INVALID_ID){
-            urlcity = cityId;
-        }
-    }
     var qianzhengzhinan_currentPage=req.query.page || 1;
     var country = req.query.n || 0;
-    //node获取地址栏url
-    var activityId = req.params[1];
-
-    var l = url.parse(req.url, true).query;
-    console.log('url', l.h);
-    if (l.h !== undefined) {
-        data.url = l.h;
-    } else {
-        data.url = config.wwhost;
-    }
-    data.login_nickname = '';
     if ( req.cookies.login_ss !== undefined) {
-        var login_a = JSON.parse(req.cookies.login_ss);
-        //log.debug("login_a-------" + login_a.nickname)
-        data.login_nickname = login_a;
+        console.log('有cookie')
+        data.login_info = JSON.parse(req.cookies.login_ss);
+    }else{
     }
     async.parallel({
         //lunbo_list:function(callback) {

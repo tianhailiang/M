@@ -105,7 +105,6 @@
   background: #ffffff;
   margin-top:10px;
   padding:0 20px 15px;
-  margin-bottom: 49px;
 }
 .activity-content h3{
   font-size: 13px;
@@ -241,4 +240,17 @@
   color: #333;
   position: relative;
   left: -92px;
+}
+.fenxiang_con{
+  background: #fff;
+  margin-bottom: 49px;
+  height: 65px;
+  padding-left: 50px;
+}
+.fenxiang_con img{
+  width: 40px;
+  height: 40px;
+  display: block;
+  float: left;
+  margin-left: 50px;
 }
