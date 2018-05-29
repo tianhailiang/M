@@ -1530,3 +1530,12 @@ exports.loadmore =function(req,res,next){
      }
    })
 }
+//新活动底页
+exports.activity_detail = function (data, callback) {
+  var url = _api_url_path(data, config.apis.get_activity_detail);
+  if (url == null) {
+    callback('404');
+    return;
+  }
+  api.apiRequest(url, callback);
+}
