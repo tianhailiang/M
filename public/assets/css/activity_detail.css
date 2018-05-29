@@ -246,14 +246,13 @@
   background: #fff;
   margin-bottom: 49px;
   height: 65px;
-  padding-left: 50px;
+  display: flex;
+  justify-content: space-around;
 }
 .fenxiang_con img{
   width: 40px;
   height: 40px;
   display: block;
-  float: left;
-  margin-left: 50px;
 }
 .header {
   justify-content: flex-start;
