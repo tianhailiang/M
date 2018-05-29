@@ -67,8 +67,8 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     display: flex;
-    height: 49px;
-    line-height: 49px;
+    height: 50px;
+    line-height: 50px;
     background-color: #fff;
     position: fixed;
     bottom: 0px;
@@ -79,7 +79,7 @@
     width: 1px;
     flex: 1;
     font-size: 15px;
-    height: 49px;
+    height: 50px;
     color: #333;
     position: relative;
     text-align: center;
@@ -89,7 +89,7 @@
     width: 1px;
     flex: 1;
     font-size: 15px;
-    height: 49px;
+    height: 50px;
     color: #fff;
     background: #c13232;
     text-align: center;
