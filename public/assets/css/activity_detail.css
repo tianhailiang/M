@@ -61,7 +61,7 @@
 .activity-zixunxin{
   background:#ffffff;
   margin-top: 10px;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
 }
 .activity-zixunxin h3{
   font-size: 16px;
@@ -72,9 +72,10 @@
   font-weight: bold;
 }
 .activity-zixunxin p{
-  padding:0 73px;
+  padding:1px 73px;
   font-size: 13px;
   color:#333333;
+  text-align: center;
 }
 .activity-zixunxin p:nth-child(2){
   line-height: 20px;
@@ -85,7 +86,7 @@
   line-height: 20px;
 }
 .activity-button-xin{
-  margin-top:20px;
+  margin-top:15px;
   height: 20px;
   text-align: center;
 }
@@ -94,7 +95,7 @@
   color:#ffffff;
   font-size: 12px;
   text-align: center;
-  line-height: 20px;
+  line-height: 22px;
   border-radius: 5px;
   padding:6px 39px;
 }
