@@ -6,10 +6,21 @@
 <!--顶部tab切换 end-->
 <div id="app" >
     {% include "m_widget/search/search.html" %}
-<!--搜索框 开始-->
+    <div id="search-black" style="width: 100%;margin: auto;background: #fff">
+      <img src="{{helper.cdnhost}}/assets/img/search-black.png" alt="">
+      <p style="text-align: center;color: #999;margin-top: 10px">还没有任何活动</p>
+    </div>
+  <!--footer start-->
+  {% include "m_widget/footer/common_footer.html" %}
+  <!--footer end-->
 </div>
 <!-- ===侧边栏==== -->
 {% include "m_widget/slidebar/slidebar.html" %}
 </body>
 <script src="{{helper.cdnhost}}/assets/js/search.js"></script>
+<script>
+  $(function () {
+      $("#search-black").height($(window).height()-81-100);
+  })
+</script>
 </html>
