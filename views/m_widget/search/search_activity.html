@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="cancel-btn" id="cancel-btn" style="text-align: right">全部活动
-    <svg class="icon" aria-hidden="true" style="color: #fff;margin: 0 8px;font-size: 15px;">
+    <svg class="icon" aria-hidden="true" style="color: #fff;margin: 0 7px;font-size: 16px;">
       <use xlink:href="#icon-qianjin-copy1"></use>
     </svg>
   </div>
@@ -195,12 +195,13 @@
           if(this.flag){
               $("#so-box").show();
               $(this).addClass("cancel-btn-shou")
-              $(this).html("收起<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin: 0 8px;font-size: 15px;transform:rotate(180deg)\">\n" +
-                "<use xlink:href=\"#icon-qianjin-copy1\"></use>\n" +
+              $("#so-box").height($(window).height()-81-100);
+              $(this).html("收起<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin: 0 8px;font-size: 14px;\">\n" +
+                "<use xlink:href=\"#icon-xuanxiang-copy\"></use>\n" +
                 "</svg>")
           }else {
             $(this).removeClass("cancel-btn-shou")
-            $(this).html("全部活动<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin: 0 8px;font-size: 15px;\">\n" +
+            $(this).html("全部活动<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin: 0 7px;font-size: 16px;\">\n" +
               "<use xlink:href=\"#icon-qianjin-copy1\"></use>\n" +
               "</svg>")
             $("#so-box").hide();

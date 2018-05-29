@@ -3,6 +3,7 @@
     top:43px;
     width: 100%;
     display: flex;
+    z-index: 2;
     background-color: #D51821;
 }
 .search-box{
@@ -52,8 +53,10 @@
     background: #fff;
     display: flex;
     flex-direction: column;
-    margin-top: 38px;
-
+    z-index: 1;
+    position: absolute;
+    top:81px;
+    overflow: scroll;
 }
 #so-box{
     display: none;
@@ -67,7 +70,9 @@
     height: 49px;
     line-height: 49px;
     background-color: #fff;
-    /*margin-bottom: 10px;*/
+    position: fixed;
+    bottom: 50px;
+    /*margin-bottom: 50px;*/
     /*border-bottom: 1px solid #eee;*/
 }
 .so-tab-item{
