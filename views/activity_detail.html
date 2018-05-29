@@ -27,9 +27,13 @@
   <div class="activity-zixunxin">
     <h3 class="activity—title">{{ activity_detail.title }}</h3>
     <p>活动时间：<span>{{ activity_detail.start_time }}</span></p>
-    <p >讲座地点：<span>{{ activity_detail.address_des }}</span><a class="map-btn" href="http://api.map.baidu.com/marker?location={{ maparr[0] }},{{ maparr[1] }}&title=我的位置&content={{ huodongdiye.address_des }}&output=html"><svg class="icon icon-map" aria-hidden="true">
+    <p >讲座地点：<span>{{ activity_detail.address_des }}</span>
+      {% if activity_detail.longitude and activity_detail.address_des  %}
+      <a class="map-btn" href="http://api.map.baidu.com/marker?location={{ activity_detail.longitude }},{{ activity_detail.latitude }}&title=我的位置&content={{ activity_detail.address_des }}&output=html"><svg class="icon icon-map" aria-hidden="true">
       <use xlink:href="#icon-ditu"></use>
-    </svg></a></p>
+    </svg></a>
+      {% endif %}
+    </p>
     <p style="margin-top: 3px">联系电话：<span>{{ activity_detail.active_telephone }}</span></p>
     <div class="activity-button-xin">
       <a href="tel:13269515562">电话预约</a>
