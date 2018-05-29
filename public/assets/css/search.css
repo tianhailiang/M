@@ -3,6 +3,7 @@
     top:43px;
     width: 100%;
     display: flex;
+    z-index: 2;
     background-color: #D51821;
 }
 .search-box{
@@ -40,7 +41,7 @@
     color:#666;
 }
 .cancel-btn{
-    width: 25%;
+    width: 100px;
     text-align: center;
     color: #fff;
     font-size: 13px;
@@ -52,8 +53,10 @@
     background: #fff;
     display: flex;
     flex-direction: column;
-    margin-top: 38px;
-
+    z-index: 121;
+    position: absolute;
+    top:81px;
+    overflow: scroll;
 }
 #so-box{
     display: none;
@@ -64,17 +67,19 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     display: flex;
-    height: 49px;
-    line-height: 49px;
+    height: 50px;
+    line-height: 50px;
     background-color: #fff;
-    /*margin-bottom: 10px;*/
+    position: fixed;
+    bottom: 0px;
+    /*margin-bottom: 50px;*/
     /*border-bottom: 1px solid #eee;*/
 }
 .so-tab-item{
     width: 1px;
     flex: 1;
     font-size: 15px;
-    height: 49px;
+    height: 50px;
     color: #333;
     position: relative;
     text-align: center;
@@ -84,7 +89,7 @@
     width: 1px;
     flex: 1;
     font-size: 15px;
-    height: 49px;
+    height: 50px;
     color: #fff;
     background: #c13232;
     text-align: center;

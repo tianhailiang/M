@@ -2799,6 +2799,10 @@ exports.activity_detail = function (req, res, next){
         data.login_info = JSON.parse(req.cookies.login_ss);
     }else{
     }
+    if(!comfunc.cityid_invalidcheck(area)){
+        next();
+        return false;
+    }
     async.parallel({
         //lunbo_list:function(callback) {
         //    cms.lunbo_list({
