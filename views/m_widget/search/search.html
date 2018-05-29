@@ -1,64 +1,83 @@
 <style type="text/css">
-	.search-box{
-		padding:7.5px 26.5px;
-		position: fixed;
-	    top: 43px;
-	    width: 100%;
-	    z-index: 1000;
-	    box-sizing: border-box;
-	    background: rgba(0,0,0,0.2);
-	}
-	.search-bar{
-		height:28px;
-		display: flex;
-		align-items: center;
-		background:#fff;
-		border-radius: 25px;
-		padding-left: 11px;
-		padding-right: 11px;
-	}
-    .search-bar input{
-      flex:1;
-      height:100%;
-      padding-left: 5px;
-    }
-    .search-bar input::-webkit-input-placeholder{
-    	color:#666;
-    }
-	.search-bar input::-moz-placeholder { /* Mozilla Firefox 19+ */
-	   color:#666;
-	}
-	.search-bar input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-	   color:#666;
-	}
-    .icon-sousuo{
-    	font-size: 15px;
-    	color:#666;
-    }
+	/*.search-box{*/
+		/*!*padding:7.5px 26.5px;*!*/
+		/*position: fixed;*/
+	    /*top: 43px;*/
+	    /*width: 100%;*/
+	    /*z-index: 1000;*/
+	    /*box-sizing: border-box;*/
+	    /*background: #c13232;*/
+	/*}*/
+	/*.search-bar{*/
+		/*height:28px;*/
+		/*display: flex;*/
+		/*align-items: center;*/
+		/*background:#fff;*/
+		/*border-radius: 25px;*/
+		/*padding-left: 11px;*/
+		/*padding-right: 11px;*/
+	/*}*/
+    /*.search-bar input{*/
+      /*flex:1;*/
+      /*height:100%;*/
+      /*padding-left: 5px;*/
+    /*}*/
+    /*.search-bar input::-webkit-input-placeholder{*/
+    	/*color:#666;*/
+    /*}*/
+	/*.search-bar input::-moz-placeholder { !* Mozilla Firefox 19+ *!*/
+	   /*color:#666;*/
+	/*}*/
+	/*.search-bar input:-ms-input-placeholder { !* Internet Explorer 10-11 *!*/
+	   /*color:#666;*/
+	/*}*/
+    /*.icon-sousuo{*/
+    	/*font-size: 15px;*/
+    	/*color:#666;*/
+    /*}*/
 </style>
-<div class="search-box" >
-	<div class="search-bar" id="search-button">
-      <input placeholder="请输入搜索内容" >
-      <svg class="icon icon-sousuo" aria-hidden="true">
-        <use xlink:href="#icon-sousuo"></use>
-      </svg>
-	</div>
+<!--<div class="search-box" >-->
+	<!--<div class="search-bar" id="search-button">-->
+      <!--<input placeholder="请输入搜索内容" >-->
+      <!--<svg class="icon icon-sousuo" aria-hidden="true">-->
+        <!--<use xlink:href="#icon-sousuo"></use>-->
+      <!--</svg>-->
+	<!--</div>-->
+  <!--<div class="cancel-btn" id="cancel-btn" style="text-align: right">取消-->
+  <!--</div>-->
+<!--</div>-->
+<!--搜索框 开始-->
+<div class="search-container">
+  <div class="search-box" >
+    <div class="search-bar" >
+      <input placeholder="搜索" id="search-content">
+      <div style="width: 30px;height: 30px;text-align: right;line-height: 30px;" id="search-btn">
+        <svg class="icon icon-sousuo" aria-hidden="true">
+          <use xlink:href="#icon-sousuo"></use>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="cancel-btn" id="cancel-btn">取消
+  </div>
 </div>
+<!--搜索框 结束-->
+
 <script >
 	$(function(){
-		$(window).on("scroll",function(){
-            //滚动出现top
-            // console.log($(this).scrollTop())
-            var a = ($(this).scrollTop()/2)/100;
-            // console.log(a)
-            if($(this).scrollTop()>=172){
-            	$(".search-box").css({"backgroundColor":"rgba(255,0,0,0.86)"});
-            }else if($(this).scrollTop()<86){
-            	$(".search-box").css({"backgroundColor":"rgba(0,0,0,"+a+")"});
-            }else{
-                $(".search-box").css({"backgroundColor":"rgba(255,0,0,"+a+")"});
-            }
-        });
+//		$(window).on("scroll",function(){
+//            //滚动出现top
+//            // console.log($(this).scrollTop())
+//            var a = ($(this).scrollTop()/2)/100;
+//            // console.log(a)
+//            if($(this).scrollTop()>=172){
+//            	$(".search-box").css({"backgroundColor":"rgba(255,0,0,0.86)"});
+//            }else if($(this).scrollTop()<86){
+//            	$(".search-box").css({"backgroundColor":"rgba(0,0,0,"+a+")"});
+//            }else{
+//                $(".search-box").css({"backgroundColor":"rgba(255,0,0,"+a+")"});
+//            }
+//        });
 		$('#search-button').on('click',function () {
 			console.log(fn.no_urlgen('search'));
 			window.location.href = fn.no_urlgen('search');
