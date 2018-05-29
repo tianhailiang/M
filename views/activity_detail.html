@@ -12,25 +12,31 @@
       <span></span>
     </div>
     <div class="activity-biaoti" >
-      骑士老皇帝
+      {{ activity_detail.title }}
     </div>
-    <!-- <a class="header-jjl" href="{{ helper.urlgen('yimin') }}">
-    金吉列移民
-  </a> -->
-    <a class="header-jjl" href="">
-      在线预约
-    </a>
+
+    <div class="header-yuyue">
+      <a class="header-jjl" href="">
+        在线预约
+      </a>
+    </div>
+
+
   </header>
 
   <div class="activity-zixunxin">
-    <h3 class="activity—title">骑士老詹牛</h3>
-    <p>活动时间：<span>2018.01.12</span></p>
-    <p >讲座地点：<span>美国</span><a class="map-btn" href="http://api.map.baidu.com/marker?location={{ maparr[0] }},{{ maparr[1] }}&title=我的位置&content={{ huodongdiye.address_des }}&output=html"><svg class="icon icon-map" aria-hidden="true">
+    <h3 class="activity—title">{{ activity_detail.title }}</h3>
+    <p>活动时间：<span>{{ activity_detail.start_time }}</span></p>
+    <p >讲座地点：<span>{{ activity_detail.address_des }}</span>
+      {% if activity_detail.longitude and activity_detail.address_des  %}
+      <a class="map-btn" href="http://api.map.baidu.com/marker?location={{ activity_detail.longitude }},{{ activity_detail.latitude }}&title=我的位置&content={{ activity_detail.address_des }}&output=html"><svg class="icon icon-map" aria-hidden="true">
       <use xlink:href="#icon-ditu"></use>
-    </svg></a></p>
-    <p style="margin-top: 3px">联系电话：<span>13269515562</span></p>
+    </svg></a>
+      {% endif %}
+    </p>
+    <p style="margin-top: 3px">联系电话：<span>{{ activity_detail.active_telephone }}</span></p>
     <div class="activity-button-xin">
-      <a href="tel:13269515562">电话预约</a>
+      <a href="tel:{{ activity_detail.active_telephone }}">电话预约</a>
     </div>
   </div>
 
@@ -40,28 +46,28 @@
     <h3><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-dian-copy-copy-copy"></use>
     </svg><span>针对人群&nbsp;:</span></h3>
-    <p>{{ huodongdiye.crowd }}绰号“小皇帝”，又称“詹皇”</p>
+    <p>{{ activity_detail.crowd }}</p>
     <h3><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-dian-copy-copy-copy"></use>
     </svg><span>活动亮点&nbsp;:</span></h3>
-    <p>{{ huodongdiye.description  }}绰号“小皇帝”，又称“詹皇”</p>
+    <p>{{ activity_detail.description  }}</p>
     <h3><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-dian-copy-copy-copy"></use>
     </svg><span>举办城市&nbsp;:</span></h3>
-    <p>{{ huodongdiye.hold_city | getCity }}绰号“小皇帝”，又称“詹皇”</p>
+    <p>{{ activity_detail.hold_city | getCity }}</p>
     <h3><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-dian-copy-copy-copy"></use>
     </svg><span>活动时间&nbsp;:</span></h3>
-    <p>{{ huodongdiye.start_time | getDefaultFormat('YYYY-MM-DD HH:mm')}}&nbsp;&nbsp;至&nbsp;&nbsp;{{ huodongdiye.end_time | getDefaultFormat('YYYY-MM-DD HH:mm')}}</p>
+    <p>{{ activity_detail.start_time}}&nbsp;&nbsp;至&nbsp;&nbsp;{{ activity_detail.end_time }}</p>
     <h3><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-dian-copy-copy-copy"></use>
     </svg><span>主要内容&nbsp;:</span></h3>
-    <p>{{ huodongdiye.content | safe }}简介：歌曲专辑封面詹姆斯（NBA著名巨星）勒布朗·詹姆斯（LeBron James），绰号“小皇帝”，又称“詹皇”，1984年12月30日出生在美国·俄亥俄州·阿克伦，世界著名的美国男子职业篮简介：歌曲专辑封面詹姆斯（NBA著名巨星）勒布朗·詹姆斯（LeBron James），绰号“小皇帝”，又称“詹皇”，1984年12月30日出生在美国·俄亥俄州·阿克伦，世界著名的美国男子职业简介：歌曲专辑封面詹姆斯（NBA著名巨星）勒布朗·詹姆斯（LeBron James），绰号“小皇帝”，又称“詹皇”，1984年12月30日出生在美国·俄亥俄州·阿克伦，世界著名的美国男子职业篮简介：歌曲专辑封面詹姆斯（NBA著名巨星）勒布朗·詹姆斯（LeBron James），绰号“小皇帝”，又称“詹皇”，1984年12月30日出生在美国·俄亥俄州·阿克伦，世界著名的美国男子职业篮</p>
+    <p>{{ activity_detail.content | safe }}</p>
   </div>
   <div class="fenxiang_con">
-    <div><img  src="../../assets/img/weixin.png" alt=""></div>
-    <div><img  src="../../assets/img/xinlang.png" alt=""></div>
-    <div><img  src="../../assets/img/qq.png" alt=""></div>
+    <img  src="../../assets/img/weixin.png" alt="">
+    <img  src="../../assets/img/xinlang.png" alt="">
+    <img  src="../../assets/img/qq.png" alt="">
   </div>
 </div>
 
