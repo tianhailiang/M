@@ -1,0 +1,146 @@
+{# 在线预约 #}
+
+<style type="text/css">
+.yuyue{
+  width: 290px;
+  height: 312px;
+  position: relative;
+  border-bottom: 10px;
+}
+.yuyue_title{
+  width: 290px;
+  height: 50px;
+  background: url({{helper.cdnhost}}/assets/img/yuyue_title.png) no-repeat;
+  background-size: cover;
+  font-size: 22px;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+}
+.yuyue_con{
+  width: 100%;
+  height: auto;
+  padding: 25px 20px;
+  background: #fff;
+}
+.yuyue_con input{
+    flex: 1;
+    border:1px solid #eeeeee;
+    padding-left: 10px;
+    font-size: 14px;
+    color:#333;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+.yuyue_con .error{
+  width: 100%;
+  text-align: left;
+  font-size: 10px;
+  color: #D51821;
+}
+.yuyue_con input.yan{
+  width: 63%;
+  height: 30px;
+  border-right: none;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.yuyue_con input.code{
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  padding: 6px 2px;
+  background: #D51821;
+  color: #fff;
+  border: 1px solid #D51821;
+  border-radius: 2px; 
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  line-height: 0px;
+}
+.yuyue_con .yanzheng{
+  width: 37%;
+  margin-right: 0px;
+  height: 30px;
+  line-height: 30px;
+  float: right;
+}
+.yuyue_con input.but{
+  margin-top: 20px;
+  width: 100%;
+  height: 34px;
+  text-align: center;
+  line-height: 34px;
+  color: #fff;
+  padding-left: 0;
+  padding-right: 0;
+  background: #D51821;
+  border: 1px solid #c13232;
+}
+.yuyueclose{
+  width: 30px;
+  height: 30px;
+  background: url({{helper.cdnhost}}/assets/img/yuyue_close.png) no-repeat;
+  background-size: cover;
+  position: absolute;
+  bottom: -26%;
+  left: 45%;
+  z-index: 6000;
+}
+.yuyueclose a{
+  width: 30px;
+  height: 30px;
+  display: block;
+ 
+  
+  
+}
+</style>
+
+<div class="js_dialog" id="dialog1" style="opacity: 1;display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog" style="max-width: 290px;border-radius: 10px;overflow: inherit;">
+        <div class="yuyue">
+            <div class="yuyue_title">在线预约</div>
+            <div class="yuyue_con">
+              <input type="text" placeholder="请输入您的真实姓名" id="name" style="width: 100%;height: 30px;">
+              <div style="width: 100%;margin-top: 10px">
+                  <input type="text" placeholder="请输入手机号" id="phone" style="width: 100%;height: 30px;">
+                  <div class="error" style="display: none">您输入的手机号码不正确</div>
+              </div>
+              <div class="clearfix" style="width: 100%;margin-top: 10px">
+                  <input type="text" placeholder="请输入验证码" id="code" class="yan">
+                  <div class="yanzheng">
+                      <input type="button" class="code" style="" id="sendcun_user" value="发送验证码"/>
+                  </div>
+                  <div class="error" style="display: none">您输入的验证码不正确</div>
+              </div>
+              <div style="width: 100%;margin-top: 10px">
+                  <input type="text" placeholder="请输入邮箱" id="phone" style="width: 100%;height: 30px;">
+                  <div class="error" style="display: none">您输入的邮箱不正确</div>
+              </div>
+
+              <input type="button" class="but" style="" id="loginSubmit" value="立即预约" data-url='{{url}}'/>
+            </div>
+
+        </div>
+        <div class=" yuyueclose">
+            
+        </div>
+    </div>
+</div>
+
+<script>
+
+  function showyuyue () {
+      
+      $("#dialog1").show();
+  }
+
+  $(function () {
+    $('.yuyueclose').on('click', function(e){
+      e.preventDefault();
+      $("#dialog1").hide();
+    });
+  })
+</script>
