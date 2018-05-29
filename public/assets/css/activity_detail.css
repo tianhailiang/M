@@ -239,8 +239,8 @@
 .activity-biaoti {
   font-size: 16px;
   color: #333;
-  position: relative;
-  left: -92px;
+  margin-left: 7px;
+  float: left;
 }
 .fenxiang_con{
   background: #fff;
@@ -254,4 +254,12 @@
   display: block;
   float: left;
   margin-left: 50px;
+}
+.header {
+  justify-content: flex-start;
+}
+.header-yuyue {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
 }
