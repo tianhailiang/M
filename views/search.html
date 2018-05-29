@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 {% include "header.html" %}
+<style>
+  .footer{
+    margin-bottom: 0;
+  }
+  #search-black{
+    width: 100%;
+    margin: auto;
+    background: #fff;
+    margin-top: 38px;
+    position: relative;
+  }
+  #search-black img{
+    width: 176px;
+  }
+  .search-black-img{
+    position: absolute;
+    top:50%;
+    margin-top:-90px;
+    left:50%;
+    margin-left: -88px;
+  }
+  #search-black p{
+    text-align: center;
+    color: #999;
+    margin-top: 10px;
+  }
+</style>
 <body>
 {% include "m_widget/top/common_top.html" %}
 <!--顶部tab切换 end-->
 <div id="app" >
     {% include "m_widget/search/search.html" %}
-    <div id="search-black" style="width: 100%;margin: auto;background: #fff">
-      <img src="{{helper.cdnhost}}/assets/img/search-black.png" alt="">
-      <p style="text-align: center;color: #999;margin-top: 10px">还没有任何活动</p>
+    <div id="search-black">
+      <div class="search-black-img">
+        <img src="{{helper.cdnhost}}/assets/img/search-black.png" alt="">
+        <p>还没有任何活动</p>
+      </div>
     </div>
   <!--footer start-->
   {% include "m_widget/footer/common_footer.html" %}
@@ -17,10 +46,11 @@
 <!-- ===侧边栏==== -->
 {% include "m_widget/slidebar/slidebar.html" %}
 </body>
-<script src="{{helper.cdnhost}}/assets/js/search.js"></script>
+<!--<script src="{{helper.cdnhost}}/assets/js/search.js"></script>-->
 <script>
   $(function () {
-      $("#search-black").height($(window).height()-81-100);
+      var FooterH = $(".footer").height()+45
+      $("#search-black").height(($(window).height()-81)-FooterH);
   })
 </script>
 </html>
