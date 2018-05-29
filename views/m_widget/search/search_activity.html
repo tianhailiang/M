@@ -11,8 +11,8 @@
     </div>
   </div>
   <div class="cancel-btn" id="cancel-btn" style="text-align: right">全部活动
-    <svg class="icon" aria-hidden="true" style="color: #fff;margin: 0 7px;font-size: 16px;">
-      <use xlink:href="#icon-qianjin-copy1"></use>
+    <svg class="icon" aria-hidden="true" style="color: #fff;margin: 0 8px;font-size: 14px;">
+      <use xlink:href="#icon-xuanxiang"></use>
     </svg>
   </div>
 </div>
@@ -133,11 +133,19 @@
     },
     {
     "id": 5,
-    "type": "最新案例"
+    "type": "近三天"
     },
     {
     "id": 1,
-    "type": "人气案例"
+    "type": "近一周"
+    },
+    {
+    "id": 1,
+    "type": "未开始活动"
+    },
+    {
+    "id": 1,
+    "type": "已过期活动"
     }
     ]
     %}
@@ -201,8 +209,8 @@
                 "</svg>")
           }else {
             $(this).removeClass("cancel-btn-shou")
-            $(this).html("全部活动<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin: 0 7px;font-size: 16px;\">\n" +
-              "<use xlink:href=\"#icon-qianjin-copy1\"></use>\n" +
+            $(this).html("全部活动<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin: 0 8px;font-size: 14px;\">\n" +
+              "<use xlink:href=\"#icon-xuanxiang\"></use>\n" +
               "</svg>")
             $("#so-box").hide();
           }
