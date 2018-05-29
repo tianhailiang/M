@@ -261,7 +261,7 @@ var apis = {
   //学历频道页五大攻略
   "get_edu":prefix + 'common_sense',
   //新活动底页
-  "get_activity_detail":prefix+'detail',
+  "get_activity_detail":prefix+'detail'
 };
 module.exports = {
   redisCache: redisCache,
