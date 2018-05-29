@@ -259,7 +259,7 @@ var apis = {
   //参赞专栏
   "user_article_list": shequ_prefix + 'account/user_article_list/',
   //学历频道页五大攻略
-  "get_edu":prefix + 'common_sense',
+  "get_edu":prefix + 'common_sense'
 };
 module.exports = {
   redisCache: redisCache,

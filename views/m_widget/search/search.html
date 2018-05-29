@@ -62,25 +62,3 @@
   </div>
 </div>
 <!--搜索框 结束-->
-
-<script >
-	$(function(){
-//		$(window).on("scroll",function(){
-//            //滚动出现top
-//            // console.log($(this).scrollTop())
-//            var a = ($(this).scrollTop()/2)/100;
-//            // console.log(a)
-//            if($(this).scrollTop()>=172){
-//            	$(".search-box").css({"backgroundColor":"rgba(255,0,0,0.86)"});
-//            }else if($(this).scrollTop()<86){
-//            	$(".search-box").css({"backgroundColor":"rgba(0,0,0,"+a+")"});
-//            }else{
-//                $(".search-box").css({"backgroundColor":"rgba(255,0,0,"+a+")"});
-//            }
-//        });
-		$('#search-button').on('click',function () {
-			console.log(fn.no_urlgen('search'));
-			window.location.href = fn.no_urlgen('search');
-		})
-	})
-</script>

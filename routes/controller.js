@@ -2842,3 +2842,16 @@ exports.activity_detail = function (req, res, next){
 
     });
 }
+/*
+ * 搜索活动
+ * */
+exports.search_activity = function(req,res,next){
+    var data = req.query;
+    cms.searchactivity(data,function(err,result){
+        if(err){
+            res.send(err);
+        }else{
+            res.send(result);
+        }
+    })
+};
