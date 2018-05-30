@@ -103,24 +103,27 @@
         <div class="yuyue">
             <div class="yuyue_title">在线预约</div>
             <div class="yuyue_con">
-              <input type="text" placeholder="请输入您的真实姓名" id="name" style="width: 100%;height: 30px;">
+              <div style="width: 100%;">
+                <input type="text" placeholder="请输入您的真实姓名" id="name" style="width: 100%;height: 30px;">
+                <div class="error" id="error_name" style="display: none">请输入您的真实姓名</div>
+              </div>
               <div style="width: 100%;margin-top: 10px">
                   <input type="text" placeholder="请输入手机号" id="phone" style="width: 100%;height: 30px;">
-                  <div class="error" style="display: none">您输入的手机号码不正确</div>
+                  <div class="error" id="error_phone" style="display: none">您输入的手机号码不正确</div>
               </div>
               <div class="clearfix" style="width: 100%;margin-top: 10px">
                   <input type="text" placeholder="请输入验证码" id="code" class="yan">
                   <div class="yanzheng">
                       <input type="button" class="code" style="" id="sendcun_user" value="发送验证码"/>
                   </div>
-                  <div class="error" style="display: none">您输入的验证码不正确</div>
+                  <div class="error" id="error_code" style="display: none">您输入的验证码不正确</div>
               </div>
               <div style="width: 100%;margin-top: 10px">
-                  <input type="text" placeholder="请输入邮箱" id="phone" style="width: 100%;height: 30px;">
-                  <div class="error" style="display: none">您输入的邮箱不正确</div>
+                  <input type="text" placeholder="请输入邮箱" id="email" style="width: 100%;height: 30px;">
+                  <div class="error" id="error_email" style="display: none">您输入的邮箱不正确</div>
               </div>
 
-              <input type="button" class="but" style="" id="loginSubmit" value="立即预约" data-url='{{url}}'/>
+              <input type="button" class="but" style="" id="yuyueSubmit" value="立即预约" data-url='{{url}}'/>
             </div>
 
         </div>
@@ -132,14 +135,169 @@
 
 <script>
 
+  var timer;
+  function countDown() {
+    // 60s倒计时
+    $("#sendcun_user").unbind("click");
+    var countDownTime = 60;
+    timer = window.setInterval(function () {
+        countDownTime--;
+        $("#sendcun_user").attr("value", countDownTime + "s");
+        $("#sendcun_user").css('background','#ccc');
+        $("#sendcun_user").css('border','1px solid #ccc');
+        if (countDownTime == 0) {
+            clearInterval(timer);
+            $("#sendcun_user").attr("value", "发送验证码");
+            $("#sendcun_user").css('background','#D51821');
+            $("#sendcun_user").css('border','1px solid #D51821');
+            $("#sendcun_user").bind("click",function () {
+                getCode();
+            });
+        }
+    }, 1000);
+  }
+  //获取验证码
+  function getCode () {
+    countDown();
+    $.ajax({
+        url: ajaxUrlPrefix.nodeapi+'/ucapi/ucapi_agent',
+        type:'get',
+        data:{
+            m: 'sendcode',
+            phone:$("#phone").val()
+        },
+        dataType:'json',
+        success:function(msg){
+            if(msg.code === 0){
+                //alert('成功');
+            } else {
+                alert('出错啦');
+            }
+        },
+        error:function(XMLHttpRequest, textStatus, errorThrown){
+            console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
+        }
+    });
+  }
+
+  
+
+  var customize = function () {
+    //发送定制
+    $.ajax({
+      url: ajaxUrlPrefix.nodeapi+'/cmsapi/onlineBooking', //活动预约
+      type:'GET',
+      data:{
+        name: $('#name').val(),
+        phone: $('#phone').val(),
+        email: $('#email').val(),
+        code:$("#code").val()
+      },
+      dataType:'json',
+      success:function(msg){
+        if(msg.code === 0){
+          // alert('成功');
+          $('#email').val("");
+          $('#code').val("");
+          $('#phone').val("");
+          $('#name').val("");
+          $("#dialog1").hide();
+
+        } else {
+          alert(msg.message);
+        }
+      },
+      error:function(XMLHttpRequest, textStatus, errorThrown){
+        console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status);
+        console.log(textStatus);
+        console.log(errorThrown)
+      }
+    });
+  };
+
   function showyuyue () {
       
       $("#dialog1").show();
   }
 
   $(function () {
+    //获取验证码
+    $("#sendcun_user").click(function(){
+      if ($('#phone').val() == '') {
+        $('#error_phone').css('display','block')
+        return false;
+      } else {
+        $('#error_phone').css('display','none')
+      }
+      if (!/^1\d{10}$/.test($("#phone").val())) {
+        $('#error_phone').css('display','block')
+        return false;
+      } else {
+        $('#error_phone').css('display','none')
+      }
+      getCode();
+    });
+
+    //立即预约
+    $('#yuyueSubmit').click(function () {
+      if ($('#name').val() == '') {
+        $('#error_name').css('display','block');
+        return false;
+      }else {
+        $('#error_name').css('display','none');
+      }
+      if ($('#phone').val() == '') {
+        $('#error_phone').css('display','block');
+        $('#error_phone').html('您输入的手机号码不正确');
+        return false;
+      } else {
+        $('#error_phone').css('display','none');
+      }
+      if (!/^1\d{10}$/.test($("#phone").val())) {
+        $('#error_phone').css('display','block');
+        $('#error_phone').html('您输入的手机号码格式不正确');
+        return false;
+      } else {
+        $('#error_phone').css('display','none');
+      }
+      if ($('#code').val() === '') {
+        $('#error_code').css('display','block');
+        $('#error_code').html('您输入的验证码不正确');
+        return false;
+      } else {
+        $('#error_code').css('display','none');
+      }
+      if (!/^\d{6}$/.test($("#code").val())) {
+        $('#error_code').css('display','block');
+        $('#error_code').html('您输入的验证码不足6位');
+        return false;
+      } else {
+        $('#error_code').css('display','none');
+      }
+      if ($('#email').val() == '') {
+        $('#error_email').css('display','block');
+        $('#error_email').html('您输入的邮箱不正确');
+        return false;
+      } else {
+        $('#error_email').css('display','block');
+      }
+      if (!/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test($('#email').val())) {
+        $('#error_email').css('display','block');
+        $('#error_email').html('您输入的邮箱不正确');
+        return false;
+      }else {
+        $('#error_email').css('display','none');
+      }
+      customize();
+    });
+
     $('.yuyueclose').on('click', function(e){
       e.preventDefault();
+      
+      $('#email').val("");
+      $('#code').val("");
+      $('#phone').val("");
+      $('#name').val("");
       $("#dialog1").hide();
     });
   })
