@@ -2828,11 +2828,15 @@ exports.activity_detail = function (req, res, next){
  * */
 exports.search_activity = function(req,res,next){
     var data = req.query;
+    var resData = [];
     cms.searchactivity(data,function(err,result){
         if(err){
             res.send(err);
         }else{
-            res.send(result);
+            //res.send(result.data.list);
+            console.log(result.data)
+            resData.activity_list = result.data;
+            res.render('m_widget/activity_list/activity_list', resData);
         }
     })
 };

@@ -69,8 +69,8 @@
 <!--顶部tab切换 end-->
 <div id="app" >
     {% include "m_widget/search/search.html" %}
-    <ul class="tab-type">
-        <li class="active" data-type="">全部</li>
+    <ul class="tab-type" id="tab-type">
+        <li class="active" data-type="1">进行中</li>
         <li data-type="3">即将开始</li>
         <li data-type="4">已结束</li>
     </ul>
@@ -91,29 +91,40 @@
 <!--<script src="{{helper.cdnhost}}/assets/js/search.js"></script>-->
 <script>
   $(function () {
-      var searchContent = '';
+      var searchWord = '';
+      var searchContent = $('.search-content');
+      var searchType = 1;
+      /*输入搜索关键词*/
       $('#search-content').on('keypress', function (e) {
           var keycode = e.keyCode;
-          searchContent = $(this).val();
-          console.log('搜索关键词',searchContent,'  keycode',keycode);
+          searchWord = $(this).val();
+          console.log('搜索关键词',searchWord,'  keycode',keycode);
           if (keycode == 13) {
               $.ajax({
                   url: '/search_activity',
                   type: 'get',
                   data: {
-                      "key_word":searchContent,
+                      "key_word":searchWord,
 //                      "stime":"",
                       "city_id":1
                   },
                   success: function (msg) {
                     console.log(msg)
+                      searchContent.append($.parseHTML(msg));
                   }
               })
           }
       });
+      /*取消*/
       $('#cancel-btn').on('click', function () {
           window.history.back();
       })
+      /*点击切换列表类型*/
+      $('#tab-type').on('click', 'li', function () {
+          searchType = $(this).attr('data-type');
+          console.log('当前选中的type', searchType);
+          $(this).addClass('active').siblings().removeClass('active');
+      });
       var FooterH = $(".footer").height()+45
       $("#search-black").height(($(window).height()-81)-FooterH);
   })
