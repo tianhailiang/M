@@ -1113,6 +1113,9 @@ exports.study_abroad_activity = function (req, res, next) {
     data.zuixinhuodong_public= returnData(result.zuixinhuodong_public,'zuixinhuodong_public');
     data.schoolpaiming_public = returnData(result.schoolpaiming_public,'schoolpaiming_public');*/
    /* data.liuxuehuodong_list = returnData(result.liuxuehuodong_list,'liuxuehuodong_list');*/
+    data.country = 0;
+    data.timetype= 0;
+    data.type='所有学历';
     data.tdk = {
       pagekey: 'ACTIVITY', //key
       cityid: area, //cityid
