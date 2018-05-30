@@ -91,7 +91,7 @@
                 '</div>'+
                 '</a>'+
                 '<div class="booking-tel">'+
-                '<p>预约专线：<a href="tel:{{ item.active_telephone }}">'+datalist[i].active_telephone+'</a></p>'+
+                '<p>预约专线：<a href="tel:'+datalist[i].active_telephone+'">'+datalist[i].active_telephone+'</a></p>'+
                 '<span>在线预约</span>'+
                 '</div>'+
                 '</div>'
@@ -111,73 +111,6 @@
     }
   });
 </script>
-<!--<script>
-  /*加载更多函数*/
-  function loadMore (cur_page) {
-    var now_page = cur_page+1;
-    var per_page = 7;
-    var area = $.cookie('currentarea');
-    $.ajax({
-      url: '/cmsapi/more_activity',
-      type: 'get',
-      datatype: 'json',
-      data: {
-        "cityid": area,
-        "perpage": per_page,
-        "page":now_page
-      },
-      success: function (result) {
-        if (result.code == 0 && result.data.list.length !=0) {
-          addNewslist(result.data.list);
-          $('#load-more-btn').data('cur_page', now_page);
-        }
-        else {
-          $('#load-more-btn').find('span').text('没有更多内容了');
-        }
-      },
-      error: function(XMLHttpRequest, textStatus, errorThrown) {
-        alert('服务器开小差了，请重试');
-      }
-    })
-  }
-  /*加载更多拼接字符串函数*/
-  function addNewslist (news_list) {
-    var activity_html = '';
-    $.each(news_list, function (i, newItem, arr) {
-      activity_html+='<div class="activity-item">'
-          +'<a href="'+fn.urlgen("activity", newItem.id.toString(), "c=" + newItem.organid)+'">'
-       +'<div class="activity-item-left">'
-        +'<img src="'+newItem.thumb+'" alt="">'
-        +'</div>'
-        +'<div class="activity-item-right">'
-          +'<h3 class="line-clamp-1">【'+fn.getCountryChinese(newItem.country)+'】'+newItem.title+'</h3>'
-         +'<ul>'
-        +'<li> <svg class="icon" aria-hidden="true">'
-          +'<use xlink:href="#icon-shijian"></use>'
-           +'</svg><span>'+ fn.getFormatDate(newItem.start_time, 6) +'</span></li>'
-           +'<li> <svg class="icon" aria-hidden="true">'
-            +'<use xlink:href="#icon-dianhua2"></use>'
-            +'</svg><span>'+newItem.telephone+'</span></li>'
-           +'<li><svg class="icon" aria-hidden="true">'
-             +'<use xlink:href="#icon-dingwei"></use>'
-            +'</svg><span class="line-clamp-1">'+newItem.address_des+'</span></li>'
-          +'</ul>'
-          +'<div class="activity-booking-btn">点击预约</div>'
-        +'</div>'
-          +'</a>'
-      +'</div>'
-    });
 
-    $('#activity-list').append($(activity_html));
-  }
-</script>
-<script>
-  $(".app-in").on("click",".activity-booking-btn",function(event){
-    event.preventDefault();
-    var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
-    window.location = "http://jesong.jjl.cn/live/chat.dll?c="+ area+"&chatUrl="+window.encodeURIComponent(window.location.href)+"g=246"
-  });
-
-</script>-->
 </body>
 </html>
