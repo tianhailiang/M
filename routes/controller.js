@@ -1102,17 +1102,15 @@ exports.study_abroad_activity = function (req, res, next) {
   async.parallel({
 
     //留学活动
-   /* liuxuehuodong_list: function (callback) {
-      cms.liuxuehuodong_list({
-        "country": country,"cityid": area, "page":1,"perpage":7
-      }, callback);
-    }*/
+      activity_list: function (callback) {
+      cms.activity_list({"city_id":area,"page":"1","perpage":3}, callback);
+    }
   }, function (err, result) {
 
    /* data.chenggonganli_public = returnData(result.chenggonganli_public,'chenggonganli_public');
     data.zuixinhuodong_public= returnData(result.zuixinhuodong_public,'zuixinhuodong_public');
     data.schoolpaiming_public = returnData(result.schoolpaiming_public,'schoolpaiming_public');*/
-   /* data.liuxuehuodong_list = returnData(result.liuxuehuodong_list,'liuxuehuodong_list');*/
+    data.activity_list = returnData(result.activity_list,'activity_list');
     data.tdk = {
       pagekey: 'ACTIVITY', //key
       cityid: area, //cityid
@@ -1955,7 +1953,7 @@ exports.more_cost = function(req,res,next){
 exports.more_activity= function(req,res,next){
   var data = req.query;
   log.info('留学活动参数 ', data);
-  cms.liuxuehuodong_list(data,function(err,result){
+  cms.activity_list(data,function(err,result){
     if(err){
       res.send(err);
     }else{

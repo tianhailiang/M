@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 {% include "header.html" %}
-<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/activity.css">
 <body>
 <div id="app">
   {% include "m_widget/top/common_top.html" %}
@@ -10,40 +9,14 @@
 
   <!--活动列表 start-->
   <div class="activity-list" id="activity-list">
-    {#{% import  "m_widget/activity/activity.html" as activity_list %}
-    {{ activity_list.activity_item(liuxuehuodong_list.list,helper) }}#}
-    <div class="activity-list-content">
-      <div class="activity-item">
-        <div class="activity-item-left">
-          <h3>21/<span>05</span></h3>
-          <p>北京</p>
-        </div>
-        <div class="activity-item-right">
-          <h3>
-            高考之后，留学留学留学留学留学留学留学留学留学留学留学
-          </h3>
-        <ul>
-          <li><svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-shijian1"></use>
-          </svg><span>2016-05-26 10:00至2018-03-30 11:20</span></li>
-          <li><svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-svg18"></use>
-          </svg><span>地址地址地址地址地址地址地址地址地址地址地址地址地址地址</span></li>
-          <li><i  class="iconfont">&#xe606;</i><span>中学生，本科生</span></li>
-        </ul>
-        </div>
-      </div>
-      <div class="booking-tel">
-        <p>预约专线：<a href="tel:212222">212222</a>-转英国部</p>
-        <span>在线预约</span>
-      </div>
-    </div>
+    {% include "m_widget/activity_list/activity_list.html" %}
   </div>
   <!--活动列表 end-->
-  <!--加载更多 start-->
-  {#% include "m_widget/load_more/load_more.html" %#}
-  <!--加载更多 end-->
-  <!--footer start-->
+    <div class="loader">
+      <span>加载更多...</span>
+      <img src="{{helper.cdnhost}}/assets/img/load.gif" alt="">
+    </div>
+    <!--footer start-->
 
   <!--footer end-->
     </div>
@@ -52,6 +25,89 @@
 {% include "m_widget/slidebar/common_sliderbar.html" %}
 <!-- ======乐语底栏======= -->
 {% include 'm_widget/funtalk/funtalk.html' %}
+<script>
+  $(document).ready(function (){
+    var cur_page = 1
+    var onOff = false
+    $('.loader').hide()
+    $(window).scroll(function(){
+      var scrollTop = $(window).scrollTop()
+      var clientHeight = $(window).height()
+      var docHeight = $(document).height()
+      if(scrollTop >= (docHeight - clientHeight) - 155) {
+        if(!onOff){
+          onOff = true
+          cur_page++
+          setTimeout(loadMore,100)
+        }
+      }
+
+    });
+    function loadMore () {
+      var now_page = cur_page;
+      var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
+      var uid = $('.people-info').data('uid')
+      $.ajax({
+        url: '/cmsapi/more_activity',
+        type: 'GET',
+        datatype: 'json',
+        data: {
+          "city_id":area,
+          "perpage":2,
+          "page":now_page
+        },
+        beforeSend: function(){
+          $('.loader').show()
+        },
+        success: function (result) {
+
+          var add = '';
+
+          if (result.data.list  && result.data.list.length>0) {
+            var datalist = result.data.list;
+            console.log(result.data)
+            for (var i = 0;i < datalist.length;i++) {
+              add += '<div class="activity-list-content">'+
+                '<a href="" style="display: block;">'+
+                  '<div class="activity-item">'+
+                    '<div class="activity-item-left">'+
+                      '<h3>04/<span>05</span></h3>'+
+                      '<p>'+datalist[i].hode_city+'</p>'+
+                    '</div>'+
+                    '<div class="activity-item-right">'+
+                      '<h3>'+datalist[i].title+'</h3>'+
+                '<ul>'+
+                        '<li><svg class="icon" aria-hidden="true">'+
+                          '<use xlink:href="#icon-shijian1"></use>'+
+                        '</svg><span>'+datalist[i].start_time+'至'+datalist[i].start_time+'</span></li>'+
+                        '<li><svg class="icon" aria-hidden="true">'+
+                          '<use xlink:href="#icon-svg18"></use>'+
+                        '</svg><span>'+datalist[i].address_des+'</span></li>'+
+                        '<li><i  class="iconfont">&#xe606;</i><span>'+datalist[i].crowd+'</span></li>'+
+                      '</ul>'+
+                    '</div>'+
+                  '</div>'+
+                '</a>'+
+                '<div class="booking-tel">'+
+                  '<p>预约专线：<a href="tel:{{ item.active_telephone }}">'+datalist[i].active_telephone+'</a></p>'+
+                  '<span>在线预约</span>'+
+                '</div>'+
+              '</div>'
+            }
+            $('.activity-list').append($(add));
+            onOff = false
+          } else {
+            $('.loader > span').text('数据加载完毕！')
+            $('.loader > img').remove()
+          }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          alert('服务器开小差了，请重试');
+        }
+      })
+    }
+  });
+</script>
 <!--<script>
   /*加载更多函数*/
   function loadMore (cur_page) {

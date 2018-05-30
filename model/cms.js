@@ -654,8 +654,8 @@ exports.business_cooperation_list = function (data, callback) {
  * 留学活动列表
  * @param callback
  */
-exports.liuxuehuodong_list = function (param, callback) {
-  var url = _api_url_path(param, config.apis.get_liuxuehuodong_list);
+exports.activity_list = function (param, callback) {
+  var url = _api_url_path(param, config.apis.get_activity_list);
   if (url == null) {
     callback('404');
     return;

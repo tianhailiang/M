@@ -146,7 +146,7 @@ var apis = {
   "get_media_broadcast": prefix + 'common_recommend',
   "get_business_cooperation_list": prefix + 'business_cooperation_list',
   //留学活动列表
-  "get_liuxuehuodong_list": prefix + 'liuxuehuodong_list',
+  "get_activity_list": prefix + 'activity_list',
   //文案团队
   "get_wenantuandui_list": prefix + 'wenantuandui_list',
   //国家频道---》留学方案
