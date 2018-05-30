@@ -46,13 +46,18 @@
     function loadMore () {
       var now_page = cur_page;
       var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
-      var uid = $('.people-info').data('uid')
+      var country_id =$(".countryId .focus-on").attr("data-id");
+      var crowd =$(".eduType .focus-on").attr("data-id");
+      var type =$(".timeType .focus-on").attr("data-id");
       $.ajax({
         url: '/cmsapi/more_activity',
         type: 'GET',
         datatype: 'json',
         data: {
           "city_id":area,
+          "country":country_id,
+          "type":type,
+          "crowd":encodeURI(crowd),
           "perpage":3,
           "page":now_page
         },

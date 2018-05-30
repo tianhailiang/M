@@ -1094,16 +1094,22 @@ exports.study_abroad_activity = function (req, res, next) {
     log.info("活动")
   var data = [];
   var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
- /* var country = comfunc.getCountryIdParams(req.params[1]);
-  if(!comfunc.country_invalidcheck(country) || !comfunc.cityid_invalidcheck(area)){
-    next();
-    return false;
-  }*/
+  var nquery = comfunc.getReqQuery(req.params[2]);
+  var country = nquery && nquery.n ? nquery.n :0;
+  var type = nquery && nquery.type ? nquery.type : 0;
+  var crowd = nquery && nquery.crowd ? nquery.crowd : '';
+  if(crowd == "所有学历"){
+      crowd = ""
+  }
+ //  if(!comfunc.country_invalidcheck(country) || !comfunc.cityid_invalidcheck(area)){
+ //    next();
+ //    return false;
+ //  }*/
   async.parallel({
 
     //留学活动
       activity_list: function (callback) {
-      cms.activity_list({"city_id":area,"page":"1","perpage":3}, callback);
+      cms.activity_list({"city_id":area,"country":country,"type":type,"crowd":encodeURI(crowd),"page":"1","perpage":3}, callback);
     }
   }, function (err, result) {
 
@@ -1111,9 +1117,9 @@ exports.study_abroad_activity = function (req, res, next) {
     data.zuixinhuodong_public= returnData(result.zuixinhuodong_public,'zuixinhuodong_public');
     data.schoolpaiming_public = returnData(result.schoolpaiming_public,'schoolpaiming_public');*/
    /* data.liuxuehuodong_list = returnData(result.liuxuehuodong_list,'liuxuehuodong_list');*/
-    data.country = 0;
-    data.timetype= 0;
-    data.type='所有学历';
+    data.country = country;
+    data.timetype= type;
+    data.crowd=crowd?crowd:"所有学历";
     data.activity_list = returnData(result.activity_list,'activity_list');
     data.tdk = {
       pagekey: 'ACTIVITY', //key
