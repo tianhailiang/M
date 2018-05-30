@@ -1,6 +1,6 @@
 {% for item in activity_list.list %}
 <div class="activity-list-content">
-  <a href="" style="display: block;">
+  <a href="{{helper.active_urlgen('activity', item.id | string,'c='+item.hold_city)}}" style="display: block;">
     <div class="activity-item">
     <div class="activity-item-left">
       <h3>{{ item.start_time | sliceShorten(8,10) }}/<span>{{ item.start_time | sliceShorten(5,7) }}</span></h3>
