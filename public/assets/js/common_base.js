@@ -397,6 +397,11 @@
             else {
                 return ajaxUrlPrefix.imageshost + '/content/school/logo_' + school_id + '.jpg';
             }
+        },
+        sliceShorten: function(str,start, count) {
+            if (str) {
+                return str.slice(start, count);
+            }
         }
 };
     //===========================fn用到的基础函数=========================
