@@ -1,14 +1,14 @@
 <!--搜索框 开始-->
 <div class="search-container">
   <div class="search-box" >
-    <div class="search-bar" >
+    <a class="search-bar" href="{{helper.urlgen('search')}}">
       <input placeholder="搜索" id="search-content">
       <div style="width: 30px;height: 30px;text-align: right;line-height: 30px;" id="search-btn">
         <svg class="icon icon-sousuo" aria-hidden="true">
           <use xlink:href="#icon-sousuo"></use>
         </svg>
       </div>
-    </div>
+    </a>
   </div>
   <div class="cancel-btn" id="cancel-btn" style="text-align: right">全部活动
     <svg class="icon" aria-hidden="true" style="color: #fff;margin: 0 8px;font-size: 14px;">

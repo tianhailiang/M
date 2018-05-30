@@ -1102,11 +1102,9 @@ exports.study_abroad_activity = function (req, res, next) {
   async.parallel({
 
     //留学活动
-   /* liuxuehuodong_list: function (callback) {
-      cms.liuxuehuodong_list({
-        "country": country,"cityid": area, "page":1,"perpage":7
-      }, callback);
-    }*/
+      activity_list: function (callback) {
+      cms.activity_list({"city_id":area,"page":"1","perpage":3}, callback);
+    }
   }, function (err, result) {
 
    /* data.chenggonganli_public = returnData(result.chenggonganli_public,'chenggonganli_public');
@@ -1116,6 +1114,7 @@ exports.study_abroad_activity = function (req, res, next) {
     data.country = 0;
     data.timetype= 0;
     data.type='所有学历';
+    data.activity_list = returnData(result.activity_list,'activity_list');
     data.tdk = {
       pagekey: 'ACTIVITY', //key
       cityid: area, //cityid
@@ -1958,7 +1957,7 @@ exports.more_cost = function(req,res,next){
 exports.more_activity= function(req,res,next){
   var data = req.query;
   log.info('留学活动参数 ', data);
-  cms.liuxuehuodong_list(data,function(err,result){
+  cms.activity_list(data,function(err,result){
     if(err){
       res.send(err);
     }else{
@@ -2790,11 +2789,12 @@ exports.wxtoken = function(req,res,next){
 }
 
 //新留学活动
-//活动底页
 exports.activity_detail = function (req, res, next){
     var data = [];
     var uid = req.params[0];
     var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
+    var activityId = req.params[1];
+    data.route = 'activity';
     var qianzhengzhinan_currentPage=req.query.page || 1;
     var country = req.query.n || 0;
     if ( req.cookies.login_ss !== undefined) {
@@ -2807,41 +2807,36 @@ exports.activity_detail = function (req, res, next){
         return false;
     }
     async.parallel({
-        //lunbo_list:function(callback) {
-        //    cms.lunbo_list({
-        //        "ad_page": 'ACTIVITYDETAIL',
-        //        "cityid":area,
-        //        "ad_seat": "SEAT1"
-        //    }, callback);
-        //},
-        //lunbo_list2:function(callback) {
-        //    cms.lunbo_list({
-        //        "ad_page": 'ACTIVITYDETAIL',
-        //        "cityid":area,
-        //        "ad_seat": "SEAT2"
-        //    }, callback);
-        //},
-        //activitydetail: function (callback) {
-        //    cms.activity_detail({
-        //        "catid": 74,
-        //        "id":activityId,
-        //    }, callback);
-        //},
+        activity_detail: function (callback) {
+            cms.activity_detail ({
+                "catid":74,
+                "id": activityId
+            }, callback);
+        },
     }, function (err, result){
-        //data.xSlider = returnData(result.lunbo_list,'lunbo_list');
-        //data.xSlider2 = returnData(result.lunbo_list2,'lunbo_list2');
-        //data.activitydetail = returnData(result.activitydetail, 'activitydetail');
-        //if(err || result.activitydetail.code != 0 || result.activitydetail.data.list.hold_city != urlcity){
-        //    return next();
-        //}
-        //data.huodongdiye=data.activitydetail.list;
+        if(err || result.activity_detail.code != 0){
+            return next();
+        }
+        data.activity_detail = returnData(result.activity_detail, 'activity_detail');
+        data.activity_detail=data.activity_detail.list;
         data.tdk = {
             pagekey: 'ACTIVITYDETAIL', //key
             cityid: area, //cityid
             nationid: country//nationi
         };
-        //data.esikey = esihelper.esikey();
         res.render('activity_detail', data);
-
     });
 }
+/*
+ * 搜索活动
+ * */
+exports.search_activity = function(req,res,next){
+    var data = req.query;
+    cms.searchactivity(data,function(err,result){
+        if(err){
+            res.send(err);
+        }else{
+            res.send(result);
+        }
+    })
+};

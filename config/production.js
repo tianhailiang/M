@@ -145,7 +145,7 @@ var apis = {
   "get_media_broadcast": prefix + 'common_recommend',
   "get_business_cooperation_list": prefix + 'business_cooperation_list',
   //留学活动列表
-  "get_liuxuehuodong_list": prefix + 'liuxuehuodong_list',
+  "get_activity_list": prefix + 'activity_list',
   //文案团队
   "get_wenantuandui_list": prefix + 'wenantuandui_list',
   //国家频道---》留学方案
@@ -230,8 +230,8 @@ var apis = {
   "get_yiminguwen": prefix + 'immi_adviser_list',
   //移民文章底页
   "get_yiminwenzhangdiye": prefix + 'immi_news_detail',
-  //移民--活动底页
-  "get_activity_detail":prefix+'immi_activity_detail',
+  ////移民--活动底页
+  //"get_activity_detail":prefix+'immi_activity_detail',
   //移民案例搜索结果
   "get_yimin_so_case": prefix + 'immi_search_case',
   //移民资讯搜索结果
@@ -259,6 +259,8 @@ var apis = {
   "user_article_list": shequ_prefix + 'account/user_article_list/',
   //学历频道页五大攻略
   "get_edu":prefix + 'common_sense',
+  //新活动底页
+  "get_activity_detail":prefix+'detail',
 };
 module.exports = {
   redisCache: redisCache,
