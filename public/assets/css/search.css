@@ -51,10 +51,9 @@
 /*tab*/
 .so-box{
     background: #fff;
-    display: flex;
     flex-direction: column;
     z-index: 121;
-    position: absolute;
+    position: fixed;
     top:81px;
     overflow: scroll;
 }
