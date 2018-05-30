@@ -217,7 +217,10 @@
           var country_id =$(".countryId .focus-on").attr("data-id");
           var crowd =$(".eduType .focus-on").attr("data-id");
           var type =$(".timeType .focus-on").attr("data-id");
-          window.location.href =fn.active_urlgen('activity', 'c='+area,'n=' + country_id ,"type=" + type,"crowd=" + crowd)
+          if(crowd=="所有学历"){
+              crowd=""
+          }
+          window.location.href =fn.active_urlgen('activity', 'c='+area,'n=' + country_id ,"t=" + type,"crowd=" + crowd )
       })
   })
 </script>

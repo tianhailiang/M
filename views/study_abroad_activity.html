@@ -54,6 +54,9 @@
       var country_id =$(".countryId .focus-on").attr("data-id");
       var crowd =$(".eduType .focus-on").attr("data-id");
       var type =$(".timeType .focus-on").attr("data-id");
+      if(crowd=="所有学历"){
+          crowd = ""
+      }
       $.ajax({
         url: '/cmsapi/more_activity',
         type: 'GET',

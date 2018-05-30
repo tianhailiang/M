@@ -1096,11 +1096,8 @@ exports.study_abroad_activity = function (req, res, next) {
   var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
   var nquery = comfunc.getReqQuery(req.params[2]);
   var country = nquery && nquery.n ? nquery.n :0;
-  var type = nquery && nquery.type ? nquery.type : 0;
+  var type = nquery && nquery.t ? nquery.t : 0;
   var crowd = nquery && nquery.crowd ? nquery.crowd : '';
-  if(crowd == "所有学历"){
-      crowd = ""
-  }
  //  if(!comfunc.country_invalidcheck(country) || !comfunc.cityid_invalidcheck(area)){
  //    next();
  //    return false;
