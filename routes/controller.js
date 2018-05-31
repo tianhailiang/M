@@ -2686,18 +2686,18 @@ exports.online_evaluation_yimin = function (req, res, next) {
 }
 //金吉列简介
 exports.about = function (req, res, next){
-    log.debug('about');
-    var data = [];
-    cms.lunbo_list({
-      "ad_page":"PROFILE",
-      "ad_seat":"SEAT1"
-    },function(err,result){
-      data.about = returnData(result,'about');
-      data.tdk = {
-        pagekey: 'PROFILE'
-      };
-      res.render('about', data);
-    });
+  log.debug('about');
+  var data = [];
+  cms.lunbo_list({
+    "ad_page":"PROFILE",
+    "ad_seat":"SEAT1"
+  },function(err,result){
+    data.about = returnData(result,'about');
+    data.tdk = {
+      pagekey: 'PROFILE'
+    };
+    res.render('about', data);
+  });
 }
 //活动表单
 exports.act_form = function (req, res, next){
