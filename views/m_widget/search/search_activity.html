@@ -136,11 +136,11 @@
     "type": "进行中活动"
     },
     {
-    "id": 3,
+    "id": 2,
     "type": "未开始活动"
     },
     {
-    "id": 4,
+    "id": 3,
     "type": "已过期活动"
     }
     ]
@@ -185,7 +185,7 @@
     <div class="so-box-item-title"><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-boshimao1"></use>
     </svg>学历</div>
-    <div class="so-box-item eduType">{% for item in eduType %}<span data-id="{{item.type}}" class={{'focus-on' if item.type == type else ""}}>{{item.type}}</span>{% endfor %}</div>
+    <div class="so-box-item eduType">{% for item in eduType %}<span data-id="{{item.type}}" class={{'focus-on' if item.type == crowd else ""}}>{{item.type}}</span>{% endfor %}</div>
   </div>
   <div class="so-tab" id="so-tab">
     <span class="so-tab-item">清空</span>
@@ -208,16 +208,24 @@
               "</svg>")
             $("#so-box").hide();
           }
-      })
+      });
       $(".so-box-item span").on("click",function () {
           $(this).addClass('focus-on').siblings().removeClass('focus-on');
-      })
+      });
+      $(".so-tab-item").on("click",function () {
+          $(".countryId span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
+          $(".timeType span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
+          $(".eduType span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
+      });
       $(".so-tab-item_active").on("click",function () {
+          var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
           var country_id =$(".countryId .focus-on").attr("data-id");
           var crowd =$(".eduType .focus-on").attr("data-id");
-          var stime =$(".timeType .focus-on").attr("data-id");
-//          window.location.href = fn.no_urlgen('search', 'n=' + country_id,"stime=" + stime,"edu=" + crowd);
-          console.log(fn.no_urlgen('search', 'country_id=' + country_id ,"stime=" + stime,"edu=" + crowd))
+          var type =$(".timeType .focus-on").attr("data-id");
+          if(crowd=="所有学历"){
+              crowd=""
+          }
+          window.location.href =fn.active_urlgen('activity', 'c='+area,'n=' + country_id ,"t=" + type,"crowd=" + crowd )
       })
   })
 </script>
