@@ -1,3 +1,26 @@
+*{-webkit-box-sizing:border-box;box-sizing:border-box}
+.activity-list{width:100%;padding:10px;padding-top:0}
+.activity-list-content{background:#fff;-webkit-box-shadow:0 1px 7px 3px rgba(0,0,0,.1);box-shadow:0 1px 7px 3px rgba(0,0,0,.1);border-radius:5px;margin-top:10px}
+.activity-item{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;background:#fff}
+.activity-item .activity-item-left{width:73px;height:106px;background:url(../../../assets/img/activity_bg.png) no-repeat 0 0;background-size:73px 106px}
+.activity-item-left h3{font-size:24px;margin-top:24px;color:#333;margin-left:8px}
+.activity-item-left h3 span{font-size:18px}
+.activity-item-left p{margin-top:15px;font-size:14px;color:#333;text-align:center}
+.activity-item-right{width:1px;-webkit-box-flex:1;-ms-flex:1;flex:1;margin-left:10px}
+.activity-item-right h3{width:100%;line-height:34px;font-size:15px;color:#333;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.activity-item-right ul{margin-right:10px}
+.activity-item-right ul{border-top:.5px solid #dcdcdc}
+.activity-item-right ul li{font-size:12px;color:#999;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:12px}
+.activity-item-right ul li{margin-top:7.5px}
+.activity-item-right ul li:first-child{margin-top:10px}
+.activity-item-right ul li span{margin-left:5px}
+.activity-item-right ul li .icon{font-size:9px;color:#bbb}
+.activity-item-right ul li .iconfont{font-size:9px;color:#bbb}
+.activity-item{border-bottom:.5px solid #dcdcdc}
+.booking-tel{width:100%;padding:10px;display:-webkit-box;display:-ms-flexbox;display:flex}
+.booking-tel p{-webkit-box-flex:1;-ms-flex:1;flex:1;line-height:32px;height:33px;border:1px solid #dcdcdc;border-right:none;padding-left:10px;font-size:12px;color:#333}
+.booking-tel p a{color:#333}
+.booking-tel span{width:80px;height:33px;background:#c13232;color:#fff;font-size:14px;text-align:center;line-height:33px}
 
 .country-edu-ul{padding:0 10px;background:#fff;display:none}
 .country-edu-box ul:nth-of-type(1){display:block}
@@ -108,17 +131,6 @@
 .successful_center_right_title{font-size:14px;color:#333;margin-top:5px;margin-bottom:5px;line-height:16px}
 .successful_center_right p span{font-size:12px;line-height:20px;color:#666}
 .successful_btn{width:60px;height:20px;text-align:center;background-color:#C13232;font-size:12px;color:#fff;float:right;line-height:20px}
-.top-tab{width:100%;-webkit-box-sizing:border-box;box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;height:30px;line-height:30px;border-top:1px solid #e5e5e5;position:fixed;top:43px;z-index:1000}
-.top-tab ::-webkit-scrollbar{display:none}
-.top-tab .tab-bar-show{width:1px;-webkit-box-flex:1;-ms-flex:1;flex:1;height:30px;background-color:#fff;padding:0 10px}
-.top-tab .tab-bar-show .tab-bar{width:100%;height:100%;overflow:scroll;white-space:nowrap;-webkit-overflow-scrolling:touch}
-.top-tab .select-btn{width:34px;height:30px;background-color:#fff;text-align:center;line-height:30px;color:#666}
-.top-tab .select-btn.active{color:#d51821}
-.top-tab .tab-bar .top-tab-item{display:inline-block;position:relative;width:28px;height:30px;line-height:30px;font-size:13px;margin:0 12px;color:#666}
-.top-tab .tab-bar .top-tab-item.active{font-size:14px;color:#D51821}
-.top-tab .tab-bar .top-tab-item.active:after{content:'';width:28px;height:2.5px;background-color:#D51821;position:absolute;left:50%;margin-left:-14px;bottom:0}
-.top-tab .tab-bar .top-tab-item:first-child{margin-left:0}
-.top-tab .tab-bar .top-tab-item:last-child{margin-right:0}
 #app{width:100%;position:absolute;padding-top:43px}
 .header{height:43px;padding:0 10px;-webkit-box-sizing:border-box;box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;position:fixed;top:0;background:#fff;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;z-index:1000;width:100%}
 .header-Catalog{height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;z-index:2000;position:relative}
@@ -200,6 +212,17 @@
 .header-jjl-logo{width:75px;height:28px;background:url(../../../assets/img/jjl_logo.png) no-repeat 0 0;background-size:75px 28px}
 .yimin-sidebar-logo{width:207.5px;height:53.5px;background:url(../../../assets/img/yimin_logo2.png) no-repeat 0 0;background-size:207.5px 53.5px;margin-top:29px;margin-bottom:25px}
 .jjl-sidebar-logo{width:121px;height:45px;background:url(../../../assets/img/jjl_logo2.png) no-repeat 0 0;background-size:121px 45px;margin-top:29px;margin-bottom:25px}
+.top-tab{width:100%;-webkit-box-sizing:border-box;box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;height:30px;line-height:30px;border-top:1px solid #e5e5e5;position:fixed;top:43px;z-index:1000}
+.top-tab ::-webkit-scrollbar{display:none}
+.top-tab .tab-bar-show{width:1px;-webkit-box-flex:1;-ms-flex:1;flex:1;height:30px;background-color:#fff;padding:0 10px}
+.top-tab .tab-bar-show .tab-bar{width:100%;height:100%;overflow:scroll;white-space:nowrap;-webkit-overflow-scrolling:touch}
+.top-tab .select-btn{width:34px;height:30px;background-color:#fff;text-align:center;line-height:30px;color:#666}
+.top-tab .select-btn.active{color:#d51821}
+.top-tab .tab-bar .top-tab-item{display:inline-block;position:relative;width:28px;height:30px;line-height:30px;font-size:13px;margin:0 12px;color:#666}
+.top-tab .tab-bar .top-tab-item.active{font-size:14px;color:#D51821}
+.top-tab .tab-bar .top-tab-item.active:after{content:'';width:28px;height:2.5px;background-color:#D51821;position:absolute;left:50%;margin-left:-14px;bottom:0}
+.top-tab .tab-bar .top-tab-item:first-child{margin-left:0}
+.top-tab .tab-bar .top-tab-item:last-child{margin-right:0}
 .xiangguan-zixun{padding:15px 10px 0;background:#fff;margin-bottom:10px}
 .xiangguan-zixun .xiangguan-zixun-tit{height:15px;font-size:15px;border-left:2.5px solid #D51821;line-height:15px;padding-left:10px;color:#333;margin-bottom:15px}
 .xiangguan-zixun ul li{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;padding:15px 0;border-top:1px solid #eee;line-height:14px}

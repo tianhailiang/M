@@ -13,6 +13,11 @@ var customFilters = {
           return str.slice(0, count || 5);
       }
   },
+  sliceShorten: function(str,start, count) {
+    if (str) {
+      return str.slice(start, count);
+    }
+  },
     shortentime: function(str, count) {
         if (str) {
             var year = str.slice(0, 4);

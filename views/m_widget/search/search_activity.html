@@ -132,19 +132,15 @@
     "type": "所有时间"
     },
     {
-    "id": 5,
-    "type": "近三天"
+    "id": 1,
+    "type": "进行中活动"
     },
     {
-    "id": 1,
-    "type": "近一周"
-    },
-    {
-    "id": 1,
+    "id": 2,
     "type": "未开始活动"
     },
     {
-    "id": 1,
+    "id": 3,
     "type": "已过期活动"
     }
     ]
@@ -181,15 +177,15 @@
     <div class="so-box-item-title"><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-32pxquanqiuzhicai"></use>
     </svg>国家</div>
-    <div class="so-box-item ">{% for item in countryList %}<span  data-id="{{item.id}}" class={{'focus-on' if item.id == country else ""}}>{{item.country}}</span>{% endfor %}</div>
+    <div class="so-box-item countryId">{% for item in countryList %}<span data-id="{{item.id}}" class={{'focus-on' if item.id == country else ""}}>{{item.country}}</span>{% endfor %}</div>
     <div class="so-box-item-title"><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-riqi"></use>
     </svg>时间</div>
-    <div class="so-box-item ">{% for item in timeType %}<span data-id="{{item.id}}" class={{'focus-on' if item.type == type else ""}}>{{item.type}}</span>{% endfor %}</div>
+    <div class="so-box-item timeType">{% for item in timeType %}<span data-id="{{item.id}}" class={{'focus-on' if item.id == timetype else ""}}>{{item.type}}</span>{% endfor %}</div>
     <div class="so-box-item-title"><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-boshimao1"></use>
     </svg>学历</div>
-    <div class="so-box-item ">{% for item in eduType %}<span data-id="{{item.id}}" class={{'focus-on' if item.type == type else ""}}>{{item.type}}</span>{% endfor %}</div>
+    <div class="so-box-item eduType">{% for item in eduType %}<span data-id="{{item.type}}" class={{'focus-on' if item.type == crowd else ""}}>{{item.type}}</span>{% endfor %}</div>
   </div>
   <div class="so-tab" id="so-tab">
     <span class="so-tab-item">清空</span>
@@ -202,18 +198,34 @@
           this.flag=!this.flag;
           if(this.flag){
               $("#so-box").show();
-              $(this).addClass("cancel-btn-shou")
               $("#so-box").height($(window).height()-81-50);
               $(this).html("收起<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin: 0 8px;font-size: 14px;\">\n" +
                 "<use xlink:href=\"#icon-xuanxiang-copy\"></use>\n" +
                 "</svg>")
           }else {
-            $(this).removeClass("cancel-btn-shou")
             $(this).html("全部活动<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin: 0 8px;font-size: 14px;\">\n" +
               "<use xlink:href=\"#icon-xuanxiang\"></use>\n" +
               "</svg>")
             $("#so-box").hide();
           }
+      });
+      $(".so-box-item span").on("click",function () {
+          $(this).addClass('focus-on').siblings().removeClass('focus-on');
+      });
+      $(".so-tab-item").on("click",function () {
+          $(".countryId span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
+          $(".timeType span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
+          $(".eduType span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
+      });
+      $(".so-tab-item_active").on("click",function () {
+          var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
+          var country_id =$(".countryId .focus-on").attr("data-id");
+          var crowd =$(".eduType .focus-on").attr("data-id");
+          var type =$(".timeType .focus-on").attr("data-id");
+          if(crowd=="所有学历"){
+              crowd=""
+          }
+          window.location.href =fn.active_urlgen('activity', 'c='+area,'n=' + country_id ,"t=" + type,"crowd=" + crowd )
       })
   })
 </script>

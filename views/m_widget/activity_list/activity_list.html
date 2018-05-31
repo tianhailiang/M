@@ -1,0 +1,30 @@
+{% for item in activity_list.list %}
+<div class="activity-list-content">
+  <a href="{{helper.active_urlgen('activity', item.id | string,'c='+item.hold_city)}}" style="display: block;">
+    <div class="activity-item">
+    <div class="activity-item-left">
+      <h3>{{ item.start_time | sliceShorten(8,10) }}/<span>{{ item.start_time | sliceShorten(5,7) }}</span></h3>
+      <p>{{item.hode_city | getCity()}}</p>
+    </div>
+    <div class="activity-item-right">
+      <h3>
+        {{item.title}}
+      </h3>
+      <ul>
+        <li><svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-shijian1"></use>
+        </svg><span>{{item.start_time | shorten(-3)}}至{{item.end_time | shorten(-3)}}</span></li>
+        <li><svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-svg18"></use>
+        </svg><span>{{item.address_des}}</span></li>
+        <li><i  class="iconfont">&#xe606;</i><span>{{item.crowd}}</span></li>
+      </ul>
+    </div>
+  </div>
+  </a>
+  <div class="booking-tel">
+    <p>预约专线：<a href="tel:{{ item.active_telephone }}">{{ item.active_telephone }}</a></p>
+    <span>在线预约</span>
+  </div>
+</div>
+{% endfor %}

@@ -45,18 +45,17 @@
     text-align: center;
     color: #fff;
     font-size: 13px;
-    line-height: 36px;
+    line-height: 38px;
 }
 
 /*tab*/
 .so-box{
     background: #fff;
-    display: flex;
     flex-direction: column;
     z-index: 121;
-    position: absolute;
+    position: fixed;
     top:81px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 #so-box{
     display: none;
@@ -124,6 +123,7 @@
     background-color: #f0f2f5;
     margin-right: 10px;
     margin-bottom: 10px;
+    border: 1px solid #fff;
 }
 .so-box-item .focus-on{
     color: #c13232;
