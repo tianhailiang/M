@@ -2789,39 +2789,26 @@ exports.wxtoken = function(req,res,next){
 
 //新留学活动
 exports.activity_detail = function (req, res, next){
+    log.debug('活动底页');
     var data = [];
     var uid = req.params[0];
-    var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
-    var activityId = req.params[1];
-    data.route = 'activity';
-    var qianzhengzhinan_currentPage=req.query.page || 1;
-    var country = req.query.n || 0;
+    var cityId = req.params[1];
     if ( req.cookies.login_ss !== undefined) {
-        console.log('有cookie')
         data.login_info = JSON.parse(req.cookies.login_ss);
     }else{
     }
-    if(!comfunc.cityid_invalidcheck(area)){
-        next();
-        return false;
-    }
-    async.parallel({
-        activity_detail: function (callback) {
-            cms.activity_detail ({
-                "catid":74,
-                "id": activityId
-            }, callback);
-        },
-    }, function (err, result){
-        if(err || result.activity_detail.code != 0){
+    cms.activity_detail ({
+        "catid":74,
+        "id": cityId
+    }, function(err,result){
+        if(err || result.code != 0){
             return next();
         }
-        data.activity_detail = returnData(result.activity_detail, 'activity_detail');
-        data.activity_detail=data.activity_detail.list;
+        data.activity_detail = returnData(result, 'activity_detail');
         data.tdk = {
-            pagekey: 'ACTIVITYDETAIL', //key
-            cityid: area, //cityid
-            nationid: country//nationi
+            pagekey: 'ACTIVITYDETAIL',
+            cityid:cityId,
+            title: data.activity_detail.list.title
         };
         res.render('activity_detail', data);
     });
