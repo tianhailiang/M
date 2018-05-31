@@ -2660,12 +2660,19 @@ exports.info_canzan_list = function (req, res, next) {
 
 //在线评估
 exports.online_evaluation = function (req, res, next) {
-    log.debug('在线评估')
-    var data ={};
-   data.tdk = {
-        pagekey: 'ONLINE_EVALUATION'
+  log.debug('在线评估')
+  var data ={};
+  cms.lunbo_list({
+    "ad_page":"ONLINE_EVALUATION",
+    "ad_seat":"SEAT10"
+  },function(err,result){
+    data.online = returnData(result,'online');
+    log.info(data.online)
+    data.tdk = {
+      pagekey: 'ONLINE_EVALUATION'
     };
     res.render('online_evaluation', data);
+  });
 }
 
 //在线评估--移民
@@ -2679,31 +2686,20 @@ exports.online_evaluation_yimin = function (req, res, next) {
 }
 //金吉列简介
 exports.about = function (req, res, next){
+    log.debug('about');
     var data = [];
-    var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
-    var qianzhengzhinan_currentPage=req.query.page || 1;
-    var country = req.query.n || 0;
-
-    data.login_nickname = '';
-    if ( req.cookies.login_ss !== undefined) {
-        var login_a = JSON.parse(req.cookies.login_ss);
-        //log.debug("login_a-------" + login_a.nickname)
-        data.login_nickname = login_a;
-    }
-    async.parallel({
-
-    }, function (err, result){
-        log.info(result)
-        data.pageroute="about";
-        data.tdk = {
-            pagekey: 'PROFILE', //key
-            cityid: area, //cityid
-            nationid: country//nationi
-        };
-        res.render('about', data);
-
+    cms.lunbo_list({
+      "ad_page":"PROFILE",
+      "ad_seat":"SEAT1"
+    },function(err,result){
+      data.about = returnData(result,'about');
+      data.tdk = {
+        pagekey: 'PROFILE'
+      };
+      res.render('about', data);
     });
-}//活动表单
+}
+//活动表单
 exports.act_form = function (req, res, next){
     log.debug('活动表单')
     var data = [];
