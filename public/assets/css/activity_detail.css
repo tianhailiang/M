@@ -305,14 +305,11 @@ width: 40px;
 /*.xinlang_cue{*/
   /*display: none;*/
 /*}*/
-.bdshare-button-style0-16 {
+.bdshare-button-style0-16 .bds_tsina{
   width: 40px;
   height: 40px;
   background:url(../img/xinlang.png) no-repeat;
   background-size: cover;
-}
-.bdshare-button-style0-16 .bds_tsina{
-background: none;
-
+  margin-top: -0.5px;
 }
 
