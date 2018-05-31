@@ -2687,12 +2687,19 @@ exports.info_canzan_list = function (req, res, next) {
 
 //在线评估
 exports.online_evaluation = function (req, res, next) {
-    log.debug('在线评估')
-    var data ={};
-   data.tdk = {
-        pagekey: 'ONLINE_EVALUATION'
+  log.debug('在线评估')
+  var data ={};
+  cms.lunbo_list({
+    "ad_page":"ONLINE_EVALUATION",
+    "ad_seat":"SEAT10"
+  },function(err,result){
+    data.online = returnData(result,'online');
+    log.info(data.online)
+    data.tdk = {
+      pagekey: 'ONLINE_EVALUATION'
     };
     res.render('online_evaluation', data);
+  });
 }
 
 //在线评估--移民
@@ -2706,31 +2713,20 @@ exports.online_evaluation_yimin = function (req, res, next) {
 }
 //金吉列简介
 exports.about = function (req, res, next){
-    var data = [];
-    var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
-    var qianzhengzhinan_currentPage=req.query.page || 1;
-    var country = req.query.n || 0;
-
-    data.login_nickname = '';
-    if ( req.cookies.login_ss !== undefined) {
-        var login_a = JSON.parse(req.cookies.login_ss);
-        //log.debug("login_a-------" + login_a.nickname)
-        data.login_nickname = login_a;
-    }
-    async.parallel({
-
-    }, function (err, result){
-        log.info(result)
-        data.pageroute="about";
-        data.tdk = {
-            pagekey: 'PROFILE', //key
-            cityid: area, //cityid
-            nationid: country//nationi
-        };
-        res.render('about', data);
-
-    });
-}//活动表单
+  log.debug('about');
+  var data = [];
+  cms.lunbo_list({
+    "ad_page":"PROFILE",
+    "ad_seat":"SEAT1"
+  },function(err,result){
+    data.about = returnData(result,'about');
+    data.tdk = {
+      pagekey: 'PROFILE'
+    };
+    res.render('about', data);
+  });
+}
+//活动表单
 exports.act_form = function (req, res, next){
     log.debug('活动表单')
     var data = [];
@@ -2820,39 +2816,26 @@ exports.wxtoken = function(req,res,next){
 
 //新留学活动
 exports.activity_detail = function (req, res, next){
+    log.debug('活动底页');
     var data = [];
     var uid = req.params[0];
-    var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
-    var activityId = req.params[1];
-    data.route = 'activity';
-    var qianzhengzhinan_currentPage=req.query.page || 1;
-    var country = req.query.n || 0;
+    var cityId = req.params[1];
     if ( req.cookies.login_ss !== undefined) {
-        console.log('有cookie')
         data.login_info = JSON.parse(req.cookies.login_ss);
     }else{
     }
-    if(!comfunc.cityid_invalidcheck(area)){
-        next();
-        return false;
-    }
-    async.parallel({
-        activity_detail: function (callback) {
-            cms.activity_detail ({
-                "catid":74,
-                "id": activityId
-            }, callback);
-        },
-    }, function (err, result){
-        if(err || result.activity_detail.code != 0){
+    cms.activity_detail ({
+        "catid":74,
+        "id": cityId
+    }, function(err,result){
+        if(err || result.code != 0){
             return next();
         }
-        data.activity_detail = returnData(result.activity_detail, 'activity_detail');
-        data.activity_detail=data.activity_detail.list;
+        data.activity_detail = returnData(result, 'activity_detail');
         data.tdk = {
-            pagekey: 'ACTIVITYDETAIL', //key
-            cityid: area, //cityid
-            nationid: country//nationi
+            pagekey: 'ACTIVITYDETAIL',
+            cityid:cityId,
+            title: data.activity_detail.list.title
         };
         res.render('activity_detail', data);
     });
