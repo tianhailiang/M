@@ -94,7 +94,7 @@
                 '<ul>'+
                 '<li><svg class="icon" aria-hidden="true">'+
                 '<use xlink:href="#icon-shijian1"></use>'+
-                '</svg><span>'+datalist[i].start_time+'至'+datalist[i].start_time+'</span></li>'+
+                '</svg><span>'+fn.sliceShorten(datalist[i].start_time,0,-3)+'至'+fn.sliceShorten(datalist[i].end_time,0,-3)+'</span></li>'+
                 '<li><svg class="icon" aria-hidden="true">'+
                 '<use xlink:href="#icon-svg18"></use>'+
                 '</svg><span>'+datalist[i].address_des+'</span></li>'+
@@ -105,7 +105,7 @@
                 '</a>'+
                 '<div class="booking-tel">'+
                 '<p>预约专线：<a href="tel:'+datalist[i].active_telephone+'">'+datalist[i].active_telephone+'</a></p>'+
-                '<span>在线预约</span>'+
+                '<span  onclick="showyuyue ()">在线预约</span>'+
                 '</div>'+
                 '</div>'
             }
