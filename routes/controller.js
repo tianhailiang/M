@@ -666,6 +666,7 @@ exports.so_activity = function (req, res, next) {
     var nquery = comfunc.getReqQuery(req.params[1]);
     var keyword = nquery && nquery.q ? decodeURI(nquery.q) : '';
     var type = nquery && nquery.type ? nquery.type : 1;
+    console.log('keyword', keyword)
     data.tdk = {
         pagekey: '',
         cityid: area //cityid
@@ -2875,7 +2876,6 @@ exports.search_activity = function(req,res,next){
                         res.send('未请求到数据，请求完毕');
                     }
                     else if (result.data.list.length > 0 && result.data.list.length < data.per_page) {
-                        //res.send('请求到数据，请求完毕');
                         resData.activity_list = result.data;
                         res.render('m_widget/activity_list/activity_list', resData);
                     }
