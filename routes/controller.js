@@ -2801,9 +2801,6 @@ exports.activity_detail = function (req, res, next){
         data.login_info = JSON.parse(req.cookies.login_ss);
     }else{
     }
-    data.url =config.wwhost+req.url;
-    log.info(encodeURI(data.url))
-    log.info(data.url)
     cms.activity_detail ({
         "catid":74,
         "id": cityId
@@ -2812,14 +2809,11 @@ exports.activity_detail = function (req, res, next){
             return next();
         }
         data.activity_detail = returnData(result, 'activity_detail');
-        data.time = new Date().getTime();
-        log.info(data.activity_detail.list.title)
         data.tdk = {
             pagekey: 'ACTIVITYDETAIL',
             cityid:cityId,
             title: data.activity_detail.list.title
         };
-        log.info(data.tdk)
         res.render('activity_detail', data);
     });
 }
