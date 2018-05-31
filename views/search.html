@@ -2,6 +2,19 @@
 <html lang="en">
 {% include "header.html" %}
 <style>
+    .content-box {
+        position: relative;
+        top: 38px;
+    }
+    .has-content {
+        width: 100%;
+        min-height: 100%;
+    }
+    .search-content {
+        position: relative;
+        top: 35px;
+        min-height: 100%;
+    }
     .tab-type {
         width: 100%;
         height: 35px;
@@ -9,23 +22,28 @@
         position: fixed;
         top: 81px;
         display: flex;
+        z-index: 1000;
     }
     .tab-type li{
         width: 1px;
         height: 100%;
         flex: 1;
-        font-size: 13px;
-        color: #666;
+    }
+    .tab-type li a {
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 100%;
+        height: 100%;
+        font-size: 13px;
+        color: #666;
     }
-    .tab-type li.active{
+    .tab-type li.active a{
         font-size: 15px;
         color: #D51821;
         position: relative;
     }
-    .tab-type li.active:after {
+    .tab-type li.active a:after {
         position: absolute;
         content: '';
         width: 100px;
@@ -35,9 +53,6 @@
         bottom: 0;
         background-color: #D51821;
     }
-    .search-content {
-        margin-top: 73px;
-    }
   .footer{
     margin-bottom: 0;
   }
@@ -45,8 +60,6 @@
     width: 100%;
     margin: auto;
     background: #fff;
-    margin-top: 38px;
-    position: relative;
   }
   #search-black img{
     width: 176px;
@@ -66,20 +79,31 @@
 </style>
 <body>
 {% include "m_widget/top/common_top.html" %}
+{% include "m_widget/search/search.html" %}
 <!--顶部tab切换 end-->
 <div id="app" >
-    {% include "m_widget/search/search.html" %}
-    <ul class="tab-type" id="tab-type">
-        <li class="active" data-type="1">进行中</li>
-        <li data-type="3">即将开始</li>
-        <li data-type="4">已结束</li>
-    </ul>
-    <div class="search-content"></div>
-    <div id="search-black">
-        <div class="search-black-img">
-            <img src="{{helper.cdnhost}}/assets/img/search-black.png" alt="">
-            <p>还没有任何活动</p>
+    <div class="content-box">
+        {% if keyword != ''%}
+        <div class="has-content">
+            <ul class="tab-type" id="tab-type">
+                <li class="{{'active' if type == 1 else ''}}" data-type="1"><a href="{{helper.schoolrankUrlgen('so_activity','q='+ keyword, 'type=1')}}">进行中</a></li>
+                <li class="{{'active' if type == 2 else ''}}" data-type="2"><a href="{{helper.schoolrankUrlgen('so_activity','q='+ keyword, 'type=2')}}">即将开始</a></li>
+                <li class="{{'active' if type == 3 else ''}}" data-type="3"><a href="{{helper.schoolrankUrlgen('so_activity','q='+ keyword, 'type=3')}}">已结束</a></li>
+            </ul>
+            {% if activity_list.total != 0 %}
+            <div class="search-content">
+                {% include "m_widget/activity_list/activity_list.html" %}
+            </div>
+            {% else %}
+            <div id="search-black">
+                <div class="search-black-img">
+                    <img src="{{helper.cdnhost}}/assets/img/search-black.png" alt="">
+                    <p>还没有任何活动</p>
+                </div>
+            </div>
+            {% endif %}
         </div>
+        {% endif %}
     </div>
   <!--footer start-->
   {% include "m_widget/footer/common_footer.html" %}
@@ -91,42 +115,107 @@
 <!--<script src="{{helper.cdnhost}}/assets/js/search.js"></script>-->
 <script>
   $(function () {
+      var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
       var searchWord = '';
       var searchContent = $('.search-content');
+      var resultBox = $('.has-content');
+      var blankBox = $('#search-black');
       var searchType = 1;
+      var searchPage = 1;
+      var initFlag = true;
       /*输入搜索关键词*/
       $('#search-content').on('keypress', function (e) {
           var keycode = e.keyCode;
           searchWord = $(this).val();
           console.log('搜索关键词',searchWord,'  keycode',keycode);
           if (keycode == 13) {
-              $.ajax({
-                  url: '/search_activity',
-                  type: 'get',
-                  data: {
-                      "key_word":searchWord,
-//                      "stime":"",
-                      "city_id":1
-                  },
-                  success: function (msg) {
-                    console.log(msg)
-                      searchContent.append($.parseHTML(msg));
-                  }
-              })
+              window.location.href = fn.urlgen('so_activity','q='+ searchWord,'type='+searchType)
+              /*initFlag = true;
+              searchType = 1;
+              $('#tab-type').find('li').eq(0).addClass('active').siblings().removeClass('active');
+              getDataFn(searchWord,searchType,1,searchPage)*/
           }
       });
       /*取消*/
       $('#cancel-btn').on('click', function () {
-          window.history.back();
+          window.location.href = fn.active_urlgen('activity','c='+area)
       })
       /*点击切换列表类型*/
       $('#tab-type').on('click', 'li', function () {
+          initFlag = true;
           searchType = $(this).attr('data-type');
           console.log('当前选中的type', searchType);
           $(this).addClass('active').siblings().removeClass('active');
+          getDataFn(searchWord,searchType,1,searchPage)
       });
-      var FooterH = $(".footer").height()+45
-      $("#search-black").height(($(window).height()-81)-FooterH);
+      /*请求数据*/
+      function getDataFn (key_word,stime,city_id,page) {
+          if (initFlag) {
+              page = 1;
+              searchContent.html('');
+          }
+          $.ajax({
+              url: '/search_activity',
+              type: 'get',
+              data: {
+                  "key_word":encodeURI(searchWord),
+                  "stime":searchType,
+                  "city_id":1,
+                  "page":page,
+                  "per_page": 3
+              },
+              success: function (msg) {
+                  if (msg == '未请求到数据，请求完毕') {
+                      if (initFlag) {
+                          blankBox.show();
+                          resultBox.show();
+                          console.log('页面显示 没有搜索到结果')
+                      }
+                      else {
+                          console.log('不append，没有更多数据了')
+                      }
+                  }
+/*                  else if (msg == '请求到数据，请求完毕') {
+                      if (initFlag) {
+                          resultBox.show();
+                          searchContent.append($.parseHTML(msg));
+                          console.log('页面显示搜索结果，append')
+                      }
+                      else {
+                          searchContent.append($.parseHTML(msg));
+                          console.log('append，没有更多数据了')
+                      }
+                  }*/
+                  else {
+                      if (initFlag) {
+                          resultBox.show();
+                          blankBox.hide();
+                          searchContent.append($.parseHTML(msg));
+                          console.log('页面显示搜索结果，append')
+                      }
+                      else {
+                          searchContent.append($.parseHTML(msg));
+                          console.log('append')
+                      }
+                  }
+                  initFlag = false;
+/*                  $('.content-box').height($('.search-content').outerHeight());
+                  if ($('.content-box').height() < $(window).height()-81-FooterH) {
+                      $('.content-box').height(($(window).height()-81)-FooterH);
+                  }*/
+                  if ($(window).height()-81-FooterH > $('.search-content').outerHeight() ) {
+                      $('.content-box').height(($(window).height()-81)-FooterH);
+                  }
+                  else {
+                      $('.content-box').height($('.search-content').outerHeight());
+                  }
+              }
+          })
+      }
+      var FooterH = $(".footer").outerHeight();
+      if ($('.content-box').height() < $(window).height()-81-FooterH) {
+          $('.content-box').height(($(window).height()-81)-FooterH);
+      }
   })
 </script>
 </html>

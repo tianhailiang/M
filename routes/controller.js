@@ -660,14 +660,40 @@ exports.nationrank = function(req,res,next){
 
 };
 //search_page
-exports.search_page = function (req, res, next) {
+exports.so_activity = function (req, res, next) {
     var data = [];
     var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
+    var nquery = comfunc.getReqQuery(req.params[1]);
+    var keyword = nquery && nquery.q ? decodeURI(nquery.q) : '';
+    var type = nquery && nquery.type ? nquery.type : 1;
     data.tdk = {
         pagekey: '',
         cityid: area //cityid
     };
-    res.render('search',data);
+    if (keyword) {
+        async.parallel({
+            searchActivity: function (callback) {
+                cms.searchactivity({
+                    "key_word":encodeURI(keyword),
+                    "stime":type,
+                    "city_id":area,
+                    "page":1,
+                    "per_page": 3
+                },callback)
+            }
+        },function (err, result) {
+            data.keyword = keyword;
+            data.type = type;
+            console.log('关键词',keyword)
+            data.activity_list = returnData(result.searchActivity,'searchActivity');
+            console.log(data.activity_list)
+            res.render('search',data);
+        });
+    }
+    else {
+        data.keyword = keyword;
+        res.render('search',data);
+    }
 };
 //search_news
 exports.search_news = function (req, res, next) {
@@ -2837,10 +2863,25 @@ exports.search_activity = function(req,res,next){
         if(err){
             res.send(err);
         }else{
-            //res.send(result.data.list);
-            console.log(result.data)
-            resData.activity_list = result.data;
-            res.render('m_widget/activity_list/activity_list', resData);
+            if (result.code == 0) {
+                if ( result.data.totalpage < data.page ) {
+                    res.send('未请求到数据，请求完毕');
+                }
+                else {
+                    if (result.data.list.length <= 0 ) {
+                        res.send('未请求到数据，请求完毕');
+                    }
+                    else if (result.data.list.length > 0 && result.data.list.length < data.per_page) {
+                        //res.send('请求到数据，请求完毕');
+                        resData.activity_list = result.data;
+                        res.render('m_widget/activity_list/activity_list', resData);
+                    }
+                    else {
+                        resData.activity_list = result.data;
+                        res.render('m_widget/activity_list/activity_list', resData);
+                    }
+                }
+            }
         }
     })
 };
