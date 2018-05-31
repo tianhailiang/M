@@ -380,7 +380,6 @@ function pageTDK(flag, tdkParam) {
   var keywords = tdkParam.keywords;
   var pageNum = tdkParam.pageNum;
   var realname = tdkParam.realname;
-
   if(!page_name){
     //console.log("page_name is null !");
     tdk_string = tdkDefault.default_tdk[flag];
