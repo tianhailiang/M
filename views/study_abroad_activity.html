@@ -32,6 +32,11 @@
 {% include 'm_widget/funtalk/funtalk.html' %}
 <script>
   $(document).ready(function (){
+    var FooterH = $(".footer").height()+45+51
+    if(($(window).height()-81)-FooterH>$(".activity-list-content").length*(159.5+10)){
+      $('.app-in').height(($(window).height()-81)-FooterH);
+    }
+
     var cur_page = 1
     var onOff = false
     $('.loader').hide()
@@ -118,6 +123,7 @@
       })
     }
   });
+
 </script>
 
 </body>
