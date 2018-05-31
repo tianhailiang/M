@@ -660,14 +660,41 @@ exports.nationrank = function(req,res,next){
 
 };
 //search_page
-exports.search_page = function (req, res, next) {
+exports.so_activity = function (req, res, next) {
     var data = [];
     var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
+    var nquery = comfunc.getReqQuery(req.params[1]);
+    var keyword = nquery && nquery.q ? decodeURI(nquery.q) : '';
+    var type = nquery && nquery.type ? nquery.type : 1;
+    console.log('keyword', keyword)
     data.tdk = {
         pagekey: '',
         cityid: area //cityid
     };
-    res.render('search',data);
+    if (keyword) {
+        async.parallel({
+            searchActivity: function (callback) {
+                cms.searchactivity({
+                    "key_word":encodeURI(keyword),
+                    "stime":type,
+                    "city_id":area,
+                    "page":1,
+                    "per_page": 3
+                },callback)
+            }
+        },function (err, result) {
+            data.keyword = keyword;
+            data.type = type;
+            console.log('关键词',keyword)
+            data.activity_list = returnData(result.searchActivity,'searchActivity');
+            console.log(data.activity_list)
+            res.render('search',data);
+        });
+    }
+    else {
+        data.keyword = keyword;
+        res.render('search',data);
+    }
 };
 //search_news
 exports.search_news = function (req, res, next) {
@@ -2660,12 +2687,19 @@ exports.info_canzan_list = function (req, res, next) {
 
 //在线评估
 exports.online_evaluation = function (req, res, next) {
-    log.debug('在线评估')
-    var data ={};
-   data.tdk = {
-        pagekey: 'ONLINE_EVALUATION'
+  log.debug('在线评估')
+  var data ={};
+  cms.lunbo_list({
+    "ad_page":"ONLINE_EVALUATION",
+    "ad_seat":"SEAT10"
+  },function(err,result){
+    data.online = returnData(result,'online');
+    log.info(data.online)
+    data.tdk = {
+      pagekey: 'ONLINE_EVALUATION'
     };
     res.render('online_evaluation', data);
+  });
 }
 
 //在线评估--移民
@@ -2679,31 +2713,20 @@ exports.online_evaluation_yimin = function (req, res, next) {
 }
 //金吉列简介
 exports.about = function (req, res, next){
-    var data = [];
-    var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
-    var qianzhengzhinan_currentPage=req.query.page || 1;
-    var country = req.query.n || 0;
-
-    data.login_nickname = '';
-    if ( req.cookies.login_ss !== undefined) {
-        var login_a = JSON.parse(req.cookies.login_ss);
-        //log.debug("login_a-------" + login_a.nickname)
-        data.login_nickname = login_a;
-    }
-    async.parallel({
-
-    }, function (err, result){
-        log.info(result)
-        data.pageroute="about";
-        data.tdk = {
-            pagekey: 'PROFILE', //key
-            cityid: area, //cityid
-            nationid: country//nationi
-        };
-        res.render('about', data);
-
-    });
-}//活动表单
+  log.debug('about');
+  var data = [];
+  cms.lunbo_list({
+    "ad_page":"PROFILE",
+    "ad_seat":"SEAT1"
+  },function(err,result){
+    data.about = returnData(result,'about');
+    data.tdk = {
+      pagekey: 'PROFILE'
+    };
+    res.render('about', data);
+  });
+}
+//活动表单
 exports.act_form = function (req, res, next){
     log.debug('活动表单')
     var data = [];
@@ -2822,11 +2845,29 @@ exports.activity_detail = function (req, res, next){
  * */
 exports.search_activity = function(req,res,next){
     var data = req.query;
+    var resData = [];
     cms.searchactivity(data,function(err,result){
         if(err){
             res.send(err);
         }else{
-            res.send(result);
+            if (result.code == 0) {
+                if ( result.data.totalpage < data.page ) {
+                    res.send('未请求到数据，请求完毕');
+                }
+                else {
+                    if (result.data.list.length <= 0 ) {
+                        res.send('未请求到数据，请求完毕');
+                    }
+                    else if (result.data.list.length > 0 && result.data.list.length < data.per_page) {
+                        resData.activity_list = result.data;
+                        res.render('m_widget/activity_list/activity_list', resData);
+                    }
+                    else {
+                        resData.activity_list = result.data;
+                        res.render('m_widget/activity_list/activity_list', resData);
+                    }
+                }
+            }
         }
     })
 };

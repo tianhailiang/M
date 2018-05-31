@@ -14,9 +14,9 @@
       {{ activity_detail.list.title }}
     </div>
     <div class="header-yuyue">
-      <a class="header-jjl" href="">
+      <span class="header-jjl_xin" onclick="showyuyue ()" href="">
         在线预约
-      </a>
+      </span>
     </div>
   </header>
   <div class="activity-zixunxin">
@@ -90,6 +90,7 @@
     <img src="../../assets/img/cue_qq.png" alt="">
   </div>
 </div>
+{% include "m_widget/booking/booking.html" %}
 <!-- ===侧边栏==== -->
 {% include "m_widget/slidebar/slidebar.html" %}
 <!-- ======乐语底栏======= -->

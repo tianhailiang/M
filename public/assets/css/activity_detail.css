@@ -302,9 +302,6 @@ width: 40px;
   width: 242px;
   height: 85px;
 }
-/*.xinlang_cue{*/
-  /*display: none;*/
-/*}*/
 .bdshare-button-style0-16 .bds_tsina{
   width: 40px;
   height: 40px;
@@ -312,4 +309,13 @@ width: 40px;
   background-size: cover;
   margin-top: -0.5px;
 }
-
+.header-jjl_xin {
+  background: #d51821;
+  color: #fff;
+  width: 80px;
+  height: 20px;
+  border-radius: 25px;
+  font-size: 13px;
+  text-align: center;
+  line-height: 20px;
+}

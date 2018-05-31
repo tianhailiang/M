@@ -5,7 +5,24 @@
 <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/news_detail.css">
 <body style="background: #f5f5f5;">
 <div id="app">
-  {% include "m_widget/top/common_top.html" %}
+  <header class="header">
+    <div class="header-Catalog">
+      <span></span>
+    </div>
+    <div class="activity-biaoti">
+      {{wenzhangdiye.article_info.title}}
+    </div>
+    <div class="header-yuyue">
+      <div class="fenxiang_con" style="display: flex;justify-content: space-around;">
+        <img style="margin-top:6px;width: 30px;height: 30px" class="wenxin_con" src="../../assets/img/weixin.png" alt="">
+        <div class="bdsharebuttonbox bdshare-button-style0-16">
+          <a href="#" style="" class="bds_tsinas" data-cmd="tsina" title="分享到新浪微博"></a>
+        </div>
+        <!--</a>-->
+        <img style="margin-top:6px;width: 30px;height: 30px" class="cue_qq_con" src="../../assets/img/qq.png" alt="">
+      </div>
+    </div>
+  </header>
     <!-- 页面主体部分 -->
     <section class="new-details">
       <div class="head_portrait">
@@ -31,9 +48,26 @@
         <span>点赞：<em>{{wenzhangdiye.article_info.votes}}</em></span>
       </p>
       <article class="news-content" style="clear: both" data-img="{{wenzhangdiye.article_info.img_info[0]}}" id="get-share-img" data-introduce ="{{wenzhangdiye.article_info.introduce}}" >
-        <p>{{wenzhangdiye.article_info.message | safe}}</p>
+        {{wenzhangdiye.article_info.message | safe}}
       </article>
     </section>
+  <div class="fenxiang_con" style="background: #fff;height: 65px;display: flex;justify-content: space-around;">
+    <img class="wenxin_con" src="../../assets/img/weixin.png" alt="">
+    <div class="bdsharebuttonbox bdshare-button-style0-16">
+      <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    </div>
+    <!--</a>-->
+    <img class="cue_qq_con" src="../../assets/img/qq.png" alt="">
+  </div>
+  <div class="cue_weixin">
+    <img src="../../assets/img/weixinfenxiangtu.png" alt="">
+  </div>
+  <div class="cue_weixin1">
+    <img src="../../assets/img/liulanqifenxiangtu.png" alt="">
+  </div>
+  <div class="cue_qq">
+    <img src="../../assets/img/cue_qq.png" alt="">
+  </div>
   <!--footer start-->
   {% include "m_widget/footer/common_footer.html" %}
   <!--footer end-->
@@ -47,6 +81,97 @@
 </div>
 <script src="{{helper.cdnhost}}/assets/js/view_count_min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" ></script>
+<script>
+  //  document.domain='http://widget.weibo.com';
+  window.onload =function(){
+    window._bd_share_config = {
+      "common": {
+        "bdSnsKey": {},
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": "",
+        "bdStyle": "0",
+        "bdSize": "16",
+        "bdUrl": window.location.href
+      },
+      "share": {}
+    };
+    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+    $(".jiangzuo-btn").on("click",function(){
+      $(".mark").show();
+      $(".mark-box").show();
+    })
+    $('.mark').on('click',function () {
+      console.log('aaaa')
+      $(this).hide();
+      $(".mark-box").hide();
+    })
+    function isWeiXin() {
+      // 检查微信环境
+      var ua = window.navigator.userAgent.toLowerCase();
+      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    if(isWeiXin()){
+      $('.wenxin_con').on('click',function(e){
+        e.stopPropagation();
+        this.flag =!this.flag;
+        if(this.flag){
+          $('.cue_weixin').css("display","block");
+        }else{
+          $('.cue_weixin').css("display","none");
+        }
+      });
+      $(document).on('click touchstart', function (){
+        if($('.cue_weixin').css("display")=='block'){
+          $('.cue_weixin').css("display","none");
+        }
+      });
+      $('.cue_qq_con').on('click',function(e){
+        e.stopPropagation();
+        this.flag =!this.flag;
+        if(this.flag){
+          $('.cue_qq').css("display","block");
+        }else{
+          $('.cue_qq').css("display","none");
+        }
+      });
+      $(document).on('click touchstart', function (e){
+        if($('.cue_qq').css("display")=='block') {
+          $('.cue_qq').css("display", "none");
+        }
+      });
+    }else{
+      $('.wenxin_con').on('click',function(e){
+        e.stopPropagation();
+        this.flag=!this.flag;
+        if(this.flag) {
+          $('.cue_weixin1').css("display","block");
+        }else{
+          $('.cue_weixin1').css("display","none");
+        }
+      });
+      $('.cue_qq_con').on('click',function(e){
+        e.stopPropagation();
+        this.flag=!this.flag;
+        if(this.flag) {
+          $('.cue_weixin1').css("display","block");
+        }else{
+          $('.cue_weixin1').css("display","none");
+        }
+      });
+      $(document).on('click touchstart', function (){
+        if($('.cue_weixin1').css("display")=='block'){
+          $('.cue_weixin1').css("display","none");
+        }
+      });
+    }
+  }
+</script>
 <script>
   $(function(){
     console.log($("#get-share-img").attr('data-img'))
