@@ -208,10 +208,15 @@
               "</svg>")
             $("#so-box").hide();
           }
-      })
+      });
       $(".so-box-item span").on("click",function () {
           $(this).addClass('focus-on').siblings().removeClass('focus-on');
-      })
+      });
+      $(".so-tab-item").on("click",function () {
+          $(".countryId span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
+          $(".timeType span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
+          $(".eduType span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
+      });
       $(".so-tab-item_active").on("click",function () {
           var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
           var country_id =$(".countryId .focus-on").attr("data-id");
