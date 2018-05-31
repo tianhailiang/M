@@ -79,7 +79,7 @@
         },
         success: function (result) {
           var add = '';
-          if (result.data.list && result.data.list.length>0) {
+          if (result.code==0 && result.data.list.length>0) {
             var datalist = result.data.list;
             for (var i = 0;i < datalist.length;i++) {
               add += '<div class="activity-list-content">'+
