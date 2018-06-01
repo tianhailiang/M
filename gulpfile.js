@@ -142,7 +142,14 @@ gulp.task('distcopy', function(cb) {
 gulp.task('revClean', function(cb) {
   return del([ 'dist/rev/*','dist/views/*','dist/public/*'], cb)
 });
-
+gulp.task('minify_viewCount_js',function(){
+  return gulp.src('public/assets/js/view_count.js')
+      .pipe(uglify())
+      .pipe(concat('view_count_min.js'))
+    //.pipe(rev())
+      .pipe(gulp.dest('public/assets/js'))
+      .pipe(notify({message: 'viewCount压缩执行成功'}));
+});
 gulp.task('default', ['clean', 'minifycss', 'minifyjs']);
 
 // build version info in html
