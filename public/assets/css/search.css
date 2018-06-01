@@ -41,7 +41,8 @@
     color:#666;
 }
 .cancel-btn{
-    width: 55px;
+    /*width: 55px;*/
+    padding-right: 10px;
     text-align: center;
     color: #fff;
     font-size: 13px;
