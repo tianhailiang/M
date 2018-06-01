@@ -9,23 +9,7 @@
 <body>
 <div id="app">
   {% include "m_widget/top/common_top.html" %}
-  <div class="search-container">
-    <div class="search-box" >
-      <a class="search-bar" href="{{helper.urlgen('so_activity')}}">
-        <input placeholder="搜索" id="search-content">
-        <div style="width: 30px;height: 30px;text-align: right;line-height: 30px;" id="search-btn">
-          <svg class="icon icon-sousuo" aria-hidden="true">
-            <use xlink:href="#icon-sousuo"></use>
-          </svg>
-        </div>
-      </a>
-    </div>
-    <div class="cancel-btn" id="cancel-btn" style="text-align: right">全部活动
-      <svg class="icon" aria-hidden="true" style="color: #fff;margin: 0 8px;font-size: 14px;">
-        <use xlink:href="#icon-xuanxiang"></use>
-      </svg>
-    </div>
-  </div>
+  {% include "m_widget/search/search_activity.html" %}
   <div class="app-in">
 
   <!--活动列表 start-->
@@ -48,11 +32,6 @@
 {% include 'm_widget/funtalk/funtalk.html' %}
 <script>
   $(document).ready(function (){
-    var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
-    $("#cancel-btn").on("click",function(){
-      window.location.href =fn.active_urlgen('activity_filter', 'c='+area,'n=' + $(".activity-list").attr("data-country"),"t=" + $(".activity-list").attr("data-type"),"crowd=" + $(".activity-list").attr("data-crowd") )
-    })
-
     var FooterH = $(".footer").height()+45+51
     if(($(window).height()-81)-FooterH>$(".activity-list-content").length*(159.5+10)){
       $('.app-in').height(($(window).height()-81)-FooterH);
@@ -144,6 +123,7 @@
       })
     }
   });
+
 </script>
 
 </body>
