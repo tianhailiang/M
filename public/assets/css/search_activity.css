@@ -37,10 +37,10 @@
 .tab-type li.active a:after {
     position: absolute;
     content: '';
-    width: 100px;
-    height: 4px;
+    width: 50px;
+    height: 2px;
     left: 50%;
-    margin-left: -50px;
+    margin-left: -25px;
     bottom: 0;
     background-color: #D51821;
 }
