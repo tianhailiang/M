@@ -402,6 +402,15 @@ function getReqQuery(req_query) {
   return nquery;
 }
 
+/*
+ * api 接口返回数据格式化
+ * @param code
+ * @param message
+ * @param data
+ */
+function api_return(code, message, data){
+  return {'code':code, 'message':message, 'data':data};
+}
 
 module.exports = {
   getCountryChinese: getCountryChinese ,
@@ -421,5 +430,6 @@ module.exports = {
   invalidNumberCheck: invalidNumberCheck,
   INVALID_ID: INVALID_ID,
   getCountryIdParams: getCountryIdParams,
-  getReqQuery: getReqQuery
+  getReqQuery: getReqQuery,
+  api_return: api_return
 };

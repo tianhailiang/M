@@ -2,6 +2,7 @@ var api = require('../model/apiRequest');
 var config = require('../config/config');
 var log4js = require('../log/log');
 var log = log4js.getLogger();
+var redis = require('redis');
 
 /**
  * 拼接接口参数
@@ -1539,3 +1540,87 @@ exports.activity_detail = function (data, callback) {
   }
   api.apiRequest(url, callback);
 }
+
+var redisPool_views = require('redis-connection-pool')('viewNumberCache', {
+  host: config.redisCache.host,
+  port: config.redisCache.port || 6379,
+  max_clients: config.redisCache.max || 30,
+  perform_checks: false,
+  database: 6 // database number to use
+});
+/*
+ 浏览量统计detail_count
+ * */
+exports.detail_count = function (data, callback) {
+  //redis 缓存文章浏览数````·
+  //判断用户访问是否在限制条件内 10min 5
+  var condition_time = 60;
+  var condition_num = 1;
+  if(!data.uuid){
+    var UUID = require('uuid');
+    var uuidstr = UUID.v1();
+    redisPool_views.set(uuidstr+"_"+data.catid+"_"+data.id+"_time", Date.parse(new Date()), function(){});
+    redisPool_views.set(uuidstr+"_"+data.catid+"_"+data.id+"_viewnum", 1, function(){});
+    redisPool_views.expire(uuidstr+"_"+data.catid+"_"+data.id+"_time", 600);
+    redisPool_views.expire(uuidstr+"_"+data.catid+"_"+data.id+"_viewnum", 600);
+    update_viewnum(data.catid, data.id, uuidstr, callback);
+    //callback(null, uuidstr);
+  }else{
+    redisPool_views.get(data.uuid+"_"+data.catid+"_"+data.id+"_time", function(err, reply){
+      if(reply){
+        var nowTime = Date.parse(new Date());
+        if(Number.parseInt((nowTime - reply)/60000) >= condition_time){
+          redisPool_views.set(uuidstr+"_"+data.catid+"_"+data.id+"_time", Date.parse(new Date()), function(){});
+          redisPool_views.set(uuidstr+"_"+data.catid+"_"+data.id+"_viewnum", 1, function(){});
+          redisPool_views.expire(uuidstr+"_"+data.catid+"_"+data.id+"_time", 600);
+          redisPool_views.expire(uuidstr+"_"+data.catid+"_"+data.id+"_viewnum", 600);
+          update_viewnum(data.catid, data.id, data.uuid, callback);
+        }else{
+          redisPool_views.get(data.uuid+"_"+data.catid+"_"+data.id+"_viewnum", function(err, reply){
+            if(!reply || reply < condition_num){
+              redisPool_views.incr(data.uuid+"_"+data.catid+"_"+data.id+"_viewnum", function(){});
+              update_viewnum(data.catid, data.id, data.uuid, callback);
+            }else{
+              var viewNumKey = "WEB:HITS:"+data.id;
+              redisPool_views.get(viewNumKey, function(err, reply){
+                if(reply){
+                  log.info('!!!!m_view_count!!!!',viewNumKey,reply);
+                  callback(null, {"uuid":data.uuid, "num":reply});
+                }
+              });
+            }
+          });
+        }
+      }else{
+        redisPool_views.set(data.uuid+"_"+data.catid+"_"+data.id+"_time", Date.parse(new Date()), function(){});
+        redisPool_views.set(data.uuid+"_"+data.catid+"_"+data.id+"_viewnum", 1, function(){});
+        redisPool_views.expire(uuidstr+"_"+data.catid+"_"+data.id+"_time", 600);
+        redisPool_views.expire(uuidstr+"_"+data.catid+"_"+data.id+"_viewnum", 600);
+        update_viewnum(data.catid, data.id, data.uuid, callback);
+      }
+    });
+    //callback(null, data.uuid);
+
+  }
+
+};
+
+
+function update_viewnum(catid, id, uuid, callback){
+  var viewNumKey = "WEB:HITS:"+id;
+  redisPool_views.incr(viewNumKey, function(err, reply){
+    if(err){
+      log.error("view num "+" : "+data.id, err);
+    }else{
+      var redisHits =  redis.createClient(config.redisCache.port, config.redisCache.host);
+      redisHits.select('6', function(error){
+        var viewListKey = "view_set";
+        redisHits.sadd(viewListKey, id);
+      });
+      if(callback){
+        log.info('!!!!m_view_count!!!!',viewNumKey,reply);
+        callback(null, {"uuid":uuid, "num":reply});
+      }
+    }
+  });
+};

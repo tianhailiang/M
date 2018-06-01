@@ -83,6 +83,8 @@ exports = module.exports = function (app) {// routes
    */
   app.get('/ucapi/ucapi_agent', controller.ucapi_agent);
   app.get('/ucapi/ucapi_agent_common', controller.ucapi_agent_common);
+  //浏览量接口
+  app.get('/cmsapi/article_count', controller.article_count);
   /* 
    * cms 资讯列表 接口封装
    */

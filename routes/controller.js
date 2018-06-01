@@ -6,6 +6,7 @@ var log = log4js.getLogger();
 var esihelper = require('../middleware/esihelper');
 var config = require('../config/config');
 var comfunc = require('../common/common');
+var tokenfunc = require('./token.js');
 var helperfunc = require('../common/helper');
 const sha1 = require('sha1');
 var wechat = require('../model/wechat.js');
@@ -2877,4 +2878,31 @@ exports.search_activity = function(req,res,next){
             }
         }
     })
+};
+// 浏览量
+exports.article_count = function (req, res, next) {
+    data = req.query;
+    data.uuid = '';
+    if (req.cookies.uuid) {
+        data.uuid = req.cookies.uuid
+    }
+    var resErr = [];
+    if(!tokenfunc.checkToken(data.token)){ //token验证不通过
+        res.send(comfunc.api_return('100001', 'token check fail', ''));
+        return false;
+    }
+    cms.detail_count(data,function(err,result){
+        if(err){
+            resErr.push(err);
+        }else{
+            res.send(comfunc.api_return('0', 'success', result));
+        }
+    });
+};
+//token验证
+exports.check_token = function (req, res, next) {
+    data = {
+        "iss":'jjl.cn'
+    };
+    res.send(comfunc.api_return('0', 'token check success', tokenfunc.createToken(data)));
 };
