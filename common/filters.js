@@ -10,8 +10,13 @@ var common = require('./common');
 var customFilters = {
   shorten: function(str, count) {
       if (str) {
-          return str.slice(0, count || 5);
+          return typeof str == 'string' ? str.slice(0, count || 5) : str.toString().slice(0, count || 5);
       }
+  },
+  sliceShorten: function(str,start, count) {
+    if (str) {
+      return typeof str == 'string' ? str.slice(start, count) : str.toString().slice(start, count);
+    }
   },
     shortentime: function(str, count) {
         if (str) {

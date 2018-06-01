@@ -1,44 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 {% include "header.html" %}
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/search_activity.css"/>
 <body>
-{% include "m_widget/top/top.html" %}
+{% include "m_widget/top/common_top.html" %}
+{% import "m_widget/search/search.html" as search %}
+{{search.searchbar(keyword)}}
 <!--顶部tab切换 end-->
 <div id="app" >
-<!--搜索框 开始-->
-<div class="search-container">
-    <div class="search-box" >
-        <div class="search-bar" >
-            <input placeholder="请输入搜索内容" id="search-content">
-            <div style="width: 30px;height: 30px;text-align: right;line-height: 30px;" id="search-btn">
-            <svg class="icon icon-sousuo" aria-hidden="true">
-                <use xlink:href="#icon-sousuo"></use>
-            </svg>
+    <div class="app-in">
+        {% if keyword != ''%}
+        <div class="has-content">
+            <ul class="tab-type" id="tab-type">
+                <li class="{{'active' if type == 1 else ''}}" data-type="1"><a href="{{helper.schoolrankUrlgen('so_activity','q='+ keyword, 'type=1')}}">进行中</a></li>
+                <li class="{{'active' if type == 2 else ''}}" data-type="2"><a href="{{helper.schoolrankUrlgen('so_activity','q='+ keyword, 'type=2')}}">即将开始</a></li>
+                <li class="{{'active' if type == 3 else ''}}" data-type="3"><a href="{{helper.schoolrankUrlgen('so_activity','q='+ keyword, 'type=3')}}">已结束</a></li>
+            </ul>
+            {% if activity_list.total != 0 %}
+            <div class="search-result">
+                {% include "m_widget/activity_list/activity_list.html" %}
             </div>
+            <div class="loader">
+                <span>加载更多...</span>
+                <img src="{{helper.cdnhost}}/assets/img/load.gif" alt="">
+            </div>
+            {% else %}
+            <div id="search-black">
+                <div class="search-black-img">
+                    <img src="{{helper.cdnhost}}/assets/img/search-black.png" alt="">
+                    <p>还没有任何活动</p>
+                </div>
+            </div>
+            {% endif %}
         </div>
+        {% else %}
+        <div class="white-page"></div>
+        {% endif %}
     </div>
-    <div class="cancel-btn" id="cancel-btn">取消</div>
-</div>
-<!--搜索框 结束-->
-<div class="so-box" id="so-box">
-    <div class="so-tab" id="so-tab">
-        <span class="so-tab-item active">资讯</span>
-        <span class="so-tab-item">顾问</span>
-    </div>
-    <div class="so-box-content" id="so-box-content">
-        {%
-            set news_so = ['美国留学','专业推荐','本科留学','研究生推荐','2017规划','留学攻略','留学规划','院校录取']
-        %}
-        {%
-            set adviser_so = ['英国留学','专业推荐','本科留学','研究生推荐','2017规划','留学攻略','留学规划','院校录取']
-        %}
-        <div class="so-box-item so-box-news active">{% for item in news_so %}<span>{{item}}</span>{% endfor %}</div>
-        <div class="so-box-item so-box-adviser">{% for item in adviser_so %}<span>{{item}}</span>{% endfor %}</div>
-    </div>
-</div>
+  <!--footer start-->
+  {% include "m_widget/footer/common_footer.html" %}
+  <!--footer end-->
 </div>
 <!-- ===侧边栏==== -->
 {% include "m_widget/slidebar/slidebar.html" %}
 </body>
-<script src="{{helper.cdnhost}}/assets/js/search.js"></script>
+<!--<script src="{{helper.cdnhost}}/assets/js/search.js"></script>-->
+<script>
+  $(function () {
+      var FooterH = $(".footer").outerHeight()+12;
+      if(($(window).height()-81)-FooterH>$(".activity-list-content").length*(159.5+10)){
+          $('.app-in').height($(window).height()-81-FooterH);
+      }
+      var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
+      var flag = true;
+      var searchWord = $('#search-content').attr('data-keyword');
+      var searchResult = $('.search-result');
+      var searchType = 1;
+      var cur_page = 1;
+      /*输入搜索关键词 回车搜索*/
+      $('#search-content').on('keypress', function (e) {
+          var keycode = e.keyCode;
+          searchWord = $(this).val();
+          if (keycode == 13) {
+              window.location.href = fn.urlgen('so_activity','q='+ searchWord,'type='+searchType)
+          }
+      });
+      /*清除关键词*/
+      $('#del-keyword').on('click', function () {
+          $('#search-content').val('').focus();
+      });
+      /*取消*/
+      $('#cancel-btn').on('click', function () {
+          window.location.href = fn.active_urlgen('activity','c='+area)
+      });
+      $(window).scroll(function(){
+          var scrollTop = $(window).scrollTop();
+          var clientHeight = $(window).height();
+          var docHeight = $(document).height();
+          if(scrollTop >= (docHeight - clientHeight) - 115) {
+              $('.loader').show();
+              if(flag){
+                  flag = false;
+                  cur_page++;
+                  setTimeout(getDataFn,100)
+              }
+          }
+      });
+      /*请求数据*/
+      function getDataFn () {
+          $.ajax({
+              url: '/search_activity',
+              type: 'get',
+              data: {
+                  "key_word":encodeURI(searchWord),
+                  "stime":searchType,
+                  "city_id":area,
+                  "page":cur_page,
+                  "per_page": 3
+              },
+              success: function (msg) {
+                  if (msg == '未请求到数据，请求完毕') {
+                      $('.loader > span').text('数据加载完毕！')
+                      $('.loader > img').remove()
+                  }
+                  else {
+                      searchResult.append($.parseHTML(msg));
+                      flag = true;
+                  }
+              }
+          })
+      }
+  })
+</script>
 </html>

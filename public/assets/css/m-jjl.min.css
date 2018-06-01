@@ -1,30 +1,27 @@
-.activity-list{width:100%;padding:5px 10px 0;background:#fff}
-.activity-list .activity-item{padding:10px 0;width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;border-bottom:1px solid #eee}
-.activity-item a{display:-webkit-box;display:-ms-flexbox;display:flex;width:100%}
-.activity-item-left{width:80px;height:80px;margin-right:10px;overflow:hidden}
-.activity-item-left img{width:100%;display:block;height:100%}
-.activity-item-right{position:relative;-webkit-box-flex:1;-ms-flex:1;flex:1}
-.activity-item-right h3{font-size:14px;color:#333;line-height:14px;height:14px;text-indent:-5px}
-.activity-item-right h3 a{color:#333}
-.activity-item-right ul{margin-left:3px}
-.activity-item-right li{font-size:12px;color:#999;margin-top:9px;height:13px;line-height:13px}
-.activity-item-right li span{font-size:13px;padding-left:10px}
-.activity-item-right li{display:-webkit-box;display:-ms-flexbox;display:flex}
-.activity-item-right li span{-webkit-box-flex:1;-ms-flex:1;flex:1}
-.activity-item-right li:nth-child(3) span{padding-right:70px}
-.activity-booking-btn{width:60px;height:20px;background:#D51821;color:#fff;position:absolute;right:0;bottom:0;font-size:12px;text-align:center;line-height:20px}
-.activity-list .activity-title{color:#333;font-size:15px;border-left:2px solid #D51821;padding-left:10px;height:15px;margin:14.5px 0;line-height:15px}
-.activity_home{padding-bottom:10px;border-bottom:1px solid #eee;padding-top:10px}
-.activity_home h3{color:#333}
-.activity_home_img{width:100%;height:175px}
-.activity_home_img img{width:100%;height:100%}
-.activity_home_title{margin-top:10px}
-.activity_home_title a{color:#333}
-.activity_home_content{position:relative}
-.activity_home_content li{color:#999;font-size:12px;margin-top:9px;height:13px;line-height:13px;display:-webkit-box;display:-ms-flexbox;display:flex}
-.activity_home_content li span{font-size:13px;padding-left:10px;-webkit-box-flex:1;-ms-flex:1;flex:1}
-.activity-more{text-align:center;font-size:13px;padding:15px 0;color:#666}
-.activity-more a{color:#666}
+*{-webkit-box-sizing:border-box;box-sizing:border-box}
+.activity-list{width:100%;padding:10px;padding-top:0}
+.activity-list-content{background:#fff;-webkit-box-shadow:0 1px 7px 3px rgba(0,0,0,.1);box-shadow:0 1px 7px 3px rgba(0,0,0,.1);border-radius:5px;margin-top:10px}
+.activity-item{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;background:#fff}
+.activity-item .activity-item-left{width:73px;height:106px;background:url(../../../assets/img/activity_bg.png) no-repeat 0 0;background-size:73px 106px}
+.activity-item-left h3{font-size:24px;margin-top:24px;color:#333;margin-left:8px}
+.activity-item-left h3 span{font-size:18px}
+.activity-item-left p{margin-top:15px;font-size:14px;color:#333;text-align:center}
+.activity-item-right{width:1px;-webkit-box-flex:1;-ms-flex:1;flex:1;margin-left:10px}
+.activity-item-right h3{width:100%;line-height:34px;font-size:15px;color:#333;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.activity-item-right ul{margin-right:10px}
+.activity-item-right ul{border-top:.5px solid #dcdcdc}
+.activity-item-right ul li{font-size:12px;color:#999;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:12px}
+.activity-item-right ul li{margin-top:7.5px}
+.activity-item-right ul li:first-child{margin-top:10px}
+.activity-item-right ul li span{margin-left:5px}
+.activity-item-right ul li .icon{font-size:9px;color:#bbb}
+.activity-item-right ul li .iconfont{font-size:9px;color:#bbb}
+.activity-item{border-bottom:.5px solid #dcdcdc}
+.booking-tel{width:100%;padding:10px;display:-webkit-box;display:-ms-flexbox;display:flex}
+.booking-tel p{-webkit-box-flex:1;-ms-flex:1;flex:1;line-height:32px;height:33px;border:1px solid #dcdcdc;border-right:none;padding-left:10px;font-size:12px;color:#333}
+.booking-tel p a{color:#333}
+.booking-tel span{width:80px;height:33px;background:#c13232;color:#fff;font-size:14px;text-align:center;line-height:33px}
+
 .country-edu-ul{padding:0 10px;background:#fff;display:none}
 .country-edu-box ul:nth-of-type(1){display:block}
 .country-edu-ul li{padding:10px 0;border-top:1px solid #eee;display:-webkit-box;display:-ms-flexbox;display:flex}

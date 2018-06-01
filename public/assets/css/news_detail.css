@@ -1,6 +1,5 @@
 
-
-.new-details{background:#fff;padding:15px;margin-top: 10px;margin-bottom: 10px;min-height: 363px}
+.new-details{background:#fff;padding:15px;margin-top: 10px;min-height: 363px}
 .new-details>h1{color:#333;font-size:15px;margin-bottom:15px;line-height: 25px}
 .new-details-p1{color:#666;font-size:11px;float: right}
 .new-details-p1 span{margin-left: 10px}
@@ -50,4 +49,76 @@
     background: #fdf3f4;
     padding: 2px 8px;
     border-radius: 2px;
+}
+.fenxiang_con img{
+    width: 40px;
+    height: 40px;
+    display: block;
+}
+.header {
+    justify-content: flex-start;
+}
+.header-yuyue {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+}
+.cue_weixin {
+    position: fixed;
+    right: 50%;
+    top:50%;
+    margin-right: -121px;
+    margin-top: -42px;
+    display: none
+}
+.cue_weixin img {
+    width: 242px;
+    height: 85px;
+}
+.cue_weixin1 {
+    position: fixed;
+    right: 50%;
+    top:50%;
+    margin-right: -121px;
+    margin-top: -42px;
+    display: none;
+}
+.cue_weixin1 img {
+    width: 242px;
+    height: 85px;
+}
+.cue_qq {
+    position: fixed;
+    right: 50%;
+    top:50%;
+    margin-right: -121px;
+    margin-top: -42px;
+    display: none
+}
+.cue_qq img {
+    width: 242px;
+    height: 85px;
+}
+.bdshare-button-style0-16 .bds_tsina{
+    width: 40px;
+    height: 40px;
+    background:url(../img/xinlang.png) no-repeat;
+    background-size: cover;
+    margin-top: -0.5px;
+}
+.bdshare-button-style0-16 .bds_tsinas{
+    width: 30px;
+    height: 30px;
+    background:url(../img/xinlang.png) no-repeat;
+    background-size: cover;
+    margin-left: 5px;
+}
+.activity-biaoti {
+    font-size: 16px;
+    color: #333;
+    margin-left: 7px;
+    float: left;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
 }

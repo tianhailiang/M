@@ -360,11 +360,9 @@
       color: #999;
     }
     /*=============在线咨询============================*/
-
     .leaveField .title-code{
       width:92px;
     }
-
     .leaveField .text1 .phone-code{
       width:64px;
       margin-right: 10px;
@@ -396,9 +394,11 @@
   </style>
 </head>
 <body style="background: #ffffff;">
-    <script src="{{helper.cdnhost}}/assets/js/show_advert.js"></script>
     <div class="talkBox" style="margin-top: 20px;">
       <div class="top-booking" id="XC_ONLINE_EVALUATION_SEAT10">
+        <a rel="nofollow" data-pid="{{online[0].pid}}" href="{{online[0].linkurl}}" >
+          <img src="{{online[0].imageurl}}" alt="{{online[0].alt}}">
+        </a>
       </div>
       <div class="talkCon" id="talkCon">
         <div class="record" id="chatDiv">
@@ -521,7 +521,30 @@
     </div>
     <script src="{{helper.cdnhost}}/assets/js/online_evaluation.js"></script>
     <script>
-      console.log(100)
+      $(function(){
+        // /*点击广告位进行统计*/
+        $("[id^='XC_']").click('a', function (e) {
+          e.preventDefault();
+          var pid = $(this).find('a').attr("data-pid");
+          if(pid){
+            $.ajax({
+              url: ajaxUrlPrefix.nodeapi + '/cmsapi/advert_clicknum',
+              type: 'GET',
+              data:{
+                  pid: pid
+              },
+              datatype: 'json',
+              success: function (res) {
+                  console.log(res)
+              }
+            })
+          }
+          var url = $(this).find("a").attr('href');
+          if(url){
+            window.open(url);
+          }
+        });
+      })
     </script>
 </body>
 </html>

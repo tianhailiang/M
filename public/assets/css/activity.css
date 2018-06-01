@@ -1,0 +1,120 @@
+*{
+  box-sizing: border-box;
+}
+.activity-list{
+  width:100%;
+  padding:10px;
+
+}
+.activity-list-content{
+  background: #ffffff;
+  box-shadow: 0px 1px 7px 3px rgba(0,0,0,0.1);
+  border-radius: 5px;
+  margin-top:10px;
+}
+.activity-list .activity-item{
+  width: 100%;
+  display: flex;
+  background: #ffffff;
+}
+.activity-item .activity-item-left{
+  width: 73px;
+  height: 106px;
+  background: url(../../../assets/img/activity_bg.png) no-repeat 0 0;
+  background-size:73px 106px ;
+}
+.activity-item-left h3{
+  font-size: 24px;
+  margin-top:24px;
+  color:#333333;
+  margin-left: 8px;
+}
+.activity-item-left h3 span{
+  font-size: 18px;
+}
+.activity-item-left p{
+  margin-top: 15px;
+  font-size: 14px;
+  color:#333333;
+  text-align: center;
+}
+.activity-item-right{
+  width: 1px;
+  flex: 1;
+  margin-left: 10px;
+
+}
+.activity-item-right h3{
+  width: 100%;
+  line-height: 34px;
+  font-size: 15px;
+  color:#333333;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.activity-item-right ul{
+  margin-right: 10px;
+}
+.activity-item-right ul{
+  border-top: 0.5px solid #dcdcdc;
+}
+
+.activity-item-right ul li{
+  font-size: 12px;
+  color:#999999;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  line-height: 12px;
+}
+.activity-item-right ul li{
+  margin-top: 7.5px;
+}
+.activity-item-right ul li:first-child{
+  margin-top: 10px;
+}
+.activity-item-right ul li span{
+  margin-left: 5px;
+}
+.activity-item-right ul li .icon{
+  font-size: 9px;
+  color:#bbbbbb;
+}
+.activity-item-right ul li  .iconfont{
+  font-size: 9px;
+  color:#bbbbbb;
+}
+.activity-item{
+  border-bottom: 0.5px solid #dcdcdc;
+}
+.booking-tel{
+  width: 100%;
+  padding:10px;
+  display: flex;
+}
+.booking-tel{
+}
+
+.booking-tel p{
+  flex:1;
+  line-height: 32px;
+  height: 33px;
+  border:1px solid #dcdcdc;
+  border-right:none;
+  padding-left:10px;
+  font-size: 12px;
+  color:#333333;
+}
+.booking-tel p a{
+  color:#333333;
+}
+.booking-tel span{
+  width: 80px;
+  height: 33px;
+  background: #c13232;
+  color:#ffffff;
+  font-size: 14px;
+  text-align: center;
+  line-height: 33px;
+}
