@@ -1120,7 +1120,14 @@ exports.study_abroad_activity = function (req, res, next) {
   //预约活动
     log.info("活动")
   var data = [];
-  var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
+    var area = 1;
+    if (req.params[0]) {
+        var cityId = comfunc.getCityId(req.params[0]);
+        if(cityId && cityId !== comfunc.INVALID_ID){
+            area = cityId;
+            res.cookie("currentarea", cityId, {domain: config.domain});
+        }
+    }
   var nquery = comfunc.getReqQuery(req.params[2]);
   var country = nquery && nquery.n ? nquery.n :0;
   var type = nquery && nquery.t ? nquery.t : 0;
