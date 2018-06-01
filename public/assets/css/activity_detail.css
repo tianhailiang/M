@@ -65,21 +65,19 @@
 }
 .activity-zixunxin h3{
   font-size: 16px;
-  color:#333333;
+  color:#333;
+  line-height: 24px;
   text-align: center;
-  line-height: 36px;
-  padding:10px 40px 0;
-  font-weight: bold;
+  padding:18px 40px 6px;
 }
 .activity-zixunxin p{
   padding:1px 73px;
   font-size: 13px;
-  color:#333333;
+  color:#666;
   line-height: 26px;
-  text-align: center;
 }
 .activity-zixunxin p:nth-child(2){
-  line-height: 20px;
+  line-height: 24px;
 }
 .activity-zixunxin .icon-map{
   margin-left: 15px;
@@ -97,7 +95,7 @@
   font-size: 12px;
   text-align: center;
   line-height: 22px;
-  border-radius: 5px;
+  border-radius: 4px;
   padding:6px 39px;
 }
 .activity—title {
@@ -312,7 +310,7 @@ width: 40px;
 .header-jjl_xin {
   background: #d51821;
   color: #fff;
-  width: 80px;
+  width: 75px;
   height: 20px;
   border-radius: 25px;
   font-size: 13px;
