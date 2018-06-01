@@ -22,7 +22,10 @@
   <div class="activity-zixunxin">
     <h3 class="activity—title">{{ activity_detail.list.title }}</h3>
     <p>
-      活动时间：<span>{{ activity_detail.list.start_time}}&nbsp;&nbsp;至&nbsp;&nbsp;{{ activity_detail.list.end_time }}</span>
+      开始时间：<span>{{ activity_detail.list.start_time}}</span>
+    </p>
+    <p>
+      结束时间：<span>{{ activity_detail.list.end_time }}</span>
     </p>
     <p>
       讲座地点：<span>{{ activity_detail.list.address_des }}</span>
@@ -32,7 +35,7 @@
       </svg></a>
       {% endif %}
     </p>
-    <p style="margin-top: 3px">
+    <p>
       联系电话：<span>{{ activity_detail.list.active_telephone }}</span>
     </p>
     <div class="activity-button-xin">
