@@ -13,7 +13,7 @@
   <div class="app-in">
 
   <!--活动列表 start-->
-  <div class="activity-list" id="activity-list">
+  <div class="activity-list" id="activity-list" data-country="{{country}}" data-type="{{timetype}}" data-crowd="{{crowd}}">
     {% include "m_widget/activity_list/activity_list.html" %}
   </div>
   <!--活动列表 end-->
@@ -56,10 +56,10 @@
     function loadMore () {
       var now_page = cur_page;
       var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
-      var country_id =$(".countryId .focus-on").attr("data-id");
-      var crowd =$(".eduType .focus-on").attr("data-id");
-      var type =$(".timeType .focus-on").attr("data-id");
-      if(crowd=="所有学历"){
+      var country_id =$(".activity-list").attr("data-country");
+      var crowd =$(".activity-list").attr("data-crowd");
+      var type =$(".activity-list").attr("data-type");
+        if(crowd=="所有学历"){
           crowd = ""
       }
       $.ajax({
