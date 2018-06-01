@@ -55,7 +55,8 @@
       var flag = true;
       var searchWord = $('#search-content').attr('data-keyword');
       var searchResult = $('.search-result');
-      var searchType = 1;
+      var activeLi = $('#tab-type').find('.active').attr('data-type');
+      var searchType = activeLi? activeLi: 1;
       var cur_page = 1;
       /*输入搜索关键词 回车搜索*/
       $('#search-content').on('keypress', function (e) {
