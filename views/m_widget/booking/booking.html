@@ -138,6 +138,7 @@
   var timer;
   function countDown() {
     // 60s倒计时
+    console.log(200)
     $("#sendcun_user").unbind("click");
     var countDownTime = 60;
     timer = window.setInterval(function () {
@@ -150,14 +151,25 @@
             $("#sendcun_user").attr("value", "发送验证码");
             $("#sendcun_user").css('background','#D51821');
             $("#sendcun_user").css('border','1px solid #D51821');
-            $("#sendcun_user").bind("click",function () {
-                getCode();
-            });
+            $("#sendcun_user").on('click',getCode);
         }
     }, 1000);
   }
   //获取验证码
   function getCode () {
+    console.log(100)
+    if ($('#phone').val() == '') {
+        $('#error_phone').css('display','block')
+        return false;
+      } else {
+        $('#error_phone').css('display','none')
+      }
+      if (!/^1\d{10}$/.test($("#phone").val())) {
+        $('#error_phone').css('display','block')
+        return false;
+      } else {
+        $('#error_phone').css('display','none')
+      }
     countDown();
     $.ajax({
         url: ajaxUrlPrefix.nodeapi+'/ucapi/ucapi_agent',
@@ -217,14 +229,19 @@
       },
       dataType:'json',
       success:function(msg){
+        
         if(msg.code === 0){
           // alert('成功');
           $('#email').val("");
           $('#code').val("");
           $('#phone').val("");
           $('#name').val("");
+          $("#sendcun_user").attr("value", "发送验证码");
+          $("#sendcun_user").css('background','#D51821');
+          $("#sendcun_user").css('border','1px solid #D51821');
+          clearInterval(timer);
+          $("#sendcun_user").on('click',getCode);
           $("#dialog1").hide();
-
         } else {
           alert(msg.message);
         }
@@ -238,13 +255,12 @@
   };
 
   function showyuyue () {
-      
       $("#dialog1").show();
   }
 
   $(function () {
     //获取验证码
-    $("#sendcun_user").click(function(){
+    $("#sendcun_user").bind('click',function(){
       if ($('#phone').val() == '') {
         $('#error_phone').css('display','block')
         return false;
@@ -323,7 +339,12 @@
       $('#error_email').css('display','none');
       $('#error_code').css('display','none'); 
       $('#error_phone').css('display','none'); 
-      $('#error_name').css('display','none');    
+      $('#error_name').css('display','none'); 
+      $("#sendcun_user").attr("value", "发送验证码");
+      $("#sendcun_user").css('background','#D51821');
+      $("#sendcun_user").css('border','1px solid #D51821');
+      clearInterval(timer);   
+      $("#sendcun_user").on('click',getCode);
       $("#dialog1").hide();
     });
   })
