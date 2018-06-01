@@ -10,8 +10,7 @@
       </div>
     </a>
   </div>
-  <div class="cancel-btn" id="cancel-btn" style="text-align: right">全部活动
-    <svg class="icon" aria-hidden="true" style="color: #fff;margin: 0 8px;font-size: 14px;">
+  <div class="cancel-btn" id="cancel-btn">更多<svg class="icon" aria-hidden="true" style="color: #fff;margin-left:5px;font-size: 14px;">
       <use xlink:href="#icon-xuanxiang"></use>
     </svg>
   </div>
@@ -199,12 +198,11 @@
           if(this.flag){
               $("#so-box").show();
               $("body,html").css("position","fixed")
-              $("#so-box").height($(window).height()-81-50);
-              $(this).html("收起<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin: 0 8px;font-size: 14px;\">\n" +
+              $(this).html("收起<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin-left:5px;font-size: 14px;\">\n" +
                 "<use xlink:href=\"#icon-xuanxiang-copy\"></use>\n" +
                 "</svg>")
           }else {
-            $(this).html("全部活动<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin: 0 8px;font-size: 14px;\">\n" +
+            $(this).html("更多<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin-left:5px;font-size: 14px;\">\n" +
               "<use xlink:href=\"#icon-xuanxiang\"></use>\n" +
               "</svg>")
             $("#so-box").hide();
