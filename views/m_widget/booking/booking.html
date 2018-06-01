@@ -179,9 +179,31 @@
         }
     });
   }
-
-  
-
+  //验证短信验证码是否正确
+  var checkCode = function () {
+    $.ajax({
+      url: ajaxUrlPrefix.nodeapi+'/ucapi/ucapi_agent',
+      type:'get',
+      data:{
+        m: 'check_code',
+        code: $("#code").val(),
+        phone: $('#phone').val()
+      },
+      dataType:'json',
+      success:function(msg){
+        console.log(msg);
+        if(msg.code === 0){
+          customize();
+        } else {
+          alert(msg.message);
+        }
+      },
+      error:function(XMLHttpRequest, textStatus, errorThrown){
+        console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
+      }
+    });
+  };
+  //在线预约-预约活动
   var customize = function () {
     //发送定制
     $.ajax({
@@ -288,9 +310,9 @@
       }else {
         $('#error_email').css('display','none');
       }
-      customize();
+      checkCode();
     });
-
+    //关闭弹窗
     $('.yuyueclose').on('click', function(e){
       e.preventDefault();
       
