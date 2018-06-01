@@ -22,7 +22,7 @@
   <div class="activity-zixunxin">
     <h3 class="activity—title">{{ activity_detail.list.title }}</h3>
     <p>
-      活动时间：<span>{{ activity_detail.list.start_time }}</span>
+      活动时间：<span>{{ activity_detail.list.start_time}}&nbsp;&nbsp;至&nbsp;&nbsp;{{ activity_detail.list.end_time }}</span>
     </p>
     <p>
       讲座地点：<span>{{ activity_detail.list.address_des }}</span>
@@ -61,9 +61,15 @@
     </p>
     <h3><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-dian-copy-copy-copy"></use>
-    </svg><span>活动时间&nbsp;:</span></h3>
+    </svg><span>开始时间&nbsp;:</span></h3>
     <p>
-      {{ activity_detail.list.start_time}}&nbsp;&nbsp;至&nbsp;&nbsp;{{ activity_detail.list.end_time }}
+      {{ activity_detail.list.start_time}}
+    </p>
+    <h3><svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-dian-copy-copy-copy"></use>
+    </svg><span>结束时间&nbsp;:</span></h3>
+    <p>
+     {{ activity_detail.list.end_time }}
     </p>
     <h3><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-dian-copy-copy-copy"></use>
