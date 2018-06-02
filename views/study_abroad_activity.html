@@ -7,11 +7,9 @@
   .loader>img{ margin: 0 auto;}
 </style>
 <body>
+{% include "m_widget/top/common_top.html" %}
 <div id="app">
-  {% include "m_widget/top/common_top.html" %}
-  {% include "m_widget/search/search_activity.html" %}
   <div class="app-in">
-
   <!--活动列表 start-->
   <div class="activity-list" id="activity-list" data-country="{{country}}" data-type="{{timetype}}" data-crowd="{{crowd}}">
     {% include "m_widget/activity_list/activity_list.html" %}
@@ -28,7 +26,8 @@
   {% include "m_widget/booking/booking.html" %}
   {% include "m_widget/footer/common_footer.html" %}
 </div>
-{% include "m_widget/slidebar/common_sliderbar.html" %}
+{% include "m_widget/search/search_activity.html" %}
+{% include "m_widget/slidebar/search_sliderbar.html" %}
 <!-- ======乐语底栏======= -->
 {% include 'm_widget/funtalk/funtalk.html' %}
 <script>
