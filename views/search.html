@@ -64,6 +64,7 @@
           var keycode = e.keyCode;
           searchWord = $('#search-content').val();
           if (keycode == 13) {
+              searchType = 1;
               e.preventDefault();
               window.location.href = fn.urlgen('so_activity','q='+ searchWord,'type='+searchType)
           }
