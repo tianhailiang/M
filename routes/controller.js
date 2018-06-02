@@ -669,7 +669,7 @@ exports.so_activity = function (req, res, next) {
     var type = nquery && nquery.type ? nquery.type : 1;
     console.log('keyword', keyword)
     data.tdk = {
-        pagekey: '',
+        pagekey: 'M_ACTIVITY_SEARCH',
         cityid: area //cityid
     };
     if (keyword) {
@@ -1154,7 +1154,7 @@ exports.study_abroad_activity = function (req, res, next) {
     data.crowd=crowd?crowd:"所有学历";
     data.activity_list = returnData(result.activity_list,'activity_list');
     data.tdk = {
-      pagekey: 'ACTIVITY', //key
+      pagekey: 'M_ACTIVITY_LIST', //key
       cityid: area, //cityid
      // nationid: country//nationi
     };
@@ -2841,7 +2841,7 @@ exports.activity_detail = function (req, res, next){
         }
         data.activity_detail = returnData(result, 'activity_detail');
         data.tdk = {
-            pagekey: 'ACTIVITYDETAIL',
+            pagekey: 'M_ACTIVITY_DETAIL',
             cityid:cityId,
             title: data.activity_detail.list.title
         };
@@ -2882,7 +2882,9 @@ exports.search_activity = function(req,res,next){
 // 浏览量
 exports.article_count = function (req, res, next) {
     data = req.query;
+    log.info('!!!!view_count_data!!!!',data);
     data.uuid = '';
+    log.info("!!!!view_count_cookie", req.cookies.uuid)
     if (req.cookies.uuid) {
         data.uuid = req.cookies.uuid
     }
