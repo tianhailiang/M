@@ -170,7 +170,7 @@
       } else {
         $('#error_phone').css('display','none')
       }
-    countDown();
+    
     $.ajax({
         url: ajaxUrlPrefix.nodeapi+'/ucapi/ucapi_agent',
         type:'get',
@@ -182,6 +182,7 @@
         success:function(msg){
             if(msg.code === 0){
                 //alert('成功');
+                countDown();
             } else {
                 alert('出错啦');
             }
