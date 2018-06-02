@@ -3,7 +3,10 @@
 <div class="search-container">
   <div class="search-box" >
     <div class="search-bar" >
-      <input placeholder="{{keyword if keyword else '搜索'}}" id="search-content" autofocus data-keyword="{{keyword}}">
+      <!--<input placeholder="{{keyword if keyword else '搜索'}}" id="search-content" autofocus data-keyword="{{keyword}}" type="search">-->
+      <form id="searchForm">
+        <input placeholder="搜索" id="search-content" autofocus value="{{keyword}}"data-keyword="{{keyword}}" type="search">
+      </form>
       <div style="width: 30px;height: 30px;text-align: right;line-height: 30px;" id="del-keyword">
         <svg class="icon icon-sousuo" aria-hidden="true">
           <use xlink:href="#icon-guanbi"></use>

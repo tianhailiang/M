@@ -2882,7 +2882,9 @@ exports.search_activity = function(req,res,next){
 // 浏览量
 exports.article_count = function (req, res, next) {
     data = req.query;
+    log.info('!!!!view_count_data!!!!',data);
     data.uuid = '';
+    log.info("!!!!view_count_cookie", req.cookies.uuid)
     if (req.cookies.uuid) {
         data.uuid = req.cookies.uuid
     }
