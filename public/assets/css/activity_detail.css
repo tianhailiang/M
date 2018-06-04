@@ -246,15 +246,11 @@
 }
 .fenxiang_con{
   background: #fff;
-  margin-bottom: 49px;
   height: 65px;
   display: flex;
+  padding: 0 40px;
+  margin-bottom: 49px;
   justify-content: space-around;
-}
-.fenxiang_con img{
-width: 40px;
-  height: 40px;
-  display: block;
 }
 .header {
   justify-content: flex-start;
@@ -268,44 +264,50 @@ width: 40px;
   position: fixed;
   right: 50%;
   top:50%;
-  margin-right: -121px;
+  margin-right: -134px;
   margin-top: -42px;
   display: none
 }
-.cue_weixin img {
-  width: 242px;
+.cue_weixin div {
+  width: 268px;
   height: 85px;
+  background:url(../img/weixinfenxiangtu.png) no-repeat;
+  background-size: cover;
 }
 .cue_weixin1 {
   position: fixed;
   right: 50%;
   top:50%;
-  margin-right: -121px;
+  margin-right: -134px;
   margin-top: -42px;
   display: none;
 }
-.cue_weixin1 img {
-  width: 242px;
+.cue_weixin1 div {
+  width: 268px;
   height: 85px;
+  background:url(../img/liulanqifenxiangtu.png) no-repeat;
+  background-size: cover;
 }
 .cue_qq {
   position: fixed;
   right: 50%;
   top:50%;
-  margin-right: -121px;
+  margin-right: -134px;
   margin-top: -42px;
   display: none
 }
-.cue_qq img {
-  width: 242px;
+.cue_qq div {
+  width: 267px;
   height: 85px;
+  background:url(../img/cue_qq.png) no-repeat;
+  background-size: cover;
 }
 .bdshare-button-style0-16 .bds_tsina{
   width: 40px;
   height: 40px;
   background:url(../img/xinlang.png) no-repeat;
   background-size: cover;
-  display: block;
+  display: inline-block;
 }
 .header-jjl_xin {
   background: #d51821;
@@ -316,4 +318,26 @@ width: 40px;
   font-size: 13px;
   text-align: center;
   line-height: 20px;
+}
+.wenxin_con {
+  width: 40px;
+  height: 40px;
+  background:url(../img/weixin.png) no-repeat;
+  background-size: cover;
+  display: inline-block;
+}
+.cue_qq_con {
+  width: 40px;
+  height: 40px;
+  background:url(../img/qq.png) no-repeat;
+  background-size: cover;
+  display: inline-block;
+}
+.bdshare-button-style0-16 a, .bdshare-button-style0-16 .bds_more {
+  margin: 0;
+  float: none;
+}
+.bdshare-button-style0-16 {
+  flex: 1;
+  text-align: center;
 }

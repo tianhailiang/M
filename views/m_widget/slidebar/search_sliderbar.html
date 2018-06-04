@@ -1,0 +1,84 @@
+<!-- ======侧边栏===== -->
+<div class="sidebar-box" >
+    <div class="mask" >
+    </div>
+    <div class="sidebar" >
+        <div class="jjl-sidebar-logo" >
+        </div>
+        <!--  {
+          "name":"金吉列移民",
+          "icon":"icon-listfeiji",
+          "router":"YIMIN_HOME",
+          "url":helper.urlgen('yimin')
+         }, -->
+        {% set routerList = [
+        {
+        "name":"金吉列留学",
+        "icon":"icon-boshimao1",
+        "router":"HOME",
+        "url":helper.urlgen('branch_home','c='+tdk.cityid)
+        },
+        {
+        "name":"关于金吉列",
+        "icon":"icon-wenda",
+        "router":"PROFILE",
+        "url":helper.urlgen('about')
+        }
+        ] %}
+        {% for item in routerList %}
+        <div class="sidebar-nav">
+            <a class="sidebar-nav-title" href="{{item.url}}">
+                <svg class="icon sidebar-liuxue-icon" aria-hidden="true" style="{% if item.router ==  tdk.pagekey %}color:#d51821;{% endif %}">
+                    <use xlink:href="#{{item.icon}}"></use>
+                </svg>
+                <span style="{% if item.router ==  tdk.pagekey %}color:#d51821;{% endif %}">{{item.name}}</span>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script >
+    //侧边栏
+    $(".sidebar").height($(window).height());
+    $(".header-Catalog").on("click",function(){
+        document.querySelector("#app").style.position="fixed";
+        document.querySelector("#app").style.animation="appLeft 0.3s forwards";
+        document.querySelector("#app").style.webkitAnimation="appLeft 0.3s forwards";
+        document.querySelector(".header").style.animation="appLeft 0.3s forwards";
+        document.querySelector(".header").style.webkitAnimation="appLeft 0.3s forwards";
+        document.querySelector(".search-container").style.animation="appLeft 0.3s forwards";
+        document.querySelector(".search-container").style.webkitAnimation="appLeft 0.3s forwards";
+        if (document.querySelector(".so-box")) {
+            document.querySelector(".so-box").style.animation="appLeft 0.3s forwards";
+            document.querySelector(".so-box").style.webkitAnimation="appLeft 0.3s forwards";
+        }
+        // document.querySelector(".search-box").style.animation="appLeft 0.3s forwards";
+        // document.querySelector(".search-box").style.webkitAnimation="appLeft 0.3s forwards";
+        document.querySelector(".sidebar-box").style.animation="sidebarLeft 0.3s forwards";
+        document.querySelector(".sidebar-box").style.webkitAnimation="sidebarLeft 0.3s forwards";
+    });
+    $(document).on('swipeLeft',function(){
+        document.querySelector("#app").style.position="absolute";
+        document.querySelector("#app").style.animation="appRight 0.3s forwards";
+        document.querySelector("#app").style.webkitAnimation="appRight 0.3s forwards";
+        document.querySelector(".sidebar-box").style.webkitAnimation="sidebarRight 0.3s forwards";
+        document.querySelector(".sidebar-box").style.animation="sidebarRight 0.3s forwards";
+    });
+    $(".mask").on("click",function(){
+        document.querySelector("#app").style.position="absolute";
+        document.querySelector("#app").style.animation="appRight 0.3s forwards";
+        document.querySelector("#app").style.webkitAnimation="appRight 0.3s forwards";
+        document.querySelector(".header").style.animation="appRight 0.3s forwards";
+        document.querySelector(".header").style.webkitAnimation="appRight 0.3s forwards";
+        document.querySelector(".search-container").style.animation="appRight 0.3s forwards";
+        document.querySelector(".search-container").style.webkitAnimation="appRight 0.3s forwards";
+        if (document.querySelector(".so-box")) {
+            document.querySelector(".so-box").style.animation="appRight 0.3s forwards";
+            document.querySelector(".so-box").style.webkitAnimation="appRight 0.3s forwards";
+        }
+        // document.querySelector(".search-box").style.animation="appRight 0.3s forwards";
+        // document.querySelector(".search-box").style.webkitAnimation="appRight 0.3s forwards";
+        document.querySelector(".sidebar-box").style.animation="sidebarRight 0.3s forwards";
+        document.querySelector(".sidebar-box").style.webkitAnimation="sidebarRight 0.3s forwards";
+    });
+</script>
