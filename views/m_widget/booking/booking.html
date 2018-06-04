@@ -344,7 +344,7 @@
       }
       if (!/^\d{6}$/.test($("#code").val())) {
         $('#error_code').css('display','block');
-        $('#error_code').html('您输入的验证码不足6位');
+        $('#error_code').html('您输入的6位验证码');
         return false;
       } else {
         $('#error_code').css('display','none');
