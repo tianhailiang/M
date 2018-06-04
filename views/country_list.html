@@ -16,9 +16,9 @@
   }
 </style>
 <body>
+{% include "m_widget/top/common_top.html" %}
+{% include "m_widget/search/search_articlelist.html" %}
 <div id="app">
-  {% include "m_widget/top/common_top.html" %}
-  {% include "m_widget/search/search_articlelist.html" %}
   <div class="app-in">
     <div class="has-content">
       <ul class="tab-type" id="tab-type">
@@ -26,11 +26,9 @@
         <li data-type="add_time" {% if order == 'add_time' %}class="active"{% else %}{% endif %}><a href="{{helper.active_urlgen('articles',('n=' + country) if country else '', ('type=' + type) if type else '',('tag=' + tag) if tag else '','order=add_time')}}">最新new</a></li>
         <li data-type="views" {% if order == 'views' %}class="active"{% else %}{% endif %}><a href="{{helper.active_urlgen('articles',('n=' + country) if country else '', ('type=' + type) if type else '',('tag=' + tag) if tag else '','order=views')}}">最热hot</a></li>
       </ul>
-      {% if activity_list.total != 0 %}
-      <div class="search-result">
-        <div class="activity-list" id="activity-list" data-country="{{country}}" data-type="{{type}}" data-crowd="{{tag}}">
+      {% if articles_list.total != 0 %}
+      <div class="search-result" id="activity-list" data-country="{{country}}" data-type="{{type}}" data-crowd="{{tag}}">
           {% include "m_widget/news_list/articles_list.html" %}
-        </div>
       </div>
       <div class="loader">
         <span>加载更多...</span>
@@ -46,10 +44,9 @@
       {% endif %}
     </div>
     </div>
-  {% include "m_widget/booking/booking.html" %}
   {% include "m_widget/footer/common_footer.html" %}
 </div>
-{% include "m_widget/slidebar/common_sliderbar.html" %}
+{% include "m_widget/slidebar/search_sliderbar.html" %}
 <!-- ======乐语底栏======= -->
 {% include 'm_widget/funtalk/funtalk.html' %}
 <script>
@@ -60,31 +57,30 @@
 //    }
 
     var cur_page = 1
-    var onOff = false
+    var flag = true;
     $('.loader').hide()
     $(window).scroll(function(){
-      var scrollTop = $(window).scrollTop()
-      var clientHeight = $(window).height()
-      var docHeight = $(document).height()
-      if(scrollTop >= (docHeight - clientHeight) - 155) {
-        if(!onOff){
-          onOff = true
-          cur_page++
-          setTimeout(getDataFn,100)
-        }
-      }
-
-    });
+          var scrollTop = $(window).scrollTop();
+          var clientHeight = $(window).height();
+          var docHeight = $(document).height();
+          if(scrollTop >= (docHeight - clientHeight) - 165) {
+              $('.loader').show();
+              if(flag){
+                  flag = false;
+                  cur_page++;
+                  setTimeout(getDataFn,100)
+              }
+          }
+      });
       /*请求数据*/
     function getDataFn () {
       var searchResult = $('.search-result');
-      var now_page = cur_page;
+//      var now_page = cur_page;
       var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
-      var order =$("#tab-type active").attr("data-type");
-      var country_id =$(".activity-list").attr("data-country");
-      var tag =$(".activity-list").attr("data-crowd");
-      var type =$(".activity-list").attr("data-type");
-      console.log(order)
+      var order = $('#tab-type').find('.active').attr('data-type');
+      var country_id =$("#activity-list").attr("data-country");
+      var tag =$("#activity-list").attr("data-crowd");
+      var type =$("#activity-list").attr("data-type");
       if(tag=="全部"){
           tag = ""
       }
@@ -113,7 +109,7 @@
               "is_news": newsFlag,
               "edu_id":(type=='时讯')?'':encodeURI(type),
               "per_page": "4",
-              "page": now_page
+              "page": cur_page
           },
           success: function (msg) {
               if (msg == '未请求到数据，请求完毕') {

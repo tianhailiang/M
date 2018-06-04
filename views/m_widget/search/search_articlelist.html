@@ -16,7 +16,7 @@
   </div>
 </div>
 <!--搜索框 结束-->
-<div class="so-box" id="so-box" style="z-index: 1201">
+<div class="so-box" id="so-box" style="z-index: 1001">
   <div class="so-box-content" id="so-box-content">
     <!--国家-->
     {%
@@ -260,7 +260,6 @@
       $(".so-box-item span").on("click",function () {
           $(this).addClass('focus-on').siblings().removeClass('focus-on');
           var type =$(".timeType .focus-on").attr("data-id");
-          console.log(type)
           if(type == "时讯"){
               $("#taglist").css("display","none")
               $(".eduType span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');

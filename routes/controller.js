@@ -2967,7 +2967,9 @@ exports.country_list = function (req, res, next) {
  * 搜索活动
  * */
 exports.more_articles = function(req,res,next){
+    log.debug('国家列表页加载更多');
     var data = req.query;
+    log.info("国家",data)
     var resData = [];
     cms.search_article_list(data,function(err,result){
         if(err){
@@ -2982,11 +2984,11 @@ exports.more_articles = function(req,res,next){
                         res.send('未请求到数据，请求完毕');
                     }
                     else if (result.data.list.length > 0 && result.data.list.length < data.per_page) {
-                        resData.activity_list = result.data;
+                        resData.article_list = result.data;
                         res.render('m_widget/news_list/articles_list', resData);
                     }
                     else {
-                        resData.activity_list = result.data;
+                        resData.article_list = result.data;
                         res.render('m_widget/news_list/articles_list', resData);
                     }
                 }
