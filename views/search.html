@@ -43,7 +43,7 @@
   <!--footer end-->
 </div>
 <!-- ===侧边栏==== -->
-{% include "m_widget/slidebar/slidebar.html" %}
+{% include "m_widget/slidebar/search_sliderbar.html" %}
 </body>
 <!--<script src="{{helper.cdnhost}}/assets/js/search.js"></script>-->
 <script>
@@ -60,10 +60,12 @@
       var searchType = activeLi? activeLi: 1;
       var cur_page = 1;
       /*输入搜索关键词 回车搜索*/
-      $('#search-content').on('keypress', function (e) {
+      $('#searchForm').on('keypress', function (e) {
           var keycode = e.keyCode;
-          searchWord = $(this).val();
+          searchWord = $('#search-content').val();
           if (keycode == 13) {
+              searchType = 1;
+              e.preventDefault();
               window.location.href = fn.urlgen('so_activity','q='+ searchWord,'type='+searchType)
           }
       });

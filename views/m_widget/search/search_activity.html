@@ -186,10 +186,10 @@
     </svg>学历</div>
     <div class="so-box-item eduType">{% for item in eduType %}<span data-id="{{item.type}}" class={{'focus-on' if item.type == crowd else ""}}>{{item.type}}</span>{% endfor %}</div>
   </div>
-  <div class="so-tab" id="so-tab">
-    <span class="so-tab-item">清空</span>
-    <span class="so-tab-item_active">确定</span>
-  </div>
+</div>
+<div class="so-tab" id="so-tab" style="display: none;">
+  <span class="so-tab-item">清空</span>
+  <span class="so-tab-item_active">确定</span>
 </div>
 <script>
   $(function () {
@@ -197,6 +197,7 @@
           this.flag=!this.flag;
           if(this.flag){
               $("#so-box").show();
+            $("#so-tab").show();
               $("body,html").css("position","fixed")
               $(this).html("收起<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin-left:5px;font-size: 14px;\">\n" +
                 "<use xlink:href=\"#icon-xuanxiang-copy\"></use>\n" +
@@ -206,6 +207,7 @@
               "<use xlink:href=\"#icon-xuanxiang\"></use>\n" +
               "</svg>")
             $("#so-box").hide();
+            $("#so-tab").hide();
               $("body,html").css("position","")
           }
       });
