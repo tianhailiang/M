@@ -94,6 +94,7 @@ exports = module.exports = function (app) {// routes
   app.get('/more/adviser', controller.advisor_list_moer);//明星顾问列表加载更多
   app.get('/cmsapi/more_daxuepaiming', controller.more_daxuepaiming);//院校库加载更多
   app.get('/cmsapi/more_activity', controller.more_activity);//活动加载更多
+  app.get('/cmsapi/more_articles', controller.more_articles);//文章列表加载更多
   app.get('/cmsapi/more_case', controller.more_case);//成功案例更多
   app.get('/cmsapi/more_product', controller.more_product);//留学方案更多
   app.get('/cmsapi/more_so_news', controller.more_so_news);//搜索资讯更多
@@ -104,7 +105,8 @@ exports = module.exports = function (app) {// routes
   //微信token 认证
   app.post('/wxJssdk/getJssdk',controller.wxtoken);
   app.get(/^\/(bj|cd|cq|cs|cc|cz|dl|dg|fs|fz|gz|gy|hz|hf|hd|heb|hs|hn|jn|jl|km|lz|ly|nj|nc|nb|nn|qd|sh|sy|sjz|shz|sz|tj|ty|ts|wh|wx|wz|xa|xm|xz|xn|xj|yt|yc|ych|zz)\/activity\/(\d+)/,controller.activity_detail);
-  app.get('/search_activity',controller.search_activity)
+  app.get('/search_activity',controller.search_activity);
+  app.get(/articles(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/, controller.country_list);
 };
 
 

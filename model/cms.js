@@ -1605,6 +1605,15 @@ exports.detail_count = function (data, callback) {
 
 };
 
+//国家文章结果页search_article_list
+exports.search_article_list = function (data,callback) {
+    var url = _api_path_url_shequ(data, config.apis.get_search_article_list);
+    if (url == null){
+        callback('404');
+        return;
+    }
+    api.apiRequest(url ,callback);
+}
 
 function update_viewnum(catid, id, uuid, callback){
   var viewNumKey = "WEB:HITS:"+id;

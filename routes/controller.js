@@ -2906,3 +2906,89 @@ exports.check_token = function (req, res, next) {
     };
     res.send(comfunc.api_return('0', 'token check success', tokenfunc.createToken(data)));
 };
+//国家列表页
+exports.country_list = function (req, res, next) {
+    log.debug('国家列表页');
+    var data = {};
+    var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
+    var nquery = comfunc.getReqQuery(req.params[1]);
+    var country = nquery && nquery.n ? nquery.n : "";
+    var type = nquery && nquery.type ? nquery.type : '';
+    var tag = nquery && nquery.tag ? nquery.tag : '';
+    var order = nquery && nquery.order ? nquery.order : "score";
+    var page = nquery && nquery.page ? nquery.page : 1;
+    var newsFlag = 1;
+    if (type == '时讯') {
+        newsFlag = 2;
+        tag = ''
+    }
+    if(tag != ''){
+        newsFlag = 1;
+    }else if (tag == '' && type == '') {
+        newsFlag = '';
+    }
+    data.login_nickname = '';
+    if ( req.cookies.login_ss !== undefined) {
+        var login_a = JSON.parse(req.cookies.login_ss);
+        data.login_nickname = login_a;
+    }
+    async.parallel({
+        so_article_list:function(callback) {
+            cms.search_article_list({
+                order: order,
+                is_immi:1,
+                city_id:area,
+                "tag_list": encodeURI(tag),
+                "country_id": country,
+                "is_news": newsFlag,
+                "edu_id":(type=='时讯')?'':encodeURI(type),
+                "per_page": "4",
+                "page": page
+            }, callback);
+        },
+    }, function (err, result) {
+        data.article_list = returnData(result.so_article_list,'so_article_list');
+        data.country = country;
+        data.type=(type== '')?'全部':type;
+        data.tag = (tag== '')?'全部':tag;
+        data.order = order;
+        data.cur_page = page;
+        data.tdk = {
+            pagekey: 'ARTICLELIST', //key
+            cityid: area,
+            // keywords: keyword
+        };
+        res.render('country_list', data);
+    });
+};
+/*
+ * 搜索活动
+ * */
+exports.more_articles = function(req,res,next){
+    var data = req.query;
+    var resData = [];
+    cms.search_article_list(data,function(err,result){
+        if(err){
+            res.send(err);
+        }else{
+            if (result.code == 0) {
+                if ( result.data.totalpage < data.page ) {
+                    res.send('未请求到数据，请求完毕');
+                }
+                else {
+                    if (result.data.list.length <= 0 ) {
+                        res.send('未请求到数据，请求完毕');
+                    }
+                    else if (result.data.list.length > 0 && result.data.list.length < data.per_page) {
+                        resData.activity_list = result.data;
+                        res.render('m_widget/news_list/articles_list', resData);
+                    }
+                    else {
+                        resData.activity_list = result.data;
+                        res.render('m_widget/news_list/articles_list', resData);
+                    }
+                }
+            }
+        }
+    })
+};

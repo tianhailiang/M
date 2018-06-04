@@ -1,0 +1,91 @@
+<style>
+  .spanpicter{
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin:10px;
+    margin-left: 0;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+  }
+  .column-list{
+    flex: 1;
+    margin-left: 0;
+    margin-top: 30px;
+  }
+  .column-list p{
+    color: #666;
+    font-size: 12px;
+    line-height: 20px;
+    margin-top: 10px;
+  }
+  .column-list-tag{
+    display: block;
+    color:#d52821;
+    float: right;
+    width:auto;
+    height: 17px;
+    border: 1px solid #d52821;
+    text-align: center;
+    line-height: 14px;
+    font-size: 11px;
+    border-radius: 7px;
+    padding: 0 5px;
+  }
+  .column-news li {
+    position: relative;
+    display: flex;
+    padding-bottom: 10px;
+    margin: 0 10px;
+  }
+  .column-news li:after, .tabContent .tab-controll:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+    content: "";
+    transform: scaleY(.5);
+    transform-origin: 0 0;
+  }
+  .items-gruop h2{
+    font-size: 14px;
+    color: #666;
+  }
+  .items-gruop h2 span {
+    display: inline-block;
+    margin-left: 7px;
+    width: 14px;
+    height: 14px;
+    background: url(/assets/img/v.png) no-repeat 0 0;
+    background-size: cover;
+    vertical-align: unset;
+  }
+</style>
+<div class="tabitems">
+  <div class="items-gruop">
+    <ul class="column-news">
+      {% for item in article_list.list%}
+      <li>
+        <a href="{{helper.urlgen(item.user_info.uid | safeId | string)}}">
+          <span class="spanpicter" style="background:url({{helper.avaterimg(item.user_info.uid, 'small',item.user_info.status, item.user_info.version)}}) no-repeat 0 0;background-size: cover;"></span>
+        </a>
+        <div class="column-list">
+          <div style="height: 18px">
+            <h2 style="float: left">{{item.user_info.realname | shorten(6)}}<span></span></h2>
+            {% if item.tag_list %}
+            <span class="column-list-tag" style="">{{item.tag_list}}</span>
+            {% endif %}
+          </div>
+          <a class="" href="{{helper.urlgen('case',item.id | safeId | string) if item.type == 1 else helper.urlgen('article',item.id | safeId | string)}}">
+            <p style="color: #333;font-size: 15px">{{item.title | ellipsis(15) }}</p>
+            <p class="line-clamp-2">{{item.introduce}}</p>
+            <p>{{item.add_time | getDefaultFormat('YYYY-MM-DD HH:mm:ss')}}</p>
+          </a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
