@@ -249,7 +249,9 @@ var apis = {
   //学历频道页五大攻略
   "get_edu":prefix + 'common_sense',
   //新活动底页
-  "get_activity_detail":prefix+'detail'
+  "get_activity_detail":prefix+'detail',
+   //国家文章列表
+   "get_search_article_list": shequ_prefix + 'search/search_article_list/'
 };
 module.exports = {
   redisCache: redisCache,

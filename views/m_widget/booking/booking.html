@@ -97,6 +97,14 @@
 }
 </style>
 
+<div id="toast" style="display: none;z-index: 10000;">
+  <div class="weui-mask_transparent"></div>
+  <div class="weui-toast" style="z-index: 10000;">
+      <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+      <p class="weui-toast__content">成功</p>
+  </div>
+</div>
+
 <div class="js_dialog" id="dialog1" style="opacity: 1;display: none;">
     <div class="weui-mask"></div>
     <div class="weui-dialog" style="max-width: 290px;border-radius: 10px;overflow: inherit;">
@@ -139,19 +147,23 @@
   function countDown() {
     // 60s倒计时
     console.log(200)
-    $("#sendcun_user").unbind("click");
+    // $("#sendcun_user").unbind("click");
+    $("#sendcun_user").attr("disabled", "disabled");
     var countDownTime = 60;
     timer = window.setInterval(function () {
         countDownTime--;
         $("#sendcun_user").attr("value", countDownTime + "s");
         $("#sendcun_user").css('background','#ccc');
         $("#sendcun_user").css('border','1px solid #ccc');
+        
         if (countDownTime == 0) {
-            clearInterval(timer);
             $("#sendcun_user").attr("value", "发送验证码");
             $("#sendcun_user").css('background','#D51821');
             $("#sendcun_user").css('border','1px solid #D51821');
-            $("#sendcun_user").on('click',getCode);
+            $("#sendcun_user").removeAttr("disabled");
+            clearInterval(timer);
+            // $("#sendcun_user").on('click',getCode);
+
         }
     }, 1000);
   }
@@ -183,8 +195,18 @@
             if(msg.code === 0){
                 //alert('成功');
                 countDown();
+                $('.weui-toast__content').html('成功');
+                $('#toast').fadeIn(100);
+                setTimeout(function () {
+                  $('#toast').fadeOut(100);
+                }, 2000);
             } else {
-                alert('出错啦');
+                // alert('出错啦');
+              $('.weui-toast__content').html(msg.message);
+              $('#toast').fadeIn(100);
+              setTimeout(function () {
+                $('#toast').fadeOut(100);
+              }, 2000);
             }
         },
         error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -208,7 +230,12 @@
         if(msg.code === 0){
           customize();
         } else {
-          alert(msg.message);
+          // alert(msg.message);
+          $('.weui-toast__content').html(msg.message);
+          $('#toast').fadeIn(100);
+          setTimeout(function () {
+            $('#toast').fadeOut(100);
+          }, 2000);
         }
       },
       error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -240,11 +267,21 @@
           $("#sendcun_user").attr("value", "发送验证码");
           $("#sendcun_user").css('background','#D51821');
           $("#sendcun_user").css('border','1px solid #D51821');
+          $("#sendcun_user").removeAttr("disabled");
           clearInterval(timer);
-          $("#sendcun_user").on('click',getCode);
           $("#dialog1").hide();
+          $('.weui-toast__content').html('成功');
+          $('#toast').fadeIn(100);
+          setTimeout(function () {
+            $('#toast').fadeOut(100);
+          }, 2000);
         } else {
-          alert(msg.message);
+          // alert(msg.message);
+          $('.weui-toast__content').html(msg.message);
+          $('#toast').show();
+          setTimeout(function () {
+            $('#toast').hide();
+          }, 2000);
         }
       },
       error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -261,7 +298,7 @@
 
   $(function () {
     //获取验证码
-    $("#sendcun_user").bind('click',function(){
+    $("#sendcun_user").on('click',function(){
       if ($('#phone').val() == '') {
         $('#error_phone').css('display','block')
         return false;
@@ -278,7 +315,7 @@
     });
 
     //立即预约
-    $('#yuyueSubmit').click(function () {
+    $('#yuyueSubmit').on('click',function () {
       if ($('#name').val() == '') {
         $('#error_name').css('display','block');
         return false;
@@ -308,7 +345,7 @@
       }
       if (!/^\d{6}$/.test($("#code").val())) {
         $('#error_code').css('display','block');
-        $('#error_code').html('您输入的验证码不足6位');
+        $('#error_code').html('您输入的6位验证码');
         return false;
       } else {
         $('#error_code').css('display','none');
@@ -344,8 +381,9 @@
       $("#sendcun_user").attr("value", "发送验证码");
       $("#sendcun_user").css('background','#D51821');
       $("#sendcun_user").css('border','1px solid #D51821');
+      $("#sendcun_user").removeAttr("disabled");
       clearInterval(timer);   
-      $("#sendcun_user").on('click',getCode);
+      // $("#sendcun_user").on('click',getCode);
       $("#dialog1").hide();
     });
   })
