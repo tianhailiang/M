@@ -2873,6 +2873,7 @@ exports.activity_detail = function (req, res, next){
             return next();
         }
         data.activity_detail = returnData(result, 'activity_detail');
+        log.info(data.activity_detail)
         data.tdk = {
             pagekey: 'M_ACTIVITY_DETAIL',
             cityid:cityId,

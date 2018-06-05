@@ -116,6 +116,13 @@
         return false;
       }
     }
+    if($("#get-share-img").attr('data-img')==''){
+      $("#get-share-img").append('<img src="'+getImage()+'" width="0" height="0" />');
+    }
+    function getImage() {
+      // 获取图片
+      return 'http://'+location.host+'/assets/img/share_logo.png';
+    }
     if(isWeiXin()){
       $('.wenxin_con').on('click',function(e){
         e.stopPropagation();
@@ -145,50 +152,6 @@
           $('.cue_qq').css("display", "none");
         }
       });
-    }else{
-      $('.wenxin_con').on('click',function(e){
-        e.stopPropagation();
-        this.flag=!this.flag;
-        if(this.flag) {
-          $('.cue_weixin1').css("display","block");
-        }else{
-          $('.cue_weixin1').css("display","none");
-        }
-      });
-      $('.cue_qq_con').on('click',function(e){
-        e.stopPropagation();
-        this.flag=!this.flag;
-        if(this.flag) {
-          $('.cue_weixin1').css("display","block");
-        }else{
-          $('.cue_weixin1').css("display","none");
-        }
-      });
-      $(document).on('click touchstart', function (){
-        if($('.cue_weixin1').css("display")=='block'){
-          $('.cue_weixin1').css("display","none");
-        }
-      });
-    }
-  }
-</script>
-<script>
-  $(function(){
-    console.log($("#get-share-img").attr('data-img'))
-    if($("#get-share-img").attr('data-img')==''){
-      $("#get-share-img").append('<img src="'+getImage()+'" width="0" height="0" />');
-    }
-    function isWeiXin() {
-      // 检查微信环境
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    // 如果为真，则请求
-    if(isWeiXin()){
       // 去获取signature签名
       $.ajax({
         type: "POST",
@@ -228,7 +191,7 @@
               type: '', // 分享类型,music、video或link，不填默认为link
               dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
               success: function () {
-              // 用户点击了分享后执行的回调函数
+                // 用户点击了分享后执行的回调函数
               }
             });
           });
@@ -236,13 +199,33 @@
         error: function(error){
           console.log(error)
         }
-      }); 
+      });
+    }else{
+      $('.wenxin_con').on('click',function(e){
+        e.stopPropagation();
+        this.flag=!this.flag;
+        if(this.flag) {
+          $('.cue_weixin1').css("display","block");
+        }else{
+          $('.cue_weixin1').css("display","none");
+        }
+      });
+      $('.cue_qq_con').on('click',function(e){
+        e.stopPropagation();
+        this.flag=!this.flag;
+        if(this.flag) {
+          $('.cue_weixin1').css("display","block");
+        }else{
+          $('.cue_weixin1').css("display","none");
+        }
+      });
+      $(document).on('click touchstart', function (){
+        if($('.cue_weixin1').css("display")=='block'){
+          $('.cue_weixin1').css("display","none");
+        }
+      });
     }
-    function getImage() {
-      // 获取图片
-      return 'http://'+location.host+'/assets/img/share_logo.png';
-    }
-  })
+  }
 </script>
 </body>
 </html>
