@@ -16,14 +16,14 @@
   </div>
 </div>
 <!--搜索框 结束-->
-<div class="so-box" id="so-box" style="z-index: 1001">
+<div class="so-box" id="so-box">
   <div class="so-box-content" id="so-box-content">
     <!--国家-->
     {%
     set countryList = [
     {
     "id": 0,
-    "country": "全部"
+    "country": "所有国家"
     },
     {
     "id": 1,
@@ -123,16 +123,33 @@
     }
     ]
     %}
-    <!--文章类别-->
+    <!--时间-->
     {%
-    set crowdType = [
+    set timeType = [
     {
     "id": 0,
-    "type": "全部"
+    "type": "所有时间"
     },
     {
-    "id": 5,
-    "type": "时讯"
+    "id": 1,
+    "type": "进行中活动"
+    },
+    {
+    "id": 2,
+    "type": "未开始活动"
+    },
+    {
+    "id": 3,
+    "type": "已过期活动"
+    }
+    ]
+    %}
+    <!--学历-->
+    {%
+    set eduType = [
+    {
+    "id": 0,
+    "type": "所有学历"
     },
     {
     "id": 1,
@@ -149,101 +166,38 @@
     {
     "id": 4,
     "type": "博士"
-    }
-    ]
-    %}
-    <!--文章标签-->
-    {%
-    set arcType = [
-    {
-    "type": "全部"
     },
     {
-    "type": "专业解析"
-    },
-    {
-    "type": "申请规划"
-    },
-    {
-    "type": "留学费用"
-    },
-    {
-    "type": "留学条件"
-    },
-    {
-    "type": "大学排名"
-    },
-    {
-    "type": "行前指导"
-    },
-    {
-    "type": "就业指导"
-    },
-    {
-    "type": "签证指导"
-    },
-    {
-    "type": "留学案例"
-    },
-    {
-    "type": "院校资讯"
-    },
-    {
-    "type": "留学方案"
-    },
-    {
-    "type": "背景提升"
-    },
-    {
-    "type": "海外生活"
-    },
-    {
-    "type": "备考资讯"
-    },
-    {
-    "type": "文书准备"
-    },
-    {
-    "type": "难点解析"
-    },
-    {
-    "type": "省钱攻略"
+    "id": 5,
+    "type": "在职"
     }
     ]
     %}
     <div class="so-box-item-title"><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-32pxquanqiuzhicai"></use>
-    </svg>国家及地区</div>
+    </svg>国家</div>
     <div class="so-box-item countryId">{% for item in countryList %}<span data-id="{{item.id}}" class={{'focus-on' if item.id == country else ""}}>{{item.country}}</span>{% endfor %}</div>
     <div class="so-box-item-title"><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-riqi"></use>
-    </svg>文章类别：</div>
-    <div class="so-box-item timeType">{% for item in crowdType %}<span data-id="{{item.type}}" class={{'focus-on' if item.type == type else ""}}>{{item.type}}</span>{% endfor %}</div>
-    <div id="taglist">
-      <div class="so-box-item-title"><svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-boshimao1"></use>
-      </svg>文章标签：</div>
-      <div class="so-box-item eduType">{% for item in arcType %}<span data-id="{{item.type}}" class={{'focus-on' if item.type == tag else ""}}>{{item.type}}</span>{% endfor %}</div>
-    </div>
+    </svg>时间</div>
+    <div class="so-box-item timeType">{% for item in timeType %}<span data-id="{{item.id}}" class={{'focus-on' if item.id == timetype else ""}}>{{item.type}}</span>{% endfor %}</div>
+    <div class="so-box-item-title"><svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-boshimao1"></use>
+    </svg>学历</div>
+    <div class="so-box-item eduType">{% for item in eduType %}<span data-id="{{item.type}}" class={{'focus-on' if item.type == crowd else ""}}>{{item.type}}</span>{% endfor %}</div>
   </div>
 </div>
-<div class="so-tab" id="so-tab" style="display: none;z-index: 122">
+<div class="so-tab" id="so-tab" style="display: none;">
   <span class="so-tab-item">清空</span>
   <span class="so-tab-item_active">确定</span>
 </div>
 <script>
   $(function () {
-      var type =$(".timeType .focus-on").attr("data-id");
-      if(type == "时讯"){
-          $("#taglist").css("display","none")
-      }else {
-          $("#taglist").css("display","block")
-      }
       $("#cancel-btn").on('click',function () {
           this.flag=!this.flag;
           if(this.flag){
               $("#so-box").show();
-              $("#so-tab").show();
+            $("#so-tab").show();
               $("body,html").css("position","fixed")
               $(this).html("收起<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin-left:5px;font-size: 14px;\">\n" +
                 "<use xlink:href=\"#icon-xuanxiang-copy\"></use>\n" +
@@ -259,15 +213,7 @@
       });
       $(".so-box-item span").on("click",function () {
           $(this).addClass('focus-on').siblings().removeClass('focus-on');
-          var type =$(".timeType .focus-on").attr("data-id");
-          if(type == "时讯"){
-              $("#taglist").css("display","none")
-              $(".eduType span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
-          }else {
-              $("#taglist").css("display","block")
-          }
       });
-
       $(".so-tab-item").on("click",function () {
           $(".countryId span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
           $(".timeType span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
@@ -275,17 +221,13 @@
       });
       $(".so-tab-item_active").on("click",function () {
           var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
-          var type =$(".timeType .focus-on").attr("data-id");
           var country_id =$(".countryId .focus-on").attr("data-id");
           var crowd =$(".eduType .focus-on").attr("data-id");
-          if(crowd=="全部"){
+          var type =$(".timeType .focus-on").attr("data-id");
+          if(crowd=="所有学历"){
               crowd=""
           }
-          if(type== "全部" ){
-              type=""
-          }
-
-          window.location.href =fn.active_urlgen('articles', 'n=' + country_id ,"type=" + type,"tag=" + crowd )
+          window.location.href =fn.active_urlgen('activity', 'c='+area,'n=' + country_id ,"t=" + type,"crowd=" + crowd )
       })
   })
 </script>
