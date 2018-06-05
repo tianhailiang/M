@@ -727,7 +727,7 @@ exports.so_articles = function (req, res, next) {
         data.keyword=keyword;
         data.order = order;
         data.tdk = {
-            pagekey: 'SEARCARTICLES', //key 同意规定，具体找郭亚超
+            pagekey: 'M_ARTICLE_SEARCH', //key 同意规定，具体找郭亚超
             cityid: area //cityid
         };
         data.esikey = esihelper.esikey();
@@ -3020,8 +3020,8 @@ exports.country_list = function (req, res, next) {
         data.order = order;
         data.cur_page = page;
         data.tdk = {
-            pagekey: 'ARTICLELIST', //key
-            cityid: area,
+            pagekey: 'M_ARTICLE_LIST', //key
+            cityid: area
             // keywords: keyword
         };
         res.render('country_list', data);
