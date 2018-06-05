@@ -48,12 +48,10 @@
 <!-- ===侧边栏==== -->
 {% include "m_widget/slidebar/search_sliderbar.html" %}
 </body>
-<!--<script src="{{helper.cdnhost}}/assets/js/search.js"></script>-->
 <script>
     $(function () {
         var FooterH = $(".footer").outerHeight()+12;
-        var leg = $(".column-news li").outerHeight();
-//        var len = $(".column-news li").length;
+        var leg = $(".column-news").outerHeight();
         if(($(window).height()-81)-FooterH>leg){
             $('.app-in').height($(window).height()-81-FooterH);
         }
