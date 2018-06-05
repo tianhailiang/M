@@ -961,7 +961,7 @@ exports.lunbo_list = function (data, callback) {
     }
   })
 }
-/*登录*/
+/*普通用户验证登录*/
 exports.login_ss = function (data, callback) {
   log.debug(222);
   var url = config.apis.post_login;
@@ -1540,7 +1540,24 @@ exports.activity_detail = function (data, callback) {
   }
   api.apiRequest(url, callback);
 }
-
+//发送短信验证码
+exports.sendSms = function (data, callback) {
+  var url = _api_url_path(data, config.apis.sendSms);
+  if (url == null) {
+    callback('404');
+    return;
+  }
+  api.apiRequest(url, callback);
+}
+//获取优惠卷
+exports.getCoupons = function (data, callback) {
+  var url = _api_url_path(data, config.apis.getCoupons);
+  if (url == null) {
+    callback('404');
+    return;
+  }
+  api.apiRequest(url, callback);
+}
 var redisPool_views = require('redis-connection-pool')('viewNumberCache', {
   host: config.redisCache.host,
   port: config.redisCache.port || 6379,

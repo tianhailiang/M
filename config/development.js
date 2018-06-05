@@ -12,13 +12,16 @@ var prefix = apiconfig.prefix;
 var uc_prefix = apiconfig.uc_prefix;
 var shequ_prefix = apiconfig.shequ_prefix;
 var imageshost = apiconfig.imageshost;
+var coupon = apiconfig.coupon;
 var apis = {
+  "getCoupons": coupon + 'getCoupons',//获取优惠券
+  "sendSms": coupon + 'sendSms', //发送手机验证码（活动页）
   "oauth": uc_prefix + 'index.php',
   "bind_phone": uc_prefix + 'index.php?m=bind_phone',// 绑定手机号
   "forget": uc_prefix + 'index.php?m=forgetpassword',//忘记密码
   "sendcode": uc_prefix + 'index.php',//发送手机验证码
-  "post_login": uc_prefix + 'index.php?m=login',//登录
-  "post_register": uc_prefix + 'index.php?m=register',//注册
+  "post_login": uc_prefix + 'index.php?m=login',//普通用户验证码登录
+  "post_register": uc_prefix + 'index.php?m=user_register',//注册
   "lists": prefix + 'lists',
   "get_city_list": prefix + 'city_list',
   "get_city_guwen": prefix + 'city_guwen',

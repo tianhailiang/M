@@ -101,7 +101,7 @@
 {#{% include "m_widget/evaluate_form/evaluate_form.html" %}#}
 <div class="form-yimin">
   <div class="form-yimin-text"><em >*</em><label for="" style="width:54px;">姓名：</label><input type="text" placeholder="请输入您的真实姓名" id="name"></div>
-  <div class="form-yimin-text"><em>*</em><label for="" style="width:54px;">手机：</label><input type="text" id="phone"><span id="getcode">获取验证码</span></div>
+  <div class="form-yimin-text"><em>*</em><label for="" style="width:54px;">手机：</label><input type="text" id="phone"><span id="getcode" data-coupon="{{param_code}}">获取验证码</span></div>
   <div class="form-yimin-text form-yimin-text1"><label for="">手机验证码：</label><input type="text" id="code"></div>
   <div class="form-yimin-text form-yimin-text1" style="position: relative">
     <label for="">意向国家和地区：</label>
@@ -129,7 +129,7 @@
   </div>
   <div class="form-yimin-text form-yimin-text1" style="position: relative">
     <label for="">移&nbsp;民&nbsp;目&nbsp;的：</label>
-    <select name="" id="project" style=";z-index:2">
+    <select name="" id="project" style="z-index:2">
       <option value='1'>投资移民</option>
       <option value='2'>创业移民</option>
       <option value='3'>技术移民</option>
@@ -162,5 +162,74 @@
 </div>
 <!--提示弹框 end-->
 </body>
-<script src="{{helper.cdnhost}}/assets/js/online_evaluation_yimin.js"></script>
+<!-- <script src="{{helper.cdnhost}}/assets/js/online_evaluation_yimin.js"></script> -->
+
+<script>
+    var timer;
+    function countDown() {
+        // 60s倒计时
+        $("#getcode").attr("disabled", "disabled");
+        var countDownTime = 60;
+        timer = window.setInterval(function () {
+            countDownTime--;
+            $("#getcode").html('（'+countDownTime+'）s');
+            if (countDownTime == 0) {
+                clearInterval(timer);
+                $("#getcode").html('重新获取');
+                $("#getcode").removeAttr("disabled");
+            }
+        }, 1000);
+    }
+
+    $(function () {
+        $('#getcode').on('click', function () {
+            var data = $(this).data('coupon');
+            console.log('data',data)
+            $.ajax({
+                url: '/sendSms',
+                type:'get',
+                data:{
+                    param_code: data,
+                    phone:$("#phone").val()
+                },
+                dataType:'json',
+                success:function(msg){
+                    if(msg.code === 0){
+                    //alert('成功');
+                    countDown();
+                    } else {
+                        alert('出错啦');
+                    }
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
+                }
+            });
+        })
+        $('#evaluationBtn').on('click', function () {
+            $.ajax({
+                url: '/getCoupons',
+                type: 'get',
+                data: {
+                    user_name: $('#name').val(),
+                    mobile: $("#phone").val(),
+                    country_id: 1,
+                    code: $('#code').val()
+                },
+                dataType:'json',
+                success:function(msg){
+                    if(msg.code === 0){
+                        //alert('成功');
+                        alert('优惠码发送成功');
+                    } else {
+                        alert(msg.massage);
+                    }
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
+                }
+            })
+        })
+    })
+</script>
 </html>

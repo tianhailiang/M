@@ -2924,3 +2924,47 @@ exports.coupon = function (req, res, next) {
     };
     res.render('coupon', data);
 }
+//发送短信验证码
+exports.sendsms = function (req, res, next) {
+    var view_code = req.query.param_code;
+    var phone = req.query.phone;
+    var param_code = req.session.param_code;
+    console.log('param_code-----',param_code);
+    console.log('view_code------',view_code);
+    console.log('phone------',phone);
+    if (param_code == view_code) {
+        cms.sendSms({mobile: phone}, function (err,result) {
+            if (err) {
+                res.send(err);
+            } else {
+                console.log(result)
+                res.send(result);
+                //清除session
+                req.session.param_code = false;
+            }
+        })
+    } else {
+        res.send('1');
+    }
+}
+//获取优惠券
+exports.getCoupons = function (req, res, next) {
+    console.log('req.query',req.query)
+    
+    cms.getCoupons(req.query, function (err,result) {
+        if (err) {
+            res.send(err);
+        } else {
+            console.log(result)
+            res.send(result);
+            cms.login_ss({phone: req.query,code: req.query.phone}, function (err,result) {
+                if (err) {
+                    console.log('注册失败');
+                } else {
+                    console.log('注册成功');
+                }
+            })
+        }
+    })
+    
+}

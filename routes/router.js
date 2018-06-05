@@ -106,6 +106,6 @@ exports = module.exports = function (app) {// routes
   app.get(/^\/(bj|cd|cq|cs|cc|cz|dl|dg|fs|fz|gz|gy|hz|hf|hd|heb|hs|hn|jn|jl|km|lz|ly|nj|nc|nb|nn|qd|sh|sy|sjz|shz|sz|tj|ty|ts|wh|wx|wz|xa|xm|xz|xn|xj|yt|yc|ych|zz)\/activity\/(\d+)/,controller.activity_detail);
   app.get('/search_activity',controller.search_activity)
   app.get('/coupon',controller.coupon);//优惠券活动页面
+  app.get('/sendSms',controller.sendsms);//发送短信验证码
+  app.get('/getCoupons',controller.getCoupons);//获取优惠券
 };
-
-
