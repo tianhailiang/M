@@ -105,6 +105,7 @@ exports = module.exports = function (app) {// routes
   app.post('/wxJssdk/getJssdk',controller.wxtoken);
   app.get(/^\/(bj|cd|cq|cs|cc|cz|dl|dg|fs|fz|gz|gy|hz|hf|hd|heb|hs|hn|jn|jl|km|lz|ly|nj|nc|nb|nn|qd|sh|sy|sjz|shz|sz|tj|ty|ts|wh|wx|wz|xa|xm|xz|xn|xj|yt|yc|ych|zz)\/activity\/(\d+)/,controller.activity_detail);
   app.get('/search_activity',controller.search_activity)
+  app.get('/coupon',controller.coupon);//优惠券活动页面
 };
 
 

@@ -15,6 +15,8 @@ var config = require('./config/config');
 var viewcache = require('./middleware/viewcache');
 var tdk_monitor = require('./tdk/tdk_monitor');
 var url_rewrite = require("./middleware/url_decode");
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 app.use(favicon(path.join(__dirname,'favicon.ico')));
 
 var viewspath = 'views';
@@ -44,7 +46,20 @@ env.express(app);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cookieParser());
+app.use(cookieParser('Asecretqqqq-'));
+
+//seesion
+app.use(session({
+    secret:'Asecretqqqq-',
+    store: new RedisStore({
+        host: 'jjl-redis.3p6fml.0001.cnn1.cache.amazonaws.com.cn',
+        port:6379
+    }),
+    resave: false,
+    saveUninitialized:true
+}));
+
 if(process.env.NODE_ENV == 'development'){
   app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
   app.use('/dep', express.static(path.join(__dirname, 'public/dep')));
@@ -53,7 +68,7 @@ if(process.env.NODE_ENV == 'development'){
   app.use('/dep', express.static(path.join(__dirname, 'dist/public/dep')));
 }
 
-/*¿ª·¢»·¾³ ajaxÔÊÐí¿çÓò*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ajaxï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 if (config.version == 'development') {
     app.all('*', function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");

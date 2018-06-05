@@ -517,6 +517,14 @@ function getLink(pageKey) {
   }
 }
 
+//生成6位随机数
+function rndNum(){
+  var rnd = "";
+  for(var i = 0;i < 6; i++)
+    rnd += Math.floor(Math.random()*9);
+  return rnd;
+}
+
 module.exports = {
   cut: strcut ,
   getDefault: getDefaultFormat,
@@ -532,5 +540,6 @@ module.exports = {
   include: esinclude,
   school_logo: school_logo,
   getLink: getLink,
+  rndNum: rndNum,
   wwhost: config.wwhost
 };

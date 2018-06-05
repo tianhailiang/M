@@ -2908,3 +2908,19 @@ exports.check_token = function (req, res, next) {
     };
     res.send(comfunc.api_return('0', 'token check success', tokenfunc.createToken(data)));
 };
+//优惠券活动页面
+exports.coupon = function (req, res, next) {
+    var moment = require('moment');
+    var data = [];
+    var run = helperfunc.rndNum()
+    //生成验证码
+    data.param_code = sha1(helperfunc.rndNum() + moment().format('YYYY-MM-DD'))
+    req.session.param_code = data.param_code;
+    console.log('run-----',helperfunc.rndNum() + moment().format('YYYY-MM-DD'));
+    console.log('param_code~~',data.param_code);
+    console.log('session------',req.session.param_code);
+    data.tdk = {
+        pagekey: 'COUPON'
+    };
+    res.render('coupon', data);
+}
