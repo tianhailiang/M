@@ -48,8 +48,8 @@
 <script>
   $(document).ready(function (){
     var FooterH = $(".footer").height()+45+51;
-    var leg =$(".column-news li").height();
-    if(($(window).height()-81)-FooterH>$(".column-news li").length*leg){
+    var leg =$(".column-news").height();
+    if(($(window).height()-81)-FooterH>leg){
       $('.app-in').height(($(window).height()-81)-FooterH);
     }
 
