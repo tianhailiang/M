@@ -137,7 +137,7 @@
         		id:"113"
         	}
         ] %}
-        <ul class="country-ul" >
+        <ul class="country-ul" data-country="{{country}}" >
             {% for item in countryList %}
                 {% if loop.index < 8%}
 		       	    <li>
@@ -164,15 +164,25 @@
 		    {% endfor %}
         </ul>
         <!--国家学历表 -->
+        {% set eduList = [
+            {'name':'中学'},
+            {'name':'本科'},
+            {'name':'硕士'},
+            {'name':'博士'}
+        ] %}
         <div class="team-top" >
             <h2>{{country|getCountry}}留学</h2>
             <ul class="team-top-ul">
                 <li class="active">推荐</li>
-                <li>中学</li>
-                <li>本科</li>
-                <li>硕士</li>
-                <li>博士</li>
+                {% for item in eduList %}
+                    <li>{{item.name}}</li>
+                {% endfor %}
             </ul>
+            <div class="team-top-down" id="showIOSActionSheet">
+                <svg class="icon" aria-hidden="true" >
+                    <use xlink:href="#icon-qianjin-copy1"></use>
+                </svg>
+            </div>
         </div>
         <div class="country-edu-box">
             {% for item in shouye.list %}
@@ -187,6 +197,98 @@
     {% include "m_widget/slidebar/slidebar.html" %}
     <!-- ======乐语底栏======= -->
     {% include 'm_widget/funtalk/funtalk.html' %}
+    <!--BEGIN actionSheet-->
+    <div>
+        <div class="weui-mask" id="iosMask" style="display: none"></div>
+        <div class="weui-actionsheet" id="iosActionsheet" >
+            <div class="tag-content">
+                <div class="tag-top">
+                    <svg class="icon" aria-hidden="true" id="iosActionsheetCancel">
+                        <use xlink:href="#icon-guanbi1"></use>
+                    </svg>
+                </div>
+                <div class="tag-title" >
+                    <svg class="icon" aria-hidden="true" style="color:#d51821;" >
+                        <use xlink:href="#icon-boshimao1"></use>
+                    </svg>
+                    <span>学历标签</span>
+                </div>
+                <ul class="tag-ul">
+                    {% for item in eduList %}
+                        <li>{{item.name}}</li>
+                    {% endfor %}
+                </ul>
+                <div class="tag-title" >
+                    <svg class="icon" aria-hidden="true" style="color:#d51821;" >
+                        <use xlink:href="#icon-yueduliang_"></use>
+                    </svg>
+                    <span>文章标签</span>
+                </div>
+                {% set arcType = [
+                    {
+                    "type": "专业解析"
+                    },
+                    {
+                    "type": "申请规划"
+                    },
+                    {
+                    "type": "留学费用"
+                    },
+                    {
+                    "type": "留学条件"
+                    },
+                    {
+                    "type": "大学排名"
+                    },
+                    {
+                    "type": "行前指导"
+                    },
+                    {
+                    "type": "就业指导"
+                    },
+                    {
+                    "type": "签证指导"
+                    },
+                    {
+                    "type": "留学案例"
+                    },
+                    {
+                    "type": "院校资讯"
+                    },
+                    {
+                    "type": "留学方案"
+                    },
+                    {
+                    "type": "背景提升"
+                    },
+                    {
+                    "type": "海外生活"
+                    },
+                    {
+                    "type": "备考资讯"
+                    },
+                    {
+                    "type": "文书准备"
+                    },
+                    {
+                    "type": "难点解析"
+                    },
+                    {
+                    "type": "省钱攻略"
+                    }
+                ]%}
+                <ul class="tag-arc-ul">
+                    {% for item in arcType %}
+                        <li>{{item.type}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="tag-btn">
+                <div class="tag-clear-btn">清空</div>
+                <div class="tag-sure-btn">确认</div>
+            </div>
+        </div>
+    </div>
     <script  src="{{helper.cdnhost}}/dep/js/swiper_new_1-3.4.2.jquery.min.js"></script>
     <script >
         $(function(){
@@ -211,6 +313,40 @@
                 $(this).addClass('active');
                 $('.country-edu-ul').css({'display':'none'});
                 $('.country-edu-ul').eq($(this).index()).css({'display':'block'});
+            });
+            var $iosActionsheet = $('#iosActionsheet');
+            var $iosMask = $('#iosMask');
+            function hideActionSheet() {
+                $iosActionsheet.removeClass('weui-actionsheet_toggle');
+                $iosMask.fadeOut(200);
+                $("#app").css({'position':'absolute'});
+            }
+            $iosMask.on('click', hideActionSheet);
+            $('#iosActionsheetCancel').on('click', hideActionSheet);
+            $("#showIOSActionSheet").on("click", function(){
+                $iosActionsheet.addClass('weui-actionsheet_toggle');
+                $iosMask.fadeIn(200);
+                $("#app").css({'position':'fixed'});
+            });
+            $('.tag-ul li').on('click',function(){
+                $('.tag-ul li').removeClass('active');
+                $(this).addClass('active');
+            });
+            $('.tag-arc-ul li').on('click',function(){
+                $('.tag-arc-ul li').removeClass('active');
+                $(this).addClass('active');
+            });
+            $('.tag-clear-btn').on('click',function(){
+                $('.tag-ul li').removeClass('active');
+                $('.tag-arc-ul li').removeClass('active');
+            });
+            $('.tag-sure-btn').on('click',function(){
+                console.log($('.country-ul').attr('data-country'))
+                console.log($('.tag-ul').find('.active').text())
+                console.log($('.tag-arc-ul').find('.active').text())
+                window.location.href =fn.active_urlgen('articles', 'n=' +$('.country-ul').attr('data-country') ,
+                "type=" + $('.tag-ul').find('.active').text(),"tag=" + $('.tag-arc-ul').find('.active').text() );
+
             });
             
         })
