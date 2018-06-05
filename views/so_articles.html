@@ -18,8 +18,10 @@
                 <li data-type="views" {% if order == 'views' %}class="active"{% else %}{% endif %}><a href="{{helper.active_urlgen('so_articles','q='+ keyword, 'order=views')}}">最热hot</a></li>
             </ul>
             {% if activity_list.total != 0 %}
-            <div class="search-result">
-                {% include "m_widget/news_list/articles_list.html" %}
+            <div class="search-result" style="background-color: #fff;">
+                <ul class="column-news">
+                    {% include "m_widget/news_list/articles_list.html" %}
+                </ul>
             </div>
             <div class="loader">
                 <span>加载更多...</span>
@@ -50,13 +52,15 @@
 <script>
     $(function () {
         var FooterH = $(".footer").outerHeight()+12;
-        if(($(window).height()-81)-FooterH>$(".activity-list-content").length*(159.5+10)){
+        var leg = $(".column-news li").outerHeight();
+        var len = $(".column-news li").length;
+        if(($(window).height()-81)-FooterH>leg*len){
             $('.app-in').height($(window).height()-81-FooterH);
         }
         var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
         var flag = true;
         var searchWord = $('#search-content').attr('data-keyword');
-        var searchResult = $('.search-result');
+        var searchResult = $('.column-news');
         var activeLi = $('#tab-type').find('.active').attr('data-type');
         var searchType = activeLi? activeLi: 'score';
         var cur_page = 1;
@@ -76,7 +80,7 @@
         });
         /*取消*/
         $('#cancel-btn').on('click', function () {
-            window.location.href = fn.active_urlgen('activity','c='+area)
+            window.location.href = fn.active_urlgen('articles')
         });
         $(window).scroll(function(){
             var scrollTop = $(window).scrollTop();
@@ -94,14 +98,14 @@
         /*请求数据*/
         function getDataFn () {
             $.ajax({
-                url: '/search_activity',
+                url: '/search_articles',
                 type: 'get',
                 data: {
                     "key_word":encodeURI(searchWord),
-                    "stime":searchType,
+                    "order": searchType,
                     "city_id":area,
                     "page":cur_page,
-                    "per_page": 3
+                    "per_page": 4
                 },
                 success: function (msg) {
                     if (msg == '未请求到数据，请求完毕') {

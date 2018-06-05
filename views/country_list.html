@@ -29,13 +29,9 @@
       </ul>
       {% if articles_list.total != 0 %}
       <div class="search-result" id="activity-list" data-country="{{country}}" data-type="{{type}}" data-crowd="{{tag}}">
-        <div class="tabitems">
-          <div class="items-gruop">
-            <ul class="column-news">
-                {% include "m_widget/news_list/articles_list.html" %}
-            </ul>
-          </div>
-        </div>
+          <ul class="column-news">
+              {% include "m_widget/news_list/articles_list.html" %}
+          </ul>
       </div>
       <div class="loader">
         <span>加载更多...</span>

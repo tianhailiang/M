@@ -2912,6 +2912,37 @@ exports.search_activity = function(req,res,next){
         }
     })
 };
+/*
+ * 搜索文章
+ * */
+exports.search_articles = function(req,res,next){
+    var data = req.query;
+    var resData = [];
+    cms.so_article_list(data,function(err,result){
+        if(err){
+            res.send(err);
+        }else{
+            if (result.code == 0) {
+                if ( result.data.totalpage < data.page ) {
+                    res.send('未请求到数据，请求完毕');
+                }
+                else {
+                    if (result.data.list.length <= 0 ) {
+                        res.send('未请求到数据，请求完毕');
+                    }
+                    else if (result.data.list.length > 0 && result.data.list.length < data.per_page) {
+                        resData.article_list = result.data;
+                        res.render('m_widget/news_list/articles_list', resData);
+                    }
+                    else {
+                        resData.article_list = result.data;
+                        res.render('m_widget/news_list/articles_list', resData);
+                    }
+                }
+            }
+        }
+    })
+};
 // 浏览量
 exports.article_count = function (req, res, next) {
     data = req.query;

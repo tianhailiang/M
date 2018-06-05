@@ -107,6 +107,7 @@ exports = module.exports = function (app) {// routes
   app.post('/wxJssdk/getJssdk',controller.wxtoken);
   app.get(/^\/(bj|cd|cq|cs|cc|cz|dl|dg|fs|fz|gz|gy|hz|hf|hd|heb|hs|hn|jn|jl|km|lz|ly|nj|nc|nb|nn|qd|sh|sy|sjz|shz|sz|tj|ty|ts|wh|wx|wz|xa|xm|xz|xn|xj|yt|yc|ych|zz)\/activity\/(\d+)/,controller.activity_detail);
   app.get('/search_activity',controller.search_activity);
+  app.get('/search_articles',controller.search_articles);
   app.get(/^\/articles(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/, controller.country_list);
   app.get(/^\/so_articles(\/*)((?![0-9])[0-9A-Za-z\-_%~'!@#$^&*()-+=:]*)$/,controller.so_articles);//文章搜索页
 };
