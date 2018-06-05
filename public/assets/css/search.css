@@ -37,6 +37,7 @@
     padding-left: 5px;
     line-height: 28px;
     color: #999;
+    font-size: 12px;
 }
 .search-bar input::-webkit-input-placeholder{
     color:#666;
