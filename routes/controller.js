@@ -10,6 +10,8 @@ var tokenfunc = require('./token.js');
 var helperfunc = require('../common/helper');
 const sha1 = require('sha1');
 var wechat = require('../model/wechat.js');
+var request = require('request');
+var get_area_code = require('./ip_poll');
 function returnData(obj,urlName){
   if(obj.code==0){
     return obj.data;
@@ -1163,6 +1165,35 @@ exports.study_abroad_activity = function (req, res, next) {
 
   })
 };
+//留学活动--中间页面
+exports.activity_ip = function (req, res, next) {
+    var area = req.cookies.currentarea;
+    if(area){
+        res.redirect(helperfunc.active_urlgen('activity','c='+area));
+    }else{
+        var ip = req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
+        if(ip.split(',').length>0){
+            ip = ip.split(',')[0]
+        }
+        ip = '061.134.198.000'; //我的外网ip地址
+        log.info(ip)
+        request.get('http://api.map.baidu.com/location/ip?ip='+ip+'&ak=oTtUZr04m9vPgBZ1XOFzjmDpb7GCOhQw&coor=bd09ll',function (error, response, body){
+            if(!error && response.statusCode == 200){
+                log.info(body)
+                var b =JSON.parse(body);
+                var cityCode ='';
+                if(b.content){
+                    cityCode = get_area_code(b.content.address_detail.city);
+                    res.redirect(helperfunc.active_urlgen('activity','c='+cityCode));
+                }
+            }else{
+                res.redirect(helperfunc.active_urlgen('activity','c='+1));
+            }
+        })
+    }
+
+
+}
 //明星顾问列表加载更多
 exports.advisor_list_moer = function (req, res, next) {
   var data = req.query;
@@ -2967,6 +2998,7 @@ exports.country_list = function (req, res, next) {
  * 搜索活动
  * */
 exports.more_articles = function(req,res,next){
+    log.debug('国家列表页加载更多');
     var data = req.query;
     var resData = [];
     cms.search_article_list(data,function(err,result){
@@ -2982,11 +3014,11 @@ exports.more_articles = function(req,res,next){
                         res.send('未请求到数据，请求完毕');
                     }
                     else if (result.data.list.length > 0 && result.data.list.length < data.per_page) {
-                        resData.activity_list = result.data;
+                        resData.article_list = result.data;
                         res.render('m_widget/news_list/articles_list', resData);
                     }
                     else {
-                        resData.activity_list = result.data;
+                        resData.article_list = result.data;
                         res.render('m_widget/news_list/articles_list', resData);
                     }
                 }
