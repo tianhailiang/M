@@ -2969,7 +2969,6 @@ exports.country_list = function (req, res, next) {
 exports.more_articles = function(req,res,next){
     log.debug('国家列表页加载更多');
     var data = req.query;
-    log.info("国家",data)
     var resData = [];
     cms.search_article_list(data,function(err,result){
         if(err){
