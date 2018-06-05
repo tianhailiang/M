@@ -5,21 +5,22 @@
 <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/search_activity.css"/>
 <style>
   .loader{
-    margin-top: 10px;
+    padding-top: 10px;
+    background: #f5f5f5;
   }
   .search-result{
     padding: 35px 0px 0px;
     background: #fff;
   }
-  .activity-list{
-    padding:0;
+  .footer{
+    margin-bottom: 49px
   }
 </style>
 <body>
 {% include "m_widget/top/common_top.html" %}
 {% include "m_widget/search/search_articlelist.html" %}
 <div id="app">
-  <div class="app-in">
+  <div class="app-in" style="background: #fff">
     <div class="has-content">
       <ul class="tab-type" id="tab-type">
         <li data-type="score" {% if order == 'score' %}class="active"{% else %}{% endif %}><a href="{{helper.active_urlgen('articles',('n=' + country) if country else '', ('type=' + type) if type else '',('tag=' + tag) if tag else '')}}">综合</a></li>
@@ -28,18 +29,17 @@
       </ul>
       {% if articles_list.total != 0 %}
       <div class="search-result" id="activity-list" data-country="{{country}}" data-type="{{type}}" data-crowd="{{tag}}">
-          {% include "m_widget/news_list/articles_list.html" %}
+        <div class="tabitems">
+          <div class="items-gruop">
+            <ul class="column-news">
+                {% include "m_widget/news_list/articles_list.html" %}
+            </ul>
+          </div>
+        </div>
       </div>
       <div class="loader">
         <span>加载更多...</span>
         <img src="{{helper.cdnhost}}/assets/img/load.gif" alt="">
-      </div>
-      {% else %}
-      <div id="search-black">
-        <div class="search-black-img">
-          <img src="{{helper.cdnhost}}/assets/img/search-black.png" alt="">
-          <p>还没有任何活动</p>
-        </div>
       </div>
       {% endif %}
     </div>
@@ -51,10 +51,11 @@
 {% include 'm_widget/funtalk/funtalk.html' %}
 <script>
   $(document).ready(function (){
-//    var FooterH = $(".footer").height()+45+51
-//    if(($(window).height()-81)-FooterH>$(".activity-list-content").length*(159.5+10)){
-//      $('.app-in').height(($(window).height()-81)-FooterH);
-//    }
+    var FooterH = $(".footer").height()+45+51;
+    var leg =$(".column-news li").height();
+    if(($(window).height()-81)-FooterH>$(".column-news li").length*leg){
+      $('.app-in').height(($(window).height()-81)-FooterH);
+    }
 
     var cur_page = 1
     var flag = true;
@@ -74,7 +75,7 @@
       });
       /*请求数据*/
     function getDataFn () {
-      var searchResult = $('.search-result');
+      var searchResult = $('.column-news');
 //      var now_page = cur_page;
       var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
       var order = $('#tab-type').find('.active').attr('data-type');
