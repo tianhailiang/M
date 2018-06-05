@@ -11,9 +11,9 @@
             {% endif %}
           </div>
           <a class="" href="{{helper.urlgen('case',item.id | safeId | string) if item.type == 1 else helper.urlgen('article',item.id | safeId | string)}}">
-            <p style="color: #333;font-size: 15px">{{item.title | ellipsis(15) }}</p>
+            <p style="color: #333;font-size: 15px;line-height: 15px">{{item.title | ellipsis(15) }}</p>
             <p class="line-clamp-2">{{item.introduce}}</p>
-            <p>{{item.add_time | getDefaultFormat('YYYY-MM-DD HH:mm:ss')}}</p>
+            <p style="line-height: 12px">{{item.add_time | getDefaultFormat('YYYY-MM-DD HH:mm:ss')}}</p>
           </a>
         </div>
       </li>

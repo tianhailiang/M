@@ -48,11 +48,12 @@
     transform: scaleY(.5);
     transform-origin: 0 0;
 }
-.items-gruop h2{
+.column-news h2{
     font-size: 14px;
     color: #666;
+    line-height: 14px;
 }
-.items-gruop h2 span {
+.column-news h2 span {
     display: inline-block;
     margin-left: 7px;
     width: 14px;
