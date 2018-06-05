@@ -2,9 +2,10 @@
 <html lang="en">
 {% include "header.html" %}
 <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/search_activity.css"/>
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/articles_list.css">
 <body>
 {% include "m_widget/top/common_top.html" %}
-{% import "m_widget/search/search_articlelist.html" as search %}
+{% import "m_widget/search/search_articles.html" as search %}
 {{search.searchbar(keyword)}}
 <!--顶部tab切换 end-->
 <div id="app" >
@@ -12,9 +13,9 @@
         {% if keyword != ''%}
         <div class="has-content">
             <ul class="tab-type" id="tab-type">
-                <li class="{{'active' if type == 1 else ''}}" data-type="1"><a href="{{helper.schoolrankUrlgen('so_activity','q='+ keyword, 'type=1')}}">综合</a></li>
-                <li class="{{'active' if type == 2 else ''}}" data-type="2"><a href="{{helper.schoolrankUrlgen('so_activity','q='+ keyword, 'type=2')}}">最新new</a></li>
-                <li class="{{'active' if type == 3 else ''}}" data-type="3"><a href="{{helper.schoolrankUrlgen('so_activity','q='+ keyword, 'type=3')}}">最热hot</a></li>
+                <li data-type="score" {% if order == 'score' %}class="active"{% else %}{% endif %}><a href="{{helper.active_urlgen('so_articles','q='+ keyword, 'order=score')}}">综合</a></li>
+                <li data-type="add_time" {% if order == 'add_time' %}class="active"{% else %}{% endif %}><a href="{{helper.active_urlgen('so_articles','q='+ keyword,'order=add_time')}}">最新new</a></li>
+                <li data-type="views" {% if order == 'views' %}class="active"{% else %}{% endif %}><a href="{{helper.active_urlgen('so_articles','q='+ keyword, 'order=views')}}">最热hot</a></li>
             </ul>
             {% if activity_list.total != 0 %}
             <div class="search-result">
@@ -57,16 +58,16 @@
         var searchWord = $('#search-content').attr('data-keyword');
         var searchResult = $('.search-result');
         var activeLi = $('#tab-type').find('.active').attr('data-type');
-        var searchType = activeLi? activeLi: 1;
+        var searchType = activeLi? activeLi: 'score';
         var cur_page = 1;
         /*输入搜索关键词 回车搜索*/
         $('#searchForm').on('keypress', function (e) {
             var keycode = e.keyCode;
             searchWord = $('#search-content').val();
             if (keycode == 13) {
-                searchType = 1;
+                searchType = 'score';
                 e.preventDefault();
-                window.location.href = fn.urlgen('so_activity','q='+ searchWord,'type='+searchType)
+                window.location.href = fn.urlgen('so_articles','q='+ searchWord,'type='+searchType)
             }
         });
         /*清除关键词*/

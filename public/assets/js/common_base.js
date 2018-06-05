@@ -479,7 +479,7 @@
      * 区分静态和伪静态， 伪静态中n变量需要存在不能去掉
      */
     function exits_static_page(path) {
-        var reg_list = path.match(/^(.*)\/(glue|news|citynews|focus|visa|prereq|cost|nation|schoolranknews|recommand|interpret|scholarship|media|eduquestion|school|adviser|activity|cases|schoollib|yimin|product|special|so_activity|so_case|so_news|so_school|so_advisor)(.*).html$/g);
+        var reg_list = path.match(/^(.*)\/(glue|news|citynews|focus|visa|prereq|cost|nation|schoolranknews|recommand|interpret|scholarship|media|eduquestion|school|adviser|activity|cases|schoollib|yimin|product|special|so_activity|so_case|so_news|so_school|so_advisor|so_articles)(.*).html$/g);
         var reg_detail = path.match(/^(.*)\/(glue|news|citynews|focus|visa|prereq|cost|nation|schoolranknews|recommand|interpret|scholarship|media|eduquestion|school|adviser|activity|cases|schoollib|yimin|product|special)\/(\d+).html$/g);
 
         var rank = path.match(/^(.*)\/(nationrank|schoolrank|specialrank|productrank).html$/g);

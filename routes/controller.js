@@ -701,6 +701,7 @@ exports.so_activity = function (req, res, next) {
 };
 //so_articles
 exports.so_articles = function (req, res, next) {
+    log.info('文章搜索页')
     var data = [];
     var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
     var nquery = comfunc.getReqQuery(req.params[1]);
@@ -724,6 +725,7 @@ exports.so_articles = function (req, res, next) {
     }, function (err, result) {
         data.article_list = returnData(result.so_article_list,'so_article_list');
         data.keyword=keyword;
+        data.order = order;
         data.tdk = {
             pagekey: 'SEARCARTICLES', //key 同意规定，具体找郭亚超
             cityid: area //cityid
