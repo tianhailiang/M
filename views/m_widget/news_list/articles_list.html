@@ -1,8 +1,5 @@
-<div class="tabitems">
-  <div class="items-gruop">
-    <ul class="column-news">
-      {% for item in article_list.list%}
-      <li>
+{% for item in article_list.list%}
+<li>
         <a href="{{helper.urlgen(item.user_info.uid | safeId | string)}}">
           <span class="spanpicter" style="background:url({{helper.avaterimg(item.user_info.uid, 'small',item.user_info.status, item.user_info.version)}}) no-repeat 0 0;background-size: cover;"></span>
         </a>
@@ -20,7 +17,4 @@
           </a>
         </div>
       </li>
-      {% endfor %}
-    </ul>
-  </div>
-</div>
+{% endfor %}
