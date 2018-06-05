@@ -697,37 +697,37 @@ exports.so_activity = function (req, res, next) {
         res.render('search',data);
     }
 };
-//search_news
-exports.search_news = function (req, res, next) {
+//so_articles
+exports.so_articles = function (req, res, next) {
     var data = [];
     var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
     var nquery = comfunc.getReqQuery(req.params[1]);
     var page = nquery && nquery.page ? nquery.page : 1;
     var keyword = nquery && nquery.q ? decodeURI(nquery.q) : '';
+    var order = nquery && nquery.order ? nquery.order : "score";
     if(!comfunc.cityid_invalidcheck(area)){
         next();
         return false;
     }
     async.parallel({
-        searcharticle: function (callback) { //1月12号产品确认搜索城市资讯
-            cms.searcharticle({
-                //"country_id": country,
-                "city_id": area,
-                "key_word": encodeURI(keyword),
-                //"order":order,
-                "per_page": "7",
+        so_article_list:function(callback) {
+            cms.so_article_list({
+                order: order,
+                key_word:encodeURI(keyword),
+                city_id:area,
+                "per_page": "4",
                 "page": page
             }, callback);
         }
     }, function (err, result) {
-        data.channel_list = returnData(result.searcharticle,'searcharticle');
+        data.article_list = returnData(result.so_article_list,'so_article_list');
         data.keyword=keyword;
         data.tdk = {
-            pagekey: 'SEARCHNEWS', //key 同意规定，具体找郭亚超
+            pagekey: 'SEARCARTICLES', //key 同意规定，具体找郭亚超
             cityid: area //cityid
         };
         data.esikey = esihelper.esikey();
-        res.render('so_news', data);
+        res.render('so_articles', data);
     });
 };
 //search_advisor

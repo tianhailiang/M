@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/search_activity.css"/>
+<body>
+{% include "m_widget/top/common_top.html" %}
+{% import "m_widget/search/search_articlelist.html" as search %}
+{{search.searchbar(keyword)}}
+<!--顶部tab切换 end-->
+<div id="app" >
+    <div class="app-in">
+        {% if keyword != ''%}
+        <div class="has-content">
+            <ul class="tab-type" id="tab-type">
+                <li class="{{'active' if type == 1 else ''}}" data-type="1"><a href="{{helper.schoolrankUrlgen('so_activity','q='+ keyword, 'type=1')}}">综合</a></li>
+                <li class="{{'active' if type == 2 else ''}}" data-type="2"><a href="{{helper.schoolrankUrlgen('so_activity','q='+ keyword, 'type=2')}}">最新new</a></li>
+                <li class="{{'active' if type == 3 else ''}}" data-type="3"><a href="{{helper.schoolrankUrlgen('so_activity','q='+ keyword, 'type=3')}}">最热hot</a></li>
+            </ul>
+            {% if activity_list.total != 0 %}
+            <div class="search-result">
+                {% include "m_widget/news_list/articles_list.html" %}
+            </div>
+            <div class="loader">
+                <span>加载更多...</span>
+                <img src="{{helper.cdnhost}}/assets/img/load.gif" alt="">
+            </div>
+            {% else %}
+            <div id="search-black">
+                <div class="search-black-img">
+                    <img src="{{helper.cdnhost}}/assets/img/search-black.png" alt="">
+                    <p>还没有任何活动</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="white-page"></div>
+        {% endif %}
+    </div>
+    <!--footer start-->
+    {% include "m_widget/booking/booking.html" %}
+    {% include "m_widget/footer/common_footer.html" %}
+    <!--footer end-->
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/search_sliderbar.html" %}
+</body>
+<!--<script src="{{helper.cdnhost}}/assets/js/search.js"></script>-->
+<script>
+    $(function () {
+        var FooterH = $(".footer").outerHeight()+12;
+        if(($(window).height()-81)-FooterH>$(".activity-list-content").length*(159.5+10)){
+            $('.app-in').height($(window).height()-81-FooterH);
+        }
+        var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
+        var flag = true;
+        var searchWord = $('#search-content').attr('data-keyword');
+        var searchResult = $('.search-result');
+        var activeLi = $('#tab-type').find('.active').attr('data-type');
+        var searchType = activeLi? activeLi: 1;
+        var cur_page = 1;
+        /*输入搜索关键词 回车搜索*/
+        $('#searchForm').on('keypress', function (e) {
+            var keycode = e.keyCode;
+            searchWord = $('#search-content').val();
+            if (keycode == 13) {
+                searchType = 1;
+                e.preventDefault();
+                window.location.href = fn.urlgen('so_activity','q='+ searchWord,'type='+searchType)
+            }
+        });
+        /*清除关键词*/
+        $('#del-keyword').on('click', function () {
+            $('#search-content').val('').focus();
+        });
+        /*取消*/
+        $('#cancel-btn').on('click', function () {
+            window.location.href = fn.active_urlgen('activity','c='+area)
+        });
+        $(window).scroll(function(){
+            var scrollTop = $(window).scrollTop();
+            var clientHeight = $(window).height();
+            var docHeight = $(document).height();
+            if(scrollTop >= (docHeight - clientHeight) - 115) {
+                $('.loader').show();
+                if(flag){
+                    flag = false;
+                    cur_page++;
+                    setTimeout(getDataFn,100)
+                }
+            }
+        });
+        /*请求数据*/
+        function getDataFn () {
+            $.ajax({
+                url: '/search_activity',
+                type: 'get',
+                data: {
+                    "key_word":encodeURI(searchWord),
+                    "stime":searchType,
+                    "city_id":area,
+                    "page":cur_page,
+                    "per_page": 3
+                },
+                success: function (msg) {
+                    if (msg == '未请求到数据，请求完毕') {
+                        $('.loader > span').text('数据加载完毕！')
+                        $('.loader > img').remove()
+                    }
+                    else {
+                        searchResult.append($.parseHTML(msg));
+                        flag = true;
+                    }
+                }
+            })
+        }
+    })
+</script>
+</html>
