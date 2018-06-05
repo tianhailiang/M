@@ -215,13 +215,11 @@
       <use xlink:href="#icon-32pxquanqiuzhicai"></use>
     </svg>国家及地区</div>
     <div class="so-box-item countryId">{% for item in countryList %}<span data-id="{{item.id}}" class={{'focus-on' if item.id == country else ""}}>{{item.country}}</span>{% endfor %}</div>
-    <div class="so-box-item-title"><svg class="icon" aria-hidden="true">
-      <use xlink:href="#icon-riqi"></use>
-    </svg>文章类别：</div>
+    <div class="so-box-item-title"><i class="iconfont" style="font-size: 15px;color: #c13232;margin-right: 8px;">&#xe60c;</i>文章类别：</div>
     <div class="so-box-item timeType">{% for item in crowdType %}<span data-id="{{item.type}}" class={{'focus-on' if item.type == type else ""}}>{{item.type}}</span>{% endfor %}</div>
     <div id="taglist">
       <div class="so-box-item-title"><svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-boshimao1"></use>
+        <use xlink:href="#icon-yueduliang_"></use>
       </svg>文章标签：</div>
       <div class="so-box-item eduType">{% for item in arcType %}<span data-id="{{item.type}}" class={{'focus-on' if item.type == tag else ""}}>{{item.type}}</span>{% endfor %}</div>
     </div>
