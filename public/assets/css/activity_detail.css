@@ -301,12 +301,13 @@
   background:url(../img/cue_qq.png) no-repeat;
   background-size: cover;
 }
-.bdshare-button-style0-16 .bds_tsina{
+.bdshare-button-style0-16 .bds_tsinax{
   width: 40px;
   height: 40px;
   background:url(../img/xinlang.png) no-repeat;
   background-size: cover;
   display: inline-block;
+  margin: 0;
 }
 .header-jjl_xin {
   background: #d51821;
@@ -338,7 +339,8 @@
 }
 .bdshare-button-style0-16 {
   flex: 1;
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 .xianzhi-img img {
   display: table;
