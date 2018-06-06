@@ -108,4 +108,5 @@ exports = module.exports = function (app) {// routes
   app.get('/coupon',controller.coupon);//优惠券活动页面
   app.get('/sendSms',controller.sendsms);//发送短信验证码
   app.get('/getCoupons',controller.getCoupons);//获取优惠券
+  app.get('/obtain',controller.obtain);//获取优惠券二维码
 };
