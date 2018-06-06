@@ -17,7 +17,7 @@
                 <li data-type="add_time" {% if order == 'add_time' %}class="active"{% else %}{% endif %}><a href="{{helper.active_urlgen('so_articles','q='+ keyword,'order=add_time')}}">最新new</a></li>
                 <li data-type="views" {% if order == 'views' %}class="active"{% else %}{% endif %}><a href="{{helper.active_urlgen('so_articles','q='+ keyword, 'order=views')}}">最热hot</a></li>
             </ul>
-            {% if activity_list.total != 0 %}
+            {% if article_list.total != 0 %}
             <div class="search-result" style="background-color: #fff;">
                 <ul class="column-news">
                     {% include "m_widget/news_list/articles_list.html" %}
@@ -31,7 +31,7 @@
             <div id="search-black">
                 <div class="search-black-img">
                     <img src="{{helper.cdnhost}}/assets/img/search-black.png" alt="">
-                    <p>还没有任何活动</p>
+                    <p>还没有任何文章~</p>
                 </div>
             </div>
             {% endif %}
