@@ -1,0 +1,289 @@
+<!--搜索框 开始-->
+<div class="search-container">
+  <div class="search-box" >
+    <a class="search-bar" href="{{helper.urlgen('so_articles')}}">
+      <p id="search-content">请输入文章标题或关键词</p>
+      <div style="width: 30px;height: 30px;text-align: right;line-height: 30px;" id="search-btn">
+        <svg class="icon icon-sousuo" aria-hidden="true">
+          <use xlink:href="#icon-sousuo"></use>
+        </svg>
+      </div>
+    </a>
+  </div>
+  <div class="cancel-btn" id="cancel-btn">更多<svg class="icon" aria-hidden="true" style="color: #fff;margin-left:5px;font-size: 14px;">
+      <use xlink:href="#icon-xuanxiang"></use>
+    </svg>
+  </div>
+</div>
+<!--搜索框 结束-->
+<div class="so-box" id="so-box" style="z-index: 1001">
+  <div class="so-box-content" id="so-box-content">
+    <!--国家-->
+    {%
+    set countryList = [
+    {
+    "id": 0,
+    "country": "全部"
+    },
+    {
+    "id": 1,
+    "country": "美国"
+    },
+    {
+    "id": 2,
+    "country": "英国"
+    },
+    {
+    "id": 4,
+    "country": "澳大利亚"
+    },
+    {
+    "id": 3,
+    "country": "加拿大"
+    },
+    {
+    "id": 5,
+    "country": "新西兰"
+    },
+    {
+    "id": 51,
+    "country": "日本"
+    },
+    {
+    "id": 50,
+    "country": "韩国"
+    },
+    {
+    "id": 54,
+    "country": "中国香港"
+    },
+    {
+    "id": 100,
+    "country": "俄罗斯"
+    },
+    {
+    "id": 101,
+    "country": "乌克兰"
+    },
+    {
+    "id": 108,
+    "country": "爱尔兰"
+    },
+    {
+    "id": 111,
+    "country": "意大利"
+    },
+    {
+    "id": 112,
+    "country": "西班牙"
+    },
+    {
+    "id": 102,
+    "country": "白俄罗斯"
+    },
+    {
+    "id": 52,
+    "country": "新加坡"
+    },
+    {
+    "id": 53,
+    "country": "马来西亚"
+    },
+    {
+    "id": 110,
+    "country": "丹麦"
+    },
+    {
+    "id": 103,
+    "country": "德国"
+    },
+    {
+    "id": 104,
+    "country": "法国"
+    },
+    {
+    "id": 105,
+    "country": "挪威"
+    },
+    {
+    "id": 106,
+    "country": "瑞典"
+    },
+    {
+    "id": 107,
+    "country": "芬兰"
+    },
+    {
+    "id": 109,
+    "country": "荷兰"
+    },
+    {
+    "id": 113,
+    "country": "瑞士"
+    }
+    ]
+    %}
+    <!--文章类别-->
+    {%
+    set crowdType = [
+    {
+    "id": 0,
+    "type": "全部"
+    },
+    {
+    "id": 5,
+    "type": "时讯"
+    },
+    {
+    "id": 1,
+    "type": "中学"
+    },
+    {
+    "id": 2,
+    "type": "本科"
+    },
+    {
+    "id": 3,
+    "type": "硕士"
+    },
+    {
+    "id": 4,
+    "type": "博士"
+    }
+    ]
+    %}
+    <!--文章标签-->
+    {%
+    set arcType = [
+    {
+    "type": "全部"
+    },
+    {
+    "type": "专业解析"
+    },
+    {
+    "type": "申请规划"
+    },
+    {
+    "type": "留学费用"
+    },
+    {
+    "type": "留学条件"
+    },
+    {
+    "type": "大学排名"
+    },
+    {
+    "type": "行前指导"
+    },
+    {
+    "type": "就业指导"
+    },
+    {
+    "type": "签证指导"
+    },
+    {
+    "type": "留学案例"
+    },
+    {
+    "type": "院校资讯"
+    },
+    {
+    "type": "留学方案"
+    },
+    {
+    "type": "背景提升"
+    },
+    {
+    "type": "海外生活"
+    },
+    {
+    "type": "备考资讯"
+    },
+    {
+    "type": "文书准备"
+    },
+    {
+    "type": "难点解析"
+    },
+    {
+    "type": "省钱攻略"
+    }
+    ]
+    %}
+    <div class="so-box-item-title"><svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-32pxquanqiuzhicai"></use>
+    </svg>国家及地区</div>
+    <div class="so-box-item countryId">{% for item in countryList %}<span data-id="{{item.id}}" class={{'focus-on' if item.id == country else ""}}>{{item.country}}</span>{% endfor %}</div>
+    <div class="so-box-item-title"><i class="iconfont" style="font-size: 15px;color: #c13232;margin-right: 8px;">&#xe60c;</i>文章类别：</div>
+    <div class="so-box-item timeType">{% for item in crowdType %}<span data-id="{{item.type}}" class={{'focus-on' if item.type == type else ""}}>{{item.type}}</span>{% endfor %}</div>
+    <div id="taglist">
+      <div class="so-box-item-title"><svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-yueduliang_"></use>
+      </svg>文章标签：</div>
+      <div class="so-box-item eduType">{% for item in arcType %}<span data-id="{{item.type}}" class={{'focus-on' if item.type == tag else ""}}>{{item.type}}</span>{% endfor %}</div>
+    </div>
+  </div>
+</div>
+<div class="so-tab" id="so-tab" style="display: none;z-index: 122">
+  <span class="so-tab-item">清空</span>
+  <span class="so-tab-item_active">确定</span>
+</div>
+<script>
+  $(function () {
+      var type =$(".timeType .focus-on").attr("data-id");
+      if(type == "时讯"){
+          $("#taglist").css("display","none")
+      }else {
+          $("#taglist").css("display","block")
+      }
+      $("#cancel-btn").on('click',function () {
+          this.flag=!this.flag;
+          if(this.flag){
+              $("#so-box").show();
+              $("#so-tab").show();
+              $("body,html").css("position","fixed")
+              $(this).html("收起<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin-left:5px;font-size: 14px;\">\n" +
+                "<use xlink:href=\"#icon-xuanxiang-copy\"></use>\n" +
+                "</svg>")
+          }else {
+            $(this).html("更多<svg class=\"icon\" aria-hidden=\"true\" style=\"color: #fff;margin-left:5px;font-size: 14px;\">\n" +
+              "<use xlink:href=\"#icon-xuanxiang\"></use>\n" +
+              "</svg>")
+            $("#so-box").hide();
+            $("#so-tab").hide();
+              $("body,html").css("position","")
+          }
+      });
+      $(".so-box-item span").on("click",function () {
+          $(this).addClass('focus-on').siblings().removeClass('focus-on');
+          var type =$(".timeType .focus-on").attr("data-id");
+          if(type == "时讯"){
+              $("#taglist").css("display","none")
+              $(".eduType span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
+          }else {
+              $("#taglist").css("display","block")
+          }
+      });
+
+      $(".so-tab-item").on("click",function () {
+          $(".countryId span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
+          $(".timeType span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
+          $(".eduType span").eq(0).addClass('focus-on').siblings().removeClass('focus-on');
+      });
+      $(".so-tab-item_active").on("click",function () {
+          var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
+          var type =$(".timeType .focus-on").attr("data-id");
+          var country_id =$(".countryId .focus-on").attr("data-id");
+          var crowd =$(".eduType .focus-on").attr("data-id");
+          if(crowd=="全部"){
+              crowd=""
+          }
+          if(type== "全部" ){
+              type=""
+          }
+
+          window.location.href =fn.active_urlgen('articles', 'n=' + country_id ,"type=" + type,"tag=" + crowd )
+      })
+  })
+</script>

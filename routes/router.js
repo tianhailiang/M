@@ -14,7 +14,7 @@ exports = module.exports = function (app) {// routes
   app.get(/^\/((?!yimin)usa|uk|canada|australia|newzealand|korea|japan|singapore|malaysia|hongkong|russion|ukraine|belarus|germany|france|norway|sweden|finland|ireland|netherlands|denmark|italy|spain|switzerland|greece|malta|portugal|cyprus|antigua|dominica|saintkitts|grenada)(\/*)$/, controller.nationrank);
   //搜索页
   app.get(/^\/so_activity(\/*)((?![0-9])[0-9A-Za-z\-_%~'!@#$^&*()-+=:]*)$/,controller.so_activity);//搜索页面
-  app.get(/^\/so_news(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/,controller.search_news);//搜索结果资讯
+  //app.get(/^\/so_news(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/,controller.search_news);//搜索结果资讯
   app.get(/^\/so_adviser(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/,controller.search_advisor);//搜索结果顾问
   //app.get('/so_advisor',controller.search_advisor);//顾问搜索结果
   //学历频道页
@@ -55,6 +55,7 @@ exports = module.exports = function (app) {// routes
   app.get(/^(\/*)([a-z]*)\/schoollib(\/*)((?![0-9])[0-9A-Za-z\-_]*)$/, controller.schoollib);//院校list院校库列表
   //留学活动
   app.get(/^\/(bj|cd|cq|cs|cc|cz|dl|dg|fs|fz|gz|gy|hz|hf|hd|heb|hs|hn|jn|jl|km|lz|ly|nj|nc|nb|nn|qd|sh|sy|sjz|shz|sz|tj|ty|ts|wh|wx|wz|xa|xm|xz|xn|xj|yt|yc|ych|zz)\/activity(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/, controller.study_abroad_activity);
+  app.get('/activity', controller.activity_ip);
   app.get(/^(\/*)([a-z]*)\/case(\/*)((?![0-9])[0-9A-Za-z\-_]*)$/, controller.successful_case);//成功案例
   app.get(/^(\/*)((?!yimin)[a-z]*)\/product(\/*)((?!rank)(?![0-9])[0-9A-Za-z\-_]*)$/, controller.product);//留学方案栏目
   /*所有栏目页路由 end*/
@@ -94,6 +95,7 @@ exports = module.exports = function (app) {// routes
   app.get('/more/adviser', controller.advisor_list_moer);//明星顾问列表加载更多
   app.get('/cmsapi/more_daxuepaiming', controller.more_daxuepaiming);//院校库加载更多
   app.get('/cmsapi/more_activity', controller.more_activity);//活动加载更多
+  app.get('/cmsapi/more_articles', controller.more_articles);//文章列表加载更多
   app.get('/cmsapi/more_case', controller.more_case);//成功案例更多
   app.get('/cmsapi/more_product', controller.more_product);//留学方案更多
   app.get('/cmsapi/more_so_news', controller.more_so_news);//搜索资讯更多
@@ -104,7 +106,10 @@ exports = module.exports = function (app) {// routes
   //微信token 认证
   app.post('/wxJssdk/getJssdk',controller.wxtoken);
   app.get(/^\/(bj|cd|cq|cs|cc|cz|dl|dg|fs|fz|gz|gy|hz|hf|hd|heb|hs|hn|jn|jl|km|lz|ly|nj|nc|nb|nn|qd|sh|sy|sjz|shz|sz|tj|ty|ts|wh|wx|wz|xa|xm|xz|xn|xj|yt|yc|ych|zz)\/activity\/(\d+)/,controller.activity_detail);
-  app.get('/search_activity',controller.search_activity)
+  app.get('/search_activity',controller.search_activity);
+  app.get('/search_articles',controller.search_articles);
+  app.get(/^\/articles(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/, controller.country_list);
+  app.get(/^\/so_articles(\/*)((?![0-9])[0-9A-Za-z\-_%~'!@#$^&*()-+=:]*)$/,controller.so_articles);//文章搜索页
 };
 
 

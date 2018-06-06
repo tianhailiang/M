@@ -10,6 +10,8 @@ var tokenfunc = require('./token.js');
 var helperfunc = require('../common/helper');
 const sha1 = require('sha1');
 var wechat = require('../model/wechat.js');
+var request = require('request');
+var get_area_code = require('./ip_poll');
 function returnData(obj,urlName){
   if(obj.code==0){
     return obj.data;
@@ -697,37 +699,39 @@ exports.so_activity = function (req, res, next) {
         res.render('search',data);
     }
 };
-//search_news
-exports.search_news = function (req, res, next) {
+//so_articles
+exports.so_articles = function (req, res, next) {
+    log.info('文章搜索页')
     var data = [];
     var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
     var nquery = comfunc.getReqQuery(req.params[1]);
     var page = nquery && nquery.page ? nquery.page : 1;
     var keyword = nquery && nquery.q ? decodeURI(nquery.q) : '';
+    var order = nquery && nquery.order ? nquery.order : "score";
     if(!comfunc.cityid_invalidcheck(area)){
         next();
         return false;
     }
     async.parallel({
-        searcharticle: function (callback) { //1月12号产品确认搜索城市资讯
-            cms.searcharticle({
-                //"country_id": country,
-                "city_id": area,
-                "key_word": encodeURI(keyword),
-                //"order":order,
-                "per_page": "7",
+        so_article_list:function(callback) {
+            cms.so_article_list({
+                order: order,
+                key_word:encodeURI(keyword),
+                city_id:area,
+                "per_page": "4",
                 "page": page
             }, callback);
         }
     }, function (err, result) {
-        data.channel_list = returnData(result.searcharticle,'searcharticle');
+        data.article_list = returnData(result.so_article_list,'so_article_list');
         data.keyword=keyword;
+        data.order = order;
         data.tdk = {
-            pagekey: 'SEARCHNEWS', //key 同意规定，具体找郭亚超
+            pagekey: 'M_ARTICLE_SEARCH', //key 同意规定，具体找郭亚超
             cityid: area //cityid
         };
         data.esikey = esihelper.esikey();
-        res.render('so_news', data);
+        res.render('so_articles', data);
     });
 };
 //search_advisor
@@ -1163,6 +1167,35 @@ exports.study_abroad_activity = function (req, res, next) {
 
   })
 };
+//留学活动--中间页面
+exports.activity_ip = function (req, res, next) {
+    var area = req.cookies.currentarea;
+    if(area){
+        res.redirect(helperfunc.active_urlgen('activity','c='+area));
+    }else{
+        var ip = req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
+        if(ip.split(',').length>0){
+            ip = ip.split(',')[0]
+        }
+        ip = '061.134.198.000'; //我的外网ip地址
+        log.info(ip)
+        request.get('http://api.map.baidu.com/location/ip?ip='+ip+'&ak=oTtUZr04m9vPgBZ1XOFzjmDpb7GCOhQw&coor=bd09ll',function (error, response, body){
+            if(!error && response.statusCode == 200){
+                log.info(body)
+                var b =JSON.parse(body);
+                var cityCode ='';
+                if(b.content){
+                    cityCode = get_area_code(b.content.address_detail.city);
+                    res.redirect(helperfunc.active_urlgen('activity','c='+cityCode));
+                }
+            }else{
+                res.redirect(helperfunc.active_urlgen('activity','c='+1));
+            }
+        })
+    }
+
+
+}
 //明星顾问列表加载更多
 exports.advisor_list_moer = function (req, res, next) {
   var data = req.query;
@@ -2840,6 +2873,7 @@ exports.activity_detail = function (req, res, next){
             return next();
         }
         data.activity_detail = returnData(result, 'activity_detail');
+        log.info(data.activity_detail)
         data.tdk = {
             pagekey: 'M_ACTIVITY_DETAIL',
             cityid:cityId,
@@ -2879,6 +2913,37 @@ exports.search_activity = function(req,res,next){
         }
     })
 };
+/*
+ * 搜索文章
+ * */
+exports.search_articles = function(req,res,next){
+    var data = req.query;
+    var resData = [];
+    cms.so_article_list(data,function(err,result){
+        if(err){
+            res.send(err);
+        }else{
+            if (result.code == 0) {
+                if ( result.data.totalpage < data.page ) {
+                    res.send('未请求到数据，请求完毕');
+                }
+                else {
+                    if (result.data.list.length <= 0 ) {
+                        res.send('未请求到数据，请求完毕');
+                    }
+                    else if (result.data.list.length > 0 && result.data.list.length < data.per_page) {
+                        resData.article_list = result.data;
+                        res.render('m_widget/news_list/articles_list', resData);
+                    }
+                    else {
+                        resData.article_list = result.data;
+                        res.render('m_widget/news_list/articles_list', resData);
+                    }
+                }
+            }
+        }
+    })
+};
 // 浏览量
 exports.article_count = function (req, res, next) {
     data = req.query;
@@ -2907,4 +2972,91 @@ exports.check_token = function (req, res, next) {
         "iss":'jjl.cn'
     };
     res.send(comfunc.api_return('0', 'token check success', tokenfunc.createToken(data)));
+};
+//国家列表页
+exports.country_list = function (req, res, next) {
+    log.debug('国家列表页');
+    var data = {};
+    var area = req.cookies.currentarea ? req.cookies.currentarea : 1;
+    var nquery = comfunc.getReqQuery(req.params[1]);
+    var country = nquery && nquery.n ? nquery.n : "";
+    var type = nquery && nquery.type ? nquery.type : '';
+    var tag = nquery && nquery.tag ? nquery.tag : '';
+    var order = nquery && nquery.order ? nquery.order : "score";
+    var page = nquery && nquery.page ? nquery.page : 1;
+    var newsFlag = 1;
+    if (type == '时讯') {
+        newsFlag = 2;
+        tag = ''
+    }
+    if(tag != ''){
+        newsFlag = 1;
+    }else if (tag == '' && type == '') {
+        newsFlag = '';
+    }
+    data.login_nickname = '';
+    if ( req.cookies.login_ss !== undefined) {
+        var login_a = JSON.parse(req.cookies.login_ss);
+        data.login_nickname = login_a;
+    }
+    async.parallel({
+        so_article_list:function(callback) {
+            cms.search_article_list({
+                order: order,
+                is_immi:1,
+                city_id:area,
+                "tag_list": encodeURI(tag),
+                "country_id": country,
+                "is_news": newsFlag,
+                "edu_id":(type=='时讯')?'':encodeURI(type),
+                "per_page": "4",
+                "page": page
+            }, callback);
+        },
+    }, function (err, result) {
+        data.article_list = returnData(result.so_article_list,'so_article_list');
+        data.country = country;
+        data.type=(type== '')?'全部':type;
+        data.tag = (tag== '')?'全部':tag;
+        data.order = order;
+        data.cur_page = page;
+        data.tdk = {
+            pagekey: 'M_ARTICLE_LIST', //key
+            cityid: area
+            // keywords: keyword
+        };
+        res.render('country_list', data);
+    });
+};
+/*
+ * 搜索活动
+ * */
+exports.more_articles = function(req,res,next){
+    log.debug('国家列表页加载更多');
+    var data = req.query;
+    var resData = [];
+    cms.search_article_list(data,function(err,result){
+        if(err){
+            res.send(err);
+        }else{
+            if (result.code == 0) {
+                if ( result.data.totalpage < data.page ) {
+                    res.send('未请求到数据，请求完毕');
+                }
+                else {
+                    if (result.data.list.length <= 0 ) {
+                        res.send('未请求到数据，请求完毕');
+                    }
+                    else if (result.data.list.length > 0 && result.data.list.length < data.per_page) {
+                        resData.article_list = result.data;
+                        res.render('m_widget/news_list/articles_list', resData);
+                    }
+                    else {
+                        resData.article_list = result.data;
+                        res.render('m_widget/news_list/articles_list', resData);
+                    }
+                }
+            }
+        }
+    })
 };

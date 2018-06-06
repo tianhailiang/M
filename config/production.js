@@ -190,8 +190,8 @@ var apis = {
   "get_search_adviser": shequ_prefix + 'search/search_adviser/',
   //搜索结果页（活动）
   "get_search_activity": shequ_prefix + 'search/search_activity/',
-  //搜索结果页（资讯）
-  "get_search_article": shequ_prefix + 'search/search_article/',
+  //get_so_article_list
+  "get_so_article_list": shequ_prefix + 'search/search_article/',
   //搜索结果页（院校）
   "get_search_school": prefix + 'yuanxkList',
   //顾问聚合页
@@ -261,6 +261,8 @@ var apis = {
   "get_edu":prefix + 'common_sense',
   //新活动底页
   "get_activity_detail":prefix+'detail',
+  //国家文章列表
+  "get_search_article_list": shequ_prefix + 'search/search_article_list/'
 };
 module.exports = {
   redisCache: redisCache,

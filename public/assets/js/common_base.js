@@ -117,7 +117,7 @@
                 /*过滤默认参数 start*/
                 var can_type = arguments[i].split('=')[0];
                 var can_val = arguments[i].split('=')[1];
-                if (((can_type == 'order') && (can_val == 1 || can_val == 'inputtime' || can_val == 'add_time' ||  can_val == 'inputtime desc' ||  can_val == 'add_time desc')) || ((can_type == 'page') && (can_val == 1)) || ((can_type == 'crowd') && (can_val == 0))  || ((can_type == 'time') && (can_val == 0)) || ((can_type == 'e') && (can_val == 0)) || ((can_type == 'serve') && (can_val == 0)) || ((can_type == 't') && (can_val == 0)) || ((can_type == 'n') && (can_val == 0)) ) {
+                if (((can_type == 'order') && (can_val == 1 || can_val == 'inputtime' || can_val == 'add_time' ||  can_val == 'inputtime desc' ||  can_val == 'add_time desc')) || ((can_type == 'page') && (can_val == 1)) || ((can_type == 'crowd') && (can_val == 0))  || ((can_type == 'time') && (can_val == 0)) || ((can_type == 'e') && (can_val == 0)) || ((can_type == 'serve') && (can_val == 0)) || ((can_type == 't') && (can_val == 0)) || ((can_type == 'n') && (can_val == 0))  || ((can_type == 'type') && (can_val == "全部")) || ((can_type == 'tag') && (can_val == "全部")) || ((can_type == 'tag') && (can_val == ""))|| ((can_type == 'type') && (can_val == ""))) {
                     continue;
                 }
                 /*过滤默认参数 end*/
@@ -479,7 +479,7 @@
      * 区分静态和伪静态， 伪静态中n变量需要存在不能去掉
      */
     function exits_static_page(path) {
-        var reg_list = path.match(/^(.*)\/(glue|news|citynews|focus|visa|prereq|cost|nation|schoolranknews|recommand|interpret|scholarship|media|eduquestion|school|adviser|activity|cases|schoollib|yimin|product|special|so_activity|so_case|so_news|so_school|so_advisor)(.*).html$/g);
+        var reg_list = path.match(/^(.*)\/(glue|news|citynews|focus|visa|prereq|cost|nation|schoolranknews|recommand|interpret|scholarship|media|eduquestion|school|adviser|activity|cases|schoollib|yimin|product|special|so_activity|so_case|so_news|so_school|so_advisor|so_articles)(.*).html$/g);
         var reg_detail = path.match(/^(.*)\/(glue|news|citynews|focus|visa|prereq|cost|nation|schoolranknews|recommand|interpret|scholarship|media|eduquestion|school|adviser|activity|cases|schoollib|yimin|product|special)\/(\d+).html$/g);
 
         var rank = path.match(/^(.*)\/(nationrank|schoolrank|specialrank|productrank).html$/g);

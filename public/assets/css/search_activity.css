@@ -12,7 +12,7 @@
     position: fixed;
     top: 81px;
     display: flex;
-    z-index: 1000;
+    z-index: 120;
     border-bottom: 1px solid #DCDCDC;
 }
 .tab-type li{

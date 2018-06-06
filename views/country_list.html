@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/articles_list.css">
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/search_activity.css"/>
+<style>
+  .loader{
+    padding-top: 10px;
+    background: #f5f5f5;
+  }
+  .search-result{
+    padding: 35px 0px 0px;
+    background: #fff;
+  }
+  .footer{
+    margin-bottom: 49px
+  }
+</style>
+<body>
+{% include "m_widget/top/common_top.html" %}
+{% include "m_widget/search/search_articlelist.html" %}
+<div id="app">
+  <div class="app-in" style="background: #fff">
+    <div class="has-content">
+      <ul class="tab-type" id="tab-type">
+        <li data-type="score" {% if order == 'score' %}class="active"{% else %}{% endif %}><a href="{{helper.active_urlgen('articles',('n=' + country) if country else '', ('type=' + type) if type else '',('tag=' + tag) if tag else '')}}">综合</a></li>
+        <li data-type="add_time" {% if order == 'add_time' %}class="active"{% else %}{% endif %}><a href="{{helper.active_urlgen('articles',('n=' + country) if country else '', ('type=' + type) if type else '',('tag=' + tag) if tag else '','order=add_time')}}">最新new</a></li>
+        <li data-type="views" {% if order == 'views' %}class="active"{% else %}{% endif %}><a href="{{helper.active_urlgen('articles',('n=' + country) if country else '', ('type=' + type) if type else '',('tag=' + tag) if tag else '','order=views')}}">最热hot</a></li>
+      </ul>
+      {% if articles_list.total != 0 %}
+      <div class="search-result" id="activity-list" data-country="{{country}}" data-type="{{type}}" data-crowd="{{tag}}">
+          <ul class="column-news">
+              {% include "m_widget/news_list/articles_list.html" %}
+          </ul>
+      </div>
+      <div class="loader">
+        <span>加载更多...</span>
+        <img src="{{helper.cdnhost}}/assets/img/load.gif" alt="">
+      </div>
+      {% endif %}
+    </div>
+    </div>
+  {% include "m_widget/footer/common_footer.html" %}
+</div>
+{% include "m_widget/slidebar/search_sliderbar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
+<script>
+  $(document).ready(function (){
+    var FooterH = $(".footer").height()+45+51;
+    var leg =$(".column-news").height();
+    if(($(window).height()-81)-FooterH>leg){
+      $('.app-in').height(($(window).height()-81)-FooterH);
+    }
+
+    var cur_page = 1
+    var flag = true;
+    $('.loader').hide()
+    $(window).scroll(function(){
+          var scrollTop = $(window).scrollTop();
+          var clientHeight = $(window).height();
+          var docHeight = $(document).height();
+          if(scrollTop >= (docHeight - clientHeight) - 165) {
+              $('.loader').show();
+              if(flag){
+                  flag = false;
+                  cur_page++;
+                  setTimeout(getDataFn,100)
+              }
+          }
+      });
+      /*请求数据*/
+    function getDataFn () {
+      var searchResult = $('.column-news');
+//      var now_page = cur_page;
+      var area = $.cookie('currentarea') ? $.cookie('currentarea') : 1;
+      var order = $('#tab-type').find('.active').attr('data-type');
+      var country_id =$("#activity-list").attr("data-country");
+      var tag =$("#activity-list").attr("data-crowd");
+      var type =$("#activity-list").attr("data-type");
+      if(tag=="全部"){
+          tag = ""
+      }
+      if(type=="全部"){
+          type = ""
+      }
+      var newsFlag = 1;
+      if (type == '时讯') {
+          newsFlag = 2;
+          tag = ''
+      }
+      if(tag != ''){
+          newsFlag = 1;
+      }else if (tag == '' && type == '') {
+          newsFlag = '';
+      }
+      $.ajax({
+          url: '/cmsapi/more_articles',
+          type: 'get',
+          data: {
+              "order": order,
+              "is_immi":1,
+              "city_id":area,
+              "tag_list": encodeURI(tag),
+              "country_id": country_id,
+              "is_news": newsFlag,
+              "edu_id":(type=='时讯')?'':encodeURI(type),
+              "per_page": "4",
+              "page": cur_page
+          },
+          success: function (msg) {
+              if (msg == '未请求到数据，请求完毕') {
+                  $('.loader > span').text('数据加载完毕！')
+                  $('.loader > img').remove()
+              }
+              else {
+                  searchResult.append($.parseHTML(msg));
+                  flag = true;
+              }
+          }
+      })
+      }
+  });
+
+</script>
+
+</body>
+</html>

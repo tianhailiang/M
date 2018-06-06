@@ -1,0 +1,21 @@
+<!--搜索框 开始-->
+{% macro searchbar(keyword) %}
+<div class="search-container">
+    <div class="search-box" >
+        <div class="search-bar" >
+            <!--<input placeholder="{{keyword if keyword else '搜索'}}" id="search-content" autofocus data-keyword="{{keyword}}" type="search">-->
+            <form action="javascript:void(0);" id="searchForm">
+                <input placeholder="请输入文章标题或关键词" id="search-content" autofocus value="{{keyword}}"data-keyword="{{keyword}}" type="search">
+            </form>
+            <div style="width: 30px;height: 30px;text-align: right;line-height: 30px;" id="del-keyword">
+                <svg class="icon icon-sousuo" aria-hidden="true">
+                    <use xlink:href="#icon-guanbi"></use>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="cancel-btn" id="cancel-btn">取消
+    </div>
+</div>
+{% endmacro %}
+<!--搜索框 结束-->

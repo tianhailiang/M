@@ -148,13 +148,14 @@
     // 60s倒计时
     console.log(200)
     // $("#sendcun_user").unbind("click");
+    $("#sendcun_user").attr("disabled", "disabled");
     var countDownTime = 60;
     timer = window.setInterval(function () {
         countDownTime--;
         $("#sendcun_user").attr("value", countDownTime + "s");
         $("#sendcun_user").css('background','#ccc');
         $("#sendcun_user").css('border','1px solid #ccc');
-        $("#sendcun_user").attr("disabled", "disabled");
+        
         if (countDownTime == 0) {
             $("#sendcun_user").attr("value", "发送验证码");
             $("#sendcun_user").css('background','#D51821');
@@ -344,7 +345,7 @@
       }
       if (!/^\d{6}$/.test($("#code").val())) {
         $('#error_code').css('display','block');
-        $('#error_code').html('您输入的验证码不足6位');
+        $('#error_code').html('您输入的6位验证码');
         return false;
       } else {
         $('#error_code').css('display','none');

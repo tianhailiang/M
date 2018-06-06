@@ -1,0 +1,20 @@
+{% for item in article_list.list%}
+<li>
+  <a href="{{helper.urlgen(item.user_info.uid | safeId | string)}}">
+    <span class="spanpicter" style="background:url({{helper.avaterimg(item.user_info.uid, 'small',item.user_info.status, item.user_info.version)}}) no-repeat 0 0;background-size: cover;"></span>
+  </a>
+  <div class="column-list">
+    <div style="height: 18px">
+      <h2 style="float: left">{{item.user_info.realname | shorten(6)}}<span></span></h2>
+      {% if item.tag_list %}
+      <span class="column-list-tag" style="">{{item.tag_list}}</span>
+      {% endif %}
+    </div>
+    <a class="" href="{{helper.urlgen('case',item.id | safeId | string) if item.type == 1 else helper.urlgen('article',item.id | safeId | string)}}">
+      <p style="color: #333;font-size: 15px;line-height: 15px">{{item.title | ellipsis(15) }}</p>
+      <p class="line-clamp-2">{{item.introduce}}</p>
+      <p style="line-height: 12px;color: #999">{{item.add_time | getDefaultFormat('YYYY-MM-DD HH:mm:ss')}}</p>
+    </a>
+  </div>
+</li>
+{% endfor %}

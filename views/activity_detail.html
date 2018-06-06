@@ -14,21 +14,24 @@
       {{ activity_detail.list.title }}
     </div>
     <div class="header-yuyue">
-      <span class="header-jjl_xin" onclick="showyuyue ()" href="">
+		<span class="header-jjl_xin" onclick="showyuyue ()" href="">
         在线预约
-      </span>
+		</span>
     </div>
   </header>
   <div class="activity-zixunxin">
     <h3 class="activity—title">{{ activity_detail.list.title }}</h3>
     <p>
-      开始时间：<span>{{ activity_detail.list.start_time}}</span>
+      开始时间：
+      <span>{{ activity_detail.list.start_time}}</span>
     </p>
     <p>
-      结束时间：<span>{{ activity_detail.list.end_time }}</span>
+      结束时间：
+      <span>{{ activity_detail.list.end_time }}</span>
     </p>
     <p>
-      讲座地点：<span>{{ activity_detail.list.address_des }}</span>
+      讲座地点：
+      <span>{{ activity_detail.list.address_des }}</span>
       {% if activity_detail.list.longitude and activity_detail.list.address_des  %}
       <a class="map-btn" href="http://api.map.baidu.com/marker?location={{ activity_detail.list.longitude }},{{ activity_detail.list.latitude }}&title=我的位置&content={{ activity_detail.list.address_des }}&output=html"><svg class="icon icon-map" aria-hidden="true">
         <use xlink:href="#icon-ditu"></use>
@@ -36,7 +39,8 @@
       {% endif %}
     </p>
     <p>
-      联系电话：<span>{{ activity_detail.list.active_telephone }}</span>
+      联系电话：
+      <span>{{ activity_detail.list.active_telephone }}</span>
     </p>
     <div class="activity-button-xin">
       <a href="tel:{{ activity_detail.list.active_telephone }}">电话预约</a>
@@ -72,7 +76,7 @@
       <use xlink:href="#icon-dian-copy-copy-copy"></use>
     </svg><span>结束时间&nbsp;:</span></h3>
     <p>
-     {{ activity_detail.list.end_time }}
+      {{ activity_detail.list.end_time }}
     </p>
     <h3><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-dian-copy-copy-copy"></use>
@@ -82,129 +86,141 @@
     </p>
   </div>
   <div class="fenxiang_con">
-    <div class="wenxin_con"></div>
+    <div class="wenxin_con">
+    </div>
     <div class="bdsharebuttonbox bdshare-button-style0-16">
       <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
     </div>
-    <div class="cue_qq_con"><div>
-  </div>
-  <div class="cue_weixin">
-    <div></div>
-  </div>
-  <div class="cue_weixin1">
-    <div></div>
-  </div>
-  <div class="cue_qq">
-    <div></div>
-  </div>
-</div>
-{% include "m_widget/booking/booking.html" %}
-<!-- ===侧边栏==== -->
-{% include "m_widget/slidebar/slidebar.html" %}
-<!-- ======乐语底栏======= -->
-{% include 'm_widget/funtalk/funtalk.html' %}
-<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=586c90bc5512edfcd7de1696749f8ef7"></script>
-<script>
-//  document.domain='http://widget.weibo.com';
-  window.onload =function(){
-    window._bd_share_config = {
-      "common": {
-        "bdSnsKey": {},
-        "bdText": "",
-        "bdMini": "1",
-        "bdMiniList": false,
-        "bdPic": "",
-        "bdStyle": "0",
-        "bdSize": "16",
-        "bdUrl": window.location.href
-      },
-      "share": {}
-    };
-    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
-    $(".jiangzuo-btn").on("click",function(){
-      $(".mark").show();
-      $(".mark-box").show();
-    })
-    $('.mark').on('click',function () {
-      console.log('aaaa')
-      $(this).hide();
-      $(".mark-box").hide();
-    })
-    function isWeiXin() {
-      // 检查微信环境
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-        return true;
-      } else {
-        return false;
+    <div class="cue_qq_con">
+      <div>
+      </div>
+      <div class="cue_weixin">
+        <div>
+        </div>
+      </div>
+      <div class="cue_weixin1">
+        <div>
+        </div>
+      </div>
+      <div class="cue_qq">
+        <div>
+        </div>
+      </div>
+    </div>
+    {% include "m_widget/booking/booking.html" %}
+    <!-- ===侧边栏==== -->
+    {% include "m_widget/slidebar/slidebar.html" %}
+    <!-- ======乐语底栏======= -->
+    {% include 'm_widget/funtalk/funtalk.html' %}
+    <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=586c90bc5512edfcd7de1696749f8ef7"></script>
+    <script>
+      //  document.domain='http://widget.weibo.com';
+      window.onload =function(){
+        window._bd_share_config = {
+          "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "1",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16",
+            "bdUrl": window.location.href
+          },
+          "share": {}
+        };
+        with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+        $(".jiangzuo-btn").on("click",function(){
+          $(".mark").show();
+          $(".mark-box").show();
+        })
+        $('.mark').on('click',function () {
+          console.log('aaaa')
+          $(this).hide();
+          $(".mark-box").hide();
+        })
+        function isWeiXin() {
+          // 检查微信环境
+          var ua = window.navigator.userAgent.toLowerCase();
+          if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            return true;
+          } else {
+            return false;
+          }
+        }
+        if($("#get-share-img").attr('data-img')==''){
+          $("#get-share-img").append('<img src="'+getImage()+'" width="0" height="0" />');
+        }
+        function getImage() {
+          // 获取图片
+          return 'http://'+location.host+'/assets/img/share_logo.png';
+        }
+        if(isWeiXin()){
+          $('.wenxin_con').on('click',function(e){
+            e.stopPropagation();
+            this.flag =!this.flag;
+            if(this.flag){
+              $('.cue_weixin').css("display","block");
+            }else{
+              $('.cue_weixin').css("display","none");
+            }
+          });
+          $(document).on('click touchstart', function (){
+            if($('.cue_weixin').css("display")=='block'){
+              $('.cue_weixin').css("display","none");
+            }
+          });
+          $('.cue_qq_con').on('click',function(e){
+            e.stopPropagation();
+            this.flag =!this.flag;
+            if(this.flag){
+              $('.cue_qq').css("display","block");
+            }else{
+              $('.cue_qq').css("display","none");
+            }
+          });
+          $(document).on('click touchstart', function (e){
+            if($('.cue_qq').css("display")=='block') {
+              $('.cue_qq').css("display", "none");
+            }
+          });
+        }else{
+          $('.wenxin_con').on('click',function(e){
+            e.stopPropagation();
+            this.flag=!this.flag;
+            if(this.flag) {
+              $('.cue_weixin1').css("display","block");
+            }else{
+              $('.cue_weixin1').css("display","none");
+            }
+          });
+          $('.cue_qq_con').on('click',function(e){
+            e.stopPropagation();
+            this.flag=!this.flag;
+            if(this.flag) {
+              $('.cue_weixin1').css("display","block");
+            }else{
+              $('.cue_weixin1').css("display","none");
+            }
+          });
+          $(document).on('click touchstart', function (){
+            if($('.cue_weixin1').css("display")=='block'){
+              $('.cue_weixin1').css("display","none");
+            }
+          });
+        }
       }
-    }
-    if(isWeiXin()){
-      $('.wenxin_con').on('click',function(e){
-        e.stopPropagation();
-        this.flag =!this.flag;
-        if(this.flag){
-          $('.cue_weixin').css("display","block");
-        }else{
-          $('.cue_weixin').css("display","none");
-        }
-      });
-      $(document).on('click touchstart', function (){
-        if($('.cue_weixin').css("display")=='block'){
-          $('.cue_weixin').css("display","none");
-        }
-      });
-      $('.cue_qq_con').on('click',function(e){
-        e.stopPropagation();
-        this.flag =!this.flag;
-        if(this.flag){
-          $('.cue_qq').css("display","block");
-        }else{
-          $('.cue_qq').css("display","none");
-        }
-      });
-      $(document).on('click touchstart', function (e){
-        if($('.cue_qq').css("display")=='block') {
-          $('.cue_qq').css("display", "none");
-        }
-      });
-    }else{
-      $('.wenxin_con').on('click',function(e){
-        e.stopPropagation();
-        this.flag=!this.flag;
-        if(this.flag) {
-          $('.cue_weixin1').css("display","block");
-        }else{
-          $('.cue_weixin1').css("display","none");
-        }
-      });
-      $('.cue_qq_con').on('click',function(e){
-        e.stopPropagation();
-        this.flag=!this.flag;
-        if(this.flag) {
-          $('.cue_weixin1').css("display","block");
-        }else{
-          $('.cue_weixin1').css("display","none");
-        }
-      });
-      $(document).on('click touchstart', function (){
-        if($('.cue_weixin1').css("display")=='block'){
-          $('.cue_weixin1').css("display","none");
-        }
-      });
-    }
-  }
-</script>
-<script>
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?7bd472da5fad53e8b1c8b3413b3c1cac";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
-</script>
-<script src="http://mgr.jjl.cn:80/j.jsp?c=1&f=182" type="text/javascript"></script>
-<script src="http://jesong.jjl.cn/js/jjl.js" ></script>
+    </script>
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7bd472da5fad53e8b1c8b3413b3c1cac";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+    <script src="http://mgr.jjl.cn:80/j.jsp?c=1&f=182" type="text/javascript"></script>
+    <script src="http://jesong.jjl.cn/js/jjl.js"></script>
 </body>
 </html>
