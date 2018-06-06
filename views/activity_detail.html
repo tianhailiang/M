@@ -81,7 +81,7 @@
     <h3><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-dian-copy-copy-copy"></use>
     </svg><span>主要内容&nbsp;:</span></h3>
-    <p data-img="" id="get-share-img" data-introduce ="{{activity_detail.list.description}}" >
+    <p class="xianzhi-img" data-img="" id="get-share-img" data-introduce ="{{activity_detail.list.description}}" >
       {{ activity_detail.list.content | safe }}
     </p>
   </div>
@@ -107,6 +107,10 @@
         </div>
       </div>
     </div>
+    </div>
+  <!--footer start-->
+  {% include "m_widget/footer/common_footer.html" %}
+  <!--footer end-->
     {% include "m_widget/booking/booking.html" %}
     <!-- ===侧边栏==== -->
     {% include "m_widget/slidebar/slidebar.html" %}
