@@ -14,7 +14,7 @@ var shequ_prefix = apiconfig.shequ_prefix;
 var imageshost = apiconfig.imageshost;
 var coupon = apiconfig.coupon;
 var apis = {
-  "sendCoupons": coupon + 'sendCoupons',//发送优惠券
+  "sendCoupons": coupon + 'sendCoupon',//发送优惠券
   "getCoupons": coupon + 'getCoupons',//获取优惠券
   "sendSms": coupon + 'sendSms', //发送手机验证码（活动页）
   "oauth": uc_prefix + 'index.php',

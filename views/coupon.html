@@ -3,172 +3,321 @@
 <head>
   {% include "header.html" %}
   <style type="text/css">
-  .form-yimin-text input.err {
-    border: 1px solid #c13232;
-  }
-  .form-yimin{
-    width: 100%;
-    height: 100%;
-    /*background-color: greenyellow;*/
-    padding:15px 35px 0 15px;
-    background: #ffffff;
-  }
-    .form-yimin-text:nth-child(1){
-      margin-top: 0;
+    .about-img img{
+      width: 100%;
+      height: 200px;
     }
-.form-yimin-text {
-  display: flex;
-  height: 27px;
-  margin-top:15px;
-}
-  .form-yimin-text em{
-    color:#c13232;
-    margin-right: 5px;
-    line-height: 27px;
-  }
-  .form-yimin-text label{
-    color:#333333;
-    font-size: 14px;
-    line-height: 27px;
-    margin-right: 10px;
-  }
+    .cou_main{
+      width: 100%;
+      height: 100%;
+      margin-top: 30px;
+      background: url({{helper.cdnhost}}/assets/img/coupon_bac.png) no-repeat;
+      background-size: cover;
+      padding: 0 10px;
+    }
+    .cou_ti{
+      width: 100%;
+    }
+    .cou_inp{
+      width: 100%;
+      height: 420px;
+      background: url({{helper.cdnhost}}/assets/img/coupon_bac1.png) no-repeat;
+      background-size: cover;
+      margin-top: 30px;
+      padding: 25px 20px;
+    }
+    .form-yimin-text {
+      display: flex;
+      height: 36px;
+      margin-top:25px;
+      position: relative;
+    }
   .form-yimin-text input{
     flex: 1;
-    border:1px solid #eeeeee;
-    padding-left: 10px;
-    font-size: 12px;
-    color:#999999;
+    border:1px solid #dcdcdc;
+    border-radius: 18px;
+    padding: 0 15px;
+    font-size: 13px;
+    color:#333;
+    background: #fff;
+  }
+  .form-yimin-text input.err {
+    border: 1px solid #d51821;
   }
   .form-yimin-text span{
-    width: 90px;
-    height: 27px;
-    background: #c13232;
+    width: 100px;
+    height: 34px;
+    background: #f05373;
+    border-radius: 18px;
     color:#ffffff;
+    font-size: 13px;
+    line-height: 34px;
+    text-align: center;
+    margin-left: 10px;
+  }
+  .form-yimin-text em{
+    color: #d51821;
     font-size: 11px;
-    line-height: 27px;
-    text-align: center;
-    margin-left: 15px;
+    position: absolute;
+    left: 15px;
+    top: 40px;
+    display: none;
   }
-.form-yimin-text1{
-  padding-left:12px;
-}
-  .form-yimin-text1 select{
-    border:1px solid #eeeeee;
-    flex: 1;
-    padding-left:10px;
+  .form-yimin-text i{
+    width: 10px;
+    position: absolute;
+    right: 15px;
+    top: 7px;
+  }
+  .form-yimin-text .cou_city{
+    width: 100%;
+    height: 283px;
+    background: url({{helper.cdnhost}}/assets/img/coupon_cit.png) no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 37px;
+    z-index: 1000;
+    display: none;
+  }
+  .form-yimin-text .cou_city_s{
+    font-size: 0;
+    padding: 20px 10px 10px 10px;    
+  }
+  .form-yimin-text .cou_city_s span{
+    width: 63px;
     height: 27px;
-    font-size: 12px;
-    color:#999999;
-  }
-    .form-yimin-btn{
-      margin-top: 20px;
-    }
-  .form-yimin-btn{
-    text-align: center;
-  }
-  .form-yimin-btn span{
-    width: 183px;
-    color:#ffffff;
-    background: #c13232;
-    height:30px;
-    line-height: 30px;
-    text-align: center;
-    font-size: 14px;
     display: inline-block;
+    border: 1px #dcdcdc solid;
+    border-radius: 2px;
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+    line-height: 24px;
+    background: #fff;
+    margin-bottom: 10px;
   }
-    .dialog_content{
-      padding: 20px 0;
-      text-align: center;
-    }
-    .dialog_content .success-img {
-      width: 75px;
-      margin: 0 auto;
-    }
-    .dialog_content .main-info {
-      color: #2EAF49;
-      font-size: 16px;
-      margin-top: 20px;
-      margin-bottom: 4px;
-    }
-    .dialog_content .other-info {
-      font-size: 13px;
-      line-height: 25px;
-      color: #333;
-    }
+  .form-yimin-text .cou_city_s span.active{
+    border: 1px #d51821 solid;
+    color: #d51821;
+  }
+  .form-yimin-text .cou_city_b{
+    width: 100%;
+    text-align: center;
+    margin-top: -10px;
+  }
+  .form-yimin-text .cou_city_b span{
+    width: 50px;
+    height: 28px;
+    display: inline-block;
+    border: 1px #d51821 solid;
+    border-radius: 2px;
+    background: #d51821;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    line-height: 26px;
+    margin-right: 25px;
+  }
+  .form-yimin-text .cou_city_b span.quxiao{
+    background: #fff;
+    color: #d51821;
+    margin-right: 0px;
+  }
+  .cou_act{
+    width: 100%;
+    margin-top: 30px;
+    font-size: 12px;
+    color: #db1e87;
+  }
+  .cou_act_t{
+    font-size: 14px;
+  }
+  .cou_act_c{
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  .cou_act_c1{
+    line-height: 25px;
+  }
+  .cou_act_c1 span{
+    float: left;
+    display: inline-block;
+    line-height: 26px;
+  }
   </style>
 </head>
 <body style="background: #ffffff;">
-{#{% include "m_widget/evaluate_form/evaluate_form.html" %}#}
-<div class="form-yimin">
-  <div class="form-yimin-text"><em >*</em><label for="" style="width:54px;">姓名：</label><input type="text" placeholder="请输入您的真实姓名" id="name"></div>
-  <div class="form-yimin-text"><em>*</em><label for="" style="width:54px;">手机：</label><input type="text" id="phone"><span id="getcode" data-coupon="{{param_code}}">获取验证码</span></div>
-  <div class="form-yimin-text form-yimin-text1"><label for="">手机验证码：</label><input type="text" id="code"></div>
-  <div class="form-yimin-text form-yimin-text1" style="position: relative">
-    <label for="">意向国家和地区：</label>
-    <select name="" style="z-index:2;" id="country">
-      <option value='3'>加拿大</option>
-      <option value='1'>美国</option>
-      <option value='4'>澳大利亚</option>
-      <option value='5'>新西兰</option>
-      <option value='2'>英国</option>
-      <option value='108'>爱尔兰</option>
-      <option value='7'>希腊</option>
-      <option value='8'>马耳他</option>
-      <option value='112'>西班牙</option>
-      <option value='10'>葡萄牙</option>
-      <option value='11'>塞浦路斯</option>
-      <option value='12'>安提瓜</option>
-      <option value='13'>多米尼克</option>
-      <option value='14'>圣基茨</option>
-      <option value='15'>格林纳达</option>
-      <option value='54'>中国香港</option>
-    </select>
-    <svg class="icon" style="position: absolute;right:5px;top:5px; " aria-hidden="true">
-      <use xlink:href="#icon-qianjin-copy1"></use>
-    </svg>
-  </div>
-  <div class="form-yimin-text form-yimin-text1" style="position: relative">
-    <label for="">移&nbsp;民&nbsp;目&nbsp;的：</label>
-    <select name="" id="project" style="z-index:2">
-      <option value='1'>投资移民</option>
-      <option value='2'>创业移民</option>
-      <option value='3'>技术移民</option>
-      <option value='4'>留学移民</option>
-      <option value='5'>杰出人才移民</option>
-      <option value='6'>团聚移民</option>
-      <option value='7'>购房移民</option>
-      <option value='8'>国债移民</option>
-      <option value='9'>护照项目</option>
-    </select>
-    <svg class="icon" style="position: absolute;right:5px;top:5px; " aria-hidden="true">
-      <use xlink:href="#icon-qianjin-copy1"></use>
-    </svg>
-  </div>
-  <div class="form-yimin-btn"><span id="evaluationBtn">点击进行在线评估</span></div>
-</div>
-<!--提示弹框 start-->
-<div id="dialogs">
-      <div class="js_dialog" id="successForm" style="display: none;">
-          <div class="weui-mask"></div>
-          <div class="weui-dialog">
-            <div class="dialog_content">
-              <img src="{{helper.cdnhost}}/assets/img/success.png" alt="" class="success-img"/>
-              <p class="main-info">您的信息已成功提交！</p>
-              <p class="other-info">专业移民顾问将会尽快与您联系</p>
-              <p class="other-info">请您保持电话畅通！</p>
-            </div>
-          </div>
+    {% include "m_widget/top/common_top.html" %}
+    <div id="app" style="background: #ffffff;">
+      {# 广告位 #}
+      <div style="width:100%;overflow: hidden;background:#f2aaaa">
+        <div id="XC_MOBILE_PROFILE_SEAT1" class="about-img">
+          <a rel="nofollow" data-pid="{{about[0].pid}}" href="{{about[0].linkurl}}" >
+            <img src="{{about[0].imageurl}}" alt="{{about[0].alt}}">
+          </a>
+        </div>
       </div>
-</div>
-<!--提示弹框 end-->
+      <div class="cou_main">
+        {# 活动介绍 #}
+        <img src="{{helper.cdnhost}}/assets/img/coupon_ti.png" alt="" class="cou_ti">
+        {# 填写个人信息 #}
+        <div class="cou_inp">
+            <div class="form-yimin-text" style="margin-top: 60px;"><input type="text" placeholder="请输入您的真实姓名" id="name"><em id="name_error">请输入正确姓名</em></div>
+            <div class="form-yimin-text" ><input type="text" placeholder="请输入手机号" id="phone"><em id="phone_error">请输入正确手机号</em></div>
+            <div class="form-yimin-text"><input type="text" id="code" placeholder="请输入验证码"><span id="getcode">点击发送验证码</span><em id="code_error">请输入正确手机验证码</em></div>
+            <div class="form-yimin-text form-yimin-text1">
+              <input type="text" id="city" placeholder="意向国家">
+              <i class="iconfont">&#xe648;</i>
+              <div class="cou_city" id="cou_city">
+                <div class="cou_city_s" id="cou_city_s">
+                  <span class="active" value='1'>美国</span>
+                  <span value='2'>英国</span>
+                  <span value='4'>澳大利亚</span>
+                  <span value='3'>加拿大</span>
+                  <span value='5'>新西兰</span>
+                  <span value='51'>日本</span>
+                  <span value='50'>韩国</span>
+                  <span value='54'>中国香港</span>
+                  <span value='100'>俄罗斯</span>
+                  <span value='101'>乌克兰</span>
+                  <span value='108'>爱尔兰</span>
+                  <span value='111'>意大利</span>
+                  <span value='112'>西班牙</span>
+                  <span value='102'>白俄罗斯</span>
+                  <span value='52'>新加坡</span>
+                  <span value='53'>马来西亚</span>
+                  <span value='110'>丹麦</span>
+                  <span value='103'>德国</span>
+                  <span value='104'>法国</span>
+                  <span value='105'>挪威</span>
+                  <span value='106'>瑞典</span>
+                  <span value='107'>芬兰</span>
+                  <span value='109'>荷兰</span>
+                  <span value='113'>瑞士</span>
+                </div>
+                <div class="cou_city_b">
+                  <span id="city_queding">确认</span>
+                  <span class="quxiao" id="city_quxiao">取消</span>
+                </div>
+              </div>
+            </div>
+        </div>
+        {# 活动说明 #}
+        <div class="cou_act">
+          <div class="cou_act_t">活动说明</div>
+          <div class="cou_act_c">活动范围：全国49家分子公司</div>
+          <div class="cou_act_c1">活动时间：2018年6月10日至2018年8月25日</div>
+          <div class="cou_act_c1"><span>参与规则：</span>凡在各分子公司夏展举办日前夕领取优惠码，并在展会举办日现场使用优惠码，此码有效期截止至9月25日。</div>
+          <div class="cou_act_c1"><span>使用条件：</span>全款签约最高减免2000元服务费，个别国家根据实际情况进行服务费减免，最终解释权归金吉列留学所有。</div>
+        </div>
+      </div>
+      {% include "m_widget/footer/common_footer.html" %}
+    </div>
+
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
 </body>
 <!-- <script src="{{helper.cdnhost}}/assets/js/online_evaluation_yimin.js"></script> -->
 
 <script>
+
+  var check_value = {
+    phone: function(phone){
+        if(!/^1\d{10}$/.test(phone)){
+            return false;
+        }
+        return true;
+    }
+};
+$('#name').on('blur', function () {
+    checkName();
+});
+$('#name').on('keyup', function () {
+    checkName();
+});
+$('#phone').on('blur', function () {
+    checkPhone();
+});
+$('#phone').on('keyup', function () {
+    checkPhone();
+});
+$('#code').on('blur', function () {
+    checkCodeValue();
+});
+$('#code').on('keyup', function () {
+    checkCodeValue();
+});
+$('#city').on('blur', function () {
+    getcity();
+});
+// $('#city').on('keyup', function () {
+//     getcity();
+// });
+function getcity () {
+    var city = $.trim($('#city').val());
+    if (city != '美国' && city != '英国' && city != '澳大利亚' && city != '加拿大' && city != '新西兰' && city != '日本' && city != '韩国' && city != '中国香港' && city != '俄罗斯' && city != '乌克兰' && city != '爱尔兰' && city != '意大利' && city != '西班牙' && city != '白俄罗斯' && city != '新加坡' && city != '马来西亚' && city != '丹麦' && city != '德国' && city != '法国' && city != '挪威' && city != '瑞典' &&city != '芬兰' && city != '荷兰' && city != '瑞士') {
+      $('#city').focus().addClass('err');
+      $('#cou_city').show();
+      return false;
+    } 
+    // else {
+    //   $('#city').removeClass('err');
+    //   $('#cou_city').hide();
+    //   return true;
+    // }
+    
+}
+function checkName () {
+    $('#city').removeClass('err');
+    $('#cou_city').hide();
+    var name = $.trim($('#name').val());
+    if (name == '') {
+        $('#name').focus().addClass('err');
+        $('#name_error').show();
+        return false;
+    }
+    else {
+        $('#name').removeClass('err');
+        $('#name_error').hide();
+        return true;
+    }
+}
+function checkPhone () {
+    $('#city').removeClass('err');
+    $('#cou_city').hide();
+    var phoneNum = $.trim($('#phone').val());
+    if (!check_value.phone(phoneNum)) {
+        $('#phone').focus().addClass('err');
+        $('#phone_error').show();
+        return false;
+    }
+    else {
+        $('#phone').removeClass('err');
+        $('#phone_error').hide();
+        return true;
+    }
+}
+function checkCodeValue () {
+    $('#city').removeClass('err');
+    $('#cou_city').hide();
+    var codeVal = $('#code').val();
+    if (codeVal == '' || codeVal.length < 6) {
+        $('#code').focus().addClass('err');
+        $('#code_error').show();
+        return false;
+    } else {
+        $('#code').removeClass('err');
+        $('#code_error').hide();
+        return true;
+    }
+}
     var timer;
     function countDown() {
         // 60s倒计时
-        $("#getcode").attr("disabled", "disabled");
+        // $("#getcode").attr('disabled',"true");
+        $("#getcode").unbind("click");
         var countDownTime = 60;
         timer = window.setInterval(function () {
             countDownTime--;
@@ -176,60 +325,96 @@
             if (countDownTime == 0) {
                 clearInterval(timer);
                 $("#getcode").html('重新获取');
-                $("#getcode").removeAttr("disabled");
+                // $("#getcode").removeAttr("disabled");
+                $("#getcode").bind("click",function () {
+                  getCode();
+                });
             }
         }, 1000);
     }
 
-    $(function () {
-        $('#getcode').on('click', function () {
-            var data = $(this).data('coupon');
-            console.log('data',data)
-            $.ajax({
-                url: '/sendSms',
-                type:'get',
-                data:{
-                    param_code: data,
-                    phone:$("#phone").val()
-                },
-                dataType:'json',
-                success:function(msg){
-                    if(msg.code === 0){
+    function getCode () {
+      var data = $('#getcode').data('coupon');
+      console.log('data',data)
+      if (!checkPhone()) {
+        return;
+      }
+      $.ajax({
+          url: '/sendSms',
+          type:'get',
+          data:{
+              param_code: data,
+              phone:$("#phone").val()
+          },
+          dataType:'json',
+          success:function(msg){
+              if(msg.code === 0){
+              //alert('成功');
+              countDown();
+              } else {
+                  alert('出错啦');
+              }
+          },
+          error:function(XMLHttpRequest, textStatus, errorThrown){
+              console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
+          }
+      });
+    }
+    
+    $('#getcode').on('click', function () {
+        getCode();
+        return false;
+    });
+    $('#cou_city_s').on('click', 'span', function (e) {
+        e.preventDefault();
+        var cou_index = $(this).index();
+		    $(this).addClass('active').siblings().removeClass('active')
+        $('#city').val($(this).html());
+        return false;
+    });
+    $('#city_queding').on('click', function (e) {
+      e.preventDefault();
+      if ($('#city').val == '') {
+        return false;
+      }
+      $('#cou_city').hide();
+      $('#city').removeClass('err');
+      return false;
+    });
+    $('#city_quxiao').on('click', function (e) {
+      e.preventDefault();
+      $('#cou_city').hide();
+      $('#city').val('');
+      $('#city').removeClass('err');
+      return false;
+    });
+    $('#evaluationBtn').on('click', function () {
+        checkName();
+        checkPhone();
+        checkCodeValue();
+        $.ajax({
+            url: '/getCoupons',
+            type: 'get',
+            data: {
+                user_name: $('#name').val(),
+                mobile: $("#phone").val(),
+                country_id: 1,
+                code: $('#code').val()
+            },
+            dataType:'json',
+            success:function(msg){
+                if(msg.code === 0){
                     //alert('成功');
-                    countDown();
-                    } else {
-                        alert('出错啦');
-                    }
-                },
-                error:function(XMLHttpRequest, textStatus, errorThrown){
-                    console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
+                    alert('优惠码发送成功');
+                } else {
+                    alert(msg.massage);
                 }
-            });
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
+            }
         })
-        $('#evaluationBtn').on('click', function () {
-            $.ajax({
-                url: '/getCoupons',
-                type: 'get',
-                data: {
-                    user_name: $('#name').val(),
-                    mobile: $("#phone").val(),
-                    country_id: 1,
-                    code: $('#code').val()
-                },
-                dataType:'json',
-                success:function(msg){
-                    if(msg.code === 0){
-                        //alert('成功');
-                        alert('优惠码发送成功');
-                    } else {
-                        alert(msg.massage);
-                    }
-                },
-                error:function(XMLHttpRequest, textStatus, errorThrown){
-                    console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
-                }
-            })
-        })
-    })
+    });
+    
 </script>
 </html>

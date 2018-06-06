@@ -2940,7 +2940,9 @@ exports.sendsms = function (req, res, next) {
                 console.log(result)
                 res.send(result);
                 //清除session
-                req.session.param_code = false;
+                req.session.destroy(function(err) {
+                    log.debug('session destroy err',err);
+                })
             }
         })
     } else {
@@ -2966,10 +2968,10 @@ exports.getCoupons = function (req, res, next) {
             })
             cms.sendCoupons({mobile: req.query.mobile, source: 2, coupon: result.data}, function () {
                 if (err) {
-                    res.send(err);
+                    // res.send(err);
                 } else {
                     console.log('发送优惠券',result)
-                    res.send(result);
+                    // res.send(result);
                 }
             })
         }
