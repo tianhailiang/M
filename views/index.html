@@ -203,9 +203,11 @@
         <div class="weui-actionsheet" id="iosActionsheet" >
             <div class="tag-content">
                 <div class="tag-top">
-                    <svg class="icon" aria-hidden="true" id="iosActionsheetCancel">
-                        <use xlink:href="#icon-guanbi1"></use>
-                    </svg>
+                    <div class="tag-top-x" id="iosActionsheetCancel">
+                        <svg class="icon" aria-hidden="true" >
+                            <use xlink:href="#icon-guanbi1"></use>
+                        </svg>
+                    </div>
                 </div>
                 <div class="tag-title" >
                     <svg class="icon" aria-hidden="true" style="color:#d51821;" >
@@ -341,9 +343,6 @@
                 $('.tag-arc-ul li').removeClass('active');
             });
             $('.tag-sure-btn').on('click',function(){
-                console.log($('.country-ul').attr('data-country'))
-                console.log($('.tag-ul').find('.active').text())
-                console.log($('.tag-arc-ul').find('.active').text())
                 window.location.href =fn.active_urlgen('articles', 'n=' +$('.country-ul').attr('data-country') ,
                 "type=" + $('.tag-ul').find('.active').text(),"tag=" + $('.tag-arc-ul').find('.active').text() );
 
