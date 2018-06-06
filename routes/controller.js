@@ -2978,3 +2978,18 @@ exports.getCoupons = function (req, res, next) {
     })
     
 }
+
+//优惠券活动二维码页面
+//新留学活动
+exports.obtain = function (req, res, next){
+    log.debug('活动底页');
+    var data = [];
+    var uid = req.params[0];
+    var cityId = req.params[1];
+        data.tdk = {
+            pagekey: 'M_ACTIVITY_DETAIL',
+            cityid:cityId,
+            title: ''
+        };
+        res.render('obtain', data);
+}

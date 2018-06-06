@@ -9,7 +9,7 @@
     };
     var js_api_config = global.js_api_config = {
         version: 'development',
-        wwhost: 'http://m.jjl.cn',
+        wwhost: 'http://m.jjl.cn:7000',
         yiminhost : 'http://yimin.jjl.cn',
         imageshost: 'http://images.jjl.cn'
     }
