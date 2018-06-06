@@ -45,7 +45,17 @@
 <!-- ===侧边栏==== -->
 {% include "m_widget/slidebar/search_sliderbar.html" %}
 </body>
-<!--<script src="{{helper.cdnhost}}/assets/js/search.js"></script>-->
+<!--BEGIN dialog2-->
+<div class="js_dialog" id="msgDialog" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__bd">不支持特殊字符搜索哦</div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>
+        </div>
+    </div>
+</div>
+<!--END dialog2-->
 <script>
   $(function () {
       var FooterH = $(".footer").outerHeight()+12;
@@ -59,15 +69,31 @@
       var activeLi = $('#tab-type').find('.active').attr('data-type');
       var searchType = activeLi? activeLi: 1;
       var cur_page = 1;
+      var msgDialog = $('#msgDialog');
       /*输入搜索关键词 回车搜索*/
+      function checkSpecialCode(val){
+          var special_code = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;//new RegExp("[ ,\\`,\\~,\\!,\\@,\#,\\$,\\%,\\^,\\+,\\*,\\&,\\\\,\\/,\\?,\\|,\\:,\\.,\\<,\\>,\\{,\\},\\(,\\),\\],\\[,\\',\\;,\\=,\"]");//new RegExp("[~'!@#$%^&*()-+_=:]",'g');
+          if (val.match(special_code)) {
+              return true;
+          }
+          else {
+              msgDialog.fadeIn(200);
+              return false;
+          }
+      }
       $('#searchForm').on('keypress', function (e) {
           var keycode = e.keyCode;
           searchWord = $('#search-content').val();
           if (keycode == 13) {
               searchType = 1;
               e.preventDefault();
-              window.location.href = fn.urlgen('so_activity','q='+ searchWord,'type='+searchType)
+              if (checkSpecialCode(searchWord)) {
+                  window.location.href = fn.urlgen('so_activity','q='+ searchWord,'type='+searchType)
+              }
           }
+      });
+      $('#msgDialog').on('click', '.weui-dialog__btn', function(){
+          $(this).parents('.js_dialog').fadeOut(200);
       });
       /*清除关键词*/
       $('#del-keyword').on('click', function () {

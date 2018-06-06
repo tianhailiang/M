@@ -91,6 +91,11 @@
 .tag-top{
     display: flex;
     justify-content: flex-end;
+    height:20px;
+}
+.tag-top-x{
+    display: flex;
+    align-items: center;
 }
 .tag-title{
     margin-bottom: 19px;

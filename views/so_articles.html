@@ -17,7 +17,7 @@
                 <li data-type="add_time" {% if order == 'add_time' %}class="active"{% else %}{% endif %}><a href="{{helper.active_urlgen('so_articles','q='+ keyword,'order=add_time')}}">最新new</a></li>
                 <li data-type="views" {% if order == 'views' %}class="active"{% else %}{% endif %}><a href="{{helper.active_urlgen('so_articles','q='+ keyword, 'order=views')}}">最热hot</a></li>
             </ul>
-            {% if activity_list.total != 0 %}
+            {% if article_list.total != 0 %}
             <div class="search-result" style="background-color: #fff;">
                 <ul class="column-news">
                     {% include "m_widget/news_list/articles_list.html" %}
@@ -31,7 +31,7 @@
             <div id="search-black">
                 <div class="search-black-img">
                     <img src="{{helper.cdnhost}}/assets/img/search-black.png" alt="">
-                    <p>还没有任何活动</p>
+                    <p>还没有任何文章~</p>
                 </div>
             </div>
             {% endif %}
@@ -47,6 +47,17 @@
 </div>
 <!-- ===侧边栏==== -->
 {% include "m_widget/slidebar/search_sliderbar.html" %}
+<!--BEGIN dialog2-->
+<div class="js_dialog" id="msgDialog" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__bd">不支持特殊字符搜索哦</div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>
+        </div>
+    </div>
+</div>
+<!--END dialog2-->
 </body>
 <script>
     $(function () {
@@ -62,15 +73,31 @@
         var activeLi = $('#tab-type').find('.active').attr('data-type');
         var searchType = activeLi? activeLi: 'score';
         var cur_page = 1;
+        var msgDialog = $('#msgDialog');
         /*输入搜索关键词 回车搜索*/
+        function checkSpecialCode(val){
+            var special_code = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;//new RegExp("[ ,\\`,\\~,\\!,\\@,\#,\\$,\\%,\\^,\\+,\\*,\\&,\\\\,\\/,\\?,\\|,\\:,\\.,\\<,\\>,\\{,\\},\\(,\\),\\],\\[,\\',\\;,\\=,\"]");//new RegExp("[~'!@#$%^&*()-+_=:]",'g');
+            if (val.match(special_code)) {
+                return true;
+            }
+            else {
+                msgDialog.fadeIn(200);
+                return false;
+            }
+        }
         $('#searchForm').on('keypress', function (e) {
             var keycode = e.keyCode;
             searchWord = $('#search-content').val();
             if (keycode == 13) {
                 searchType = 'score';
                 e.preventDefault();
-                window.location.href = fn.urlgen('so_articles','q='+ searchWord,'type='+searchType)
+                if (checkSpecialCode(searchWord)) {
+                    window.location.href = fn.urlgen('so_articles','q='+ searchWord,'type='+searchType)
+                }
             }
+        });
+        $('#msgDialog').on('click', '.weui-dialog__btn', function(){
+            $(this).parents('.js_dialog').fadeOut(200);
         });
         /*清除关键词*/
         $('#del-keyword').on('click', function () {

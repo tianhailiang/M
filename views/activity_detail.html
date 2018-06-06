@@ -81,9 +81,9 @@
     <h3><svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-dian-copy-copy-copy"></use>
     </svg><span>主要内容&nbsp;:</span></h3>
-    <p class="xianzhi-img" data-img="" id="get-share-img" data-introduce ="{{activity_detail.list.description}}" >
+    <div class="xianzhi-img" data-img="" id="get-share-img" data-introduce ="{{activity_detail.list.description}}" >
       {{ activity_detail.list.content | safe }}
-    </p>
+    </div>
   </div>
   <div class="fenxiang_con">
     <div class="wenxin_con">
@@ -108,15 +108,16 @@
       </div>
     </div>
     </div>
-  <!--footer start-->
+<!--footer start-->
   {% include "m_widget/footer/common_footer.html" %}
   <!--footer end-->
+</div>
     {% include "m_widget/booking/booking.html" %}
     <!-- ===侧边栏==== -->
     {% include "m_widget/slidebar/slidebar.html" %}
     <!-- ======乐语底栏======= -->
     {% include 'm_widget/funtalk/funtalk.html' %}
-    <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=586c90bc5512edfcd7de1696749f8ef7"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=586c90bc5512edfcd7de1696749f8ef7"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" ></script>
     <script>
       //  document.domain='http://widget.weibo.com';
@@ -210,7 +211,7 @@
               wx.ready(function(){
                 // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
                 wx.onMenuShareTimeline({
-                  title: $('#article_title').text(), // 分享标题
+                  title: $('.activity—title').text(), // 分享标题
                   link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                   imgUrl: $("#get-share-img").attr('data-img')||getImage(), // 分享图标
                   success: function () {
@@ -221,7 +222,7 @@
                   }
                 });
                 wx.onMenuShareAppMessage({
-                  title: $('#article_title').text(), // 分享标题
+                  title: $('.activity—title').text(), // 分享标题
                   desc: $("#get-share-img").attr("data-introduce"), // 分享描述
                   link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                   imgUrl: $("#get-share-img").attr('data-img')||getImage(), // 分享图标
@@ -264,16 +265,5 @@
         }
       }
     </script>
-    <script>
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?7bd472da5fad53e8b1c8b3413b3c1cac";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-    <script src="http://mgr.jjl.cn:80/j.jsp?c=1&f=182" type="text/javascript"></script>
-    <script src="http://jesong.jjl.cn/js/jjl.js"></script>
 </body>
 </html>
