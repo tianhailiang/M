@@ -13,7 +13,7 @@ exports = module.exports = function (app) {// routes
   //国家频道页 nationrank
   app.get(/^\/((?!yimin)usa|uk|canada|australia|newzealand|korea|japan|singapore|malaysia|hongkong|russion|ukraine|belarus|germany|france|norway|sweden|finland|ireland|netherlands|denmark|italy|spain|switzerland|greece|malta|portugal|cyprus|antigua|dominica|saintkitts|grenada)(\/*)$/, controller.nationrank);
   //搜索页
-  app.get(/^\/so_activity(\/*)((?![0-9])[0-9A-Za-z\-_%~'!@#$^&*()-+=:]*)$/,controller.so_activity);//搜索页面
+  app.get(/^\/so_activity(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/,controller.so_activity);//搜索页面
   //app.get(/^\/so_news(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/,controller.search_news);//搜索结果资讯
   app.get(/^\/so_adviser(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/,controller.search_advisor);//搜索结果顾问
   //app.get('/so_advisor',controller.search_advisor);//顾问搜索结果
@@ -109,7 +109,7 @@ exports = module.exports = function (app) {// routes
   app.get('/search_activity',controller.search_activity);
   app.get('/search_articles',controller.search_articles);
   app.get(/^\/articles(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/, controller.country_list);
-  app.get(/^\/so_articles(\/*)((?![0-9])[0-9A-Za-z\-_%~'!@#$^&*()-+=:]*)$/,controller.so_articles);//文章搜索页
+  app.get(/^\/so_articles(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/,controller.so_articles);//文章搜索页
 };
 
 

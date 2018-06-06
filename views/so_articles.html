@@ -47,6 +47,17 @@
 </div>
 <!-- ===侧边栏==== -->
 {% include "m_widget/slidebar/search_sliderbar.html" %}
+<!--BEGIN dialog2-->
+<div class="js_dialog" id="msgDialog" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__bd">不支持特殊字符搜索哦</div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>
+        </div>
+    </div>
+</div>
+<!--END dialog2-->
 </body>
 <script>
     $(function () {
@@ -62,15 +73,28 @@
         var activeLi = $('#tab-type').find('.active').attr('data-type');
         var searchType = activeLi? activeLi: 'score';
         var cur_page = 1;
+        var msgDialog = $('#msgDialog');
         /*输入搜索关键词 回车搜索*/
+        function checkSpecialCode(val){
+            var special_code = new RegExp("[ ,\\`,\\~,\\!,\\@,\#,\\$,\\%,\\^,\\+,\\*,\\&,\\\\,\\/,\\?,\\|,\\:,\\.,\\<,\\>,\\{,\\},\\(,\\),\\],\\[,\\',\\;,\\=,\"]");//new RegExp("[~'!@#$%^&*()-+_=:]",'g');
+            if (val.match(special_code)) {
+                msgDialog.fadeIn(200);
+                return true;
+            }
+        }
         $('#searchForm').on('keypress', function (e) {
             var keycode = e.keyCode;
             searchWord = $('#search-content').val();
             if (keycode == 13) {
                 searchType = 'score';
                 e.preventDefault();
-                window.location.href = fn.urlgen('so_articles','q='+ searchWord,'type='+searchType)
+                if (!checkSpecialCode(searchWord)) {
+                    window.location.href = fn.urlgen('so_articles','q='+ searchWord,'type='+searchType)
+                }
             }
+        });
+        $('#msgDialog').on('click', '.weui-dialog__btn', function(){
+            $(this).parents('.js_dialog').fadeOut(200);
         });
         /*清除关键词*/
         $('#del-keyword').on('click', function () {
