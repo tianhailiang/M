@@ -72,10 +72,13 @@
       var msgDialog = $('#msgDialog');
       /*输入搜索关键词 回车搜索*/
       function checkSpecialCode(val){
-          var special_code = new RegExp("[ ,\\`,\\~,\\!,\\@,\#,\\$,\\%,\\^,\\+,\\*,\\&,\\\\,\\/,\\?,\\|,\\:,\\.,\\<,\\>,\\{,\\},\\(,\\),\\],\\[,\\',\\;,\\=,\"]");//new RegExp("[~'!@#$%^&*()-+_=:]",'g');
+          var special_code = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;//new RegExp("[ ,\\`,\\~,\\!,\\@,\#,\\$,\\%,\\^,\\+,\\*,\\&,\\\\,\\/,\\?,\\|,\\:,\\.,\\<,\\>,\\{,\\},\\(,\\),\\],\\[,\\',\\;,\\=,\"]");//new RegExp("[~'!@#$%^&*()-+_=:]",'g');
           if (val.match(special_code)) {
-              msgDialog.fadeIn(200);
               return true;
+          }
+          else {
+              msgDialog.fadeIn(200);
+              return false;
           }
       }
       $('#searchForm').on('keypress', function (e) {
@@ -84,7 +87,7 @@
           if (keycode == 13) {
               searchType = 1;
               e.preventDefault();
-              if (!checkSpecialCode(searchWord)) {
+              if (checkSpecialCode(searchWord)) {
                   window.location.href = fn.urlgen('so_activity','q='+ searchWord,'type='+searchType)
               }
           }
