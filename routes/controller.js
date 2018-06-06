@@ -2955,13 +2955,21 @@ exports.getCoupons = function (req, res, next) {
         if (err) {
             res.send(err);
         } else {
-            console.log(result)
+            console.log('获取优惠券',result)
             res.send(result);
-            cms.login_ss({phone: req.query,code: req.query.phone}, function (err,result) {
+            cms.login_ss({phone: req.query.mobile, code: req.query.code}, function (err,result) {
                 if (err) {
                     console.log('注册失败');
                 } else {
                     console.log('注册成功');
+                }
+            })
+            cms.sendCoupons({mobile: req.query.mobile, source: 2, coupon: result.data}, function () {
+                if (err) {
+                    res.send(err);
+                } else {
+                    console.log('发送优惠券',result)
+                    res.send(result);
                 }
             })
         }
