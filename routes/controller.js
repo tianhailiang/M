@@ -682,7 +682,7 @@ exports.so_activity = function (req, res, next) {
                     "stime":type,
                     "city_id":area,
                     "page":1,
-                    "per_page": 3
+                    "per_page": 8
                 },callback)
             }
         },function (err, result) {
@@ -718,7 +718,7 @@ exports.so_articles = function (req, res, next) {
                 order: order,
                 key_word:encodeURI(keyword),
                 city_id:area,
-                "per_page": "4",
+                "per_page": "8",
                 "page": page
             }, callback);
         }
@@ -1145,7 +1145,7 @@ exports.study_abroad_activity = function (req, res, next) {
 
     //留学活动
       activity_list: function (callback) {
-      cms.activity_list({"city_id":area,"country":country,"type":type,"crowd":encodeURI(crowd),"page":"1","perpage":3}, callback);
+      cms.activity_list({"city_id":area,"country":country,"type":type,"crowd":encodeURI(crowd),"page":"1","perpage":8}, callback);
     }
   }, function (err, result) {
 
@@ -3008,7 +3008,7 @@ exports.country_list = function (req, res, next) {
                 "country_id": country,
                 "is_news": newsFlag,
                 "edu_id":(type=='时讯')?'':encodeURI(type),
-                "per_page": "4",
+                "per_page": "8",
                 "page": page
             }, callback);
         },
