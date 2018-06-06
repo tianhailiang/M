@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-{% include "header.html" %}
+  <head>
+    {% include "header.html" %}
+    <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/obtain.css">
+  </head>
 <body>
-{% include "m_widget/top/common_top.html" %}
-<!--顶部tab切换 end-->
-<div id="app" >
-
-</div>
-<!-- ===侧边栏==== -->
-{% include "m_widget/slidebar/common_sliderbar.html" %}
+  <!--顶部tab切换 end-->
+  {% include "m_widget/top/common_top.html" %}
+  <!-- ===侧边栏==== -->
+  {% include "m_widget/slidebar/common_sliderbar.html" %}
+  <div class="obtain_ing"></div>
+  <div class="js_dialog" id="dialog1" style="opacity: 1;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog" style="height:100px;overflow: inherit;">
+      <p class="share_con">分享至</p>
+      <div class="wenxinx_con"></div>
+      <div class="wenxin_con"></div>
+      <div class="cue_qq_con"></div>
+    </div>
+    <div class="cue_weixin">
+      <div></div>
+    </div>
+    <div class="cue_weixin1">
+      <div></div>
+    </div>
+    <div class="cue_qq">
+      <div></div>
+    </div>
+  </div>
 </body>
+<script>
+
+</script>
 <script>
   var _hmt = _hmt || [];
   (function() {
