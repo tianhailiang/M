@@ -2859,15 +2859,11 @@ exports.wxtoken = function(req,res,next){
 exports.activity_detail = function (req, res, next){
     log.debug('活动底页');
     var data = [];
-    var uid = req.params[0];
-    var cityId = req.params[1];
-    if ( req.cookies.login_ss !== undefined) {
-        data.login_info = JSON.parse(req.cookies.login_ss);
-    }else{
-    }
+    var uid = req.params[1];
+    var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
     cms.activity_detail ({
         "catid":74,
-        "id": cityId
+        "id": uid
     }, function(err,result){
         if(err || result.code != 0){
             return next();
@@ -2875,7 +2871,7 @@ exports.activity_detail = function (req, res, next){
         data.activity_detail = returnData(result, 'activity_detail');
         data.tdk = {
             pagekey: 'M_ACTIVITY_DETAIL',
-            cityid:cityId,
+            cityid:area,
             title: data.activity_detail.list.title
         };
         res.render('activity_detail', data);
