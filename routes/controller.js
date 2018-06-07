@@ -2952,28 +2952,39 @@ exports.sendsms = function (req, res, next) {
 //获取优惠券
 exports.getCoupons = function (req, res, next) {
     console.log('req.query',req.query)
-    
-    cms.getCoupons(req.query, function (err,result) {
+    var user_name = req.query.user_name;
+    var mobile = req.query.mobile;
+    var country_id = req.query.country_id;
+    var code = req.query.code;
+    //获取本地ip
+    var ip = req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
+    if(ip.split(',').length>0){
+        ip = ip.split(',')[0]
+    }
+    cms.getCoupons({user_name: user_name,mobile: mobile, country_id: country_id, code: code, ip: ip}, function (err,result) {
         if (err) {
             res.send(err);
         } else {
             console.log('获取优惠券',result)
             res.send(result);
-            cms.login_ss({phone: req.query.mobile, code: req.query.code}, function (err,result) {
-                if (err) {
-                    console.log('注册失败');
-                } else {
-                    console.log('注册成功');
-                }
-            })
-            cms.sendCoupons({mobile: req.query.mobile, source: 2, coupon: result.data}, function () {
-                if (err) {
+            if (result.code == 0) {
+                cms.login_ss({phone: req.query.mobile, code: req.query.code}, function (err,result) {
+                    if (err) {
+                        console.log('注册失败');
+                    } else {
+                        console.log('注册成功');
+                    }
+                })
+                cms.sendCoupons({mobile: req.query.mobile, source: 2, coupon: result.data}, function () {
+                    if (err) {
                     // res.send(err);
-                } else {
+                    } else {
                     console.log('发送优惠券',result)
                     // res.send(result);
-                }
-            })
+                    }
+                })
+            }
+            
         }
     })
     
