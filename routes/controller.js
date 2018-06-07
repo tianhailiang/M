@@ -2994,8 +2994,9 @@ exports.getCoupons = function (req, res, next) {
 exports.obtain = function (req, res, next){
     log.debug('活动底页');
     var data = [];
-        data.tdk = {
-        title: '最高减免2000元，要留学的你还不知道？'
+    data.tdk = {
+        title: '最高减免2000元，要留学的你还不知道？',
+        pagekey:'OBTAIN'
     };
     res.render('obtain', data);
 }
