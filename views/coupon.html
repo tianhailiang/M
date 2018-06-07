@@ -13,18 +13,21 @@
       margin-top: 30px;
       background: url({{helper.cdnhost}}/assets/img/coupon_bac.png) no-repeat;
       background-size: cover;
-      padding: 0 10px;
+      padding: 0 9px;
     }
     .cou_ti{
       width: 100%;
+      height: 100%;
     }
     .cou_inp{
       width: 100%;
-      height: 420px;
+      height: 100%;
+      display: inline-block;
       background: url({{helper.cdnhost}}/assets/img/coupon_bac1.png) no-repeat;
-      background-size: cover;
+      background-size: 100% 100%;
       margin-top: 30px;
       padding: 25px 20px;
+      
     }
     .form-yimin-text {
       display: flex;
@@ -67,13 +70,13 @@
     width: 10px;
     position: absolute;
     right: 15px;
-    top: 7px;
+    top: 10px;
   }
   .form-yimin-text .cou_city{
     width: 100%;
     height: 283px;
     background: url({{helper.cdnhost}}/assets/img/coupon_cit.png) no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
     position: absolute;
     top: 37px;
     z-index: 1000;
@@ -144,6 +147,37 @@
     display: inline-block;
     line-height: 26px;
   }
+  .weui-agree__checkbox:checked:before{
+    color: #e83a56;
+    border: 1px solid #e83a56;
+    border-radius: 3px;
+    width: 13px;
+    height: 15px;
+    top: 39%;
+    left: 50%;
+  }
+  .weui-agree{
+    padding: 10px 0px 20px 0px;
+  }
+  .weui-agree__text{
+    color: #e83a56;
+  }
+  .form-yimin-btn{
+    width: 100%;
+    height: 45px;
+    position: relative;
+  }
+  .form-yimin-btn span{
+    width: 100%;
+    color:#ffffff;
+    background: url({{helper.cdnhost}}/assets/img/coupon_but.png) no-repeat;
+    background-size: 100% 100%;
+    height:45px;
+    line-height: 46px;
+    text-align: center;
+    font-size: 14px;
+    display: inline-block;
+  }
   </style>
 </head>
 <body style="background: #ffffff;">
@@ -164,10 +198,10 @@
         <div class="cou_inp">
             <div class="form-yimin-text" style="margin-top: 60px;"><input type="text" placeholder="请输入您的真实姓名" id="name"><em id="name_error">请输入正确姓名</em></div>
             <div class="form-yimin-text" ><input type="text" placeholder="请输入手机号" id="phone"><em id="phone_error">请输入正确手机号</em></div>
-            <div class="form-yimin-text"><input type="text" id="code" placeholder="请输入验证码"><span id="getcode">点击发送验证码</span><em id="code_error">请输入正确手机验证码</em></div>
+            <div class="form-yimin-text"><input type="text" id="code" placeholder="请输入验证码"><span id="getcode" data-coupon="{{param_code}}">点击发送验证码</span><em id="code_error">请输入正确手机验证码</em></div>
             <div class="form-yimin-text form-yimin-text1">
               <input type="text" id="city" placeholder="意向国家">
-              <i class="iconfont">&#xe648;</i>
+              <i class="iconfont">&#xe60a;</i>
               <div class="cou_city" id="cou_city">
                 <div class="cou_city_s" id="cou_city_s">
                   <span class="active" value='1'>美国</span>
@@ -201,6 +235,11 @@
                 </div>
               </div>
             </div>
+            <label for="weuiAgree" class="weui-agree">
+              <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox">
+              <span class="weui-agree__text">注册JJL网站账号</span>
+          </label>
+          <div class="form-yimin-btn"><span id="evaluationBtn">点击进行在线评估</span></div>
         </div>
         {# 活动说明 #}
         <div class="cou_act">
@@ -252,9 +291,9 @@ $('#code').on('keyup', function () {
 $('#city').on('blur', function () {
     getcity();
 });
-// $('#city').on('keyup', function () {
-//     getcity();
-// });
+$('#city').on('keyup', function () {
+    getcity();
+});
 function getcity () {
     var city = $.trim($('#city').val());
     if (city != '美国' && city != '英国' && city != '澳大利亚' && city != '加拿大' && city != '新西兰' && city != '日本' && city != '韩国' && city != '中国香港' && city != '俄罗斯' && city != '乌克兰' && city != '爱尔兰' && city != '意大利' && city != '西班牙' && city != '白俄罗斯' && city != '新加坡' && city != '马来西亚' && city != '丹麦' && city != '德国' && city != '法国' && city != '挪威' && city != '瑞典' &&city != '芬兰' && city != '荷兰' && city != '瑞士') {
@@ -324,7 +363,7 @@ function checkCodeValue () {
             $("#getcode").html('（'+countDownTime+'）s');
             if (countDownTime == 0) {
                 clearInterval(timer);
-                $("#getcode").html('重新获取');
+                $("#getcode").html('点击发送验证码');
                 // $("#getcode").removeAttr("disabled");
                 $("#getcode").bind("click",function () {
                   getCode();
@@ -337,7 +376,7 @@ function checkCodeValue () {
       var data = $('#getcode').data('coupon');
       console.log('data',data)
       if (!checkPhone()) {
-        return;
+        return false;
       }
       $.ajax({
           url: '/sendSms',
@@ -389,9 +428,9 @@ function checkCodeValue () {
       return false;
     });
     $('#evaluationBtn').on('click', function () {
-        checkName();
-        checkPhone();
-        checkCodeValue();
+        if (!checkName()) return false;
+        if (!checkPhone()) return false;
+        if (!checkCodeValue()) return false;
         $.ajax({
             url: '/getCoupons',
             type: 'get',
