@@ -50,6 +50,7 @@
         return 'http://'+location.host+'/assets/img/share_logo.png';
       }
       if(isWeiXin()){
+        console.log(js_api_config + '/coupon')
         $('.wenxin_con').on('click',function(e){
           //朋友圈
           e.stopPropagation();
