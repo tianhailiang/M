@@ -32,6 +32,7 @@
     </div>
   </div>
 </body>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" ></script>
   <script>
     //  document.domain='http://widget.weibo.com';
     window.onload =function(){
@@ -119,6 +120,8 @@
                 },
                 cancel: function () {
                   // 用户取消分享后执行的回调函数
+                  $('.weui-mask').css({'background':'none'});
+                  $('.obtain_ing').css({'background': 'url(../img/qq.png) no-repeat;'});
                 }
               });
               wx.onMenuShareAppMessage({
@@ -130,6 +133,8 @@
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
                   // 用户点击了分享后执行的回调函数
+                  $('.weui-mask').css({'background':'none'});
+                  $('.obtain_ing').css({'background': 'url(../img/qq.png) no-repeat;'})
                 }
               });
             });
