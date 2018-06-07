@@ -114,7 +114,7 @@
               wx.onMenuShareTimeline({
                 title: '最高减免2000元，要留学的你还不知道？',  // 分享标题
                 link: js_api_config + '/coupon', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: $("#get-share-img").attr('data-img')||getImage(), // 分享图标
+                imgUrl: getImage(), // 分享图标
                 success: function () {
                   // 用户确认分享后执行的回调函数
                   alert('分享成功')
@@ -133,7 +133,7 @@
                 title: '最高减免2000元，要留学的你还不知道？', // 分享标题
                 desc: '', // 分享描述
                 link: js_api_config + '/coupon', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: $("#get-share-img").attr('data-img')||getImage(), // 分享图标
+                imgUrl:getImage(), // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
@@ -146,7 +146,7 @@
                 title: '最高减免2000元，要留学的你还不知道？', // 分享标题
                 desc: '', // 分享描述
                 link: js_api_config + '/coupon', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: $("#get-share-img").attr('data-img')||getImage(), // 分享图标
+                imgUrl: getImage(), // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
@@ -211,7 +211,5 @@
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
-<script src="http://mgr.jjl.cn:80/j.jsp?c=1&f=182" type="text/javascript"></script>
-<script src="http://jesong.jjl.cn/js/jjl.js" ></script>
 </html>
 
