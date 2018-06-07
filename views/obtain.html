@@ -10,6 +10,7 @@
   <!-- ===侧边栏==== -->
   {% include "m_widget/slidebar/common_sliderbar.html" %}
   <div class="obtain_ing"></div>
+  <img class="obtain_ing_x" style="width: 100%;height: auto;display: none" src="../assets/img/youhuima.png" alt="">
   <div class="js_dialog" id="dialog1" style="opacity: 1;">
     <div class="weui-mask"></div>
     <div class="weui-dialog" style="height:100px;overflow: inherit;">
@@ -118,12 +119,14 @@
                 success: function () {
                   // 用户确认分享后执行的回调函数
                   $('.js_dialog').css({'display': 'none'});
-                  $('.obtain_ing').css({'background': 'url(../assets/img/youhuima.png) no-repeat','backgroundSize': '100% 100%'});
+                  $('.obtain_ing').css({'display': 'none'});
+                  $('.obtain_ing_x').css({'display': 'block'});
                 },
                 cancel: function () {
                   // 用户取消分享后执行的回调函数
                   $('.js_dialog').css({'display': 'none'});
-                  $('.obtain_ing').css({'background': 'url(../assets/img/youhuima.png) no-repeat','backgroundSize': '100% 100%'});
+                  $('.obtain_ing').css({'display': 'none'});
+                  $('.obtain_ing_x').css({'display': 'block'});
                 }
               });
               wx.onMenuShareAppMessage({
@@ -136,7 +139,8 @@
                 success: function () {
                   // 用户点击了分享后执行的回调函数
                   $('.js_dialog').css({'display': 'none'});
-                  $('.obtain_ing').css({'background': 'url(../assets/img/youhuima.png) no-repeat','backgroundSize': '100% 100%'});
+                  $('.obtain_ing').css({'display': 'none'});
+                  $('.obtain_ing_x').css({'display': 'block'});
                 }
               });
               wx.onMenuShareQQ({
@@ -149,12 +153,14 @@
                 success: function () {
                   // 用户确认分享后执行的回调函数
                   $('.js_dialog').css({'display': 'none'});
-                  $('.obtain_ing').css({'background': 'url(../assets/img/youhuima.png) no-repeat','backgroundSize': '100% 100%'});
+                  $('.obtain_ing').css({'display': 'none'});
+                  $('.obtain_ing_x').css({'display': 'block'});
                 },
                 cancel: function () {
                   // 用户取消分享后执行的回调函数
                   $('.js_dialog').css({'display': 'none'});
-                  $('.obtain_ing').css({'background': 'url(../assets/img/youhuima.png) no-repeat','backgroundSize': '100% 100%'});
+                  $('.obtain_ing').css({'display': 'none'});
+                  $('.obtain_ing_x').css({'display': 'block'});
                 }
               });
             });
