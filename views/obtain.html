@@ -119,14 +119,14 @@
                   // 用户确认分享后执行的回调函数
                   alert('分享成功')
                   $('.js_dialog').css({'display': 'none'});
-                  $('.obtain_ing').css({'background': 'url(../public/assets/img/qq.png) no-repeat;','background-size': '100% 100%'});
+                  $('.obtain_ing').css({'background': 'url(../assets/img/qq.png) no-repeat','backgroundSize': '100% 100%'});
 
                 },
                 cancel: function () {
                   // 用户取消分享后执行的回调函数
                   alert('分享失败')
                   $('.js_dialog').css({'display': 'none'});
-                  $('.obtain_ing').css({'background': 'url(../public/assetsimg/qq.png) no-repeat;','background-size': '100% 100%'});
+                  $('.obtain_ing').css({'background': 'url(../assets/img/qq.png) no-repeat','background-size': '100% 100%'});
                 }
               });
               wx.onMenuShareAppMessage({
