@@ -10,6 +10,7 @@
   <!-- ===侧边栏==== -->
   {% include "m_widget/slidebar/common_sliderbar.html" %}
   <div class="obtain_ing"></div>
+  <img style="position: absolute;left: -50000px" src="../assets/img/eventphotos.png" alt="">
   <img class="obtain_ing_x" style="width: 100%;height: auto;display: none;margin-top: 43px" src="../assets/img/youhuima.png" alt="">
   <div class="js_dialog" id="dialog1" style="opacity: 1;">
     <div class="weui-mask"></div>
@@ -124,9 +125,6 @@
                 },
                 cancel: function () {
                   // 用户取消分享后执行的回调函数
-                  $('.js_dialog').css({'display': 'none'});
-                  $('.obtain_ing').css({'display': 'none'});
-                  $('.obtain_ing_x').css({'display': 'block'});
                 }
               });
               wx.onMenuShareAppMessage({
@@ -158,9 +156,6 @@
                 },
                 cancel: function () {
                   // 用户取消分享后执行的回调函数
-                  $('.js_dialog').css({'display': 'none'});
-                  $('.obtain_ing').css({'display': 'none'});
-                  $('.obtain_ing_x').css({'display': 'block'});
                 }
               });
             });
