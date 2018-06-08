@@ -480,47 +480,33 @@ function checkCodeValue () {
         if (!checkCodeValue()) return false;
         var cityid = $('#city').data('city');
         $.ajax({
-          type: "get",
-          async: false,
-          url:ajaxUrlPrefix.nodeapi+"/get_ip_geter",
-          dataType: "json",
-          success: function(result){
-            var city = cityList[result][0];
-            console.log(cityList[result][0])
-            $.ajax({
-              url: '/getCoupons',
-              type: 'get',
-              data: {
-                user_name: $('#name').val(),
-                mobile: $("#phone").val(),
-                country_id: cityid,
-                code: $('#code').val(),
-                city: city
-              },
-              dataType:'json',
-              success:function(msg){
-                if(msg.code === 0){
-                    //alert('成功');
-                    alert('优惠码发送成功');
-                    if (isWeiXin()) {
-                      window.location.href = js_api_config.wwhost + '/obtain'  
-                    } else {
-                      $('.main_dialog').show();
-                    }
-                    
-                } else {
-                    alert(msg.massage);
-                }
-              },
-              error:function(XMLHttpRequest, textStatus, errorThrown){
-                console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
-              }
-            })
+          url: '/getCoupons',
+          type: 'get',
+          data: {
+            user_name: $('#name').val(),
+            mobile: $("#phone").val(),
+            country_id: cityid,
+            code: $('#code').val()
           },
-          error: function(error){
-            console.log(error)
+          dataType:'json',
+          success:function(msg){
+            if(msg.code === 0){
+                //alert('成功');
+                alert('优惠码发送成功');
+                if (isWeiXin()) {
+                  window.location.href = js_api_config.wwhost + '/obtain'  
+                } else {
+                  $('.main_dialog').show();
+                }
+                
+            } else {
+                alert(msg.massage);
+            }
+          },
+          error:function(XMLHttpRequest, textStatus, errorThrown){
+            console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
           }
-        }); 
+        })
     });
     
     //在浏览器中弹层的提示框

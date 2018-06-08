@@ -10,6 +10,7 @@ var tokenfunc = require('./token.js');
 var helperfunc = require('../common/helper');
 const sha1 = require('sha1');
 var wechat = require('../model/wechat.js');
+var request = require('request');
 function returnData(obj,urlName){
   if(obj.code==0){
     return obj.data;
@@ -2962,33 +2963,44 @@ exports.getCoupons = function (req, res, next) {
     if(ip.split(',').length>0){
         ip = ip.split(',')[0]
     }
-    cms.getCoupons({user_name: user_name,mobile: mobile, country_id: country_id, code: code, ip: ip, city: city}, function (err,result) {
-        if (err) {
-            res.send(err);
-        } else {
-            console.log('获取优惠券',result)
-            res.send(result);
-            if (result.code == 0) {
-                cms.login_ss({phone: req.query.mobile, code: req.query.code}, function (err,result) {
-                    if (err) {
-                        console.log('注册失败');
-                    } else {
-                        console.log('注册成功');
-                    }
-                })
-                cms.sendCoupons({mobile: req.query.mobile, source: 2, coupon: result.data}, function () {
-                    if (err) {
-                    // res.send(err);
-                    } else {
-                    console.log('发送优惠券',result)
-                    // res.send(result);
-                    }
-                })
+    request.get('http://api.map.baidu.com/location/ip?ip='+ip+'&ak=oTtUZr04m9vPgBZ1XOFzjmDpb7GCOhQw&coor=bd09ll',function (error, response, body){
+        if(!error && response.statusCode == 200){
+            log.info(body)
+            var b =JSON.parse(body);
+            var city = '北京';
+            if(b.content){
+                city = b.content.address_detail.city;
             }
-            
+             cms.getCoupons({user_name: user_name,mobile: mobile, country_id: country_id, code: code, ip: ip, city: city}, function (err,result) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    console.log('获取优惠券',result)
+                    res.send(result);
+                    if (result.code == 0) {
+                        cms.login_ss({phone: req.query.mobile, code: req.query.code}, function (err,result) {
+                            if (err) {
+                                console.log('注册失败');
+                            } else {
+                                console.log('注册成功');
+                            }
+                        })
+                        cms.sendCoupons({mobile: req.query.mobile, source: 2, coupon: result.data}, function () {
+                            if (err) {
+                            // res.send(err);
+                            } else {
+                            console.log('发送优惠券',result)
+                            // res.send(result);
+                            }
+                        })
+                    }
+                    
+                }
+            })
+        }else{
+            res.send(error);
         }
-    })
-    
+    });
 }
 
 //优惠券活动二维码页面
