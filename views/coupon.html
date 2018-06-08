@@ -45,6 +45,16 @@
     color:#333;
     background: #fff;
   }
+  .form-yimin-text .city{
+    flex: 1;
+    border:1px solid #dcdcdc;
+    border-radius: 18px;
+    padding: 0 15px;
+    font-size: 13px;
+    color:#666;
+    background: #fff;
+    line-height: 36px;
+  }
   .form-yimin-text input.err {
     border: 1px solid #d51821;
   }
@@ -204,7 +214,8 @@
             <div class="form-yimin-text" ><input type="text" placeholder="请输入手机号" id="phone"><em id="phone_error">请输入正确手机号</em></div>
             <div class="form-yimin-text"><input type="text" id="code" placeholder="请输入验证码"><span id="getcode" data-coupon="{{param_code}}">点击发送验证码</span><em id="code_error">请输入正确手机验证码</em></div>
             <div class="form-yimin-text form-yimin-text1">
-              <input type="text" id="city" placeholder="意向国家">
+              <div class="city" id="city">意向国家</div>
+              {#<input type="text" id="city" placeholder="意向国家">#}
               <i class="iconfont">&#xe60a;</i>
               <div class="cou_city" id="cou_city">
                 <div class="cou_city_s" id="cou_city_s">
@@ -322,14 +333,13 @@ $('#code').on('blur', function () {
 $('#code').on('keyup', function () {
     checkCodeValue();
 });
-$('#city').on('blur', function () {
-    getcity();
-});
-$('#city').on('keyup', function () {
-    getcity();
+$('#city').on('click', function () {
+  $('#city').focus().addClass('err');
+  $('#cou_city').show();
+  $('#city').html('美国');
 });
 function getcity () {
-    var city = $.trim($('#city').val());
+    var city = $.trim($('#city').html());
     if (city != '美国' && city != '英国' && city != '澳大利亚' && city != '加拿大' && city != '新西兰' && city != '日本' && city != '韩国' && city != '中国香港' && city != '俄罗斯' && city != '乌克兰' && city != '爱尔兰' && city != '意大利' && city != '西班牙' && city != '白俄罗斯' && city != '新加坡' && city != '马来西亚' && city != '丹麦' && city != '德国' && city != '法国' && city != '挪威' && city != '瑞典' &&city != '芬兰' && city != '荷兰' && city != '瑞士') {
       $('#city').focus().addClass('err');
       $('#cou_city').show();
@@ -451,13 +461,13 @@ function checkCodeValue () {
         var cou_cityid = $(this).attr('value');
         console.log(cou_cityid)
 		    $(this).addClass('active').siblings().removeClass('active')
-        $('#city').val($(this).html());
+        $('#city').html($(this).html());
         $('#city').attr('data-city', cou_cityid)
         return false;
     });
     $('#city_queding').on('click', function (e) {
       e.preventDefault();
-      var city = $.trim($('#city').val());
+      var city = $.trim($('#city').html());
       if (city != '美国' && city != '英国' && city != '澳大利亚' && city != '加拿大' && city != '新西兰' && city != '日本' && city != '韩国' && city != '中国香港' && city != '俄罗斯' && city != '乌克兰' && city != '爱尔兰' && city != '意大利' && city != '西班牙' && city != '白俄罗斯' && city != '新加坡' && city != '马来西亚' && city != '丹麦' && city != '德国' && city != '法国' && city != '挪威' && city != '瑞典' &&city != '芬兰' && city != '荷兰' && city != '瑞士') {
         return false;
       } else {
