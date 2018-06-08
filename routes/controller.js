@@ -2956,12 +2956,13 @@ exports.getCoupons = function (req, res, next) {
     var mobile = req.query.mobile;
     var country_id = req.query.country_id;
     var code = req.query.code;
+    var city = req.query.city;
     //获取本地ip
     var ip = req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
     if(ip.split(',').length>0){
         ip = ip.split(',')[0]
     }
-    cms.getCoupons({user_name: user_name,mobile: mobile, country_id: country_id, code: code, ip: ip}, function (err,result) {
+    cms.getCoupons({user_name: user_name,mobile: mobile, country_id: country_id, code: code, ip: ip, city: city}, function (err,result) {
         if (err) {
             res.send(err);
         } else {

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   {% include "header.html" %}
+  <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/obtain.css">
   <style type="text/css">
     .about-img img{
       width: 100%;
@@ -178,6 +179,9 @@
     font-size: 14px;
     display: inline-block;
   }
+  .main_dialog{
+    display: block;
+  }
   </style>
 </head>
 <body style="background: #ffffff;">
@@ -252,6 +256,35 @@
       </div>
       {% include "m_widget/footer/common_footer.html" %}
     </div>
+
+    {# 分享弹层 #}
+    <div class="main_dialog" style="">
+      
+      <div class="obtain_ing"></div>
+    <div class="js_dialog" id="dialog1" style="opacity: 1;position: relative">
+      <div class="weui-mask"></div>
+      
+      <div class="weui-dialog" style="overflow: inherit;">
+        <div id="dialog_show" style="width: 20px;font-size: 20px;height: 20px;color: #fff;position: absolute;top: -200%;right: 5px;">x</div>
+        <p class="share_con">分享至</p>
+        <div class="wenxin_con_xin"></div>
+        <div class="wenxin_con" ></div>
+        <div class="cue_qq_con"></div>
+      </div>
+      <div class="cue_weixin">
+        <div></div>
+      </div>
+      <div class="cue_weixin1">
+        <div></div>
+      </div>
+      <div class="cue_qq">
+        <div></div>
+      </div>
+      <div class="cue_weixincon">
+        <div></div>
+      </div>
+    </div>
+  </div>
 
 <!-- ===侧边栏==== -->
 {% include "m_widget/slidebar/slidebar.html" %}
@@ -399,7 +432,15 @@ function checkCodeValue () {
           }
       });
     }
-    
+    function isWeiXin() {
+        // 检查微信环境
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+          return true;
+        } else {
+          return false;
+        }
+      }
     $('#getcode').on('click', function () {
         getCode();
         return false;
@@ -415,12 +456,16 @@ function checkCodeValue () {
     });
     $('#city_queding').on('click', function (e) {
       e.preventDefault();
-      if ($('#city').val == '') {
+      var city = getcity();
+
+      if (!city) {
         return false;
+      } else {
+        $('#cou_city').hide();
+        $('#city').removeClass('err');
       }
-      $('#cou_city').hide();
-      $('#city').removeClass('err');
-      return false;
+      
+      // return false;
     });
     $('#city_quxiao').on('click', function (e) {
       e.preventDefault();
@@ -435,28 +480,84 @@ function checkCodeValue () {
         if (!checkCodeValue()) return false;
         var cityid = $('#city').data('city');
         $.ajax({
-            url: '/getCoupons',
-            type: 'get',
-            data: {
+          type: "get",
+          async: false,
+          url:ajaxUrlPrefix.nodeapi+"/get_ip_geter",
+          dataType: "json",
+          success: function(result){
+            var city = cityList[result][0];
+            console.log(cityList[result][0])
+            $.ajax({
+              url: '/getCoupons',
+              type: 'get',
+              data: {
                 user_name: $('#name').val(),
                 mobile: $("#phone").val(),
                 country_id: cityid,
-                code: $('#code').val()
-            },
-            dataType:'json',
-            success:function(msg){
+                code: $('#code').val(),
+                city: city
+              },
+              dataType:'json',
+              success:function(msg){
                 if(msg.code === 0){
                     //alert('成功');
                     alert('优惠码发送成功');
+                    if (isWeiXin()) {
+                      window.location.href = js_api_config.wwhost + '/obtain'  
+                    } else {
+                      $('.main_dialog').show();
+                    }
+                    
                 } else {
                     alert(msg.massage);
                 }
-            },
-            error:function(XMLHttpRequest, textStatus, errorThrown){
+              },
+              error:function(XMLHttpRequest, textStatus, errorThrown){
                 console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
-            }
-        })
+              }
+            })
+          },
+          error: function(error){
+            console.log(error)
+          }
+        }); 
     });
     
+    //在浏览器中弹层的提示框
+        $('#dialog_show').on('click', function () {
+          $('.main_dialog').hide();
+        });
+        $('.wenxin_con').on('click',function(e){
+          e.stopPropagation();
+          this.flag=!this.flag;
+          if(this.flag) {
+            $('.cue_weixin1').css("display","block");
+          }else{
+            $('.cue_weixin1').css("display","none");
+          }
+        });
+        $('.cue_qq_con').on('click',function(e){
+          e.stopPropagation();
+          this.flag=!this.flag;
+          if(this.flag) {
+            $('.cue_weixin1').css("display","block");
+          }else{
+            $('.cue_weixin1').css("display","none");
+          }
+        });
+        $('.wenxin_con_xin').on('click',function(e){
+          e.stopPropagation();
+          this.flag=!this.flag;
+          if(this.flag) {
+            $('.cue_weixin1').css("display","block");
+          }else{
+            $('.cue_weixin1').css("display","none");
+          }
+        });
+        $(document).on('click touchstart', function (){
+          if($('.cue_weixin1').css("display")=='block'){
+            $('.cue_weixin1').css("display","none");
+          }
+        });
 </script>
 </html>
