@@ -236,7 +236,7 @@
               </div>
             </div>
             <label for="weuiAgree" class="weui-agree">
-              <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox">
+              <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" checked="checked">
               <span class="weui-agree__text">注册JJL网站账号</span>
           </label>
           <div class="form-yimin-btn"><span id="evaluationBtn">点击进行在线评估</span></div>
@@ -406,9 +406,11 @@ function checkCodeValue () {
     });
     $('#cou_city_s').on('click', 'span', function (e) {
         e.preventDefault();
-        var cou_index = $(this).index();
+        var cou_cityid = $(this).attr('value');
+        console.log(cou_cityid)
 		    $(this).addClass('active').siblings().removeClass('active')
         $('#city').val($(this).html());
+        $('#city').attr('data-city', cou_cityid)
         return false;
     });
     $('#city_queding').on('click', function (e) {
@@ -431,13 +433,14 @@ function checkCodeValue () {
         if (!checkName()) return false;
         if (!checkPhone()) return false;
         if (!checkCodeValue()) return false;
+        var cityid = $('#city').data('city');
         $.ajax({
             url: '/getCoupons',
             type: 'get',
             data: {
                 user_name: $('#name').val(),
                 mobile: $("#phone").val(),
-                country_id: 1,
+                country_id: cityid,
                 code: $('#code').val()
             },
             dataType:'json',
