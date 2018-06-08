@@ -243,14 +243,14 @@
               <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" checked="checked">
               <span class="weui-agree__text">注册JJL网站账号</span>
           </label>
-          <div class="form-yimin-btn"><span id="evaluationBtn">点击进行在线评估</span></div>
+          <div class="form-yimin-btn"><span id="evaluationBtn">点击获取优惠码</span></div>
         </div>
         {# 活动说明 #}
         <div class="cou_act">
           <div class="cou_act_t">活动说明</div>
           <div class="cou_act_c">活动范围：全国49家分子公司</div>
           <div class="cou_act_c1">活动时间：2018年6月10日至2018年8月25日</div>
-          <div class="cou_act_c1"><span>参与规则：</span>凡在各分子公司夏展举办日前夕领取优惠码，并在展会举办日现场使用优惠码，此码有效期截止至9月25日。</div>
+          <div class="cou_act_c1"><span>参与规则：</span>凡在各分子公司夏展举办日前夕领取优惠码，并在展会举办日现场使用优惠码，此码有效期截止至2018年9月25日。</div>
           <div class="cou_act_c1"><span>使用条件：</span>全款签约最高减免2000元服务费，个别国家根据实际情况进行服务费减免，最终解释权归金吉列留学所有。</div>
         </div>
       </div>
@@ -456,9 +456,8 @@ function checkCodeValue () {
     });
     $('#city_queding').on('click', function (e) {
       e.preventDefault();
-      var city = getcity();
-
-      if (!city) {
+      var city = $.trim($('#city').val());
+      if (city != '美国' && city != '英国' && city != '澳大利亚' && city != '加拿大' && city != '新西兰' && city != '日本' && city != '韩国' && city != '中国香港' && city != '俄罗斯' && city != '乌克兰' && city != '爱尔兰' && city != '意大利' && city != '西班牙' && city != '白俄罗斯' && city != '新加坡' && city != '马来西亚' && city != '丹麦' && city != '德国' && city != '法国' && city != '挪威' && city != '瑞典' &&city != '芬兰' && city != '荷兰' && city != '瑞士') {
         return false;
       } else {
         $('#cou_city').hide();
