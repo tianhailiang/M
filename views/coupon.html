@@ -97,10 +97,10 @@
   }
   .form-yimin-text .cou_city_s{
     font-size: 0;
-    padding: 20px 10px 10px 10px;    
+    padding: 20px 10px 10px 12px;    
   }
   .form-yimin-text .cou_city_s span{
-    width: 63px;
+    width: 21%;
     height: 27px;
     display: inline-block;
     border: 1px #dcdcdc solid;
@@ -355,6 +355,7 @@
 // });
 $('#city').on('click', function () {
   $('#city').focus().addClass('err');
+  $('#cou_city_s').find('span').first().addClass('active').siblings().removeClass('active');
   $('#cou_city').show();
   $('#city').html('美国');
 });
