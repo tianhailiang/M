@@ -2954,6 +2954,7 @@ exports.sendsms = function (req, res, next) {
 exports.getCoupons = function (req, res, next) {
     console.log('req.query',req.query)
     var user_name = req.query.user_name;
+    user_name = encodeURI(encodeURI(user_name))
     var mobile = req.query.mobile;
     var country_id = req.query.country_id;
     var code = req.query.code;
@@ -2972,6 +2973,7 @@ exports.getCoupons = function (req, res, next) {
                 city = encodeURI(encodeURI(b.content.address_detail.city));
             }
             console.log('city',city);
+            console.log('name',user_name);
              cms.getCoupons({user_name: user_name,mobile: mobile, country_id: country_id, code: code, ip: ip, city: city}, function (err,result) {
                 if (err) {
                     res.send(err);
