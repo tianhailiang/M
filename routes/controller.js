@@ -2969,7 +2969,7 @@ exports.getCoupons = function (req, res, next) {
             var b =JSON.parse(body);
             var city = encodeURI(encodeURI('北京'));
             if(b.content){
-                city = b.content.address_detail.city;
+                city = encodeURI(encodeURI(b.content.address_detail.city));
             }
             console.log('city',city);
              cms.getCoupons({user_name: user_name,mobile: mobile, country_id: country_id, code: code, ip: ip, city: city}, function (err,result) {
