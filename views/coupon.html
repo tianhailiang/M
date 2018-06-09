@@ -60,12 +60,12 @@
     border: 1px solid #d51821;
   }
   .form-yimin-text span{
-    width: 100px;
+    width: 110px;
     height: 34px;
     background: #f05373;
     border-radius: 18px;
     color:#ffffff;
-    font-size: 13px;
+    font-size: 12px;
     line-height: 34px;
     text-align: center;
     margin-left: 10px;
@@ -358,6 +358,7 @@ $('#city').on('click', function () {
   $('#cou_city_s').find('span').first().addClass('active').siblings().removeClass('active');
   $('#cou_city').show();
   $('#city').html('美国');
+  $('#city').attr('data-city', '1')
 });
 function getcity () {
     var city = $.trim($('#city').html());
@@ -377,10 +378,10 @@ function checkName () {
     $('#city').removeClass('err');
     $('#cou_city').hide();
     var name = $.trim($('#name').val());
-    if (name == '') {
+    var special_code = new RegExp("[~'!@#$%^&*()-+_=:]",'g');
+    if (name.match(special_code) || name == '') {
         $('#name').focus().addClass('err');
         $('#name_error').show();
-        $('#name').val('');
         return false;
     }
     else {
