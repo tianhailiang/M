@@ -428,31 +428,35 @@ function checkCodeValue () {
     }
 }
     var timer;
+    
     function countDown() {
         // 60s倒计时
         // $("#getcode").attr('disabled',"true");
         $("#getcode").unbind("click");
         var countDownTime = 60;
         timer = window.setInterval(function () {
-            countDownTime--;
-            $("#getcode").html('（'+countDownTime+'）s');
-            if (countDownTime == 0) {
+            if (countDownTime === 0) {
                 clearInterval(timer);
                 $("#getcode").html('点击发送验证码');
                 // $("#getcode").removeAttr("disabled");
                 $("#getcode").bind("click",function () {
                   getCode();
                 });
+            } else {
+              countDownTime--;
+              $("#getcode").html('（'+countDownTime+'）s');
             }
         }, 1000);
     }
-
+    var codef = true;
     function getCode () {
+      if (codef) {
       var data = $('#getcode').data('coupon');
       console.log('data',data)
       if (!checkPhone()) {
         return false;
       }
+      codef = false;
       $.ajax({
           url: '/sendSms',
           type:'get',
@@ -468,11 +472,14 @@ function checkCodeValue () {
               } else {
                   alert('出错啦');
               }
+              codef = true;
           },
           error:function(XMLHttpRequest, textStatus, errorThrown){
               console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
+              codef = true;
           }
       });
+    }
     }
     function isWeiXin() {
         // 检查微信环境
@@ -487,7 +494,7 @@ function checkCodeValue () {
         getCode();
         return false;
     });
-    $('#cou_city_s').on('click', 'span', function (e) {
+    $('#cou_city_s').on('touchstart', 'span', function (e) {
         e.preventDefault();
         var cou_cityid = $(this).attr('value');
         console.log(cou_cityid)
