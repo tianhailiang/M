@@ -2941,9 +2941,9 @@ exports.sendsms = function (req, res, next) {
                 console.log(result)
                 res.send(result);
                 //清除session
-                req.session.destroy(function(err) {
-                    log.debug('session destroy err',err);
-                })
+                // req.session.destroy(function(err) {
+                //     log.debug('session destroy err',err);
+                // })
             }
         })
     } else {

@@ -35,6 +35,7 @@
       height: 36px;
       margin-top:25px;
       position: relative;
+      padding: 0 22px;
     }
   .form-yimin-text input{
     flex: 1;
@@ -51,7 +52,7 @@
     border-radius: 18px;
     padding: 0 15px;
     font-size: 13px;
-    color:#666;
+    color: #888;
     background: #fff;
     line-height: 36px;
   }
@@ -73,14 +74,14 @@
     color: #d51821;
     font-size: 11px;
     position: absolute;
-    left: 15px;
+    left: 37px;
     top: 40px;
     display: none;
   }
   .form-yimin-text i{
     width: 10px;
     position: absolute;
-    right: 15px;
+    right: 37px;
     top: 10px;
   }
   .form-yimin-text .cou_city{
@@ -90,6 +91,7 @@
     background-size: 100% 100%;
     position: absolute;
     top: 37px;
+    left: 0px;
     z-index: 1000;
     display: none;
   }
@@ -109,6 +111,7 @@
     line-height: 24px;
     background: #fff;
     margin-bottom: 10px;
+    margin-left: 3%;
   }
   .form-yimin-text .cou_city_s span.active{
     border: 1px #d51821 solid;
@@ -168,14 +171,15 @@
     left: 50%;
   }
   .weui-agree{
-    padding: 10px 0px 20px 0px;
+    padding: 10px 0px 20px 22px;
   }
   .weui-agree__text{
     color: #e83a56;
   }
   .form-yimin-btn{
     width: 100%;
-    height: 45px;
+    height: 36px;
+    padding: 0 22px;
     position: relative;
   }
   .form-yimin-btn span{
@@ -183,14 +187,24 @@
     color:#ffffff;
     background: url({{helper.cdnhost}}/assets/img/coupon_but.png) no-repeat;
     background-size: 100% 100%;
-    height:45px;
-    line-height: 46px;
+    height: 36px;
+    line-height: 36px;
     text-align: center;
     font-size: 14px;
     display: inline-block;
   }
   .main_dialog{
     display: none;
+  }
+  .dialog_show{
+    width: 20px;
+    font-size: 20px;
+    height: 20px;
+    color: #fff;
+    position: absolute;
+    top: -180%;right: 5px;
+    background: url({{helper.cdnhost}}/assets/img/coupon_close.png) no-repeat;
+    background-size: 100% 100%;
   }
   </style>
 </head>
@@ -277,7 +291,7 @@
       <div class="weui-mask"></div>
       
       <div class="weui-dialog" style="overflow: inherit;">
-        <div id="dialog_show" style="width: 20px;font-size: 20px;height: 20px;color: #fff;position: absolute;top: -200%;right: 5px;">x</div>
+        <div id="dialog_show" class="dialog_show"></div>
         <p class="share_con">分享至</p>
         <div class="wenxin_con_xin"></div>
         <div class="wenxin_con" ></div>
@@ -315,24 +329,30 @@
         return true;
     }
 };
-$('#name').on('blur', function () {
-    checkName();
-});
-$('#name').on('keyup', function () {
-    checkName();
-});
-$('#phone').on('blur', function () {
-    checkPhone();
-});
-$('#phone').on('keyup', function () {
-    checkPhone();
-});
-$('#code').on('blur', function () {
-    checkCodeValue();
-});
-$('#code').on('keyup', function () {
-    checkCodeValue();
-});
+// $('#name').on('blur', function () {
+//     checkName();
+    
+// });
+// $('#name').on('keyup', function () {
+//     checkName();
+    
+// });
+// $('#phone').on('blur', function () {
+//     checkPhone();
+    
+// });
+// $('#phone').on('keyup', function () {
+//     checkPhone();
+    
+// });
+// $('#code').on('blur', function () {
+    
+//     checkCodeValue();
+// });
+// $('#code').on('keyup', function () {
+//     checkCodeValue();
+    
+// });
 $('#city').on('click', function () {
   $('#city').focus().addClass('err');
   $('#cou_city').show();
@@ -359,6 +379,7 @@ function checkName () {
     if (name == '') {
         $('#name').focus().addClass('err');
         $('#name_error').show();
+        $('#name').val('');
         return false;
     }
     else {
@@ -374,6 +395,7 @@ function checkPhone () {
     if (!check_value.phone(phoneNum)) {
         $('#phone').focus().addClass('err');
         $('#phone_error').show();
+        
         return false;
     }
     else {
@@ -389,6 +411,7 @@ function checkCodeValue () {
     if (codeVal == '' || codeVal.length < 6) {
         $('#code').focus().addClass('err');
         $('#code_error').show();
+        
         return false;
     } else {
         $('#code').removeClass('err');
@@ -488,6 +511,7 @@ function checkCodeValue () {
         if (!checkName()) return false;
         if (!checkPhone()) return false;
         if (!checkCodeValue()) return false;
+        if (!getcity()) return false;
         var cityid = $('#city').data('city');
         $.ajax({
           url: '/getCoupons',
@@ -522,6 +546,7 @@ function checkCodeValue () {
     //在浏览器中弹层的提示框
         $('#dialog_show').on('click', function () {
           $('.main_dialog').hide();
+          window.location.reload();
         });
         $('.wenxin_con').on('click',function(e){
           e.stopPropagation();
