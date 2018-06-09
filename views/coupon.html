@@ -366,11 +366,11 @@ function getcity () {
       $('#cou_city').show();
       return false;
     } 
-    // else {
-    //   $('#city').removeClass('err');
-    //   $('#cou_city').hide();
-    //   return true;
-    // }
+    else {
+      $('#city').removeClass('err');
+      $('#cou_city').hide();
+      return true;
+    }
     
 }
 function checkName () {
@@ -504,7 +504,7 @@ function checkCodeValue () {
     $('#city_quxiao').on('click', function (e) {
       e.preventDefault();
       $('#cou_city').hide();
-      $('#city').val('');
+      $('#city').html('意向国家');
       $('#city').removeClass('err');
       return false;
     });
