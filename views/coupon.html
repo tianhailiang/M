@@ -198,6 +198,7 @@
   }
   .main_dialog{
     display: none;
+    overflow:hidden;
   }
   .dialog_show{
     width: 20px;
@@ -546,6 +547,7 @@ function checkCodeValue () {
                   window.location.href = js_api_config.wwhost + '/obtain'  
                 } else {
                   $('.main_dialog').show();
+                  $('#app').css('position', 'fixed')
                 }
                 
             } else {
@@ -561,6 +563,7 @@ function checkCodeValue () {
     //在浏览器中弹层的提示框
         $('#dialog_show').on('click', function () {
           $('.main_dialog').hide();
+          $('#app').css('position', 'absolute')
           window.location.reload();
         });
         $('.wenxin_con').on('click',function(e){
