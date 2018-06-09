@@ -12,9 +12,9 @@
       width: 100%;
       height: 100%;
       margin-top: 30px;
-      background: url({{helper.cdnhost}}/assets/img/coupon_bac.png) no-repeat;
-      background-size: cover;
-      padding: 0 9px;
+      /* background: url({{helper.cdnhost}}/assets/img/coupon_bac.png) no-repeat;
+      background-size: cover; 
+      padding: 0 9px;*/
     }
     .cou_ti{
       width: 100%;
@@ -26,7 +26,6 @@
       display: inline-block;
       background: url({{helper.cdnhost}}/assets/img/coupon_bac1.png) no-repeat;
       background-size: 100% 100%;
-      margin-top: 30px;
       padding: 25px 20px;
       
     }
@@ -165,16 +164,20 @@
     color: #e83a56;
     border: 1px solid #e83a56;
     border-radius: 3px;
-    width: 13px;
+    width: 14px;
     height: 15px;
     top: 39%;
     left: 50%;
+    line-height: 15px;
   }
   .weui-agree{
     padding: 10px 0px 20px 22px;
   }
   .weui-agree__text{
     color: #e83a56;
+  }
+  .weui-agree__checkbox{
+
   }
   .form-yimin-btn{
     width: 100%;
@@ -226,7 +229,7 @@
         <div class="cou_inp">
             <div class="form-yimin-text" style="margin-top: 60px;"><input type="text" placeholder="请输入您的真实姓名" id="name"><em id="name_error">请输入正确姓名</em></div>
             <div class="form-yimin-text" ><input type="text" placeholder="请输入手机号" id="phone"><em id="phone_error">请输入正确手机号</em></div>
-            <div class="form-yimin-text"><input type="text" id="code" placeholder="请输入验证码"><span id="getcode" data-coupon="{{param_code}}">点击发送验证码</span><em id="code_error">请输入正确手机验证码</em></div>
+            <div class="form-yimin-text"><input type="text" id="code" placeholder="请输入验证码"><span id="getcode" data-coupon="{{param_code}}">发送验证码</span><em id="code_error">请输入正确手机验证码</em></div>
             <div class="form-yimin-text form-yimin-text1">
               <div class="city" id="city">意向国家</div>
               {#<input type="text" id="city" placeholder="意向国家">#}
@@ -278,7 +281,7 @@
           <div class="cou_act_c1"><span>参与规则：</span>凡在各分子公司夏展举办日前夕领取优惠码，并在展会举办日现场使用优惠码，此码有效期截止至2018年9月25日。</div>
           <div class="cou_act_c1"><span>使用条件：</span>全款签约最高减免2000元服务费，个别国家根据实际情况进行服务费减免，最终解释权归金吉列留学所有。</div>
         </div>#}
-        <img src="{{helper.cdnhost}}/assets/img/coupon_ti1.png" alt="" class="cou_ti" style="margin: 30px 0px">
+        <img src="{{helper.cdnhost}}/assets/img/coupon_ti1.png" alt="" class="cou_ti">
       </div>
       {% include "m_widget/footer/common_footer.html" %}
     </div>
@@ -358,13 +361,16 @@ $('#city').on('click', function () {
   $('#cou_city_s').find('span').first().addClass('active').siblings().removeClass('active');
   $('#cou_city').show();
   $('#city').html('美国');
-  $('#city').attr('data-city', '1')
+  $('#city').attr('data-city', '1');
 });
 function getcity () {
     var city = $.trim($('#city').html());
     if (city != '美国' && city != '英国' && city != '澳大利亚' && city != '加拿大' && city != '新西兰' && city != '日本' && city != '韩国' && city != '中国香港' && city != '俄罗斯' && city != '乌克兰' && city != '爱尔兰' && city != '意大利' && city != '西班牙' && city != '白俄罗斯' && city != '新加坡' && city != '马来西亚' && city != '丹麦' && city != '德国' && city != '法国' && city != '挪威' && city != '瑞典' &&city != '芬兰' && city != '荷兰' && city != '瑞士') {
       $('#city').focus().addClass('err');
       $('#cou_city').show();
+      $('#cou_city_s').find('span').first().addClass('active').siblings().removeClass('active');
+      $('#city').html('美国');
+      $('#city').attr('data-city', '1');
       return false;
     } 
     else {
