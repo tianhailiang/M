@@ -11,10 +11,7 @@ var helperfunc = require('../common/helper');
 const sha1 = require('sha1');
 var wechat = require('../model/wechat.js');
 var request = require('request');
-<<<<<<< HEAD
 var get_area_code = require('./ip_poll');
-=======
->>>>>>> coupon
 function returnData(obj,urlName){
   if(obj.code==0){
     return obj.data;
