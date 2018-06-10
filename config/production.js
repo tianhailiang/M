@@ -23,7 +23,11 @@ var prefix = apiconfig.prefix;
 var uc_prefix = apiconfig.uc_prefix;
 var shequ_prefix = apiconfig.shequ_prefix;
 var imageshost = apiconfig.imageshost;
+var coupon = apiconfig.coupon;
 var apis = {
+  "sendCoupons": coupon + 'sendCoupon',//发送优惠券
+  "getCoupons": coupon + 'getCoupons',//获取优惠券
+  "sendSms": coupon + 'sendSms', //发送手机验证码（活动页）
   "oauth": uc_prefix + 'index.php',
   "bind_phone": uc_prefix + 'index.php?m=bind_phone',// 绑定手机号
   "forget": uc_prefix + 'index.php?m=forgetpassword',//忘记密码

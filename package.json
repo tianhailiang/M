@@ -44,6 +44,8 @@
   },
   "devDependencies": {
     "browser-sync": "^2.18.13",
+    "connect-redis": "^3.3.3",
+    "express-session": "^1.15.6",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-clean": "^0.3.2",

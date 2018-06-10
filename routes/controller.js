@@ -11,7 +11,10 @@ var helperfunc = require('../common/helper');
 const sha1 = require('sha1');
 var wechat = require('../model/wechat.js');
 var request = require('request');
+<<<<<<< HEAD
 var get_area_code = require('./ip_poll');
+=======
+>>>>>>> coupon
 function returnData(obj,urlName){
   if(obj.code==0){
     return obj.data;
@@ -3055,3 +3058,110 @@ exports.more_articles = function(req,res,next){
         }
     })
 };
+//优惠券活动页面
+exports.coupon = function (req, res, next) {
+    var moment = require('moment');
+    var data = [];
+    var run = helperfunc.rndNum()
+    //生成验证码
+    data.param_code = sha1(helperfunc.rndNum() + moment().format('YYYY-MM-DD'))
+    req.session.param_code = data.param_code;
+    console.log('run-----',helperfunc.rndNum() + moment().format('YYYY-MM-DD'));
+    console.log('param_code~~',data.param_code);
+    console.log('session------',req.session.param_code);
+    data.tdk = {
+        pagekey: 'COUPON'
+    };
+    res.render('coupon', data);
+}
+//发送短信验证码
+exports.sendsms = function (req, res, next) {
+    var view_code = req.query.param_code;
+    var phone = req.query.phone;
+    var param_code = req.session.param_code;
+    console.log('param_code-----',param_code);
+    console.log('view_code------',view_code);
+    console.log('phone------',phone);
+    if (param_code == view_code) {
+        cms.sendSms({mobile: phone}, function (err,result) {
+            if (err) {
+                res.send(err);
+            } else {
+                console.log(result)
+                res.send(result);
+                //清除session
+                // req.session.destroy(function(err) {
+                //     log.debug('session destroy err',err);
+                // })
+            }
+        })
+    } else {
+        res.send('1');
+    }
+}
+//获取优惠券
+exports.getCoupons = function (req, res, next) {
+    console.log('req.query',req.query)
+    var user_name = req.query.user_name;
+    user_name = encodeURI(encodeURI(user_name))
+    var mobile = req.query.mobile;
+    var country_id = req.query.country_id;
+    var code = req.query.code;
+    var city = req.query.city;
+    //获取本地ip
+    var ip = req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
+    if(ip.split(',').length>0){
+        ip = ip.split(',')[0]
+    }
+    request.get('http://api.map.baidu.com/location/ip?ip='+ip+'&ak=oTtUZr04m9vPgBZ1XOFzjmDpb7GCOhQw&coor=bd09ll',function (error, response, body){
+        if(!error && response.statusCode == 200){
+            log.info(body)
+            var b =JSON.parse(body);
+            var city = encodeURI(encodeURI('北京'));
+            if(b.content){
+                city = encodeURI(encodeURI(b.content.address_detail.city));
+            }
+            console.log('city',city);
+            console.log('name',user_name);
+             cms.getCoupons({user_name: user_name,mobile: mobile, country_id: country_id, code: code, ip: ip, city: city}, function (err,result) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    console.log('获取优惠券',result)
+                    res.send(result);
+                    if (result.code == 0) {
+                        cms.login_ss({phone: req.query.mobile, code: req.query.code}, function (err,result) {
+                            if (err) {
+                                console.log('注册失败');
+                            } else {
+                                console.log('注册成功');
+                            }
+                        })
+                        cms.sendCoupons({mobile: req.query.mobile, source: 2, coupon: result.data}, function () {
+                            if (err) {
+                            // res.send(err);
+                            } else {
+                            console.log('发送优惠券',result)
+                            // res.send(result);
+                            }
+                        })
+                    }
+                    
+                }
+            })
+        }else{
+            res.send(error);
+        }
+    });
+}
+
+//优惠券活动二维码页面
+exports.obtain = function (req, res, next){
+    log.debug('活动底页');
+    var data = [];
+    data.tdk = {
+        title: '最高减免2000元，要留学的你还不知道？',
+        pagekey:'OBTAIN'
+    };
+    res.render('obtain', data);
+}
