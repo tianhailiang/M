@@ -1,0 +1,110 @@
+.wenxin_con_xin {
+  width: 60px;
+  height: 60px;
+  background:url(../img/weixin1.png) no-repeat;
+  background-size: cover;
+  display: inline-block;
+}
+.wenxin_con {
+  width: 60px;
+  height: 60px;
+  background:url(../img/weixin.png) no-repeat;
+  background-size: cover;
+  display: inline-block;
+  margin: 0 38px;
+}
+.cue_qq_con {
+  width: 60px;
+  height: 60px;
+  background:url(../img/qq.png) no-repeat;
+  background-size: cover;
+  display: inline-block;
+}
+.bdshare-button-style0-16 a, .bdshare-button-style0-16 .bds_more {
+  margin: 0;
+  float: none;
+}
+.bdshare-button-style0-16 {
+  flex: 1;
+  text-align: center;
+}
+.weui-dialog {
+  background-color: inherit;
+  margin-top: 13px;
+}
+.share_con {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 30px;
+}
+.obtain_ing {
+  background: url(../img/obtain.png) no-repeat;
+  position: fixed;
+  z-index: 1000;
+  top: 43px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-size: 100% 100%;
+}
+
+.cue_weixin {
+  position: fixed;
+  right: 50%;
+  top:30%;
+  margin-right: -134px;
+  margin-top: -42px;
+  display: none;
+  z-index: 1000;
+}
+.cue_weixin div {
+  width: 268px;
+  height: 92px;
+  background:url(../img/weixinfenxiangtu.png) no-repeat;
+  background-size: cover;
+}
+.cue_weixin1 {
+  position: fixed;
+  right: 50%;
+  top:30%;
+  margin-right: -134px;
+  margin-top: -42px;
+  display: none;
+  z-index: 1000;
+}
+.cue_weixin1 div {
+  width: 268px;
+  height: 85px;
+  background:url(../img/activedisplay.png) no-repeat;
+  background-size: cover;
+}
+.cue_qq {
+  position: fixed;
+  right: 50%;
+  top:30%;
+  margin-right: -134px;
+  margin-top: -46px;
+  display: none;
+  z-index: 1000;
+}
+.cue_qq div {
+  width: 267px;
+  height: 92px;
+  background:url(../img/cue_qq.png) no-repeat;
+  background-size: cover;
+}
+.cue_weixincon {
+  position: fixed;
+  right: 50%;
+  top:30%;
+  margin-right: -134px;
+  margin-top: -46px;
+  display: none;
+  z-index: 1000;
+}
+.cue_weixincon div {
+  width: 267px;
+  height: 92px;
+  background:url(../img/weixin_xin_x.png) no-repeat;
+  background-size: cover;
+}
