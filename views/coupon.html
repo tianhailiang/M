@@ -235,7 +235,7 @@
             <div class="form-yimin-text form-yimin-text1">
               <div class="city" id="city">意向国家</div>
               {#<input type="text" id="city" placeholder="意向国家">#}
-              <i class="iconfont" id="city_i" style="color: #888;">&#xe60a;</i>
+              <i class="iconfont" id="city_i" style="color: #888;">&#xe60b;</i>
               <div class="cou_city" id="cou_city">
                 <div class="cou_city_s" id="cou_city_s">
                   <span class="active" value='1'>美国</span>
@@ -396,7 +396,7 @@ $('#city').on('touchstart', function () {
     city_show = true;
     $('#city').removeClass('err');
     $('#cou_city').hide();
-    $('#city_i').html('&#xe60a;');
+    $('#city_i').html('&#xe60b;');
   }
   
 });
@@ -414,7 +414,7 @@ function getcity () {
     else {
       $('#city').removeClass('err');
       $('#cou_city').hide();
-      $('#city_i').html('&#xe60a;');
+      $('#city_i').html('&#xe60b;');
       return true;
     }
     
@@ -422,7 +422,7 @@ function getcity () {
 function checkName () {
     $('#city').removeClass('err');
     $('#cou_city').hide();
-    $('#city_i').html('&#xe60a;');
+    $('#city_i').html('&#xe60b;');
     var name = $.trim($('#name').val());
     var special_code = new RegExp("[~'!@#$%^&*()-+_=:]",'g');
     if (name.match(special_code) || name == '') {
@@ -439,7 +439,7 @@ function checkName () {
 function checkPhone () {
     $('#city').removeClass('err');
     $('#cou_city').hide();
-    $('#city_i').html('&#xe60a;');
+    $('#city_i').html('&#xe60b;');
     var phoneNum = $.trim($('#phone').val());
     if (!check_value.phone(phoneNum)) {
         $('#phone').focus().addClass('err');
@@ -456,7 +456,7 @@ function checkPhone () {
 function checkCodeValue () {
     $('#city').removeClass('err');
     $('#cou_city').hide();
-    $('#city_i').html('&#xe60a;');
+    $('#city_i').html('&#xe60b;');
     var codeVal = $('#code').val();
     if (codeVal == '' || codeVal.length < 6) {
         $('#code').focus().addClass('err');
@@ -552,7 +552,7 @@ function checkCodeValue () {
         return false;
       } else {
         $('#cou_city').hide();
-        $('#city_i').html('&#xe60a;');
+        $('#city_i').html('&#xe60b;');
         $('#city').removeClass('err');
       }
       
@@ -561,7 +561,7 @@ function checkCodeValue () {
     $('#city_quxiao').on('click', function (e) {
       e.preventDefault();
       $('#cou_city').hide();
-      $('#city_i').html('&#xe60a;');
+      $('#city_i').html('&#xe60b;');
       $('#city').html('意向国家');
       $('#city').removeClass('err');
       return false;
