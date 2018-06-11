@@ -3066,10 +3066,21 @@ exports.coupon = function (req, res, next) {
     console.log('run-----',helperfunc.rndNum() + moment().format('YYYY-MM-DD'));
     console.log('param_code~~',data.param_code);
     console.log('session------',req.session.param_code);
-    data.tdk = {
-        pagekey: 'COUPON'
-    };
-    res.render('coupon', data);
+    cms.lunbo_list({
+        "ad_page":"COUPON",
+        "ad_seat":"SEAT1"
+    },function(err,result){
+        data.coupon = returnData(result,'coupon');
+        console.log('coupon',data.coupon)
+        data.tdk = {
+          pagekey: 'COUPON'
+        };
+        res.render('coupon', data);
+    });
+    // data.tdk = {
+    //     pagekey: 'COUPON'
+    // };
+    // res.render('coupon', data);
 }
 //发送短信验证码
 exports.sendsms = function (req, res, next) {
