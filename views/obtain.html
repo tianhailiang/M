@@ -5,10 +5,9 @@
     <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/obtain.css">
   </head>
 <body>
+<div id="app">
   <!--顶部tab切换 end-->
   {% include "m_widget/top/common_top.html" %}
-  <!-- ===侧边栏==== -->
-  {% include "m_widget/slidebar/common_sliderbar.html" %}
   <div class="obtain_ing"></div>
   <img class="obtain_ing_x" style="width: 100%;height: auto;display: none;margin-top: 43px" src="../assets/img/youhuima.png" alt="">
   <div class="js_dialog" id="dialog1" style="opacity: 1;">
@@ -32,6 +31,9 @@
       <div></div>
     </div>
   </div>
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/slidebar.html" %}
 </body>
   <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" ></script>
   <script>
