@@ -4,18 +4,6 @@
   {% include "header.html" %}
   <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/obtain.css">
   <style type="text/css">
-    #app{
-      overflow: scroll;
-      -webkit-overflow-scrolling: touch;
-      width: 100%;
-      position: absolute;
-      padding-top: 0px; 
-      top: 43px;
-      bottom: 49px;
-    }
-    .footer{
-      margin-bottom:0px;
-    }
     .about-img img{
       width: 100%;
       height: 200px;
@@ -176,10 +164,10 @@
     color: #e83a56;
     border: 1px solid #e83a56;
     border-radius: 3px;
-    width: 14px;
-    height: 15px;
-    top: 39%;
-    left: 50%;
+    width: 16px;
+    height: 16px;
+    top: 43%;
+    left: 49%;
     line-height: 15px;
   }
   .weui-agree{
@@ -189,7 +177,8 @@
     color: #e83a56;
   }
   .weui-agree__checkbox{
-
+    width: 15px;
+    height: 15px;
   }
   .form-yimin-btn{
     width: 100%;
@@ -225,9 +214,8 @@
   </style>
 </head>
 <body style="background: #ffffff;">
-  {% include "m_widget/top/common_top.html" %}
-  <div id="app" style="background: #ffffff;">
-    <div class="content" >
+    {% include "m_widget/top/common_top.html" %}
+    <div id="app" style="background: #ffffff;">
       {# 广告位 #}
       <div style="width:100%;overflow: hidden;background:#f2aaaa">
         <div id="XC_COUPON_SEAT1" class="about-img">
@@ -238,7 +226,7 @@
       </div>
       <div class="cou_main">
         {# 活动介绍 #}
-        <img src="{{helper.cdnhost}}/assets/img/coupon_ti.png" alt="" class="cou_ti">
+        <img src="{{helper.cdnhost}}/assets/img/coupon_ti.png" alt="" class="cou_ti" border="0">
         {# 填写个人信息 #}
         <div class="cou_inp">
             <div class="form-yimin-text" style="margin-top: 60px;"><input type="text" placeholder="请输入您的真实姓名" id="name"><em id="name_error">请输入正确姓名</em></div>
@@ -247,7 +235,7 @@
             <div class="form-yimin-text form-yimin-text1">
               <div class="city" id="city">意向国家</div>
               {#<input type="text" id="city" placeholder="意向国家">#}
-              <i class="iconfont">&#xe60a;</i>
+              <i class="iconfont" id="city_i">&#xe60a;</i>
               <div class="cou_city" id="cou_city">
                 <div class="cou_city_s" id="cou_city_s">
                   <span class="active" value='1'>美国</span>
@@ -299,12 +287,14 @@
       </div>
       {% include "m_widget/footer/common_footer.html" %}
     </div>
-  </div>
-  {# 分享弹层 #}
-  <div class="main_dialog" style="">
-    <div class="obtain_ing"></div>
+
+    {# 分享弹层 #}
+    <div class="main_dialog" style="">
+      
+      <div class="obtain_ing"></div>
     <div class="js_dialog" id="dialog1" style="opacity: 1;position: relative">
       <div class="weui-mask"></div>
+      
       <div class="weui-dialog" style="overflow: inherit;">
         <div id="dialog_show" class="dialog_show"></div>
         <p class="share_con">分享至</p>
@@ -326,12 +316,15 @@
       </div>
     </div>
   </div>
-  <!-- ===侧边栏==== -->
-  {% include "m_widget/slidebar/slidebar.html" %}
-  <!-- ======乐语底栏======= -->
-  {% include 'm_widget/funtalk/funtalk.html' %}
+
+{% include "m_widget/slidebar/slidebar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk.html' %}
 </body>
+<!-- <script src="{{helper.cdnhost}}/assets/js/online_evaluation_yimin.js"></script> -->
+
 <script>
+
   $(function(){
     // /*点击广告位进行统计*/
     $("[id^='XC_']").click('a', function (e) {
@@ -389,10 +382,11 @@
 //     checkCodeValue();
     
 // });
-$('#city').on('click', function () {
+$('#city').on('touchstart', function () {
   $('#city').focus().addClass('err');
   $('#cou_city_s').find('span').first().addClass('active').siblings().removeClass('active');
   $('#cou_city').show();
+  $('#city_i').html('&#xea4b;');
   $('#city').html('美国');
   $('#city').attr('data-city', '1');
 });
@@ -401,6 +395,7 @@ function getcity () {
     if (city != '美国' && city != '英国' && city != '澳大利亚' && city != '加拿大' && city != '新西兰' && city != '日本' && city != '韩国' && city != '中国香港' && city != '俄罗斯' && city != '乌克兰' && city != '爱尔兰' && city != '意大利' && city != '西班牙' && city != '白俄罗斯' && city != '新加坡' && city != '马来西亚' && city != '丹麦' && city != '德国' && city != '法国' && city != '挪威' && city != '瑞典' &&city != '芬兰' && city != '荷兰' && city != '瑞士') {
       $('#city').focus().addClass('err');
       $('#cou_city').show();
+      $('#city_i').html('&#xea4b;');
       $('#cou_city_s').find('span').first().addClass('active').siblings().removeClass('active');
       $('#city').html('美国');
       $('#city').attr('data-city', '1');
@@ -409,6 +404,7 @@ function getcity () {
     else {
       $('#city').removeClass('err');
       $('#cou_city').hide();
+      $('#city_i').html('&#xe60a;');
       return true;
     }
     
@@ -416,6 +412,7 @@ function getcity () {
 function checkName () {
     $('#city').removeClass('err');
     $('#cou_city').hide();
+    $('#city_i').html('&#xe60a;');
     var name = $.trim($('#name').val());
     var special_code = new RegExp("[~'!@#$%^&*()-+_=:]",'g');
     if (name.match(special_code) || name == '') {
@@ -432,6 +429,7 @@ function checkName () {
 function checkPhone () {
     $('#city').removeClass('err');
     $('#cou_city').hide();
+    $('#city_i').html('&#xe60a;');
     var phoneNum = $.trim($('#phone').val());
     if (!check_value.phone(phoneNum)) {
         $('#phone').focus().addClass('err');
@@ -448,6 +446,7 @@ function checkPhone () {
 function checkCodeValue () {
     $('#city').removeClass('err');
     $('#cou_city').hide();
+    $('#city_i').html('&#xe60a;');
     var codeVal = $('#code').val();
     if (codeVal == '' || codeVal.length < 6) {
         $('#code').focus().addClass('err');
@@ -543,6 +542,7 @@ function checkCodeValue () {
         return false;
       } else {
         $('#cou_city').hide();
+        $('#city_i').html('&#xe60a;');
         $('#city').removeClass('err');
       }
       
@@ -551,6 +551,7 @@ function checkCodeValue () {
     $('#city_quxiao').on('click', function (e) {
       e.preventDefault();
       $('#cou_city').hide();
+      $('#city_i').html('&#xe60a;');
       $('#city').html('意向国家');
       $('#city').removeClass('err');
       return false;
