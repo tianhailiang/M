@@ -606,11 +606,11 @@ function checkCodeValue () {
             } else {
                 alert(msg.massage);
             }
-            evaluation = false;
+            evaluation = true;
           },
           error:function(XMLHttpRequest, textStatus, errorThrown){
             console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
-            evaluation = false;
+            evaluation = true;
           }
           })
         }
