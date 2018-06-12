@@ -3082,7 +3082,7 @@ exports.coupon = function (req, res, next) {
     // };
     // res.render('coupon', data);
 }
-//发送短信验证码
+//发送短信验证码（潘再奎接口）
 exports.sendsms = function (req, res, next) {
     var view_code = req.query.param_code;
     var phone = req.query.phone;
@@ -3107,6 +3107,34 @@ exports.sendsms = function (req, res, next) {
         res.send('1');
     }
 }
+
+//发送验证码（孙立波接口）
+exports.sendcode_s = function (req, res, next) {
+    var view_code = req.body.param_code;
+    var phone = req.body.phone;
+    var param_code = req.session.param_code;
+    console.log('param_code-----',param_code);
+    console.log('view_code------',view_code);
+    console.log('phone------',phone);
+    if (param_code == view_code) {
+        cms.sendcode_ss({m: 'sendcode', phone: phone}, function (err,result) {
+            if (err) {
+                res.send(err);
+            } else {
+                console.log(result)
+                res.send(result);
+                //清除session
+                // req.session.destroy(function(err) {
+                //     log.debug('session destroy err',err);
+                // })
+            }
+        })
+    } else {
+        res.send('1');
+    }
+    
+  }
+
 //获取优惠券
 exports.getCoupons = function (req, res, next) {
     console.log('req.query',req.query)
@@ -3142,6 +3170,7 @@ exports.getCoupons = function (req, res, next) {
                             if (err) {
                                 console.log('注册失败');
                             } else {
+                                console.log('result',result);
                                 console.log('注册成功');
                             }
                         })

@@ -503,8 +503,8 @@ function checkCodeValue () {
       }
       codef = false;
       $.ajax({
-          url: '/sendSms',
-          type:'get',
+          url: '/sendcode_s',
+          type:'post',
           data:{
               param_code: data,
               phone:$("#phone").val()

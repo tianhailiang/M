@@ -1540,7 +1540,7 @@ exports.activity_detail = function (data, callback) {
   }
   api.apiRequest(url, callback);
 }
-//发送短信验证码
+//发送短信验证码（潘再奎接口）
 exports.sendSms = function (data, callback) {
   var url = _api_url_path(data, config.apis.sendSms);
   if (url == null) {
@@ -1548,6 +1548,17 @@ exports.sendSms = function (data, callback) {
     return;
   }
   api.apiRequest(url, callback);
+}
+/*发送手机验证码（孙立波接口）*/
+exports.sendcode_ss = function (data, callback) {
+  log.debug('000');
+  var url = _api_url_path(data, config.apis.sendcode);
+  if (url == null) {
+    callback('404');
+    return;
+  }
+  api.apiRequest(url, callback);
+  log.debug('url', url)
 }
 //获取优惠卷
 exports.getCoupons = function (data, callback) {
