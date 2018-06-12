@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  {% include "header.html" %}
+  {% include "header_coupon.html" %}
   <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/obtain.css">
   <style type="text/css">
     .about-img img{
       width: 100%;
-      height: 200px;
+      height: 100%;
     }
     .cou_main{
       width: 100%;
@@ -164,11 +164,11 @@
     color: #e83a56;
     border: 1px solid #e83a56;
     border-radius: 3px;
-    width: 16px;
-    height: 16px;
+    width: 17px;
+    height: 18px;
     top: 43%;
     left: 49%;
-    line-height: 15px;
+    line-height: 18px;
   }
   .weui-agree{
     padding: 10px 0px 20px 22px;
@@ -235,7 +235,7 @@
             <div class="form-yimin-text form-yimin-text1">
               <div class="city" id="city">意向国家</div>
               {#<input type="text" id="city" placeholder="意向国家">#}
-              <i class="iconfont" id="city_i">&#xe60a;</i>
+              <i class="iconfont" id="city_i" style="color: #888;">&#xe60b;</i>
               <div class="cou_city" id="cou_city">
                 <div class="cou_city_s" id="cou_city_s">
                   <span class="active" value='1'>美国</span>
@@ -348,6 +348,9 @@
         window.open(url);
       }
     });
+
+    //今日头条统计
+    _taq.push({convert_id:"1602955735512068", event_type:"form"})
   })
 
   var check_value = {
@@ -382,13 +385,23 @@
 //     checkCodeValue();
     
 // });
+var city_show = true;
 $('#city').on('touchstart', function () {
-  $('#city').focus().addClass('err');
-  $('#cou_city_s').find('span').first().addClass('active').siblings().removeClass('active');
-  $('#cou_city').show();
-  $('#city_i').html('&#xea4b;');
-  $('#city').html('美国');
-  $('#city').attr('data-city', '1');
+  if (city_show) {
+    city_show = false;
+    $('#city').focus().addClass('err');
+    $('#cou_city_s').find('span').first().addClass('active').siblings().removeClass('active');
+    $('#cou_city').show();
+    $('#city_i').html('&#xea4b;');
+    $('#city').html('美国');
+    $('#city').attr('data-city', '1');
+  } else {
+    city_show = true;
+    $('#city').removeClass('err');
+    $('#cou_city').hide();
+    $('#city_i').html('&#xe60b;');
+  }
+  
 });
 function getcity () {
     var city = $.trim($('#city').html());
@@ -404,7 +417,7 @@ function getcity () {
     else {
       $('#city').removeClass('err');
       $('#cou_city').hide();
-      $('#city_i').html('&#xe60a;');
+      $('#city_i').html('&#xe60b;');
       return true;
     }
     
@@ -412,7 +425,7 @@ function getcity () {
 function checkName () {
     $('#city').removeClass('err');
     $('#cou_city').hide();
-    $('#city_i').html('&#xe60a;');
+    $('#city_i').html('&#xe60b;');
     var name = $.trim($('#name').val());
     var special_code = new RegExp("[~'!@#$%^&*()-+_=:]",'g');
     if (name.match(special_code) || name == '') {
@@ -429,7 +442,7 @@ function checkName () {
 function checkPhone () {
     $('#city').removeClass('err');
     $('#cou_city').hide();
-    $('#city_i').html('&#xe60a;');
+    $('#city_i').html('&#xe60b;');
     var phoneNum = $.trim($('#phone').val());
     if (!check_value.phone(phoneNum)) {
         $('#phone').focus().addClass('err');
@@ -446,7 +459,7 @@ function checkPhone () {
 function checkCodeValue () {
     $('#city').removeClass('err');
     $('#cou_city').hide();
-    $('#city_i').html('&#xe60a;');
+    $('#city_i').html('&#xe60b;');
     var codeVal = $('#code').val();
     if (codeVal == '' || codeVal.length < 6) {
         $('#code').focus().addClass('err');
@@ -542,7 +555,7 @@ function checkCodeValue () {
         return false;
       } else {
         $('#cou_city').hide();
-        $('#city_i').html('&#xe60a;');
+        $('#city_i').html('&#xe60b;');
         $('#city').removeClass('err');
       }
       
@@ -551,7 +564,7 @@ function checkCodeValue () {
     $('#city_quxiao').on('click', function (e) {
       e.preventDefault();
       $('#cou_city').hide();
-      $('#city_i').html('&#xe60a;');
+      $('#city_i').html('&#xe60b;');
       $('#city').html('意向国家');
       $('#city').removeClass('err');
       return false;
