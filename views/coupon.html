@@ -569,13 +569,16 @@ function checkCodeValue () {
       $('#city').removeClass('err');
       return false;
     });
+    var evaluation = true;
     $('#evaluationBtn').on('click', function () {
         if (!checkName()) return false;
         if (!checkPhone()) return false;
         if (!checkCodeValue()) return false;
         if (!getcity()) return false;
         var cityid = $('#city').data('city');
-        $.ajax({
+        if (evaluation) {
+          evaluation = false;
+          $.ajax({
           url: '/getCoupons',
           type: 'get',
           data: {
@@ -589,6 +592,10 @@ function checkCodeValue () {
             if(msg.code === 0){
                 //alert('成功');
                 // alert('优惠码发送成功');
+                $('#name').val('');
+                $("#phone").val('');
+                $('#code').val('');
+                $('#city').html('意向国家');
                 if (isWeiXin()) {
                   window.location.href = js_api_config.wwhost + '/obtain'  
                 } else {
@@ -599,11 +606,15 @@ function checkCodeValue () {
             } else {
                 alert(msg.massage);
             }
+            evaluation = false;
           },
           error:function(XMLHttpRequest, textStatus, errorThrown){
             console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
+            evaluation = false;
           }
-        })
+          })
+        }
+        
     });
     
     //在浏览器中弹层的提示框
