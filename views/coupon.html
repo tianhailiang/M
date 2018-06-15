@@ -171,6 +171,7 @@
     line-height: 18px;
   }
   .weui-agree{
+    width: 50%;
     padding: 10px 0px 20px 22px;
   }
   .weui-agree__text{
@@ -348,9 +349,6 @@
         window.open(url);
       }
     });
-
-    //今日头条统计
-    _taq.push({convert_id:"1602955735512068", event_type:"form"})
   })
 
   var check_value = {
@@ -592,6 +590,8 @@ function checkCodeValue () {
             if(msg.code === 0){
                 //alert('成功');
                 // alert('优惠码发送成功');
+                //今日头条统计
+                _taq.push({convert_id:"1602955735512068", event_type:"form"});
                 $('#name').val('');
                 $("#phone").val('');
                 $('#code').val('');
