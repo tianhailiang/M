@@ -3144,6 +3144,7 @@ exports.getCoupons = function (req, res, next) {
     var country_id = req.query.country_id;
     var code = req.query.code;
     var city = req.query.city;
+    var source = req.query.source;
     //获取本地ip
     var ip = req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
     if(ip.split(',').length>0){
@@ -3159,7 +3160,7 @@ exports.getCoupons = function (req, res, next) {
             }
             console.log('city',city);
             console.log('name',user_name);
-             cms.getCoupons({user_name: user_name,mobile: mobile, country_id: country_id, code: code, ip: ip, city: city}, function (err,result) {
+             cms.getCoupons({user_name: user_name,mobile: mobile, country_id: country_id, code: code, ip: ip, city: city,source: source}, function (err,result) {
                 if (err) {
                     res.send(err);
                 } else {

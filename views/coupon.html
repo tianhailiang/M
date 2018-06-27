@@ -574,6 +574,9 @@ function checkCodeValue () {
         if (!checkCodeValue()) return false;
         if (!getcity()) return false;
         var cityid = $('#city').data('city');
+        var h = window.location.href;
+        var hh = h.split("cmpid=");
+        console.log('hh',hh[1]);
         if (evaluation) {
           evaluation = false;
           $.ajax({
@@ -583,7 +586,8 @@ function checkCodeValue () {
             user_name: $('#name').val(),
             mobile: $("#phone").val(),
             country_id: cityid,
-            code: $('#code').val()
+            code: $('#code').val(),
+            source: hh[1]
           },
           dataType:'json',
           success:function(msg){
