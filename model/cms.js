@@ -1591,7 +1591,6 @@ var redisPool_views = require('redis-connection-pool')('viewNumberCache', {
 exports.detail_count = function (data, callback) {
   //redis 缓存文章浏览数````·
   //判断用户访问是否在限制条件内 10min 5
-  log.info('!!!!view_count_cms_data!!!!',' uuid:',data.uuid,' id:',data.id);
   var condition_time = 60;
   var condition_num = 1;
   if(!data.uuid){
@@ -1622,7 +1621,6 @@ exports.detail_count = function (data, callback) {
               var viewNumKey = "WEB:HITS:"+data.id;
               redisPool_views.get(viewNumKey, function(err, reply){
                 if(reply){
-                  log.info('!!!!m_view_count!!!!',viewNumKey,reply);
                   callback(null, {"uuid":data.uuid, "num":reply});
                 }
               });
@@ -1665,7 +1663,6 @@ function update_viewnum(catid, id, uuid, callback){
         redisHits.sadd(viewListKey, id);
       });
       if(callback){
-        log.info('!!!!m_view_count!!!!',viewNumKey,reply);
         callback(null, {"uuid":uuid, "num":reply});
       }
     }
