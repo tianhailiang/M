@@ -581,8 +581,14 @@ function checkCodeValue () {
           var hhh = hh[1].split("&");
           for (var i = 0;i < hhh.length;i++) {
             if (hhh[i].split("cmpid=")[1] != null) {
-              sou = hhh[i].split("cmpid=")
-              console.log('sou',sou)
+              console.log('hhh',hhh[i])
+              if (hhh[i].match(/[~|《|<|>|'|!|@|#|$|%|^|&|*|(|)|+|:]/)) {
+                console.log('含有特殊字符')
+              }else {
+                sou = hhh[i].split("cmpid=")
+                console.log('sou',sou)
+              }
+              
             }
           }
         }
