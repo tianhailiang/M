@@ -3152,6 +3152,9 @@ exports.getCoupons = function (req, res, next) {
     var code = req.query.code;
     var city = req.query.city;
     var source = req.query.source;
+    if (source == undefined) {
+        source = null;
+    }
     //获取本地ip
     var ip = req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
     if(ip.split(',').length>0){

@@ -575,8 +575,18 @@ function checkCodeValue () {
         if (!getcity()) return false;
         var cityid = $('#city').data('city');
         var h = window.location.href;
-        var hh = h.split("cmpid=");
-        console.log('hh',hh[1]);
+        var hh = h.split("?");
+        var sou = [];
+        if (hh[1]) {
+          var hhh = hh[1].split("&");
+          for (var i = 0;i < hhh.length;i++) {
+            if (hhh[i].split("cmpid=")[1] != null) {
+              sou = hhh[i].split("cmpid=")
+              console.log('sou',sou)
+            }
+          }
+        }
+        
         if (evaluation) {
           evaluation = false;
           $.ajax({
@@ -587,7 +597,7 @@ function checkCodeValue () {
             mobile: $("#phone").val(),
             country_id: cityid,
             code: $('#code').val(),
-            source: hh[1]
+            source: sou[1]
           },
           dataType:'json',
           success:function(msg){
