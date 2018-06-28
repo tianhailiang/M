@@ -609,6 +609,7 @@ function checkCodeValue () {
                 $('#code').val('');
                 $('#city').html('意向国家');
                 var ua = navigator.userAgent.toLowerCase();
+                alert(ua.match(/MicroMessenger/i) == 'micromessenger')
                 if (ua.match(/MicroMessenger/i) == 'micromessenger') {
                   alert('111111111111')
                   window.location.href = js_api_config.wwhost + '/obtain'  
