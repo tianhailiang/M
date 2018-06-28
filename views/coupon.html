@@ -601,24 +601,24 @@ function checkCodeValue () {
             alert(msg.code)
             if(msg.code == 0){
                 //alert('成功');
-                alert('优惠码发送成功');
-                //今日头条统计
-                // _taq.push({convert_id:"1602955735512068", event_type:"form"});
+                // alert('优惠码发送成功');
                 $('#name').val('');
                 $("#phone").val('');
                 $('#code').val('');
                 $('#city').html('意向国家');
                 var ua = navigator.userAgent.toLowerCase();
-                alert(ua.match(/MicroMessenger/i) == 'micromessenger')
+                // alert(ua.match(/MicroMessenger/i) == 'micromessenger')
                 if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                  alert('111111111111')
+                  // alert('111111111111')
                   window.location.href = js_api_config.wwhost + '/obtain'  
                 } else {
-                  alert('222222222222')
+                  // alert('222222222222')
                   $('.main_dialog').show();
                   $('#app').css('position', 'fixed')
                 }
-                alert('333333333333333')
+                // alert('333333333333333')
+                //今日头条统计
+                _taq.push({convert_id:"1602955735512068", event_type:"form"});
             } else {
                 alert(msg.massage);
             }
