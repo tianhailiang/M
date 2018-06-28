@@ -3174,8 +3174,8 @@ exports.getCoupons = function (req, res, next) {
                 if (err) {
                     res.send(err);
                 } else {
-                    console.log('获取优惠券',result)
-                    res.send(result);
+                    console.log('获取优惠券',result);
+                    res.send(JSON.stringify(result));
                     if (result.code == 0) {
                         cms.login_ss({phone: req.query.mobile, code: req.query.code}, function (err,result) {
                             if (err) {

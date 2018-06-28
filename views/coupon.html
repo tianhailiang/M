@@ -607,8 +607,9 @@ function checkCodeValue () {
           },
           dataType:'json',
           success:function(msg){
-            alert('msg',msg.code)
-            if(msg.code == 0){
+            var msgg = JSON.parse(msg)
+            alert('msg',msgg.code)
+            if(msgg.code == 0){
                 //alert('成功');
                 // alert('优惠码发送成功');
                 //今日头条统计
@@ -625,7 +626,7 @@ function checkCodeValue () {
                 }
                 
             } else {
-                alert(msg.massage);
+                alert(msgg.massage);
             }
             evaluation = true;
           },
