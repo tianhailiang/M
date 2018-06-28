@@ -326,7 +326,7 @@
 
 <script>
 
-  $(function(){
+  window.onload = function () {
     // /*点击广告位进行统计*/
     $("[id^='XC_']").click('a', function (e) {
       e.preventDefault();
@@ -358,7 +358,7 @@
           return false;
         }
       }
-  })
+  
 
   var check_value = {
     phone: function(phone){
@@ -678,5 +678,6 @@ function checkCodeValue () {
             $('.cue_weixin1').css("display","none");
           }
         });
+      }
 </script>
 </html>
