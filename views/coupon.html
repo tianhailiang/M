@@ -349,6 +349,15 @@
         window.open(url);
       }
     });
+    function isWeiXin() {
+        // 检查微信环境
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+          return true;
+        } else {
+          return false;
+        }
+      }
   })
 
   var check_value = {
@@ -558,15 +567,6 @@ function checkCodeValue () {
       $('#city').removeClass('err');
       return false;
     });
-    function isWeiXin() {
-        // 检查微信环境
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-          return true;
-        } else {
-          return false;
-        }
-      }
     var evaluation = true;
     $('#evaluationBtn').on('click', function () {
         if (!checkName()) return false;
