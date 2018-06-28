@@ -584,17 +584,17 @@ function checkCodeValue () {
             }
           }
         }
-        var isWeiXin = function () {
-        // 检查微信环境
-          var ua = window.navigator.userAgent.toLowerCase();
-          if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            return true;
-          } else {
-            return false;
-          }
-        }
         if (evaluation) {
           evaluation = false;
+          var isWeiXin = function () {
+          // 检查微信环境
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+              return true;
+            } else {
+              return false;
+            }
+          }
           $.ajax({
           url: '/getCoupons',
           type: 'get',
