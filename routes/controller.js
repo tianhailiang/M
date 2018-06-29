@@ -3068,7 +3068,7 @@ exports.coupon = function (req, res, next) {
     var data = [];
     var run = helperfunc.rndNum()
     //生成验证码
-    data.param_code = sha1(helperfunc.rndNum() + moment().format('YYYY-MM-DD'))
+    data.param_code = sha1(helperfunc.rndNum() + moment().format('YYYY-MM-DD'));
     req.session.param_code = data.param_code;
     console.log('run-----',helperfunc.rndNum() + moment().format('YYYY-MM-DD'));
     console.log('param_code~~',data.param_code);
@@ -3083,6 +3083,33 @@ exports.coupon = function (req, res, next) {
           pagekey: 'COUPON'
         };
         res.render('coupon', data);
+    });
+    // data.tdk = {
+    //     pagekey: 'COUPON'
+    // };
+    // res.render('coupon', data);
+}
+//新版优惠券活动页面
+exports.coupon_new = function (req, res, next) {
+    var moment = require('moment');
+    var data = [];
+    var run = helperfunc.rndNum()
+    //生成验证码
+    data.param_code = sha1(helperfunc.rndNum() + moment().format('YYYY-MM-DD'));
+    req.session.param_code = data.param_code;
+    console.log('run-----',helperfunc.rndNum() + moment().format('YYYY-MM-DD'));
+    console.log('param_code~~',data.param_code);
+    console.log('session------',req.session.param_code);
+    cms.lunbo_list({
+        "ad_page":"COUPONNEW",
+        "ad_seat":"SEAT10"
+    },function(err,result){
+        data.coupon = returnData(result,'coupon');
+        console.log('coupon',data.coupon)
+        data.tdk = {
+          pagekey: 'COUPONNEW'
+        };
+        res.render('coupon_new', data);
     });
     // data.tdk = {
     //     pagekey: 'COUPON'
