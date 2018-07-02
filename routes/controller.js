@@ -3102,7 +3102,7 @@ exports.coupon_new = function (req, res, next) {
     console.log('session------',req.session.param_code);
     cms.lunbo_list({
         "ad_page":"COUPONNEW",
-        "ad_seat":"SEAT10"
+        "ad_seat":"SEAT1"
     },function(err,result){
         data.coupon = returnData(result,'coupon');
         console.log('coupon',data.coupon)
