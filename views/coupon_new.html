@@ -749,17 +749,17 @@ function checkCodeValue () {
     //滚动
     var liHeight = li[0].offsetHeight;   //单行滚动的高度
     var speed = 20;      //滚动的速度
-    var timer;
+    var timer_lun;
     var delay = 2000;    //滚动的间隔
     scrollArea.scrollTop = 0;
     scrollArea.innerHTML += scrollArea.innerHTML;
     function startScroll(){
-      timer = setInterval(scrollUp, speed);
+      timer_lun = setInterval(scrollUp, speed);
       scrollArea.scrollTop++;
     }
     function scrollUp(){
       if(scrollArea.scrollTop % liHeight == 0){
-        clearInterval(timer);
+        clearInterval(timer_lun);
         setTimeout(startScroll, delay);
       }else{
         scrollArea.scrollTop++;
