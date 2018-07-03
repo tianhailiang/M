@@ -110,8 +110,8 @@ exports = module.exports = function (app) {// routes
   app.get('/search_articles',controller.search_articles);
   app.get(/^\/articles(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/, controller.country_list);
   app.get(/^\/so_articles(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/,controller.so_articles);//文章搜索页
-  app.get('/coupon',controller.coupon);//优惠券活动页面
-  app.get('/coupon_new',controller.coupon_new);//新版优惠券活动页面
+  // app.get('/coupon',controller.coupon);//优惠券活动页面
+  app.get('/coupon',controller.coupon_new);//新版优惠券活动页面
   app.get('/sendSms',controller.sendsms);//发送短信验证码（潘再奎接口）
   app.get('/getCoupons',controller.getCoupons);//获取优惠券
   app.get('/obtain',controller.obtain);//获取优惠券二维码
