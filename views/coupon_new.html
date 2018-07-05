@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   {% include "header_coupon.html" %}
 
   <script>
     //计算根节点HTML的字体大小
-    function resizeRoot(width){
+    function resizeRoot(width) {
       var deviceWidth = document.documentElement.clientWidth,
-              num = width,
-              num1 = num / 100;
-      if(deviceWidth > num){
+        num = width,
+        num1 = num / 100;
+      if (deviceWidth > num) {
         deviceWidth = num;
       }
       document.documentElement.style.fontSize = deviceWidth / num1 + "px";
@@ -17,18 +18,19 @@
     //根节点HTML的字体大小初始化
     resizeRoot(750);
 
-    window.onresize = function(){
+    window.onresize = function () {
       resizeRoot(750);
     };
   </script>
   <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/obtain.css">
   <style type="text/css">
-    .about-img img{
+    .about-img img {
       width: 100%;
       height: 100%;
       line-height: 0;
     }
-    .cou_main{
+
+    .cou_main {
       width: 100%;
       height: 100%;
       /* margin-top: 30px;
@@ -36,203 +38,234 @@
       background-size: cover; 
       padding: 0 9px;*/
     }
-    .cou_ti{
+
+    .cou_ti {
       width: 100%;
       height: 100%;
     }
-    .cou_inp{
+
+    .cou_inp {
       width: 100%;
       height: 100%;
       display: inline-block;
       background: url({{helper.cdnhost}}/assets/img/hongbao_03.jpg) no-repeat;
       background-size: 100% 100%;
       padding: 25px 20px;
-      
+
     }
+
     .form-yimin-text {
       display: flex;
       height: 36px;
-      margin-top:25px;
+      margin-top: 25px;
       position: relative;
       padding: 0 22px;
     }
-  .form-yimin-text input{
-    flex: 1;
-    border:1px solid #dcdcdc;
-    border-radius: 18px;
-    padding: 0 15px;
-    font-size: 13px;
-    color:#333;
-    background: #fff;
-  }
-  .form-yimin-text .city{
-    flex: 1;
-    border:1px solid #dcdcdc;
-    border-radius: 18px;
-    padding: 0 15px;
-    font-size: 13px;
-    color: #888;
-    background: #fff;
-    line-height: 36px;
-  }
-  .form-yimin-text input.err {
-    border: 1px solid #d51821;
-  }
-  .form-yimin-text span{
-    width: 110px;
-    height: 34px;
-    background: #6e4ec8;
-    border-radius: 18px;
-    color:#ffffff;
-    font-size: 12px;
-    line-height: 34px;
-    text-align: center;
-    margin-left: 10px;
-  }
-  .form-yimin-text em{
-    color: #d51821;
-    font-size: 11px;
-    position: absolute;
-    left: 37px;
-    top: 40px;
-    display: none;
-  }
-  .form-yimin-text i{
-    width: 10px;
-    position: absolute;
-    right: 37px;
-    top: 10px;
-  }
-  .form-yimin-text .cou_city{
-    width: 100%;
-    height: 283px;
-    background: url({{helper.cdnhost}}/assets/img/coupon_cit.png) no-repeat;
-    background-size: 100% 100%;
-    position: absolute;
-    top: 37px;
-    left: 0px;
-    z-index: 1000;
-    display: none;
-  }
-  .form-yimin-text .cou_city_s{
-    font-size: 0;
-    padding: 20px 10px 10px 12px;    
-  }
-  .form-yimin-text .cou_city_s span{
-    width: 21%;
-    height: 27px;
-    display: inline-block;
-    border: 1px #dcdcdc solid;
-    border-radius: 2px;
-    color: #999;
-    font-size: 12px;
-    text-align: center;
-    line-height: 24px;
-    background: #fff;
-    margin-bottom: 10px;
-    margin-left: 3%;
-  }
-  .form-yimin-text .cou_city_s span.active{
-    border: 1px #d51821 solid;
-    color: #d51821;
-  }
-  .form-yimin-text .cou_city_b{
-    width: 100%;
-    text-align: center;
-    margin-top: -10px;
-  }
-  .form-yimin-text .cou_city_b span{
-    width: 50px;
-    height: 28px;
-    display: inline-block;
-    border: 1px #d51821 solid;
-    border-radius: 2px;
-    background: #d51821;
-    color: #fff;
-    font-size: 14px;
-    text-align: center;
-    line-height: 26px;
-    margin-right: 25px;
-  }
-  .form-yimin-text .cou_city_b span.quxiao{
-    background: #fff;
-    color: #d51821;
-    margin-right: 0px;
-  }
-  .cou_act{
-    width: 100%;
-    margin-top: 30px;
-    font-size: 12px;
-    color: #db1e87;
-  }
-  .cou_act_t{
-    font-size: 14px;
-  }
-  .cou_act_c{
-    margin-top: 15px;
-    margin-bottom: 10px;
-  }
-  .cou_act_c1{
-    line-height: 25px;
-  }
-  .cou_act_c1 span{
-    float: left;
-    display: inline-block;
-    line-height: 26px;
-  }
-  .weui-agree__checkbox:checked:before{
-    color: #e83a56;
-    border: 1px solid #e83a56;
-    border-radius: 3px;
-    width: 17px;
-    height: 18px;
-    top: 43%;
-    left: 49%;
-    line-height: 18px;
-  }
-  .weui-agree{
-    width: 50%;
-    padding: 10px 0px 20px 22px;
-  }
-  .weui-agree__text{
-    color: #6e4ec8;
-  }
-  .weui-agree__checkbox{
-    width: 15px;
-    height: 15px;
-  }
-  .form-yimin-btn{
-    width: 100%;
-    height: 36px;
-    padding: 0 22px;
-    position: relative;
-  }
-  .form-yimin-btn span{
-    width: 100%;
-    color:#ffffff;
-    background: url({{helper.cdnhost}}/assets/img/button.png) no-repeat;
-    background-size: 100% 100%;
-    height: 36px;
-    line-height: 36px;
-    text-align: center;
-    font-size: 14px;
-    display: inline-block;
-  }
-  .main_dialog{
-    display: none;
-    overflow:hidden;
-  }
-  .dialog_show{
-    width: 20px;
-    font-size: 20px;
-    height: 20px;
-    color: #fff;
-    position: absolute;
-    top: -180%;right: 5px;
-    background: url({{helper.cdnhost}}/assets/img/coupon_close.png) no-repeat;
-    background-size: 100% 100%;
-  }
-    .lingqu span{
+
+    .form-yimin-text input {
+      flex: 1;
+      border: 1px solid #dcdcdc;
+      border-radius: 18px;
+      padding: 0 15px;
+      font-size: 13px;
+      color: #333;
+      background: #fff;
+    }
+
+    .form-yimin-text .city {
+      flex: 1;
+      border: 1px solid #dcdcdc;
+      border-radius: 18px;
+      padding: 0 15px;
+      font-size: 13px;
+      color: #888;
+      background: #fff;
+      line-height: 36px;
+    }
+
+    .form-yimin-text input.err {
+      border: 1px solid #d51821;
+    }
+
+    .form-yimin-text span {
+      width: 110px;
+      height: 34px;
+      background: #6e4ec8;
+      border-radius: 18px;
+      color: #ffffff;
+      font-size: 12px;
+      line-height: 34px;
+      text-align: center;
+      margin-left: 10px;
+    }
+
+    .form-yimin-text em {
+      color: #d51821;
+      font-size: 11px;
+      position: absolute;
+      left: 37px;
+      top: 40px;
+      display: none;
+    }
+
+    .form-yimin-text i {
+      width: 10px;
+      position: absolute;
+      right: 37px;
+      top: 10px;
+    }
+
+    .form-yimin-text .cou_city {
+      width: 100%;
+      height: 283px;
+      background: url({{helper.cdnhost}}/assets/img/coupon_cit.png) no-repeat;
+      background-size: 100% 100%;
+      position: absolute;
+      top: 37px;
+      left: 0px;
+      z-index: 1000;
+      display: none;
+    }
+
+    .form-yimin-text .cou_city_s {
+      font-size: 0;
+      padding: 20px 10px 10px 12px;
+    }
+
+    .form-yimin-text .cou_city_s span {
+      width: 21%;
+      height: 27px;
+      display: inline-block;
+      border: 1px #dcdcdc solid;
+      border-radius: 2px;
+      color: #999;
+      font-size: 12px;
+      text-align: center;
+      line-height: 24px;
+      background: #fff;
+      margin-bottom: 10px;
+      margin-left: 3%;
+    }
+
+    .form-yimin-text .cou_city_s span.active {
+      border: 1px #d51821 solid;
+      color: #d51821;
+    }
+
+    .form-yimin-text .cou_city_b {
+      width: 100%;
+      text-align: center;
+      margin-top: -10px;
+    }
+
+    .form-yimin-text .cou_city_b span {
+      width: 50px;
+      height: 28px;
+      display: inline-block;
+      border: 1px #d51821 solid;
+      border-radius: 2px;
+      background: #d51821;
+      color: #fff;
+      font-size: 14px;
+      text-align: center;
+      line-height: 26px;
+      margin-right: 25px;
+    }
+
+    .form-yimin-text .cou_city_b span.quxiao {
+      background: #fff;
+      color: #d51821;
+      margin-right: 0px;
+    }
+
+    .cou_act {
+      width: 100%;
+      margin-top: 30px;
+      font-size: 12px;
+      color: #db1e87;
+    }
+
+    .cou_act_t {
+      font-size: 14px;
+    }
+
+    .cou_act_c {
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+
+    .cou_act_c1 {
+      line-height: 25px;
+    }
+
+    .cou_act_c1 span {
+      float: left;
+      display: inline-block;
+      line-height: 26px;
+    }
+
+    .weui-agree__checkbox:checked:before {
+      color: #e83a56;
+      border: 1px solid #e83a56;
+      border-radius: 3px;
+      width: 17px;
+      height: 18px;
+      top: 43%;
+      left: 49%;
+      line-height: 18px;
+    }
+
+    .weui-agree {
+      width: 50%;
+      padding: 10px 0px 20px 22px;
+    }
+
+    .weui-agree__text {
+      color: #6e4ec8;
+    }
+
+    .weui-agree__checkbox {
+      width: 15px;
+      height: 15px;
+    }
+
+    .form-yimin-btn {
+      width: 100%;
+      height: 36px;
+      padding: 0 22px;
+      position: relative;
+    }
+
+    .form-yimin-btn span {
+      width: 100%;
+      color: #ffffff;
+      background: url({{helper.cdnhost}}/assets/img/button.png) no-repeat;
+      background-size: 100% 100%;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+      font-size: 14px;
+      display: inline-block;
+    }
+
+    .main_dialog {
+      display: none;
+      overflow: hidden;
+    }
+
+    .dialog_show {
+      width: 20px;
+      font-size: 20px;
+      height: 20px;
+      color: #fff;
+      position: absolute;
+      top: -180%;
+      right: 5px;
+      background: url({{helper.cdnhost}}/assets/img/coupon_close.png) no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .lingqu span {
       display: inline-block;
       margin-left: .3rem;
       font-size: .3rem;
@@ -240,135 +273,232 @@
       color: #dcdcdc;
 
     }
-  .lingqu span img{
-    display: inline-block;
-    width: 1.8rem;
-  }
-    .lingqu span b{
+
+    .lingqu span img {
+      display: inline-block;
+      width: 1.8rem;
+    }
+
+    .lingqu span b {
       color: #f7e33b;
     }
-    li{list-style-type:none;}
-    .scroll_tit{overflow:hidden;background:#ff8644;margin:.3rem .3rem 0;}
-    .scroll_tit li{float:left;height:.72rem;line-height:.72rem;color:#fff;width:33.33%;}
-    .scroll_tit li:nth-child(1), .scroll_content li span:nth-child(1){padding-left:.3rem;}
-    .scroll_tit li:nth-child(2), .scroll_content li span:nth-child(2){text-align:right;padding-right:.3rem;}
-    .scroll_tit li:nth-child(3), .scroll_content li span:nth-child(3){}
-    .scroll_content{background:#4e3497;padding:.1rem 0;margin:0 .3rem;overflow:hidden;}
-    .scroll_content li{overflow:hidden;height:.8rem;line-height:.8rem;font-size:.3rem;color:#a999d9;border-bottom: 1px solid #dcdcdc;}
-    .scroll_content li span{float:left;width:50%;}
+
+    li {
+      list-style-type: none;
+    }
+
+    .scroll_tit {
+      overflow: hidden;
+      background: #ff8644;
+      margin: .3rem .3rem 0;
+    }
+
+    .scroll_tit li {
+      float: left;
+      height: .72rem;
+      line-height: .72rem;
+      color: #fff;
+      width: 33.33%;
+    }
+
+    .scroll_tit li:nth-child(1),
+    .scroll_content li span:nth-child(1) {
+      padding-left: .3rem;
+    }
+
+    .scroll_tit li:nth-child(2),
+    .scroll_content li span:nth-child(2) {
+      text-align: right;
+      padding-right: .3rem;
+    }
+
+    .scroll_tit li:nth-child(3),
+    .scroll_content li span:nth-child(3) {}
+
+    .scroll_content {
+      background: #4e3497;
+      padding: .1rem 0;
+      margin: 0 .3rem;
+      overflow: hidden;
+    }
+
+    .scroll_content li {
+      overflow: hidden;
+      height: .8rem;
+      line-height: .8rem;
+      font-size: .3rem;
+      color: #a999d9;
+      border-bottom: 1px solid #dcdcdc;
+    }
+
+    .scroll_content li span {
+      float: left;
+      width: 50%;
+    }
   </style>
 </head>
-<body>
-    {% include "m_widget/top/common_top.html" %}
-    <div id="app" style="background: #4e3497;">
-       <!-- 广告位 -->
-      <div style="width:100%;overflow: hidden;background:#f2aaaa;line-height: 0;margin-top: -3px">
-        <div id="XC_COUPON_SEAT1" class="about-img" style="line-height: 0">
-            <a rel="nofollow" data-pid="{{coupon[0].pid}}" href="{{coupon[0].linkurl}}" style="line-height: 0">
-              <img src="{{coupon[0].imageurl}}" alt="{{coupon[0].alt}}">
-            </a>
-          </div>
-      </div>
-      <div class="cou_main">
-         <!-- 活动介绍 -->
-        {#<img src="{{helper.cdnhost}}/assets/img/hongbao_01.jpg" alt="" class="cou_ti" style="margin-bottom: -3px">
-        <img src="{{helper.cdnhost}}/assets/img/hongbao_02.jpg" alt="" class="cou_ti" style="margin-bottom: -10px">#}
-        <img src="{{helper.cdnhost}}/assets/img/01.jpg" alt="" class="cou_ti" style="margin-bottom: -3px">
-        <a class="ding_from"><img src="{{helper.cdnhost}}/assets/img/02.jpg" alt="" class="cou_ti" style="margin-bottom: -10px"></a>
-        <img src="{{helper.cdnhost}}/assets/img/03.jpg" alt="" class="cou_ti" style="margin-bottom: -5px">
-        <a class="ding_from"><img src="{{helper.cdnhost}}/assets/img/04.jpg" alt="" class="cou_ti" style="margin-bottom: -5px"></a>
-        <!-- 填写个人信息 -->
-        <div id="form" class="cou_inp">
-            <div class="form-yimin-text" style="margin-top: 60px;"><input type="text" placeholder="请输入您的真实姓名" id="name"><em id="name_error">请输入正确姓名</em></div>
-            <div class="form-yimin-text" ><input type="text" placeholder="请输入手机号" id="phone"><em id="phone_error">请输入正确手机号</em></div>
-            <div class="form-yimin-text"><input type="text" id="code" placeholder="请输入验证码"><span id="getcode" data-coupon="{{param_code}}">发送验证码</span><em id="code_error">请输入正确手机验证码</em></div>
-            <div class="form-yimin-text form-yimin-text1">
-              <div class="city" id="city">意向国家</div>
-              <!-- <input type="text" id="city" placeholder="意向国家"> -->
-              <i class="iconfont" id="city_i" style="color: #888;">&#xe60b;</i>
-              <div class="cou_city" id="cou_city">
-                <div class="cou_city_s" id="cou_city_s">
-                  <span class="active" value='1'>美国</span>
-                  <span value='2'>英国</span>
-                  <span value='4'>澳大利亚</span>
-                  <span value='3'>加拿大</span>
-                  <span value='5'>新西兰</span>
-                  <span value='51'>日本</span>
-                  <span value='50'>韩国</span>
-                  <span value='54'>中国香港</span>
-                  <span value='100'>俄罗斯</span>
-                  <span value='101'>乌克兰</span>
-                  <span value='108'>爱尔兰</span>
-                  <span value='111'>意大利</span>
-                  <span value='112'>西班牙</span>
-                  <span value='102'>白俄罗斯</span>
-                  <span value='52'>新加坡</span>
-                  <span value='53'>马来西亚</span>
-                  <span value='110'>丹麦</span>
-                  <span value='103'>德国</span>
-                  <span value='104'>法国</span>
-                  <span value='105'>挪威</span>
-                  <span value='106'>瑞典</span>
-                  <span value='107'>芬兰</span>
-                  <span value='109'>荷兰</span>
-                  <span value='113'>瑞士</span>
-                </div>
-                <div class="cou_city_b">
-                  <span id="city_queding">确认</span>
-                  <span class="quxiao" id="city_quxiao">取消</span>
-                </div>
-              </div>
-            </div>
-            <label for="weuiAgree" class="weui-agree">
-              <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" checked="checked">
-              <span class="weui-agree__text">注册JJL网站账号</span>
-          </label>
-          <div class="form-yimin-btn"><span id="evaluationBtn">点击获取优惠码</span></div>
-        </div>
 
-        <div class="lingqu" style="background: #4e3497;">
-          <span><img src="{{helper.cdnhost}}/assets/img/hongbao_06.jpg" alt=""/></span>
-          <span>已有<b>1038</b>人成功领取优惠金</span>
+<body>
+  {% include "m_widget/top/top.html" %}
+  <div id="app" style="background: #4e3497;">
+    <!-- 广告位 -->
+    <div style="width:100%;overflow: hidden;background:#f2aaaa;line-height: 0;margin-top: -3px">
+      <div id="XC_COUPON_SEAT1" class="about-img" style="line-height: 0">
+        <a rel="nofollow" data-pid="{{coupon[0].pid}}" href="{{coupon[0].linkurl}}" style="line-height: 0">
+          <img src="{{coupon[0].imageurl}}" alt="{{coupon[0].alt}}">
+        </a>
+      </div>
+    </div>
+    <div class="cou_main">
+      <!-- 活动介绍 -->
+      {#
+      <img src="{{helper.cdnhost}}/assets/img/hongbao_01.jpg" alt="" class="cou_ti" style="margin-bottom: -3px">
+      <img src="{{helper.cdnhost}}/assets/img/hongbao_02.jpg" alt="" class="cou_ti" style="margin-bottom: -10px">#}
+      <img src="{{helper.cdnhost}}/assets/img/01.jpg" alt="" class="cou_ti" style="margin-bottom: -3px">
+      <a class="ding_from">
+        <img src="{{helper.cdnhost}}/assets/img/02.jpg" alt="" class="cou_ti" style="margin-bottom: -10px">
+      </a>
+      <img src="{{helper.cdnhost}}/assets/img/03.jpg" alt="" class="cou_ti" style="margin-bottom: -5px">
+      <a class="ding_from">
+        <img src="{{helper.cdnhost}}/assets/img/04.jpg" alt="" class="cou_ti" style="margin-bottom: -5px">
+      </a>
+      <!-- 填写个人信息 -->
+      <div id="form" class="cou_inp">
+        <div class="form-yimin-text" style="margin-top: 60px;">
+          <input type="text" placeholder="请输入您的真实姓名" id="name">
+          <em id="name_error">请输入正确姓名</em>
         </div>
-        <div class="scroll_content" id="scroll_content" style="background: #4e3497;">
-          <ul>
-            <li style="border-top: 1px solid #dcdcdc"><span>152*****066</span><span>18分钟前</span></li>
-            <li><span>136*****121</span><span>6分钟前</span></li>
-            <li><span>158*****356</span><span>26分钟前</span></li>
-            <li><span>134*****258</span><span>45分钟前</span></li>
-            <li><span>137*****122</span><span>52分钟前</span></li>
-            <li><span>159*****523</span><span>21分钟前</span></li>
-            <li><span>151*****885</span><span>17分钟前</span></li>
-            <li><span>183*****461</span><span>35分钟前</span></li>
-            <li><span>185*****052</span><span>38分钟前</span></li>
-            <li><span>136*****551</span><span>3分钟前</span></li>
-          </ul>
+        <div class="form-yimin-text">
+          <input type="text" placeholder="请输入手机号" id="phone">
+          <em id="phone_error">请输入正确手机号</em>
         </div>
-        <!-- 活动说明 -->
-        <!-- <div class="cou_act">
+        <div class="form-yimin-text">
+          <input type="text" id="code" placeholder="请输入验证码">
+          <span id="getcode" data-coupon="{{param_code}}">发送验证码</span>
+          <em id="code_error">请输入正确手机验证码</em>
+        </div>
+        <div class="form-yimin-text form-yimin-text1">
+          <div class="city" id="city">意向国家</div>
+          <!-- <input type="text" id="city" placeholder="意向国家"> -->
+          <i class="iconfont" id="city_i" style="color: #888;">&#xe60b;</i>
+          <div class="cou_city" id="cou_city">
+            <div class="cou_city_s" id="cou_city_s">
+              <span class="active" value='1'>美国</span>
+              <span value='2'>英国</span>
+              <span value='4'>澳大利亚</span>
+              <span value='3'>加拿大</span>
+              <span value='5'>新西兰</span>
+              <span value='51'>日本</span>
+              <span value='50'>韩国</span>
+              <span value='54'>中国香港</span>
+              <span value='100'>俄罗斯</span>
+              <span value='101'>乌克兰</span>
+              <span value='108'>爱尔兰</span>
+              <span value='111'>意大利</span>
+              <span value='112'>西班牙</span>
+              <span value='102'>白俄罗斯</span>
+              <span value='52'>新加坡</span>
+              <span value='53'>马来西亚</span>
+              <span value='110'>丹麦</span>
+              <span value='103'>德国</span>
+              <span value='104'>法国</span>
+              <span value='105'>挪威</span>
+              <span value='106'>瑞典</span>
+              <span value='107'>芬兰</span>
+              <span value='109'>荷兰</span>
+              <span value='113'>瑞士</span>
+            </div>
+            <div class="cou_city_b">
+              <span id="city_queding">确认</span>
+              <span class="quxiao" id="city_quxiao">取消</span>
+            </div>
+          </div>
+        </div>
+        <label for="weuiAgree" class="weui-agree">
+          <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" checked="checked">
+          <span class="weui-agree__text">注册JJL网站账号</span>
+        </label>
+        <div class="form-yimin-btn">
+          <span id="evaluationBtn">点击获取优惠码</span>
+        </div>
+      </div>
+
+      <div class="lingqu" style="background: #4e3497;">
+        <span>
+          <img src="{{helper.cdnhost}}/assets/img/hongbao_06.jpg" alt="" />
+        </span>
+        <span>已有
+          <b>1038</b>人成功领取优惠金</span>
+      </div>
+      <div class="scroll_content" id="scroll_content" style="background: #4e3497;">
+        <ul>
+          <li style="border-top: 1px solid #dcdcdc">
+            <span>152*****066</span>
+            <span>18分钟前</span>
+          </li>
+          <li>
+            <span>136*****121</span>
+            <span>6分钟前</span>
+          </li>
+          <li>
+            <span>158*****356</span>
+            <span>26分钟前</span>
+          </li>
+          <li>
+            <span>134*****258</span>
+            <span>45分钟前</span>
+          </li>
+          <li>
+            <span>137*****122</span>
+            <span>52分钟前</span>
+          </li>
+          <li>
+            <span>159*****523</span>
+            <span>21分钟前</span>
+          </li>
+          <li>
+            <span>151*****885</span>
+            <span>17分钟前</span>
+          </li>
+          <li>
+            <span>183*****461</span>
+            <span>35分钟前</span>
+          </li>
+          <li>
+            <span>185*****052</span>
+            <span>38分钟前</span>
+          </li>
+          <li>
+            <span>136*****551</span>
+            <span>3分钟前</span>
+          </li>
+        </ul>
+      </div>
+      <!-- 活动说明 -->
+      <!-- <div class="cou_act">
           <div class="cou_act_t">活动说明</div>
           <div class="cou_act_c">活动范围：全国49家分子公司</div>
           <div class="cou_act_c1">活动时间：2018年6月10日至2018年8月25日</div>
           <div class="cou_act_c1"><span>参与规则：</span>凡在各分子公司夏展举办日前夕领取优惠码，并在展会举办日现场使用优惠码，此码有效期截止至2018年9月25日。</div>
           <div class="cou_act_c1"><span>使用条件：</span>全款签约最高减免2000元服务费，个别国家根据实际情况进行服务费减免，最终解释权归金吉列留学所有。</div>
         </div> -->
-        <img src="{{helper.cdnhost}}/assets/img/hongbao_04.jpg" alt="" class="cou_ti" style="margin-bottom: -10px">
-      </div>
-      {% include "m_widget/footer/common_footer.html" %}
+      <img src="{{helper.cdnhost}}/assets/img/hongbao_04.jpg" alt="" class="cou_ti" style="margin-bottom: -10px">
     </div>
+    {% include "m_widget/footer/common_footer.html" %}
+  </div>
 
-    <!-- 分享弹层 -->
-    <div class="main_dialog" style="">
-      
-      <div class="obtain_ing"></div>
+  <!-- 分享弹层 -->
+  <div class="main_dialog" style="">
+
+    <div class="obtain_ing"></div>
     <div class="js_dialog" id="dialog1" style="opacity: 1;position: relative">
       <div class="weui-mask"></div>
-      
+
       <div class="weui-dialog" style="overflow: inherit;">
         <div id="dialog_show" class="dialog_show"></div>
         <p class="share_con">分享至</p>
         <div class="wenxin_con_xin"></div>
-        <div class="wenxin_con" ></div>
+        <div class="wenxin_con"></div>
         <div class="cue_qq_con"></div>
       </div>
       <div class="cue_weixin">
@@ -393,92 +523,160 @@
 
 <script>
 
-  $(function(){
+  $(function () {
     /*点击广告位进行统计*/
     $("[id^='XC_']").click('a', function (e) {
       e.preventDefault();
       var pid = $(this).find('a').attr("data-pid");
-      if(pid){
+      if (pid) {
         $.ajax({
           url: ajaxUrlPrefix.nodeapi + '/cmsapi/advert_clicknum',
           type: 'GET',
-          data:{
-              pid: pid
+          data: {
+            pid: pid
           },
           datatype: 'json',
           success: function (res) {
-              console.log(res)
+            console.log(res)
           }
         })
       }
       var url = $(this).find("a").attr('href');
-      if(url){
+      if (url) {
         window.open(url);
       }
     });
 
-    $(".ding_from").on('click',function () {
+    $(".ding_from").on('click', function () {
       console.log('aaaaa')
-          var $scrolltop = $('#form').offset().top;
-          $('html,body').animate({//$('html,body')兼容问题body属于chrome
-              scrollTop:$scrolltop-40
-          })
-      });
+      var $scrolltop = $('#form').offset().top;
+      $('html,body').animate({//$('html,body')兼容问题body属于chrome
+        scrollTop: $scrolltop - 40
+      })
+    });
+
+    // 去获取signature签名
+    $.ajax({
+      type: "POST",
+      url: "/wxJssdk/getJssdk",
+      dataType: "json",
+      data: {
+        url: location.href.split('#')[0]
+      },
+      success: function (result) {
+        // console.log(result)
+        wx.config({
+          debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: result.appId, // 必填，公众号的唯一标识
+          timestamp: result.timestamp, // 必填，生成签名的时间戳
+          nonceStr: result.nonceStr, // 必填，生成签名的随机串
+          signature: result.signature,// 必填，签名
+          jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ'] // 必填，需要使用的JS接口列表
+        });
+        wx.ready(function () {
+          // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+          wx.onMenuShareTimeline({
+            title: $("#obtain-id").attr("data-title"), // 分享标题
+            link: js_api_config.wwhost + '/coupon', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: getImage(), // 分享图标
+            success: function () {
+              // 用户确认分享后执行的回调函数
+
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+            }
+          });
+          wx.onMenuShareAppMessage({
+            title: $("#obtain-id").attr("data-title"), // 分享标题
+            desc: '', // 分享描述
+            link: js_api_config.wwhost + '/coupon', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: getImage(), // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+              // 用户点击了分享后执行的回调函数
+
+            }
+          });
+          wx.onMenuShareQQ({
+            title: $("#obtain-id").attr("data-title"), // 分享标题
+            desc: '', // 分享描述
+            link: js_api_config.wwhost + '/coupon', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: getImage(), // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+              // 用户确认分享后执行的回调函数
+
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+
+            }
+          });
+        });
+      },
+      error: function (error) {
+        console.log(error)
+      }
+    });
+    
   })
 
   var check_value = {
-    phone: function(phone){
-        if(!/^1\d{10}$/.test(phone)){
-            return false;
-        }
-        return true;
+    phone: function (phone) {
+      if (!/^1\d{10}$/.test(phone)) {
+        return false;
+      }
+      return true;
     }
-};
-// $('#name').on('blur', function () {
-//     checkName();
-    
-// });
-// $('#name').on('keyup', function () {
-//     checkName();
-    
-// });
-// $('#phone').on('blur', function () {
-//     checkPhone();
-    
-// });
-// $('#phone').on('keyup', function () {
-//     checkPhone();
-    
-// });
-// $('#code').on('blur', function () {
-    
-//     checkCodeValue();
-// });
-// $('#code').on('keyup', function () {
-//     checkCodeValue();
-    
-// });
-var city_show = true;
-$('#city').on('touchstart', function () {
-  if (city_show) {
-    city_show = false;
-    $('#city').focus().addClass('err');
-    $('#cou_city_s').find('span').first().addClass('active').siblings().removeClass('active');
-    $('#cou_city').show();
-    $('#city_i').html('&#xea4b;');
-    $('#city').html('美国');
-    $('#city').attr('data-city', '1');
-  } else {
-    city_show = true;
-    $('#city').removeClass('err');
-    $('#cou_city').hide();
-    $('#city_i').html('&#xe60b;');
-  }
-  
-});
-function getcity () {
+  };
+  // $('#name').on('blur', function () {
+  //     checkName();
+
+  // });
+  // $('#name').on('keyup', function () {
+  //     checkName();
+
+  // });
+  // $('#phone').on('blur', function () {
+  //     checkPhone();
+
+  // });
+  // $('#phone').on('keyup', function () {
+  //     checkPhone();
+
+  // });
+  // $('#code').on('blur', function () {
+
+  //     checkCodeValue();
+  // });
+  // $('#code').on('keyup', function () {
+  //     checkCodeValue();
+
+  // });
+  var city_show = true;
+  $('#city').on('touchstart', function () {
+    if (city_show) {
+      city_show = false;
+      $('#city').focus().addClass('err');
+      $('#cou_city_s').find('span').first().addClass('active').siblings().removeClass('active');
+      $('#cou_city').show();
+      $('#city_i').html('&#xea4b;');
+      $('#city').html('美国');
+      $('#city').attr('data-city', '1');
+    } else {
+      city_show = true;
+      $('#city').removeClass('err');
+      $('#cou_city').hide();
+      $('#city_i').html('&#xe60b;');
+    }
+
+  });
+  function getcity() {
     var city = $.trim($('#city').html());
-    if (city != '美国' && city != '英国' && city != '澳大利亚' && city != '加拿大' && city != '新西兰' && city != '日本' && city != '韩国' && city != '中国香港' && city != '俄罗斯' && city != '乌克兰' && city != '爱尔兰' && city != '意大利' && city != '西班牙' && city != '白俄罗斯' && city != '新加坡' && city != '马来西亚' && city != '丹麦' && city != '德国' && city != '法国' && city != '挪威' && city != '瑞典' &&city != '芬兰' && city != '荷兰' && city != '瑞士') {
+    if (city != '美国' && city != '英国' && city != '澳大利亚' && city != '加拿大' && city != '新西兰' && city != '日本' && city != '韩国' && city != '中国香港' && city != '俄罗斯' && city != '乌克兰' && city != '爱尔兰' && city != '意大利' && city != '西班牙' && city != '白俄罗斯' && city != '新加坡' && city != '马来西亚' && city != '丹麦' && city != '德国' && city != '法国' && city != '挪威' && city != '瑞典' && city != '芬兰' && city != '荷兰' && city != '瑞士') {
       $('#city').focus().addClass('err');
       $('#cou_city').show();
       $('#city_i').html('&#xea4b;');
@@ -486,279 +684,279 @@ function getcity () {
       $('#city').html('美国');
       $('#city').attr('data-city', '1');
       return false;
-    } 
+    }
     else {
       $('#city').removeClass('err');
       $('#cou_city').hide();
       $('#city_i').html('&#xe60b;');
       return true;
     }
-    
-}
-function checkName () {
+
+  }
+  function checkName() {
     $('#city').removeClass('err');
     $('#cou_city').hide();
     $('#city_i').html('&#xe60b;');
     var name = $.trim($('#name').val());
-    var special_code = new RegExp("[~'!@#$%^&*()-+_=:]",'g');
+    var special_code = new RegExp("[~'!@#$%^&*()-+_=:]", 'g');
     if (name.match(special_code) || name == '') {
-        $('#name').focus().addClass('err');
-        $('#name_error').show();
-        return false;
+      $('#name').focus().addClass('err');
+      $('#name_error').show();
+      return false;
     }
     else {
-        $('#name').removeClass('err');
-        $('#name_error').hide();
-        return true;
+      $('#name').removeClass('err');
+      $('#name_error').hide();
+      return true;
     }
-}
-function checkPhone () {
+  }
+  function checkPhone() {
     $('#city').removeClass('err');
     $('#cou_city').hide();
     $('#city_i').html('&#xe60b;');
     var phoneNum = $.trim($('#phone').val());
     if (!check_value.phone(phoneNum)) {
-        $('#phone').focus().addClass('err');
-        $('#phone_error').show();
-        
-        return false;
+      $('#phone').focus().addClass('err');
+      $('#phone_error').show();
+
+      return false;
     }
     else {
-        $('#phone').removeClass('err');
-        $('#phone_error').hide();
-        return true;
+      $('#phone').removeClass('err');
+      $('#phone_error').hide();
+      return true;
     }
-}
-function checkCodeValue () {
+  }
+  function checkCodeValue() {
     $('#city').removeClass('err');
     $('#cou_city').hide();
     $('#city_i').html('&#xe60b;');
     var codeVal = $('#code').val();
     if (codeVal == '' || codeVal.length < 6) {
-        $('#code').focus().addClass('err');
-        $('#code_error').show();
-        
-        return false;
+      $('#code').focus().addClass('err');
+      $('#code_error').show();
+
+      return false;
     } else {
-        $('#code').removeClass('err');
-        $('#code_error').hide();
-        return true;
+      $('#code').removeClass('err');
+      $('#code_error').hide();
+      return true;
     }
-}
-    var timer;
-    
-    function countDown() {
-        // 60s倒计时
-        // $("#getcode").attr('disabled',"true");
-        $("#getcode").unbind("click");
-        var countDownTime = 60;
-        timer = window.setInterval(function () {
-            if (countDownTime === 0) {
-                clearInterval(timer);
-                $("#getcode").html('点击发送验证码');
-                // $("#getcode").removeAttr("disabled");
-                $("#getcode").bind("click",function () {
-                  getCode();
-                });
-            } else {
-              countDownTime--;
-              $("#getcode").html('（'+countDownTime+'）s');
-            }
-        }, 1000);
-    }
-    var codef = true;
-    function getCode () {
-      if (codef) {
+  }
+  var timer;
+
+  function countDown() {
+    // 60s倒计时
+    // $("#getcode").attr('disabled',"true");
+    $("#getcode").unbind("click");
+    var countDownTime = 60;
+    timer = window.setInterval(function () {
+      if (countDownTime === 0) {
+        clearInterval(timer);
+        $("#getcode").html('点击发送验证码');
+        // $("#getcode").removeAttr("disabled");
+        $("#getcode").bind("click", function () {
+          getCode();
+        });
+      } else {
+        countDownTime--;
+        $("#getcode").html('（' + countDownTime + '）s');
+      }
+    }, 1000);
+  }
+  var codef = true;
+  function getCode() {
+    if (codef) {
       var data = $('#getcode').data('coupon');
-      console.log('data',data)
+      console.log('data', data)
       if (!checkPhone()) {
         return false;
       }
       codef = false;
       $.ajax({
-          url: '/sendcode_s',
-          type:'post',
-          data:{
-              param_code: data,
-              phone:$("#phone").val()
-          },
-          dataType:'json',
-          success:function(msg){
-              if(msg.code === 0){
-              //alert('成功');
-              countDown();
-              } else {
-                  alert('出错啦');
-              }
-              codef = true;
-          },
-          error:function(XMLHttpRequest, textStatus, errorThrown){
-              console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
-              codef = true;
+        url: '/sendcode_s',
+        type: 'post',
+        data: {
+          param_code: data,
+          phone: $("#phone").val()
+        },
+        dataType: 'json',
+        success: function (msg) {
+          if (msg.code === 0) {
+            //alert('成功');
+            countDown();
+          } else {
+            alert('出错啦');
           }
+          codef = true;
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          console.log("获取失败，请重试！CODE:" + XMLHttpRequest.status)
+          codef = true;
+        }
       });
     }
+  }
+  function isWeiXin() {
+    // 检查微信环境
+    var ua = window.navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+      return true;
+    } else {
+      return false;
     }
-    function isWeiXin() {
-        // 检查微信环境
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    $('#getcode').on('click', function () {
-        getCode();
-        return false;
-    });
-    $('#cou_city_s').on('touchstart', 'span', function (e) {
-        e.preventDefault();
-        var cou_cityid = $(this).attr('value');
-        console.log(cou_cityid)
-		    $(this).addClass('active').siblings().removeClass('active')
-        $('#city').html($(this).html());
-        $('#city').attr('data-city', cou_cityid)
-        return false;
-    });
-    $('#city_queding').on('click', function (e) {
-      e.preventDefault();
-      var city = $.trim($('#city').html());
-      if (city != '美国' && city != '英国' && city != '澳大利亚' && city != '加拿大' && city != '新西兰' && city != '日本' && city != '韩国' && city != '中国香港' && city != '俄罗斯' && city != '乌克兰' && city != '爱尔兰' && city != '意大利' && city != '西班牙' && city != '白俄罗斯' && city != '新加坡' && city != '马来西亚' && city != '丹麦' && city != '德国' && city != '法国' && city != '挪威' && city != '瑞典' &&city != '芬兰' && city != '荷兰' && city != '瑞士') {
-        return false;
-      } else {
-        $('#cou_city').hide();
-        $('#city_i').html('&#xe60b;');
-        $('#city').removeClass('err');
-      }
-      
-      // return false;
-    });
-    $('#city_quxiao').on('click', function (e) {
-      e.preventDefault();
+  }
+  $('#getcode').on('click', function () {
+    getCode();
+    return false;
+  });
+  $('#cou_city_s').on('touchstart', 'span', function (e) {
+    e.preventDefault();
+    var cou_cityid = $(this).attr('value');
+    console.log(cou_cityid)
+    $(this).addClass('active').siblings().removeClass('active')
+    $('#city').html($(this).html());
+    $('#city').attr('data-city', cou_cityid)
+    return false;
+  });
+  $('#city_queding').on('click', function (e) {
+    e.preventDefault();
+    var city = $.trim($('#city').html());
+    if (city != '美国' && city != '英国' && city != '澳大利亚' && city != '加拿大' && city != '新西兰' && city != '日本' && city != '韩国' && city != '中国香港' && city != '俄罗斯' && city != '乌克兰' && city != '爱尔兰' && city != '意大利' && city != '西班牙' && city != '白俄罗斯' && city != '新加坡' && city != '马来西亚' && city != '丹麦' && city != '德国' && city != '法国' && city != '挪威' && city != '瑞典' && city != '芬兰' && city != '荷兰' && city != '瑞士') {
+      return false;
+    } else {
       $('#cou_city').hide();
       $('#city_i').html('&#xe60b;');
-      $('#city').html('意向国家');
       $('#city').removeClass('err');
-      return false;
-    });
-    var evaluation = true;
-    $('#evaluationBtn').on('click', function () {
-        if (!checkName()) return false;
-        if (!checkPhone()) return false;
-        if (!checkCodeValue()) return false;
-        if (!getcity()) return false;
-        var cityid = $('#city').data('city');
-        var h = window.location.href;
-        var hh = h.split("?");
-        var sou = [];
-        if (hh[1]) {
-          var hhh = hh[1].split("&");
-          for (var i = 0;i < hhh.length;i++) {
-            if (hhh[i].split("cmpid=")[1] != null) {
-              console.log('hhh',hhh[i])
-              if (hhh[i].match(/[~|《|<|>|'|!|@|#|$|%|^|&|*|(|)|+|:]/)) {
-                console.log('含有特殊字符')
-              }else {
-                sou = hhh[i].split("cmpid=")
-                console.log('sou',sou)
-              }
-              
-            }
+    }
+
+    // return false;
+  });
+  $('#city_quxiao').on('click', function (e) {
+    e.preventDefault();
+    $('#cou_city').hide();
+    $('#city_i').html('&#xe60b;');
+    $('#city').html('意向国家');
+    $('#city').removeClass('err');
+    return false;
+  });
+  var evaluation = true;
+  $('#evaluationBtn').on('click', function () {
+    if (!checkName()) return false;
+    if (!checkPhone()) return false;
+    if (!checkCodeValue()) return false;
+    if (!getcity()) return false;
+    var cityid = $('#city').data('city');
+    var h = window.location.href;
+    var hh = h.split("?");
+    var sou = [];
+    if (hh[1]) {
+      var hhh = hh[1].split("&");
+      for (var i = 0; i < hhh.length; i++) {
+        if (hhh[i].split("cmpid=")[1] != null) {
+          console.log('hhh', hhh[i])
+          if (hhh[i].match(/[~|《|<|>|'|!|@|#|$|%|^|&|*|(|)|+|:]/)) {
+            console.log('含有特殊字符')
+          } else {
+            sou = hhh[i].split("cmpid=")
+            console.log('sou', sou)
           }
+
         }
-        
-        if (evaluation) {
-          evaluation = false;
-          $.ajax({
-          url: '/getCoupons',
-          type: 'get',
-          data: {
-            user_name: $('#name').val(),
-            mobile: $("#phone").val(),
-            country_id: cityid,
-            code: $('#code').val(),
-            source: sou[1]
-          },
-          dataType:'json',
-          success:function(msg){
-            if(msg.code === 0){
-                //alert('成功');
-                // alert('优惠码发送成功');
-                
-                $('#name').val('');
-                $("#phone").val('');
-                $('#code').val('');
-                $('#city').html('意向国家');
-                if (isWeiXin()) {
-                  window.location.href = js_api_config.wwhost + '/obtain'  
-                } else {
-                  $('.main_dialog').show();
-                  $('#app').css('position', 'fixed')
-                }
-                //今日头条统计
-                _taq.push({convert_id:"1602955735512068", event_type:"form"});
+      }
+    }
+
+    if (evaluation) {
+      evaluation = false;
+      $.ajax({
+        url: '/getCoupons',
+        type: 'get',
+        data: {
+          user_name: $('#name').val(),
+          mobile: $("#phone").val(),
+          country_id: cityid,
+          code: $('#code').val(),
+          source: sou[1]
+        },
+        dataType: 'json',
+        success: function (msg) {
+          if (msg.code === 0) {
+            //alert('成功');
+            // alert('优惠码发送成功');
+
+            $('#name').val('');
+            $("#phone").val('');
+            $('#code').val('');
+            $('#city').html('意向国家');
+            if (isWeiXin()) {
+              window.location.href = js_api_config.wwhost + '/obtain'
             } else {
-                alert(msg.massage);
+              $('.main_dialog').show();
+              $('#app').css('position', 'fixed')
             }
-            evaluation = true;
-          },
-          error:function(XMLHttpRequest, textStatus, errorThrown){
-            console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
-            evaluation = true;
+            //今日头条统计
+            _taq.push({ convert_id: "1602955735512068", event_type: "form" });
+          } else {
+            alert(msg.massage);
           }
-          })
+          evaluation = true;
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          console.log("获取失败，请重试！CODE:" + XMLHttpRequest.status)
+          evaluation = true;
         }
-        
-    });
-    
-    //在浏览器中弹层的提示框
-        $('#dialog_show').on('click', function () {
-          $('.main_dialog').hide();
-          $('#app').css('position', 'absolute')
-          window.location.reload();
-        });
-        $('.wenxin_con').on('click',function(e){
-          e.stopPropagation();
-          this.flag=!this.flag;
-          if(this.flag) {
-            $('.cue_weixin1').css("display","block");
-          }else{
-            $('.cue_weixin1').css("display","none");
-          }
-        });
-        $('.cue_qq_con').on('click',function(e){
-          e.stopPropagation();
-          this.flag=!this.flag;
-          if(this.flag) {
-            $('.cue_weixin1').css("display","block");
-          }else{
-            $('.cue_weixin1').css("display","none");
-          }
-        });
-        $('.wenxin_con_xin').on('click',function(e){
-          e.stopPropagation();
-          this.flag=!this.flag;
-          if(this.flag) {
-            $('.cue_weixin1').css("display","block");
-          }else{
-            $('.cue_weixin1').css("display","none");
-          }
-        });
-        $(document).on('click touchstart', function (){
-          if($('.cue_weixin1').css("display")=='block'){
-            $('.cue_weixin1').css("display","none");
-          }
-        });
+      })
+    }
+
+  });
+
+  //在浏览器中弹层的提示框
+  $('#dialog_show').on('click', function () {
+    $('.main_dialog').hide();
+    $('#app').css('position', 'absolute')
+    window.location.reload();
+  });
+  $('.wenxin_con').on('click', function (e) {
+    e.stopPropagation();
+    this.flag = !this.flag;
+    if (this.flag) {
+      $('.cue_weixin1').css("display", "block");
+    } else {
+      $('.cue_weixin1').css("display", "none");
+    }
+  });
+  $('.cue_qq_con').on('click', function (e) {
+    e.stopPropagation();
+    this.flag = !this.flag;
+    if (this.flag) {
+      $('.cue_weixin1').css("display", "block");
+    } else {
+      $('.cue_weixin1').css("display", "none");
+    }
+  });
+  $('.wenxin_con_xin').on('click', function (e) {
+    e.stopPropagation();
+    this.flag = !this.flag;
+    if (this.flag) {
+      $('.cue_weixin1').css("display", "block");
+    } else {
+      $('.cue_weixin1').css("display", "none");
+    }
+  });
+  $(document).on('click touchstart', function () {
+    if ($('.cue_weixin1').css("display") == 'block') {
+      $('.cue_weixin1').css("display", "none");
+    }
+  });
 </script>
 <!--滚动字幕-->
 <script>
   var scrollArea = document.getElementById('scroll_content');
   var li = scrollArea.getElementsByTagName("li");
-  if(li.length < 6){
+  if (li.length < 6) {
     scrollArea.style.height = (li[0].offsetHeight * li.length) + 10 + "px";
-  }else{
-    scrollArea.style.height = (li[0].offsetHeight * 5 ) + 10 + "px";
+  } else {
+    scrollArea.style.height = (li[0].offsetHeight * 5) + 10 + "px";
     //滚动
     var liHeight = li[0].offsetHeight;   //单行滚动的高度
     var speed = 20;      //滚动的速度
@@ -766,17 +964,17 @@ function checkCodeValue () {
     var delay = 2000;    //滚动的间隔
     scrollArea.scrollTop = 0;
     scrollArea.innerHTML += scrollArea.innerHTML;
-    function startScroll(){
+    function startScroll() {
       timer_lun = setInterval(scrollUp, speed);
       scrollArea.scrollTop++;
     }
-    function scrollUp(){
-      if(scrollArea.scrollTop % liHeight == 0){
+    function scrollUp() {
+      if (scrollArea.scrollTop % liHeight == 0) {
         clearInterval(timer_lun);
         setTimeout(startScroll, delay);
-      }else{
+      } else {
         scrollArea.scrollTop++;
-        if(scrollArea.scrollTop >= scrollArea.scrollHeight / 2){
+        if (scrollArea.scrollTop >= scrollArea.scrollHeight / 2) {
           scrollArea.scrollTop = 0;
         }
       }
@@ -784,4 +982,5 @@ function checkCodeValue () {
     setTimeout(startScroll, delay);
   }
 </script>
+
 </html>
