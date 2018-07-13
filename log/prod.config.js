@@ -12,7 +12,7 @@ log4js.configure({
     },
     emergencies: { 
       type: 'dateFile',
-      filename: './logdata/panic-now.log',
+      filename: './logdata/panic-now',
       pattern: '-yyyy-MM-dd.log',
       alwaysIncludePattern: true,
       daysToKeep:7
