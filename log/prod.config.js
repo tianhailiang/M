@@ -7,11 +7,15 @@ log4js.configure({
       type: 'dateFile',
       filename: './logdata/community',
       pattern: '-yyyy-MM-dd.log',
-      alwaysIncludePattern: true
+      alwaysIncludePattern: true,
+      daysToKeep:7
     },
     emergencies: { 
       type: 'dateFile',
-      filename: './logdata/panic-now.log' 
+      filename: './logdata/panic-now',
+      pattern: '-yyyy-MM-dd.log',
+      alwaysIncludePattern: true,
+      daysToKeep:7
     },
     'just-errors': { 
       type: 'logLevelFilter',
