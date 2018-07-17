@@ -1540,7 +1540,7 @@ exports.activity_detail = function (data, callback) {
   }
   api.apiRequest(url, callback);
 }
-//发送短信验证码
+//发送短信验证码（潘再奎接口）
 exports.sendSms = function (data, callback) {
   var url = _api_url_path(data, config.apis.sendSms);
   if (url == null) {
@@ -1548,6 +1548,17 @@ exports.sendSms = function (data, callback) {
     return;
   }
   api.apiRequest(url, callback);
+}
+/*发送手机验证码（孙立波接口）*/
+exports.sendcode_ss = function (data, callback) {
+  log.debug('000');
+  var url = _api_url_path(data, config.apis.sendcode);
+  if (url == null) {
+    callback('404');
+    return;
+  }
+  api.apiRequest(url, callback);
+  log.debug('url', url)
 }
 //获取优惠卷
 exports.getCoupons = function (data, callback) {
@@ -1580,7 +1591,6 @@ var redisPool_views = require('redis-connection-pool')('viewNumberCache', {
 exports.detail_count = function (data, callback) {
   //redis 缓存文章浏览数````·
   //判断用户访问是否在限制条件内 10min 5
-  log.info('!!!!view_count_cms_data!!!!',' uuid:',data.uuid,' id:',data.id);
   var condition_time = 60;
   var condition_num = 1;
   if(!data.uuid){
@@ -1611,7 +1621,6 @@ exports.detail_count = function (data, callback) {
               var viewNumKey = "WEB:HITS:"+data.id;
               redisPool_views.get(viewNumKey, function(err, reply){
                 if(reply){
-                  log.info('!!!!m_view_count!!!!',viewNumKey,reply);
                   callback(null, {"uuid":data.uuid, "num":reply});
                 }
               });
@@ -1654,7 +1663,6 @@ function update_viewnum(catid, id, uuid, callback){
         redisHits.sadd(viewListKey, id);
       });
       if(callback){
-        log.info('!!!!m_view_count!!!!',viewNumKey,reply);
         callback(null, {"uuid":uuid, "num":reply});
       }
     }

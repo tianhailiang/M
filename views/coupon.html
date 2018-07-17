@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  {% include "header.html" %}
+  {% include "header_coupon.html" %}
   <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/obtain.css">
   <style type="text/css">
     .about-img img{
       width: 100%;
-      height: 200px;
+      height: 100%;
     }
     .cou_main{
       width: 100%;
       height: 100%;
-      margin-top: 30px;
-      /* background: url({{helper.cdnhost}}/assets/img/coupon_bac.png) no-repeat;
+      /* margin-top: 30px;
+      background: url({{helper.cdnhost}}/assets/img/coupon_bac.png) no-repeat;
       background-size: cover; 
       padding: 0 9px;*/
     }
@@ -164,20 +164,22 @@
     color: #e83a56;
     border: 1px solid #e83a56;
     border-radius: 3px;
-    width: 14px;
-    height: 15px;
-    top: 39%;
-    left: 50%;
-    line-height: 15px;
+    width: 17px;
+    height: 18px;
+    top: 43%;
+    left: 49%;
+    line-height: 18px;
   }
   .weui-agree{
+    width: 50%;
     padding: 10px 0px 20px 22px;
   }
   .weui-agree__text{
     color: #e83a56;
   }
   .weui-agree__checkbox{
-
+    width: 15px;
+    height: 15px;
   }
   .form-yimin-btn{
     width: 100%;
@@ -216,16 +218,16 @@
     {% include "m_widget/top/common_top.html" %}
     <div id="app" style="background: #ffffff;">
       {# 广告位 #}
-      <div style="width:100%;overflow: hidden;background:#f2aaaa">
-        <div id="XC_MOBILE_PROFILE_SEAT1" class="about-img">
-          <a rel="nofollow" data-pid="{{about[0].pid}}" href="{{about[0].linkurl}}" >
-            <img src="{{about[0].imageurl}}" alt="{{about[0].alt}}">
+      <div style="width:100%;overflow: hidden;background:#f2aaaa;margin-top: -20px">
+        <div id="XC_COUPON_SEAT1" class="about-img">
+          <a rel="nofollow" data-pid="{{coupon[0].pid}}" href="{{coupon[0].linkurl}}" >
+            <img src="{{coupon[0].imageurl}}" alt="{{coupon[0].alt}}">
           </a>
         </div>
       </div>
       <div class="cou_main">
         {# 活动介绍 #}
-        <img src="{{helper.cdnhost}}/assets/img/coupon_ti.png" alt="" class="cou_ti">
+        <img src="{{helper.cdnhost}}/assets/img/coupon_ti.png" alt="" class="cou_ti" border="0">
         {# 填写个人信息 #}
         <div class="cou_inp">
             <div class="form-yimin-text" style="margin-top: 60px;"><input type="text" placeholder="请输入您的真实姓名" id="name"><em id="name_error">请输入正确姓名</em></div>
@@ -234,7 +236,7 @@
             <div class="form-yimin-text form-yimin-text1">
               <div class="city" id="city">意向国家</div>
               {#<input type="text" id="city" placeholder="意向国家">#}
-              <i class="iconfont">&#xe60a;</i>
+              <i class="iconfont" id="city_i" style="color: #888;">&#xe60b;</i>
               <div class="cou_city" id="cou_city">
                 <div class="cou_city_s" id="cou_city_s">
                   <span class="active" value='1'>美国</span>
@@ -282,7 +284,7 @@
           <div class="cou_act_c1"><span>参与规则：</span>凡在各分子公司夏展举办日前夕领取优惠码，并在展会举办日现场使用优惠码，此码有效期截止至2018年9月25日。</div>
           <div class="cou_act_c1"><span>使用条件：</span>全款签约最高减免2000元服务费，个别国家根据实际情况进行服务费减免，最终解释权归金吉列留学所有。</div>
         </div>#}
-        <img src="{{helper.cdnhost}}/assets/img/coupon_ti1.png" alt="" class="cou_ti">
+        <img src="{{helper.cdnhost}}/assets/img/coupon_ti1.png" alt="" class="cou_ti" style="margin-bottom: -10px">
       </div>
       {% include "m_widget/footer/common_footer.html" %}
     </div>
@@ -316,7 +318,6 @@
     </div>
   </div>
 
-<!-- ===侧边栏==== -->
 {% include "m_widget/slidebar/slidebar.html" %}
 <!-- ======乐语底栏======= -->
 {% include 'm_widget/funtalk/funtalk.html' %}
@@ -324,6 +325,32 @@
 <!-- <script src="{{helper.cdnhost}}/assets/js/online_evaluation_yimin.js"></script> -->
 
 <script>
+
+  window.onload = function () {
+    // /*点击广告位进行统计*/
+    $("[id^='XC_']").click('a', function (e) {
+      e.preventDefault();
+      var pid = $(this).find('a').attr("data-pid");
+      if(pid){
+        $.ajax({
+          url: ajaxUrlPrefix.nodeapi + '/cmsapi/advert_clicknum',
+          type: 'GET',
+          data:{
+              pid: pid
+          },
+          datatype: 'json',
+          success: function (res) {
+              console.log(res)
+          }
+        })
+      }
+      var url = $(this).find("a").attr('href');
+      if(url){
+        window.open(url);
+      }
+    });
+    
+  
 
   var check_value = {
     phone: function(phone){
@@ -357,18 +384,30 @@
 //     checkCodeValue();
     
 // });
-$('#city').on('click', function () {
-  $('#city').focus().addClass('err');
-  $('#cou_city_s').find('span').first().addClass('active').siblings().removeClass('active');
-  $('#cou_city').show();
-  $('#city').html('美国');
-  $('#city').attr('data-city', '1');
+var city_show = true;
+$('#city').on('touchstart', function () {
+  if (city_show) {
+    city_show = false;
+    $('#city').focus().addClass('err');
+    $('#cou_city_s').find('span').first().addClass('active').siblings().removeClass('active');
+    $('#cou_city').show();
+    $('#city_i').html('&#xea4b;');
+    $('#city').html('美国');
+    $('#city').attr('data-city', '1');
+  } else {
+    city_show = true;
+    $('#city').removeClass('err');
+    $('#cou_city').hide();
+    $('#city_i').html('&#xe60b;');
+  }
+  
 });
 function getcity () {
     var city = $.trim($('#city').html());
     if (city != '美国' && city != '英国' && city != '澳大利亚' && city != '加拿大' && city != '新西兰' && city != '日本' && city != '韩国' && city != '中国香港' && city != '俄罗斯' && city != '乌克兰' && city != '爱尔兰' && city != '意大利' && city != '西班牙' && city != '白俄罗斯' && city != '新加坡' && city != '马来西亚' && city != '丹麦' && city != '德国' && city != '法国' && city != '挪威' && city != '瑞典' &&city != '芬兰' && city != '荷兰' && city != '瑞士') {
       $('#city').focus().addClass('err');
       $('#cou_city').show();
+      $('#city_i').html('&#xea4b;');
       $('#cou_city_s').find('span').first().addClass('active').siblings().removeClass('active');
       $('#city').html('美国');
       $('#city').attr('data-city', '1');
@@ -377,6 +416,7 @@ function getcity () {
     else {
       $('#city').removeClass('err');
       $('#cou_city').hide();
+      $('#city_i').html('&#xe60b;');
       return true;
     }
     
@@ -384,6 +424,7 @@ function getcity () {
 function checkName () {
     $('#city').removeClass('err');
     $('#cou_city').hide();
+    $('#city_i').html('&#xe60b;');
     var name = $.trim($('#name').val());
     var special_code = new RegExp("[~'!@#$%^&*()-+_=:]",'g');
     if (name.match(special_code) || name == '') {
@@ -400,6 +441,7 @@ function checkName () {
 function checkPhone () {
     $('#city').removeClass('err');
     $('#cou_city').hide();
+    $('#city_i').html('&#xe60b;');
     var phoneNum = $.trim($('#phone').val());
     if (!check_value.phone(phoneNum)) {
         $('#phone').focus().addClass('err');
@@ -416,6 +458,7 @@ function checkPhone () {
 function checkCodeValue () {
     $('#city').removeClass('err');
     $('#cou_city').hide();
+    $('#city_i').html('&#xe60b;');
     var codeVal = $('#code').val();
     if (codeVal == '' || codeVal.length < 6) {
         $('#code').focus().addClass('err');
@@ -459,8 +502,8 @@ function checkCodeValue () {
       }
       codef = false;
       $.ajax({
-          url: '/sendSms',
-          type:'get',
+          url: '/sendcode_s',
+          type:'post',
           data:{
               param_code: data,
               phone:$("#phone").val()
@@ -482,15 +525,6 @@ function checkCodeValue () {
       });
     }
     }
-    function isWeiXin() {
-        // 检查微信环境
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-          return true;
-        } else {
-          return false;
-        }
-      }
     $('#getcode').on('click', function () {
         getCode();
         return false;
@@ -511,6 +545,7 @@ function checkCodeValue () {
         return false;
       } else {
         $('#cou_city').hide();
+        $('#city_i').html('&#xe60b;');
         $('#city').removeClass('err');
       }
       
@@ -519,45 +554,83 @@ function checkCodeValue () {
     $('#city_quxiao').on('click', function (e) {
       e.preventDefault();
       $('#cou_city').hide();
+      $('#city_i').html('&#xe60b;');
       $('#city').html('意向国家');
       $('#city').removeClass('err');
       return false;
     });
+    var evaluation = true;
     $('#evaluationBtn').on('click', function () {
         if (!checkName()) return false;
         if (!checkPhone()) return false;
         if (!checkCodeValue()) return false;
         if (!getcity()) return false;
         var cityid = $('#city').data('city');
-        $.ajax({
+        var h = window.location.href;
+        var hh = h.split("?");
+        var sou = [];
+        if (hh[1]) {
+          var hhh = hh[1].split("&");
+          for (var i = 0;i < hhh.length;i++) {
+            if (hhh[i].split("cmpid=")[1] != null) {
+              console.log('hhh',hhh[i])
+              if (hhh[i].match(/[~|《|<|>|'|!|@|#|$|%|^|&|*|(|)|+|:]/)) {
+                console.log('含有特殊字符')
+              }else {
+                sou = hhh[i].split("cmpid=")
+                console.log('sou',sou)
+              }
+              
+            }
+          }
+        }
+        if (evaluation) {
+          evaluation = false;
+          $.ajax({
           url: '/getCoupons',
           type: 'get',
           data: {
             user_name: $('#name').val(),
             mobile: $("#phone").val(),
             country_id: cityid,
-            code: $('#code').val()
+            code: $('#code').val(),
+            source: sou[1]
           },
           dataType:'json',
           success:function(msg){
-            if(msg.code === 0){
+            // alert(msg.code)
+            if(msg.code == 0){
                 //alert('成功');
                 // alert('优惠码发送成功');
-                if (isWeiXin()) {
+                $('#name').val('');
+                $("#phone").val('');
+                $('#code').val('');
+                $('#city').html('意向国家');
+                var ua = navigator.userAgent.toLowerCase();
+                // alert(ua.match(/MicroMessenger/i) == 'micromessenger')
+                if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                  // alert('111111111111')
                   window.location.href = js_api_config.wwhost + '/obtain'  
                 } else {
+                  // alert('222222222222')
                   $('.main_dialog').show();
                   $('#app').css('position', 'fixed')
                 }
-                
+                // alert('333333333333333')
+                //今日头条统计
+                _taq.push({convert_id:"1602955735512068", event_type:"form"});
             } else {
                 alert(msg.massage);
             }
+            evaluation = true;
           },
           error:function(XMLHttpRequest, textStatus, errorThrown){
             console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
+            evaluation = true;
           }
-        })
+          })
+        }
+        
     });
     
     //在浏览器中弹层的提示框
@@ -598,5 +671,6 @@ function checkCodeValue () {
             $('.cue_weixin1').css("display","none");
           }
         });
+      }
 </script>
 </html>
