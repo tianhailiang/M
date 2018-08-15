@@ -7,9 +7,13 @@
   {% include "m_widget/top/common_top.html" %}
   <section id="guwenDetails">
     <div class="people-info" data-uid="{{userinfo.uid}}">
-      <img src="{{ helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version) }}" class="people-img" alt="{{adviser_detail.realname}}顾问">
+      <div style="position: relative;">
+        <img src="{{ helper.avaterimg(userinfo.uid, 'small',userinfo.status, userinfo.version) }}" class="people-img" alt="{{adviser_detail.realname}}顾问">
+        <img src="{{helper.cdnhost}}/assets/img/tou_guwen.png" alt="" style="width: 22px;height: 22px;position: absolute;right: -12px;bottom: 13px;">
+      </div>
+      
       <div class="people-details">
-        <div class="people-name"><strong>{{userinfo.realname}}</strong><span style="color:#ecc580;">{{userinfo.organid | getCity()}}分公司</span></div>
+        <div class="people-name"><strong>{{userinfo.realname}}</strong><span style="color:#ecc580;">金吉列{{userinfo.organid | getCity()}}分公司</span></div>
         <div class="people-email">
           {{userinfo.introduce}}
         </div>
