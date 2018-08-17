@@ -9,7 +9,7 @@
     <div class="people-info" data-uid="{{userinfo.uid}}">
       <img src="{{ helper.avaterimg(userinfo.uid, 'small', userinfo.status, userinfo.version) }}" class="people-img" alt="{{adviser_detail.realname}}顾问">
       <div class="people-details">
-        <div class="people-name"><strong>{{userinfo.realname}}</strong><span style="color:#ecc580;">{{userinfo.organid | getCity()}}分公司</span></div>
+        <div class="people-name"><strong>{{userinfo.realname}}</strong><span style="color:#ecc580;">金吉列{{userinfo.organid | getCity()}}分公司</span></div>
         <div class="people-email">
           {{userinfo.introduce}}
         </div>
