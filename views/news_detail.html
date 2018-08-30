@@ -47,7 +47,7 @@
         <span>评论：<em>{{wenzhangdiye.article_info.comments}}</em></span>
         <span>点赞：<em>{{wenzhangdiye.article_info.votes}}</em></span>
       </p>
-      <article class="news-content" style="clear: both" data-img="{{wenzhangdiye.article_info.img_info[0]}}" id="get-share-img" data-introduce ="{{wenzhangdiye.article_info.introduce}}" >
+      <article class="news-content" style="clear: both" data-img="{{wenzhangdiye.article_info.img_info[0] if wenzhangdiye.article_info.img_info[0] else helper.cdnhost+'/assets/img/share_logo.png'}}" id="get-share-img" data-introduce ="{{wenzhangdiye.article_info.introduce}}" >
         {{wenzhangdiye.article_info.message | safe}}
       </article>
     </section>
@@ -116,13 +116,13 @@
         return false;
       }
     }
-    if($("#get-share-img").attr('data-img')==''){
-      $("#get-share-img").append('<img src="'+getImage()+'" width="0" height="0" />');
-    }
-    function getImage() {
-      // 获取图片
-      return 'http://'+location.host+'/assets/img/share_logo.png';
-    }
+    // if($("#get-share-img").attr('data-img')==''){
+    //   $("#get-share-img").append('<img src="'+getImage()+'" width="0" height="0" />');
+    // }
+    // function getImage() {
+    //   // 获取图片
+    //   return 'http://'+location.host+'/assets/img/share_logo.png';
+    // }
     if(isWeiXin()){
       $('.wenxin_con').on('click',function(e){
         e.stopPropagation();
