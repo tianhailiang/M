@@ -48,6 +48,7 @@
         <span>点赞：<em>{{wenzhangdiye.article_info.votes}}</em></span>
       </p>
       <article class="news-content" style="clear: both" data-img="{{wenzhangdiye.article_info.img_info[0] if wenzhangdiye.article_info.img_info[0] else helper.cdnhost+'/assets/img/share_logo.png'}}" id="get-share-img" data-introduce ="{{wenzhangdiye.article_info.introduce}}" >
+        {{helper.cdnhost+'/assets/img/share_logo.png'}}
         {{wenzhangdiye.article_info.message | safe}}
       </article>
     </section>
