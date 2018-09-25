@@ -90,9 +90,7 @@ $(function(){
       success:function(msg){
         console.log(msg);
         if(msg.code === 0){
-          setTimeout(function(){
-            alert('老师将为您做专业评估。');
-          },0);
+          $('#pingguPop').show();
         } else {
           alert(msg.message);
         }
@@ -102,7 +100,10 @@ $(function(){
       }
     });
   });
-
+  //关闭弹框，返回上一页
+  $('#surePinggu').on('click', function () {
+    window.history.back(-1);
+  })
   $("#reset-btn").on("click",function(){
     $("#name").val("");
     $('#name-num').html("");
