@@ -85,7 +85,9 @@ $(function(){
         phone: $("#phone-slide").val(),
         country: $('#department').val(),
         city: $('#slide-area').val(),
-        need:$("#context").val()
+        need:$("#context").val(),
+        dataType: '3',
+        source: window.location.href + '&src=m'
       },
       success:function(msg){
         console.log(msg);
