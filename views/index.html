@@ -226,7 +226,7 @@
                     </svg>
                     <span>文章标签</span>
                 </div>
-                {% set arcType = [
+                {#% set arcType = [
                     {
                     "type": "专业解析"
                     },
@@ -278,7 +278,37 @@
                     {
                     "type": "省钱攻略"
                     }
-                ]%}
+                ]%#}
+                {%
+                   set arcType = [
+                   { 'type': '留学初识' },
+                   { 'type': '本科选校' },
+                   { 'type': '硕士选校' },
+                   { 'type': '留学打工' },
+                   { 'type': '本硕连读' },
+                   { 'type': '留学时间' },
+                   { 'type': '接机住宿' },
+                   { 'type': '艺术留学' },
+                   { 'type': 'QS排名' },
+                   { 'type': '留学费用' },
+                   { 'type': '大学排名' },
+                   { 'type': '留学条件' },
+                   { 'type': '留学案例' },
+                   { 'type': '专业解析' },
+                   { 'type': '签证指导' },
+                   { 'type': '就业指导' },
+                   { 'type': '申请规划' },
+                   { 'type': '行前指导' },
+                   { 'type': '省钱攻略' },
+                   { 'type': '文书准备' },
+                   { 'type': '海外生活' },
+                   { 'type': '院校资讯' },
+                   { 'type': '背景提升' },
+                   { 'type': '留学方案' },
+                   { 'type': '难点解析' },
+                   { 'type': '备考资讯' }
+                 ] 
+                %}
                 <ul class="tag-arc-ul">
                     {% for item in arcType %}
                         <li>{{item.type}}</li>
