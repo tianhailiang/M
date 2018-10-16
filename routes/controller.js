@@ -5,6 +5,7 @@ var log4js = require('../log/log');
 var log = log4js.getLogger();
 var esihelper = require('../middleware/esihelper');
 var config = require('../config/config');
+var interConfig = require('../config/interface_config');
 var comfunc = require('../common/common');
 var tokenfunc = require('./token.js');
 var helperfunc = require('../common/helper');
