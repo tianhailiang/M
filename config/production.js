@@ -24,6 +24,7 @@ var uc_prefix = apiconfig.uc_prefix;
 var shequ_prefix = apiconfig.shequ_prefix;
 var imageshost = apiconfig.imageshost;
 var coupon = apiconfig.coupon;
+var pcHost = apiconfig.pcHost;
 var apis = {
   "sendCoupons": coupon + 'sendCoupon',//发送优惠券
   "getCoupons": coupon + 'getCoupons',//获取优惠券
@@ -274,5 +275,6 @@ module.exports = {
   wwhost: wwhost,
   cdnhost: cdnhost,
   yiminhostname: yiminhostname,
-  imageshost: imageshost
+  imageshost: imageshost,
+  pcHost: pcHost,
 };
