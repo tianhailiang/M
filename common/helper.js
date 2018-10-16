@@ -10,6 +10,7 @@ var common = require('./common');
 //demo, only for test.
 var cdnhost = config.cdnhost;
 var version = config.version;
+var pcHost = config.pcHost;
 
 function strcut(str, count) {
   return str.slice(0, count || 5);
@@ -541,5 +542,6 @@ module.exports = {
   school_logo: school_logo,
   getLink: getLink,
   rndNum: rndNum,
-  wwhost: config.wwhost
+  wwhost: config.wwhost,
+  pcHost: pcHost,
 };

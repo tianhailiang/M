@@ -1255,7 +1255,6 @@ exports.news_detail = function (req, res, next) {
                 description: helperfunc.cut(data.wenzhangdiye.article_info.introduce, 80),
                 keywords: data.wenzhangdiye.article_info.title
             };
-            data.pcHost = config.pcHost;
             res.render('news_detail', data);
         })
     });
