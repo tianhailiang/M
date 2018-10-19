@@ -7,6 +7,16 @@
 <link rel="canonical" href="http://{{helper.pcHost}}/{% if wenzhangdiye.article_info.type == 2 %}article{% elif wenzhangdiye.article_info.type == 1 %}case{% endif %}/{{article_id}}.html"/>
 <script src="https://xiongzhang.baidu.com/sdk/c.js?appid=1612545228957158"></script>
 <script src="//msite.baidu.com/sdk/c.js?appid=1612545228957158"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+  "@id": "{{helper.wwhost}}/{% if wenzhangdiye.article_info.type == 2 %}article{% elif wenzhangdiye.article_info.type == 1 %}case{% endif %}/{{article_id}}.html",
+  "appid": "1612545228957158",
+  "title": "{{wenzhangdiye.article_info.title}}",
+  "images" {{wenzhangdiye.article_info.img_info}},
+  "pubDate": "{{wenzhangdiye.article_info.add_time|shorten(10)}}T{{wenzhangdiye.article_info.add_time|sliceShorten(11)}}"
+}
+</script>
 </head>
 <body style="background: #f5f5f5;">
 <div id="app">
@@ -52,7 +62,7 @@
         <span>评论：<em>{{wenzhangdiye.article_info.comments}}</em></span>
         <span>点赞：<em>{{wenzhangdiye.article_info.votes}}</em></span>
       </p>
-      <article class="news-content" style="clear: both" data-img="{{wenzhangdiye.article_info.img_info[0] if wenzhangdiye.article_info.img_info[0] else helper.cdnhost+'/assets/img/share_logo.png'}}" id="get-share-img" data-introduce ="{{wenzhangdiye.article_info.introduce}}" >
+      <article class="news-content" style="clear: both" data-img="{{wenzhangdiye.article_info.imgInfo[0] if wenzhangdiye.article_info.imgInfo[0] else helper.cdnhost+'/assets/img/share_logo.png'}}" id="get-share-img" data-introduce ="{{wenzhangdiye.article_info.introduce}}" >
         {{wenzhangdiye.article_info.message | safe}}
       </article>
     </section>

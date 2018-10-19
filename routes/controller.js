@@ -1237,7 +1237,7 @@ exports.news_detail = function (req, res, next) {
             return false;
         }
         data.wenzhangdiye = returnData(result.wenzhangdiye, 'wenzhangdiye');
-        data.wenzhangdiye.article_info.img_info = JSON.parse(data.wenzhangdiye.article_info.img_info);
+        data.wenzhangdiye.article_info.imgInfo = JSON.parse(data.wenzhangdiye.article_info.img_info);
         async.parallel({
             //获取用户信息（普通用户，顾问，参赞）
             userinfo: function (callback) {
@@ -1284,7 +1284,7 @@ exports.case_detail = function (req, res, next) {
             return false;
         }
         data.wenzhangdiye = returnData(result.wenzhangdiye, 'wenzhangdiye');
-        data.wenzhangdiye.article_info.img_info = JSON.parse(data.wenzhangdiye.article_info.img_info);
+        data.wenzhangdiye.article_info.imgInfo = JSON.parse(data.wenzhangdiye.article_info.img_info);
         async.parallel({
             //获取用户信息（普通用户，顾问，参赞）
             userinfo: function (callback) {
