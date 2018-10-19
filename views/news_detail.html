@@ -10,7 +10,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
-  "@id": "http://{{helper.wwhost}}/{% if wenzhangdiye.article_info.type == 2 %}article{% elif wenzhangdiye.article_info.type == 1 %}case{% endif %}/{{article_id}}.html",
+  "@id": "{{helper.wwhost}}/{% if wenzhangdiye.article_info.type == 2 %}article{% elif wenzhangdiye.article_info.type == 1 %}case{% endif %}/{{article_id}}.html",
   "appid": "1612545228957158",
   "title": "{{wenzhangdiye.article_info.title}}",
   "images" {{wenzhangdiye.article_info.img_info}},
