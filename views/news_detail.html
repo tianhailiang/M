@@ -13,7 +13,7 @@
   "@id": "{{helper.wwhost}}/{% if wenzhangdiye.article_info.type == 2 %}article{% elif wenzhangdiye.article_info.type == 1 %}case{% endif %}/{{article_id}}.html",
   "appid": "1612545228957158",
   "title": "{{wenzhangdiye.article_info.title}}",
-  "images": [{% if wenzhangdiye.article_info.imgInfo %}{% for k,item in wenzhangdiye.article_info.imgInfo %}"{{item}}"{% if k < 2 %},{% endif %}{% endfor %}{% endif %}],
+  "images": [{% if wenzhangdiye.article_info.imgInfo %}{% for item in wenzhangdiye.article_info.imgInfo %}"{{item}}"{% if loop.index < 2 %},{% endif %}{% endfor %}{% endif %}],
   "pubDate": "{{wenzhangdiye.article_info.add_time|shorten(10)}}T{{wenzhangdiye.article_info.add_time|sliceShorten(11)}}"
 }
 </script>
