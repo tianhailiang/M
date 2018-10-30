@@ -111,6 +111,8 @@ $(function(){
     $('#name-num').html("");
     $("#phone-slide").val("");
     $('#phoneTip').html('');
-    $("#context").val("")
+    $("#context").val("");
+    $("#department").val('');
+    $('#slide-area').val('');
   });
 });
