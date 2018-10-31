@@ -41,7 +41,6 @@ exports.home = function (req, res, next) {
     } else {
         data.country = 1;
     }
-    // log.info('country  ',data.country)
     async.parallel({
         lunbo_list: function (callback) {
             // 轮播图接口
