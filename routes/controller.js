@@ -58,7 +58,10 @@ exports.home = function (req, res, next) {
         },
     }, function (err, result) {
         data.lunbo_list = returnData(result.lunbo_list, 'lunbo_list');
-        data.shouye = JSON.parse(result.shouye);
+        data.shouye = "";
+        if (result.shouye != "暂无数据") {
+            data.shouye = JSON.parse(result.shouye);
+        }
         log.info(data.shouye)
         data.tdk = {
             pagekey: 'HOME',
