@@ -13,7 +13,11 @@
   "@id": "{{helper.wwhost}}/{% if wenzhangdiye.article_info.type == 2 %}article{% elif wenzhangdiye.article_info.type == 1 %}case{% endif %}/{{article_id}}.html",
   "appid": "1612545228957158",
   "title": "{{wenzhangdiye.article_info.title}}",
+<<<<<<< HEAD
   "images": [{% if wenzhangdiye.article_info.imgInfo %}{% for item in wenzhangdiye.article_info.imgInfo %}"{{item}}"{% if loop.index < wenzhangdiye.article_info.imgInfo.length %},{% endif %}{% endfor %}{% endif %}],
+=======
+  "images": [{% if wenzhangdiye.article_info.imgInfo %}{% for item in wenzhangdiye.article_info.imgInfo %}"{{item}}"{% if loop.index < 3 %},{% endif %}{% endfor %}{% endif %}],
+>>>>>>> release
   "pubDate": "{{wenzhangdiye.article_info.add_time|shorten(10)}}T{{wenzhangdiye.article_info.add_time|sliceShorten(11)}}"
 }
 </script>

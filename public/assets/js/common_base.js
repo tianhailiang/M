@@ -132,7 +132,7 @@
         url += ((city && city != 0)?"/"+city:"") + chan + param;
 
         if (js_api_config.version == 'development') { //如果是開發環境
-            url = js_api_config.wwhost + ':7000' + url;//web
+            url = js_api_config.wwhost + url;//web
         }
         return url;
     },

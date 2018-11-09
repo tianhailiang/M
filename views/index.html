@@ -135,6 +135,16 @@
         		name:"瑞士",
         		imgurl:"home_icon_rs_1.png",
         		id:"113"
+            },
+            {
+        		name:"中国澳门",
+        		imgurl:"home_icon_am@2x.png",
+        		id:"55"
+            },
+            {
+        		name:"奥地利",
+        		imgurl:"home_icon_adl@2x.png",
+        		id:"114"
         	}
         ] %}
         <ul class="country-ul" data-country="{{country}}" >
@@ -277,6 +287,9 @@
                     },
                     {
                     "type": "省钱攻略"
+                    },
+                    {
+                    "type": "院校百科"    
                     }
                 ]%#}
                 {%
@@ -306,7 +319,8 @@
                    { 'type': '背景提升' },
                    { 'type': '留学方案' },
                    { 'type': '难点解析' },
-                   { 'type': '备考资讯' }
+                   { 'type': '备考资讯' },
+                   { 'type': '院校百科' }
                  ] 
                 %}
                 <ul class="tag-arc-ul">
@@ -375,9 +389,13 @@
             $('.tag-sure-btn').on('click',function(){
                 window.location.href =fn.active_urlgen('articles', 'n=' +$('.country-ul').attr('data-country') ,
                 "type=" + $('.tag-ul').find('.active').text(),"tag=" + $('.tag-arc-ul').find('.active').text() );
-
             });
-            
+            window.onscroll= function (event) {
+                if ($('#gd').css("display") == 'none' && $(document).scrollTop() > 320) {
+                    $('#gd').show();
+                    $(".gd-li").css("display","none");
+                }
+            }
         })
     </script>
 </body>
