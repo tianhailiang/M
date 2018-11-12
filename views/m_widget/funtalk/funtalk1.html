@@ -12,7 +12,8 @@
                 <i class="consultation-news" >3</i>
             </a>
         </li>
-        <li class="telphone">
+        <li class="telphone" id="footer-telphone" data-uid="{{userinfo.uid}}"
+        data-article_id="{{article_id}}">
             <a href="tel:{{userinfo.tel}}" >
                 <i class="footer-logo-phone"></i>
                 <span>{{userinfo.tel}}</span>
@@ -27,5 +28,23 @@
     $("#online-evaluation-li").on("click",function(){
         //点击在线评估
         window.location.href=fn.urlgen('online_evaluation');
-    });   
+    });
+    $("#footer-telphone").on('click',function(){
+        $.ajax({
+            type: "GET",
+            url:ajaxUrlPrefix.nodeapi + "/diaing_log",
+            dataType: "json",
+            data:{
+                article_id: $(this).attr('data-article_id'),
+                u_id:$(this).attr('data-uid'),
+                typeid: 1
+            },
+            success: function(result){
+                
+            },
+            error: function(error){
+                console.log(error)
+            }
+        })
+    })
 </script>
