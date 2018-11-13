@@ -11,7 +11,7 @@
                 <i class="consultation-news" >3</i>
             </a>
         </li>
-        <li class="telphone">
+        <li class="telphone" id="footer-telphone">
             <a href="tel:4000108000" >
                 <i class="footer-logo-phone"></i>
                 <span>400-010-8000</span>
@@ -23,6 +23,22 @@
     $("#online-evaluation-li").on("click",function(){
         //点击在线评估
         window.location.href=fn.urlgen('online_evaluation_yimin');
-    });   
+    })
+    $("#footer-telphone").on('click',function(){
+        $.ajax({
+            type: "GET",
+            url:ajaxUrlPrefix.nodeapi + "/dialing_log",
+            dataType: "json",
+            data:{
+                typeid: 2
+            },
+            success: function(result){
+                
+            },
+            error: function(error){
+                console.log(error)
+            }
+        })
+    })
 </script>
 
