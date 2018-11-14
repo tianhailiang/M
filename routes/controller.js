@@ -1335,6 +1335,7 @@ exports.adviser_detail = function (req, res, next) {
     }, function (err, result) {
         data.zhuanlanlist = returnData(result.zhuanlanlist, 'zhuanlanlist');
         data.userinfo = returnData(result.userinfo, 'userinfo');
+        data.article_id = '';
         data.tdk = {
             pagekey: 'ADVISOR_P_ARTICLE',
             realname: data.userinfo.realname,
@@ -1371,6 +1372,7 @@ exports.adviser_detail_case = function (req, res, next) {
     }, function (err, result) {
         data.caselist = returnData(result.caselist, 'caselist');
         data.userinfo = returnData(result.userinfo, 'userinfo');
+        data.article_id = '';
         data.tdk = {
             pagekey: 'ADVISOR_P_CASE',
             realname: data.userinfo.realname,
@@ -1405,6 +1407,7 @@ exports.adviser_detail_jinxuan = function (req, res, next) {
     }, function (err, result) {
         data.jinxuanlist = returnData(result.jinxuanlist, 'jinxuanlist');
         data.userinfo = returnData(result.userinfo, 'userinfo');
+        data.article_id = '';
         data.tdk = {
             pagekey: 'ADVISOR_P_ARTICLE_HOT',
             realname: data.userinfo.realname,
