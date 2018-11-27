@@ -54,7 +54,7 @@ exports = module.exports = function (app) {// routes
   app.get(/^\/schoolrank\/school([a-z]*)(\/*)((?!lib)(?![0-9])[0-9A-Za-z\-_]*)$/, controller.school_list);//大学排名list
   app.get(/^(\/*)([a-z]*)\/schoollib(\/*)((?![0-9])[0-9A-Za-z\-_]*)$/, controller.schoollib);//院校list院校库列表
   //留学活动
-  app.get(/^\/(bj|cd|cq|cs|cc|cz|dl|dg|fs|fz|gz|gy|hz|hf|hd|heb|hs|hn|jn|jl|km|lz|ly|nj|nc|nb|nn|qd|sh|sy|sjz|shz|sz|tj|ty|ts|wh|wx|wz|xa|xm|xz|xn|xj|yt|yc|ych|zz)\/activity(\/*)$/, controller.study_abroad_activity);
+  app.get(/^\/(bj|cd|cq|cs|cc|cz|dl|dg|fs|fz|gz|gy|hz|hf|hd|heb|hs|hn|jn|jl|km|lz|ly|nj|nc|nb|nn|qd|sh|sy|sjz|shz|sz|tj|ty|ts|wh|wx|wz|xa|xm|xz|xn|xj|yt|yc|ych|zz)\/activity(\/*)((?![0-9])[0-9A-Za-z\-_%]*)$/, controller.study_abroad_activity);
   app.get('/activity', controller.activity_ip);
   app.get(/^(\/*)([a-z]*)\/case(\/*)((?![0-9])[0-9A-Za-z\-_]*)$/, controller.successful_case);//成功案例
   app.get(/^(\/*)((?!yimin)[a-z]*)\/product(\/*)((?!rank)(?![0-9])[0-9A-Za-z\-_]*)$/, controller.product);//留学方案栏目
