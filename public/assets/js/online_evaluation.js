@@ -88,7 +88,7 @@ $(function(){
         need:$("#context").val(),
         dataType: '3',
         source: window.location.href + '&src=m',
-        relation_id: 20
+        relationId: 20
       },
       success:function(msg){
         console.log(msg);
