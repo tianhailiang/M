@@ -87,7 +87,7 @@ $(function(){
         city: $('#slide-area').val(),
         need:$("#context").val(),
         dataType: '3',
-        source: window.location.href + '&src=m',
+        source: document.referrer,
         relationId: 20
       },
       success:function(msg){

@@ -1176,8 +1176,9 @@ exports.study_abroad_activity = function (req, res, next) {
 //留学活动--中间页面
 exports.activity_ip = function (req, res, next) {
     var area = req.cookies.currentarea;
+    var url = req.url.substring(9)
     if (area) {
-        res.redirect(helperfunc.active_urlgen('activity', 'c=' + area));
+        res.redirect(helperfunc.active_urlgen('activity', 'c=' + area, url));
     } else {
         var ip = req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
         if (ip.split(',').length > 0) {
@@ -1189,13 +1190,16 @@ exports.activity_ip = function (req, res, next) {
             if (!error && response.statusCode == 200) {
                 log.info(body)
                 var b = JSON.parse(body);
+                if (b.status == 2) {
+                    res.redirect(helperfunc.active_urlgen('activity', 'c=' + 1, url));
+                }
                 var cityCode = '';
                 if (b.content) {
                     cityCode = get_area_code(b.content.address_detail.city);
-                    res.redirect(helperfunc.active_urlgen('activity', 'c=' + cityCode));
+                    res.redirect(helperfunc.active_urlgen('activity', 'c=' + cityCode, url));
                 }
             } else {
-                res.redirect(helperfunc.active_urlgen('activity', 'c=' + 1));
+                res.redirect(helperfunc.active_urlgen('activity', 'c=' + 1, url));
             }
         })
     }
