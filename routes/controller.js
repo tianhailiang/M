@@ -1190,6 +1190,9 @@ exports.activity_ip = function (req, res, next) {
             if (!error && response.statusCode == 200) {
                 log.info(body)
                 var b = JSON.parse(body);
+                if (b.status == 2) {
+                    res.redirect(helperfunc.active_urlgen('activity', 'c=' + 1, url));
+                }
                 var cityCode = '';
                 if (b.content) {
                     cityCode = get_area_code(b.content.address_detail.city);
