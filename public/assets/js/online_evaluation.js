@@ -76,6 +76,7 @@ $(function(){
     }else{
       $("#context-num").html('');
     };
+    var grUserId = $.cookie('gr_user_id');
     $.ajax({
       url: ajaxUrlPrefix.nodeapi + '/cmsapi/assessment',
       type:'GET',
@@ -88,7 +89,8 @@ $(function(){
         need:$("#context").val(),
         dataType: '3',
         source: document.referrer,
-        relationId: 20
+        relationId: 20,
+        grUserId: grUserId
       },
       success:function(msg){
         console.log(msg);
