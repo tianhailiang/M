@@ -109,7 +109,7 @@ function active_urlgen_activity(){
     url = url.replace(/\.html/g, "");
   }
   if (config.version == 'development') { //如果是開發環境
-    url = config.wwhost + ':4000' + url;//web
+    url = config.wwhost + ':7000' + url; //web
   }
   return url;
 }
