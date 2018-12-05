@@ -66,7 +66,53 @@ function active_urlgen(){
   }
   return url;
 }
-
+// activity调转带参数
+function active_urlgen_activity(){
+  var url = '',chan = '',param = '',nation = '',city = '',nationid='',cityid='';
+  if(arguments.length == 0){
+    return ;
+  }
+  //get chan & subchan
+  for(var i= 0 ; i < arguments.length;i++){
+    if(arguments[i] == '' || arguments[i].split('=').length > 1)
+    {
+      break;
+    }
+    else
+    {
+      chan += '/' + arguments[i];
+    }
+  }
+  // i is hold
+  for(i; i < arguments.length;i++){
+    if (cityid = seo_to_url(arguments[i], 'c')) {
+      city = common.getCityEn(cityid);
+    }
+    if(!cityid && arguments[i] != ''){
+      /*过滤默认参数 start*/
+      var can_type = arguments[i].split('=')[0];
+      var can_val = arguments[i].split('=')[1];
+      if (((can_type == 'order') && (can_val == 1 || can_val == 'inputtime' ||  can_val == 'inputtime desc' ||  can_val == 'add_time desc' ||  can_val == 'score')) || ((can_type == 'page') && (can_val == 1)) || ((can_type == 'crowd') && (can_val == 0))  || ((can_type == 'time') && (can_val == 0)) || ((can_type == 'e') && (can_val == 0)) || ((can_type == 'serve') && (can_val == 0)) || ((can_type == 't') && (can_val == 1)) || ((can_type == 'n') && (can_val == 0)) || ((can_type == 'type') && (can_val == '全部' || can_val == '')) || ((can_type == 'tag') && (can_val == '全部'|| can_val == '')) ) {
+        continue;
+      }
+      /*过滤默认参数 end*/
+      if (param == '') {
+        param += '/' + arguments[i]
+      }
+      else {
+        param += '__' + arguments[i]
+      }
+    }
+  }
+  url += ((city && city != 0)?"/"+city:"") + chan + param;
+  if(!exits_static_page(chan + param + ".html")){
+    url = url.replace(/\.html/g, "");
+  }
+  if (config.version == 'development') { //如果是開發環境
+    url = config.wwhost + ':4000' + url;//web
+  }
+  return url;
+}
 function urlgen() {
   var url = '',chan = '',param = '',nation = '',city = '',nationid='',cityid='';
   if(arguments.length == 0){
@@ -544,4 +590,5 @@ module.exports = {
   rndNum: rndNum,
   wwhost: config.wwhost,
   pcHost: pcHost,
+  active_urlgen_activity: active_urlgen_activity
 };
