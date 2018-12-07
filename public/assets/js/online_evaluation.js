@@ -76,6 +76,7 @@ $(function(){
     }else{
       $("#context-num").html('');
     };
+    var h = cookie('referweb'); // 获取来源url
     var grUserId = $.cookie('gr_user_id');
     $.ajax({
       url: ajaxUrlPrefix.nodeapi + '/cmsapi/assessment',
@@ -88,7 +89,7 @@ $(function(){
         city: $('#slide-area').val(),
         need:$("#context").val(),
         dataType: '3',
-        source: document.referrer,
+        source: h,
         relationId: 20,
         grUserId: grUserId
       },
