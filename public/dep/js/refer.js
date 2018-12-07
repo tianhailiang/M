@@ -57,7 +57,7 @@ function getPageReferweb(){
 						} else {
 							// refer与url不同，以url为准
 							// setCook('referweb', window.location.href, 1000*60*60);
-							cookie('referweb', refer, {path: "/", domain: js_api_config.domain, expires: 1/24});
+							cookie('referweb', window.location.href, {path: "/", domain: js_api_config.domain, expires: 1/24});
                             return false;
 						}
 					}
