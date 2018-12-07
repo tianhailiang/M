@@ -31,8 +31,8 @@ function jesongGetDomain (url){
 	}
 }
 function getPageReferweb(){
-	console.log('cookie(referweb)', cookie('referweb'))
-	if (cookie('referweb') != null) {
+	console.log('cookie(referweb)', $.cookie('referweb'))
+	if ($.cookie('referweb') != null) {
 		console.log(1111);
 		return false;
 	} else {

@@ -76,7 +76,7 @@ $(function(){
     }else{
       $("#context-num").html('');
     };
-    var h = cookie('referweb'); // 获取来源url
+    var h = $.cookie('referweb'); // 获取来源url
     var grUserId = $.cookie('gr_user_id');
     $.ajax({
       url: ajaxUrlPrefix.nodeapi + '/cmsapi/assessment',
