@@ -31,8 +31,8 @@ function jesongGetDomain (url){
 	}
 }
 function getPageReferweb(){
-	console.log('cookie(referweb)', $.cookie('referweb'))
-	if ($.cookie('referweb') != null) {
+	console.log('cookie(referweb)', cookie('referweb'))
+	if (cookie('referweb') != null) {
 		console.log(1111);
 		return false;
 	} else {
@@ -51,11 +51,13 @@ function getPageReferweb(){
 						// 推广来源首次进入页面写cookie
 						if (refer == window.location.href) {
 							// refer与url相同
-                            setCook('referweb', refer, 1000*60*60);
+							// setCook('referweb', refer, 1000*60*60);
+							cookie('referweb', refer, {path: "/", domain: js_api_config.domain, expires: 1/24});
                             return false;
 						} else {
 							// refer与url不同，以url为准
-                            setCook('referweb', window.location.href, 1000*60*60);
+							// setCook('referweb', window.location.href, 1000*60*60);
+							cookie('referweb', refer, {path: "/", domain: js_api_config.domain, expires: 1/24});
                             return false;
 						}
 					}
@@ -77,7 +79,8 @@ function getPageReferweb(){
 			console.log('main', main[7])
 			// if (main[7] != 'undefined') {
 				console.log('refer写入cookie成功')
-                setCook('referweb', urll, 1000*60*60);
+				// setCook('referweb', urll, 1000*60*60);
+				cookie('referweb', urll, {path: "/", domain: js_api_config.domain, expires: 1/24});
                 return false;
 			// } else {
             //     console.log('非法注入');
