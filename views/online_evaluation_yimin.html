@@ -162,6 +162,13 @@
 </div>
 <!--提示弹框 end-->
 </body>
+<script src="{{helper.cdnhost}}/dep/js/publicParamSubOrther.js"></script>
+<script>
+$(function(){
+    var grUserId = $.cookie('gr_user_id');
+    getUrlSetCookieByParam ('growingioId',grUserId);
+})
+</script>
 <script src="{{helper.cdnhost}}/dep/js/refer.js"></script>
     <script>
     $(function(){

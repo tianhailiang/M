@@ -23,6 +23,13 @@
         <p>移民投诉电话：4006-213-315 投诉邮箱：315@jjl.cn</p>
     </div>
 </div>
+<script src="{{helper.cdnhost}}/dep/js/publicParamSubOrther.js"></script>
+<script>
+$(function(){
+    var grUserId = $.cookie('gr_user_id');
+    getUrlSetCookieByParam ('growingioId',grUserId);
+})
+</script>
 <script>
     var _hmt = _hmt || [];
     (function() {
