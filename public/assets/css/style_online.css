@@ -605,7 +605,7 @@ div.form ._submit_form .form-h p:nth-child(2){position: relative;}
     .active{font-size: 4vw !important;color: black !important;background: #e5e5e5 !important;line-height: 14vw !important;}
 }
 @media only screen and (min-width:750px) {
-    .active{font-size: 4vw !important;color: black !important;background: #e5e5e5 !important;line-height: 14vw; !important}
+    .active{font-size: 4vw !important;color: black !important;background: #e5e5e5 !important;line-height: 14vw !important;}
 }
 
 
