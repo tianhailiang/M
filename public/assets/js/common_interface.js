@@ -131,19 +131,21 @@
             data: subData,
             success: function (msg) {
                 // alert('成功'+ msg.code)
-                alert('恭喜您，领取成功！24小时之内留学顾问会与您取得联系进行使用。');
+                alert('老师将为您做出专业的评估');
 				top = true;
                 $('#username').val('');
                 $('#tel').val('');
                 // $('#firstCountry').val('');
                 window._agl && window._agl.push(['track', ['success', { t: 3 }]]);
+                window.history.back(-1);
             },
             error: function () {
-                alert('恭喜您，领取成功！24小时之内留学顾问会与您取得联系进行使用。');
+                alert('老师将为您做出专业的评估');
 				top = true;
                 $('#username').val('');
                 $('#tel').val('');
                 // $('#firstCountry').val('');
+                window.history.back(-1);
             }
 			});
 			$.ajax({
@@ -287,19 +289,21 @@
             data: subData,
             success: function (msg) {
                 // alert('成功'+ msg.code)
-                alert('恭喜您，领取成功！24小时之内留学顾问会与您取得联系进行使用。');
+                alert('老师将为您做出专业的评估');
 				bottom = true;
                 $('#username-bottom').val('');
                 $('#tel-bottom').val('');
                 // $('#firstCountry').val('');
                 window._agl && window._agl.push(['track', ['success', { t: 3 }]]);
+                window.history.back(-1);
             },
             error: function () {
-                alert('恭喜您，领取成功！24小时之内留学顾问会与您取得联系进行使用。');
+                alert('老师将为您做出专业的评估');
 				bottom = true;
                 $('#username-bottom').val('');
                 $('#tel-bottom').val('');
                 // $('#firstCountry').val('');
+                window.history.back(-1);
             }
 			});
 			$.ajax({
