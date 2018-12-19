@@ -125,7 +125,7 @@
 		if (top) {
 			top = false;
 			$.ajax({
-            url: 'http://api.jjl.cn/cmsapi/assessment',
+            url: ajaxUrlPrefix.nodeapi + '/cmsapi/assessment',
             type: 'GET',
             dataType: 'json',
             data: subData,
@@ -281,7 +281,7 @@
 		if (bottom) {
 			bottom = false;
 			$.ajax({
-            url: 'http://api.jjl.cn/cmsapi/assessment',
+            url: ajaxUrlPrefix.nodeapi + '/cmsapi/assessment',
             type: 'GET',
             dataType: 'json',
             data: subData,
