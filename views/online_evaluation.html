@@ -4,6 +4,7 @@
   {% include "header.html" %}
   <link rel="stylesheet" type="text/css" href="{{helper.cdnhost}}/assets/css/style_online.css">
   <style>
+
     .invitation-info i {
         display: inline-block;
         width: 1.3rem;
@@ -48,8 +49,8 @@
     }
     </style>
 </head>
-<body style="background: #ffffff;">
-    <div class="talkBox" id="content">
+<body style="background: #ffffff;overflow: scroll;-webkit-overflow-scrolling: touch;">
+    <div class="talkBox" >
       <!-- <div class="top-booking" id="XC_ONLINE_EVALUATION_SEAT10">
         <a rel="nofollow" data-pid="{{online[0].pid}}" href="{{online[0].linkurl}}" >
           <img src="{{online[0].imageurl}}" alt="{{online[0].alt}}">
@@ -57,7 +58,7 @@
       </div> -->
       <div class="img clear" style="position: relative">
         <!-- img -->
-        <img src="{{helper.cdnhost}}/assets/img/pic_01.png" alt="daoyu">
+        <img src="{{helper.cdnhost}}/assets/img/pic_01_01.png" alt="daoyu">
     </div>
 
     <div class="img clear form" id="mao" style="z-index: 1;">
@@ -77,7 +78,7 @@
                             <div class="clear" style="position: relative;border-radius: 20px;">
                                 <i style="background: url({{helper.cdnhost}}/assets/img/cou_cpa.png) no-repeat center;background-size: 100% 100%;"></i>
                                 <select id="city-bottom" name="city-bottom">
-                                    <option value="">预约讲座城市</option>
+                                    <option value="">当前所在城市</option>
                                     <option value="1">(B)北京金吉列</option>
                                     <option value="7">(C)重庆金吉列</option>
                                     <option value="5">(C)成都金吉列</option>
