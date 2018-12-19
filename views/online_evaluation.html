@@ -2,526 +2,204 @@
 <html lang="en">
 <head>
   {% include "header.html" %}
-  <style type="text/css">
-    #comment_con{
-      width:100%;
-      height:100%;
-      box-sizing:border-box;
-      padding-top:10px;
+  <link rel="stylesheet" type="text/css" href="{{helper.cdnhost}}/assets/css/style_online.css">
+  <style>
+    .invitation-info i {
+        display: inline-block;
+        width: 1.3rem;
+        height: 1.3rem;
+        background: url({{helper.cdnhost}}/assets/img/name_cpa.png) no-repeat center;
+        background-size: 100% 100%;
+        position: absolute;
+        top: 26%;
+        left: 4%;
     }
-    .clear{clear:both;display:block;height:0;overflow:hidden;font-size:0;}
-    button,input,select,textarea{font-size:100%;outline:none;}
-    textarea{overflow-y:auto;}
-    table{border-collapse:collapse;border-spacing:0;}
-    .hide{display:none;}
-    .talkBg{padding:0px 3px;background:#F3F3F3;}
-    .mainBg{background:url(../images/onLineMainBg.png) no-repeat;}
-    .talkBox{width:280px;text-align:left;margin-left:auto; margin-right:auto;background: #F3F3F3}
-    .talkBox .top-booking .logo{width:178px;height:68px;background:url(../images/logo.png) no-repeat;margin-top:7px;_background:none;/*filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='bEnabled',sizingMethod='scale',src='css/../images/logo.png');*/}
-    .talkBox .top-booking{
-      position:relative;height:160px;overflow:hidden;
+    div.form ._submit_form {
+        padding: 0 0 0 0;
     }
-    .talkBox .top-booking.logo{width:178px;height:68px;background:url(../images/logo2.png) no-repeat;margin-top:7px;_background:none;/*filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='bEnabled',sizingMethod='scale',src='css/../images/logo.png');*/}
-    .talkBox .top-booking .tabs{position:absolute;right:0px;bottom:0px;width:330px;height:33px;}
-    .talkBox .top-booking .tabs div{width:102px;height:33px;text-align:center;line-height:33px;font-size:14px;font-weight:bold;color:#fff;float:right;cursor:hand;background:url(../images/tabs.png) no-repeat;_background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='bEnabled',sizingMethod='scale',src='css/../images/tabs.png');}
-    .talkBox .top-booking.tabs div.selected{background:url(../images/tabs-hover.png) no-repeat;_background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='bEnabled',sizingMethod='scale',src='css/../images/tabs-hover.png');}
-    .talkBox .top-booking .exit{position:absolute;right:4px;top:6px;width:94px;height:30px;cursor:hand;background:url(../images/exit.png) no-repeat;_background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='bEnabled',sizingMethod='scale',src='css/../images/exit.png');}
-    .talkBox .top-booking .exit.selected{background:url(../images/exit-hover.png) no-repeat;_background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='bEnabled',sizingMethod='scale',src='css/../images/exit-hover.png');}
-    .talkBox .talkCon{
-      position:relative;
-      padding:1px;width:280px;
-      overflow:hidden;
-      background:#E7E7E7;
-      box-sizing: border-box;
+    div.form ._submit_form .center .invitation-info div select, div.form ._submit_form .center .invitation-info div input{
+        padding: 2% 11%;
+        color: #666666;
     }
-    .talkBox .talkCon .record{
-      overflow-y:auto;overflow-x:hidden;
-      background:#fCfCfC;
-      position:relative;
+    ._submit_form input::-webkit-input-placeholder { /* WebKit browsers */
+        color: #666666;
     }
-    .talkBox .talkCon p.tip{padding:4px 0px;color:#383838;text-indent:10px;background:#FBFBFB;border-top:1px solid #dadbe0;border-bottom:1px solid #D3D3D5;border-left:1px solid #D3D3D5;border-right:1px solid #D3D3D5;}
-    .talkBox .talkCon p.tip b{padding:0px 2px;color:#f60;font-weight:normal;}
-    .talkBox .talkCon .record ul, #chatDiv ul{padding-bottom:30px;}
-    .talkBox .talkCon .record li, #chatDiv li{padding:1px 10px 0px 10px; margin-top: 5px;}
-    .talkBox .talkCon .record p.busyChoice, #chatDiv p.busyChoice{padding-top:20px;color:#78baf6;font-size:14px;text-indent:30px;}
-    .talkBox .talkCon .record p.busyChoice a, #chatDiv p.busyChoice a{color:#f60;}
-    .talkBox .talkCon .record .emotLayer{position:absolute;}
-    .talkBox .talkCon .ope{position:relative;width:100%;height:30px;background: #FCFCFC;}
-    .talkBox .talkCon .ope .btn div{position:relative;float:left;}
-    .talkBox .talkCon .ope .btn div.machine{background-position:-198px -253px;}
-    .talkBox .talkCon .ope .btn div.txt{background-position:-198px -152px;}
-    .talkBox .talkCon .ope .btn div.face{cursor:hand;margin-top:5px;background:url(../images/tool-face.png) no-repeat top;height:25px;width:22px;}
-    .talkBox .talkCon .ope .btn div.file{margin-left:10px;cursor:hand;margin-top:5px;background:url(../images/tool-transfile.png) no-repeat top;height:25px;width:22px;}
-    .talkBox .talkCon .ope .btn div.img{margin-left:10px;cursor:hand;margin-top:5px;background:url(../images/tool-screen.png) no-repeat top;height:25px;width:22px;}
-    .talkBox .talkCon .ope .btn div.eval{margin-left:10px;cursor:hand;margin-top:5px;background:url(../images/tool-opinion.png) no-repeat top;height:25px;width:22px;}
-    .talkBox .talkCon .ope .btn div span{cursor:pointer;display:inline;float:left;width:22px;height:22px;margin-right:8px;}
-    .talkBox .talkCon .ope .btn p{position:relative;display:inline;float:right;width:170px;height:27px;margin-right:18px;background:url(../images/onLineMainBg2.png) no-repeat -126px -27px;z-index:19;}
-    .talkBox .talkCon .ope .btn p.machine{background-position:-126px -111px;}
-    .talkBox .talkCon .ope .btn p.machineUp{background-position:-126px -138px;}
-    .talkBox .talkCon .ope .btn p.eval{background-position:-126px 1px;}
-    .talkBox .talkCon .ope .btn p.ask{background-position:-126px -55px;}
-    .talkBox .talkCon .ope .btn p.selfServ{background-position:-126px -84px;}
-    .talkBox .talkCon .ope .btn p span{cursor:pointer;display:inline;float:left;width:82px;height:28px;margin-right:3px;}
-    .talkBox .talkCon .ope .pop{display:none;position:absolute;top:-183px;left:0px;width:100%;height:180px;}
-    .talkBox .talkCon .ope .pop .txt{display:none;height:32px;margin-top:149px;background:#fbfbfb;border-top:1px solid #d3d3d5;border-left:1px solid #d3d3d5;border-right:1px solid #d3d3d5;}
-    .talkBox .talkCon .ope .pop .txt select{float:left;margin:6px 0px 0px 5px;}
-    .talkBox .talkCon .ope .pop .txt b{cursor:pointer;display:inline;float:left;width:16px;height:16px;margin:8px 6px 0px 0px;overflow:hidden;background:url(../images/onLineMainBg.png) no-repeat;}
-    .talkBox .talkCon .ope .pop .txt b.b{margin-left:10px;background-position:2px -295px;}
-    .talkBox .talkCon .ope .pop .txt b.bF{background-position:-64px -295px;}
-    .talkBox .talkCon .ope .pop .txt b.i{background-position:-20px -295px;}
-    .talkBox .talkCon .ope .pop .txt b.iF{background-position:-86px -295px;}
-    .talkBox .talkCon .ope .pop .txt b.u{background-position:-42px -295px;}
-    .talkBox .talkCon .ope .pop .txt b.uF{background-position:-108px -295px;}
-    .talkBox .talkCon .ope .pop .txt .color{cursor:pointer;display:inline;float:left;width:16px;height:16px;margin:8px 6px 0px 0px;overflow:hidden;background:url(../images/onLineMainBg.png) no-repeat -131px -296px;}
-    .talkBox .talkCon .ope .pop .face{display:none;width:310px;height:160px;margin-top:20px;overflow:hidden;background:#fff;}
-    .talkBox .talkCon .ope .pop .face iframe{width:100%;height:100%;overflow:hidden;border:0px;}
-    .talkBox .talkCon .ope .pop .face table{width:290px;}
-    .talkBox .talkCon .ope .pop .face td{float:left;width:28px;height:23px;padding-top:5px;text-align:center;border-right:1px solid #c6e4ef;border-bottom:1px solid #c6e4ef;}
-    .talkBox .talkCon .ope .pop .file{display:none;height:32px;margin-top:149px;background:#fbfbfb;border-top:1px solid #d3d3d5;border-left:1px solid #d3d3d5;border-right:1px solid #d3d3d5;}
-    .talkBox .talkCon .ope .pop .file input{float:left;height:22px;line-height:20px;+line-height:18px;_line-height:16px;margin:5px 0px 0px 8px;}
-    .talkBox .talkCon .ope .pop .file input.send{padding:0px 3px;}
-    .talkBox .talkCon .ope .pop .eval{display:none;height:165px;margin-top:-1px;padding:10px;overflow:hidden;background:#fbfbfb;border-top:1px solid #d3d3d5;border-left:1px solid #d3d3d5;border-right:1px solid #d3d3d5;}
-    .talkBox .talkCon .ope .pop .eval .close{cursor:pointer;display:inline;float:right;width:19px;height:16px;margin:-10px -10px 0px 0px;overflow:hidden;background-position:-200px -295px;}
-    .talkBox .talkCon .ope .pop .eval .font{color:#333;}
-    .talkBox .talkCon .ope .pop .eval .evalType{float:left;clear:both;padding:12px 0px 13px 10px;}
-    .talkBox .talkCon .ope .pop .eval .evalType input{float:left;}
-    .talkBox .talkCon .ope .pop .eval .evalType i{float:left;margin-top:-2px;margin-top:-1px\9;+margin-top:3px;_margin-top:1px;padding:0px 15px 0px 3px;font-style:normal;}
-    .talkBox .talkCon .ope .pop .eval textarea{width:100%;height:40px;color:#999;text-indent:10px;background:#fff;border:1px solid #aab3ba;}
-    .talkBox .talkCon .ope .pop .eval textarea.foc{color:#333;}
-    .talkBox .talkCon .ope .pop .eval .ope, .button{height:23px;padding-top:12px;}
-    .talkBox .talkCon .ope .pop .eval .ope a, a.button{display:inline;float:left;width:67px;height:23px;line-height:23px;line-height:27px\9;_line-height:23px;margin-right:10px;overflow:hidden;text-align:center;background-position:0px -92px;}
-    .talkBox .talkCon .ope .pop .eval .ope a:hover, a.button:hover{background-position:-74px -92px;}
-    .talkBox .talkCon .ope .pop .eval .ope span{display:inline;float:left;height:20px;line-height:20px;line-height:24px\9;_line-height:20px;margin-top:1px;color:#ed2a0a;text-indent:24px;background:url(../images/onLineError.gif) no-repeat 0px -2px;}
-    .talkBox .talkCon .ope .pop .ask{display:none;float:right;width:270px;height:145px;overflow-y:auto;margin-top:36px;padding-top:0px;background:#fbfbfb;border:1px solid #D3D3D5;border-radius:3px;}
-    .talkBox .talkCon .ope .pop .ask li{cursor:pointer;height:20px;line-height:20px;margin-bottom:1px;color:#676767;text-indent:7px;}
-    .talkBox .talkCon .ope .pop .ask li.foc{color:#333;background:#D3D3D5;}
-    .talkBox .talkCon .ope .pop .ask li i{font-style:normal;}
-    .talkBox .talkCon .ope .pop .selfServ{position:relative;display:none;float:right;width:270px;height:135px;margin-top:37px;padding-top:10px;background:#e6f2fe;border:1px solid #549bdb;border-radius:3px;z-index:9;}
-    .talkBox .talkCon .ope .pop .selfServ li{cursor:pointer;height:20px;line-height:20px;margin-bottom:1px;color:#676767;text-indent:3px;}
-    .talkBox .talkCon .ope .pop .selfServ li.foc{color:#333;background:#D3D3D5;}
-    .talkBox .talkCon .input{height:70px;overflow:hidden;background:#fff;}
-    .talkBox .talkCon .phone{height:28px;overflow:hidden;background:#F3F3F3;text-align: center; line-height: 30px;border-style:solid;
-      border-color:#E7E7E7 white white white;border-width: 1px;}
-    .talkBox .talkCon .input textarea{height:70px;width:100%;border:0px;overflow-y:auto;line-height:20px;text-indent:7px;}
-    .talkBox .talkCon .input .send-button{position:absolute;bottom:2px;right:5px;width:49px;height:27px;background:url(../images/short/send.png) no-repeat;cursor:hand;_background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='bEnabled',sizingMethod='scale',src='css/../images/send.png');}
-    /*.talkBox .talkCon .input .send-button .s1{width:76px;height:100%;float:left;}
-    .talkBox .talkCon .input .send-button .s2{width:40px;height:100%;float:right;}
-    .talkBox .talkCon .input .send-button.send-hover{background:url(../images/send-hover.png) no-repeat;_background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='bEnabled',sizingMethod='scale',src='css/../images/send-hover.png');}
-    .talkBox .talkCon .input .send-button.send-type-hover{background:url(../images/send-type-hover.png) no-repeat;_background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='bEnabled',sizingMethod='scale',src='css/../images/send-type-hover.png');}*/
-    .talkBox .talkCon .input .send-type{position:absolute;bottom:48px;right:10px;z-index:29;background-color:#159DCF;padding:2px;display:none;}
-    .talkBox .talkCon .input .send-type div{background-color:#ffffff;padding:2px;}
-    .talkBox .talkCon .input .send-type div div{line-height:20px;height:20px;text-align:left;width:100px;padding:2px;cursor:hand;}
-    .talkBox .talkCon .input .send-type div div.selected{background-color:#159DCF;font-weight:bold;color:#ffffff;}
-    .talkBox .floatBar{float:right;overflow:hidden;width:185px;height:500px;background:#fff;padding:5px;padding-left:0px;background:#E7E7E7;}
-    .talkBox .floatBar div{width:100%;height:100%;background:#fff;overflow:hidden;}
-    .talkBox .floatBar img{width:185px;height:500px;}
-    .leaveField{width:100%;clear:both;margin-top:20px;}
-    .leaveField .title{color:#333;width:80px;float:left;text-align:right;line-height: 22px;
-      font-size: 14px;
+    ._submit_form input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #666666;
     }
-    .slide-form .leaveField .title{
-      margin-left:10px;
+    ._submit_form input::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #666666;
     }
-    .leaveField .text1{float:left;}
-    .leaveField .text1 input{
-      height:22px;
-      line-height:22px;color:#999;
-      text-indent:4px;
-      border:1px solid #dbdfe6;
-      vertical-align:middle;
-      width:164px;
-      padding:0;
+    ._submit_form input:-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: #666666;
     }
-    .leaveField .text1 textarea{
-      height:120px;
-      text-indent:4px;
-      border:1px solid #dbdfe6;
-      width:164px;
+    div.form ._submit_form .center .submitId {
+        font-size: 5vw;
+        letter-spacing: 1px;
+        color: #fff;
+        width: 85%;
+        height: 49px;
+        margin: 0 auto;
+        text-align: center;
+        background: url({{helper.cdnhost}}/assets/img/btn_cpa.png) no-repeat center;
+        background-size: 100%;
+        padding: 2% 0;
+        border-radius: 5px;
     }
-
-    .leaveField .text1 select{
-      height:24px;
-      line-height:24px;color:#999;
-      text-indent:4px;
-      border:1px solid #dbdfe6;
-      vertical-align:middle;
-      width:164px;
-      background:url(../assets/img/select-down.png) no-repeat 145px 0;
-      background-size: 18px 24px;
-    }
-    .leaveField .text1 select.department{
-      width: 124px;
-      background: url(../assets/img/select-down.png) no-repeat 105px 0
-    }
-    .leaveField .textNum{
-      /*float:left;*/
-      color:#666;
-      /*width:20px;*/
-      padding-left:5px;}
-    .leaveField .textNum .numTip{color:#c13232;}
-    .leaveField .textNum .numTip i{font-style:normal;}
-    .leaveField .textNum{
-      height: 20px;
-      font-size:12px;
-    }
-    .leaveField1{
-      width:100%;
-      clear:both;
-      margin-top:15px;
-      padding-bottom:15px;
-    }
-    .leaveField1 .btn{float:left;padding: 0}
-    .leaveField1 button{width:80px;height:30px;border:0px;cursor:hand;}
-    .leaveField1 .commit{
-      margin-left:43px;
-      margin-top:20px;
-      background:#ff8546;
-      color:#fff;
-      font-size: 14px;
-    }
-
-    .leaveField1 .reset{
-      margin-left:43px;
-      margin-top:20px;
-      background:#49b8bf;
-      color:#fff;
-      font-size: 14px;
-    }
-
-    .des{height: 150px; margin-left: 12px;}
-    .greeting{
-      margin-left:25px;
-      margin-right:25px;
-      margin-top:3px;
-      margin-bottom:3px;
-      padding-top:3px;
-      padding-left:5px;
-      padding-right:5px;
-      padding-bottom:3px;
-      background-color:#F4F3F7;
-      border:1px solid #bbb;
-      color:#419EE1;
-    }
-    /**jbox**/
-    *:focus {outline: none;}
-    /* fade */
-    .jbox-fade{background-color:#000000;}
-    /* drag */
-    .jbox-drag{border:1px dashed #0097d4;}
-    /* jbox */
-    div.jbox {padding:0px;border:none;font-size:14px;}
-    /* border */
-    div.jbox .jbox-border{background: none repeat scroll 0 0 #000000;filter:alpha(opacity=20);-moz-opacity:0.2;opacity:0.2;}
-    /* container */
-    div.jbox .jbox-container{background-color:#ffffff;border:1px solid #999999;}
-    /* title-panel */
-    div.jbox .jbox-title-panel{background: #0097d4;background: -webkit-gradient(linear, left top, left bottom, from(#1aa2d8), to(#0079aa));background: -moz-linear-gradient(top,  #1aa2d8,  #0079aa);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1aa2d8', endColorstr='#0079aa');border-bottom:1px solid #999999;}
-    div.jbox .jbox-title{font-weight:bold;color:#ffffff;}
-    div.jbox .jbox-title-icon{}
-    div.jbox .jbox-close,div.jbox .jbox-close-hover{background:url(../images/jbox/jbox-close1.gif) no-repeat scroll 0px 0px transparent;}
-    div.jbox .jbox-close-hover{background-position:-16px 0;}
-    /* content */
-    div.jbox .jbox-content{min-height:24px;line-height:18px;color:#444444;}
-    div.jbox .jbox-content-loading{background-color:#E6E6E6;}
-    div.jbox .jbox-content-loading-image{background:url(../images/jbox/jbox-content-loading.gif) no-repeat bottom center;}
-    /* button-panel */
-    div.jbox .jbox-button-panel{border-top:1px solid #CCCCCC;background-color: #EEEEEE;}
-    div.jbox .jbox-bottom-text{text-indent:10px;color:#444444;}
-    div.jbox .jbox-button{background: #0097d4;background: -webkit-gradient(linear, left top, left bottom, from(#1aa2d8), to(#0079aa));background: -moz-linear-gradient(top,  #1aa2d8,  #0079aa);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1aa2d8', endColorstr='#0079aa');border:#004b6a 1px solid;color:#fff;border-radius:3px 3px 3px 3px;margin:1px 7px 0px 0px;height:22px;cursor:default;}
-    div.jbox .jbox-button-hover{background: #0097d4;background: -webkit-gradient(linear, left top, left bottom, from(#0097d4), to(#005b7f));background: -moz-linear-gradient(top,  #0097d4,  #005b7f);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0097d4', endColorstr='#005b7f');}
-    div.jbox .jbox-button-active{background: -webkit-gradient(linear, left top, left bottom, from(#005b7f), to(#0097d4));background: -moz-linear-gradient(top,  #005b7f,  #0097d4);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#005b7f', endColorstr='#0097d4');}
-    div.jbox-warning .jbox .jbox-button-panel{background-color: #FFFFFF;}
-    /* tip-color */
-    div.jbox .jbox-tip-color{background: #0097d4;background: -webkit-gradient(linear, left top, left bottom, from(#0097d4), to(#005b7f));background: -moz-linear-gradient(top,  #0097d4,  #005b7f);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0097d4', endColorstr='#005b7f');border-color:#004b6a;border-radius:3px 3px 3px 3px;color:#fff;}
-    /* icons */
-    div.jbox span.jbox-icon{background:url(../images/jbox/jbox-icons.png) no-repeat scroll 0 0 transparent;_background:url(../images/jbox/jbox-icons-ie6.gif) no-repeat scroll 0 0 transparent;}
-    div.jbox span.jbox-icon-info {background-position:0 0;}
-    div.jbox span.jbox-icon-question {background-position:-36px 0;}
-    div.jbox span.jbox-icon-success {background-position:-72px 0;}
-    div.jbox span.jbox-icon-warning {background-position:-108px 0;}
-    div.jbox span.jbox-icon-error {background-position:-144px 0;}
-    div.jbox span.jbox-icon-none {display: none; overflow:hidden;}
-    div.jbox span.jbox-icon-loading {background:url(../images/jbox/jbox-loading1.gif) no-repeat scroll 0 0 transparent;}
-
-    .clearfix{clear:both;}
-
-    .jesong_user{width:40px;height:38px;float:left;background:url(./images/user.png) no-repeat right center;}
-    .jesong_user_content{padding-left:10px;padding-right:5px;clear:both;}
-    .jesong_msg_user_text{padding-left:10px;padding-top:10px;color:#aaaaaa;}
-    .jesong_msg_user{float:left;margin-top:4px;margin-left:0px;position:relative;overflow:hidden;padding-left:9px;margin-right: 14px;}
-    .jesong_msg_user .jesong_msg_text{float:left;border:1px solid #99D0F7; background-color:#CDEAFF;display:inline-block;padding-top:8px;padding-bottom:8px;padding-left:15px;padding-right:15px;line-height:18px;font-size:14px;}
-    .jesong_msg_text p{margin:0px; padding:0px;word-wrap:break-word;word-break:break-word;}
-    .jesong_msg_user i, .jesong_msg_visitor i{position:absolute;z-index:0;font-size:0;line-height:0;}
-
-    .jesong_msg_user .jesong_msg_corner_tl{width:15px;height:15px;top:0px;left:2px;background:url(./images/u_l_t.jpg) no-repeat;}
-    .jesong_msg_user .jesong_msg_corner_tr{width:15px;height:8px;top:0px;right:0px;background:url(./images/u_r_t.jpg) no-repeat;}
-    .jesong_msg_user .jesong_msg_corner_bl{width:8px;height:15px;bottom:0px;left:9px;background:url(./images/u_l_b.jpg) no-repeat;}
-    .jesong_msg_user .jesong_msg_corner_br{width:15px;height:15px;bottom:0px;right:0px;background:url(./images/u_r_b.jpg) no-repeat;}
-
-    .jesong_visitor{width:40px;height:38px;float:right;background:url(./images/visitor.png) no-repeat left center;}
-    .jesong_visitor_content{padding-right:10px;padding-left:5px;}
-    .jesong_msg_visitor{float:right;padding-right:9px;margin-top:4px;margin-left:14px;position:relative;overflow:hidden;}
-    .jesong_msg_visitor .jesong_msg_text{float:left;border:1px solid #C5C5C5; background-color:#FFFFFF;display:inline-block;padding-top:8px;padding-bottom:8px;padding-left:15px;padding-right:15px;line-height:18px;font-size:14px;}
-    .jesong_msg_visitor .jesong_msg_corner_tl{width:15px;height:15px;top:0px;left:0px;background:url(./images/v_l_t.jpg) no-repeat;}
-    .jesong_msg_visitor .jesong_msg_corner_tr{width:15px;height:15px;top:0px;right:2px;background:url(./images/v_r_t.jpg) no-repeat;}
-    .jesong_msg_visitor .jesong_msg_corner_bl{width:15px;height:15px;bottom:0px;left:0px;background:url(./images/v_l_b.jpg) no-repeat;}
-    .jesong_msg_visitor .jesong_msg_corner_br{width:8px;height:15px;bottom:0px;right:9px;background:url(./images/v_r_b.jpg) no-repeat;}
-
-    .sName{
-      text-align: right;
-      margin-right: 11px;
-      padding-top:5px;
-      color: #999;
-    }
-    .image-code{
-      position:absolute;
-      width:300px;
-      height:120px;
-      background-color:#B8B8B8;
-      z-index:99999;
-      display:none;
-    }
-    .image-code .title, .image-code .body{
-      margin-left:5px;
-      width:290px;
-    }
-    .image-code .title{
-      margin-top:5px;
-      height:30px;
-      line-height:30px;
-      background-color:#1B8CE3;
-    }
-    .image-code .title span{
-      margin-left:15px;
-      color:#ffffff;
-    }
-    .image-code .body{
-      background-color:#ffffff;
-      height:80px;
-    }
-    .image-code .body img{
-      width:80px;
-      height:30px;
-      cursor:pointer;
-    }
-    .image-code .body .p1, .image-code .body .p2{
-      padding-left:40px;
-      height:30px;
-      padding-top:5px;
-    }
-    .image-code .body .p1{
-    }
-    .image-code .body .p1 div{
-      float:left;
-      line-height:30px;
-    }
-    .image-code .body .p2{
-      clear:both;
-    }
-    .image-code .body .p2 div{
-      float:left;
-    }
-    .image-code .body .p2 .button{
-      width:69px;
-      height:26px;
-      cursor:pointer;
-      background:url(./images/commit.png) no-repeat;
-      margin-left:5px;
-    }
-
-
-    .image-code .body input{
-      height:26px;line-height:26px;
-      width:120px;
-    }
-    .systemMsg{
-      text-align:center;
-      color:#999;
-      margin:10px 10px 15px;
-      padding: 5px 10px 10px;
-      position:relative;
-      width: 298px;
-      height: auto;
-      margin: 0 auto;
-      background: url("./images/hairline.png") repeat-x left center;
-    }
-    .showbtn{
-      background-color:#fCfCfC;
-      padding:0 6px;
-      border: 0 none;
-      font-size: 13px;
-      color: #999;
-      max-width: 80%;
-
-    }
-    .cusName{
-      margin-left: 11px;
-      margin-top: 5px;
-      color: #999;
-    }
-    /*=============在线咨询============================*/
-    .leaveField .title-code{
-      width:92px;
-    }
-    .leaveField .text1 .phone-code{
-      width:64px;
-      margin-right: 10px;
-    }
-    .get-phone-code{
-      width:76px;
-      height:22px;
-      border:1px solid #d51821;
-      font-size: 12px;
-      text-align: center;
-      line-height: 22px;
-      color: #d51821;
-      float: left;
-
-    }
-
-    .leave-code{
-      margin:20px 0 20px;
-      position: relative;
-      left:50%;
-      margin-left: -70px;
-      width:140px;
-    }
-
-    .talkBox #chatDiv .numTip{
-      font-size:12px;
-      margin-left:70px;
-    }
-  </style>
+    </style>
 </head>
 <body style="background: #ffffff;">
-    <div class="talkBox" style="margin-top: 20px;">
-      <div class="top-booking" id="XC_ONLINE_EVALUATION_SEAT10">
+    <div class="talkBox" id="content">
+      <!-- <div class="top-booking" id="XC_ONLINE_EVALUATION_SEAT10">
         <a rel="nofollow" data-pid="{{online[0].pid}}" href="{{online[0].linkurl}}" >
           <img src="{{online[0].imageurl}}" alt="{{online[0].alt}}">
         </a>
-      </div>
-      <div class="talkCon" id="talkCon">
-        <div class="record" id="chatDiv">
+      </div> -->
+      <div class="img clear" style="position: relative">
+        <!-- img -->
+        <img src="{{helper.cdnhost}}/assets/img/pic_01.png" alt="daoyu">
+    </div>
 
-          <div class="leaveField clearfix">
-            <div class="title">您的姓名：</div>
-            <div class="text1">
-              <input name="name" id="name" type="text" placeholder="请输入您的称呼"/><i style="font-size: 14px;color: #c13232;line-height: 24px;padding-left: 4px;">*</i>
+    <div class="img clear form" id="mao" style="z-index: 1;">
+            <div class="bg" style="">
+                <div class="_submit_form" style="background-image: url('{{helper.cdnhost}}/assets/img/pic_2.png');background-size: 100% 92%;padding-top: 80px;">
+                    <div class="center">
+                        <div class="invitation-info clear" >
+                            <div class="clear" style="position: relative;border-radius: 20px;">
+                                <i></i>
+                                <input type="text" placeholder="姓名"  id="username-bottom" name="username-bottom"/>
+                            </div>
+                            <div class="clear" style="position: relative;border-radius: 20px;">
+                                <i style="background: url({{helper.cdnhost}}/assets/img/iphone_cpa.png) no-repeat center;background-size: 100% 100%;"></i>
+                                <input type="tel" placeholder="电话" id="tel-bottom" name="tel-bottom"/>
+                            </div>
+    
+                            <div class="clear" style="position: relative;border-radius: 20px;">
+                                <i style="background: url({{helper.cdnhost}}/assets/img/cou_cpa.png) no-repeat center;background-size: 100% 100%;"></i>
+                                <select id="city-bottom" name="city-bottom">
+                                    <option value="">预约讲座城市</option>
+                                    <option value="1">(B)北京金吉列</option>
+                                    <option value="7">(C)重庆金吉列</option>
+                                    <option value="5">(C)成都金吉列</option>
+                                    <option value="19">(C)长沙金吉列</option>
+                                    <option value="25">(C)长春金吉列</option>
+                                    <option value="41">(C)常州金吉列</option>
+                                    <option value="13">(D)大连金吉列</option>
+                                    <option value="43">(D)东莞金吉列</option>
+                                    <option value="37">(F)佛山金吉列</option>
+                                    <option value="39">(F)福州金吉列</option>
+                                    <option value="3">(G)广州金吉列</option>
+                                    <option value="35">(G)贵阳金吉列</option>
+                                    <option value="24">(H)哈尔滨金吉列</option>
+                                    <option value="32">(H)邯郸金吉列</option>
+                                    <option value="26">(H)呼和浩特金吉列</option>
+                                    <option value="6">(H)杭州金吉列</option>
+                                    <option value="22">(H)合肥金吉列</option>
+                                    <option value="46">(H)海南金吉列</option>
+                                    <option value="9">(J)济南金吉列</option>
+                                    <option value="30">(J)吉林金吉列</option>
+                                    <option value="21">(K)昆明金吉列</option>
+                                    <option value="27">(L)兰州金吉列</option>
+                                    <option value="48">(L)洛阳金吉列</option>
+                                    <option value="16">(N)南京金吉列</option>
+                                    <option value="29">(N)南昌金吉列</option>
+                                    <option value="38">(N)南宁金吉列</option>
+                                    <option value="34">(N)宁波金吉列</option>
+                                    <option value="10">(Q)青岛金吉列</option>
+                                    <option value="2">(S)上海金吉列</option>
+                                    <option value="8">(S)沈阳金吉列</option>
+                                    <option value="12">(S)石家庄金吉列</option>
+                                    <option value="20">(S)深圳金吉列</option>
+                                    <option value="23">(S)苏州金吉列</option>
+                                    <option value="4">(T)天津金吉列</option>
+                                    <option value="17">(T)太原金吉列</option>
+                                    <option value="18">(T)唐山金吉列</option>
+                                    <option value="14">(W)武汉金吉列</option>
+                                    <option value="33">(W)无锡金吉列</option>
+                                    <option value="42">(W)温州金吉列</option>
+                                    <option value="47">(W)乌鲁木齐金吉列</option>
+                                    <option value="28">(X)厦门金吉列</option>
+                                    <option value="36">(X)徐州金吉列</option>
+                                    <option value="15">(X)西安金吉列</option>
+                                    <option value="45">(X)西宁金吉列</option>
+                                    <option value="31">(Y)烟台金吉列</option>
+                                    <option value="40">(Y)银川金吉列</option>
+                                    <option value="44">(Y)宜昌金吉列</option>
+                                    <option value="11">(Z)郑州金吉列</option>
+                                </select>
+                            </div>
+    
+                            <div class="clear" style="position: relative;border-radius: 20px;">
+                                <i style="background: url({{helper.cdnhost}}/assets/img/cou.png) no-repeat center;background-size: 100% 100%;"></i> 
+                                <select id="firstCountry-bottom" class="firstCountry" name="firstCountry-bottom">
+                                    <option value="">意向留学国家</option>
+                                    <!--<option value="美国">美国</option>
+                                    <option value="英国">英国</option>
+                                    <option value="加拿大">加拿大</option>
+                                    <option value="澳新">澳洲</option>
+                                    <option value="新西兰">新西兰</option>
+                                    <option value="亚洲">亚洲</option>
+                                    <option value="欧洲">欧洲</option> -->
+                                    <option value='1'>美国</option>
+                                    <option value='2'>英国</option>
+                                    <option value='3'>加拿大</option>
+                                    <option value='4'>澳大利亚</option>
+                                    <option value='5'>新西兰</option>
+                                    <option value='50'>韩国</option>
+                                    <option value='51'>日本</option>
+                                    <option value='101'>乌克兰</option>
+                                    <option value='100'>俄罗斯</option>
+                                    <option value='108'>爱尔兰</option>
+                                    <option value='111'>意大利</option>
+                                    <option value='112'>西班牙</option>
+                                    <option value='102'>白俄罗斯</option>
+                                    <option value='52'>新加坡</option>
+                                    <option value='53'>马来西亚</option>
+                                    <option value='54'>中国香港</option>
+                                    <option value='110'>丹麦</option>
+                                    <option value='103'>德国</option>
+                                    <option value='104'>法国</option>
+                                    <option value='105'>挪威</option>
+                                    <option value='106'>瑞典</option>
+                                    <option value='107'>芬兰</option>
+                                    <option value='109'>荷兰</option>
+                                    <option value='113'>瑞士</option>
+                                    <option value='55'>中国澳门</option>
+                                    <option value='114'>奥地利</option>
+                                </select>
+                            </div>
+    
+                            <div style="display: none;">
+    
+                                <input type="hidden" name="activityTitle-bottom" id="activityTitle-bottom" value="常青藤-移动端" />
+                                <input type="hidden" id="email-bottom" value="">
+                                <input type="hidden" id="secondCountry-bottom" value="">
+                                <input type="hidden" id="company-bottom" value="">
+                                <input type='hidden' id='relationId' value='20'>
+                            </div>
+                        </div>
+                        <div class="submitId baiduab-beha" id="submitId-bottom"></div>
+                    </div>
+                </div>
             </div>
-            <div class="textNum"><span class="numTip"  id="name-num"></span></div>
-          </div>
-          <div class="leaveField clearfix">
-            <div class="title">手机号码：</div>
-            <div class="text1"><input name="phone" id="phone-slide" type="text" placeholder="请留下您的电话号码" /><i style="font-size: 14px;color: #c13232;line-height: 24px;padding-left: 4px;">*</i></div>
-            <div class="textNum"><span id="phoneTip" class="numTip"></span></div>
-          </div>
-
-          <div class="leaveField clearfix">
-            <div class="title" style="width: 120px;">意向国家和地区：</div>
-            <div class="text1">
-              <select id="department" name="department" class="department">
-                <option value=''>请选择</option>
-                <option value='1'>美国</option>
-                <option value='2'>英国</option>
-                <option value='3'>加拿大</option>
-                <option value='4'>澳大利亚</option>
-                <option value='5'>新西兰</option>
-                <option value='50'>韩国</option>
-                <option value='51'>日本</option>
-                <option value='101'>乌克兰</option>
-                <option value='100'>俄罗斯</option>
-                <option value='108'>爱尔兰</option>
-                <option value='111'>意大利</option>
-                <option value='112'>西班牙</option>
-                <option value='102'>白俄罗斯</option>
-                <option value='52'>新加坡</option>
-                <option value='53'>马来西亚</option>
-                <option value='54'>中国香港</option>
-                <option value='55'>中国澳门</option>
-                <option value='110'>丹麦</option>
-                <option value='103'>德国</option>
-                <option value='104'>法国</option>
-                <option value='105'>挪威</option>
-                <option value='106'>瑞典</option>
-                <option value='107'>芬兰</option>
-                <option value='109'>荷兰</option>
-                <option value='113'>瑞士</option>
-                <option value='114'>奥地利</option>
-              </select>
-            </div>
-            <div class="textNum"><span class="numTip" id="department-num"></span></div>
-          </div>
-
-          <div class="leaveField clearfix">
-            <div class="title">所属区域：</div>
-            <div class="text1">
-              <select id="slide-area" name="slide-area" style="overflow-y:auto;size: 10;">
-                <option value="">请选择</option>
-                <option value="1">(B)北京金吉列</option>
-                <option value="7">(C)重庆金吉列</option>
-                <option value="5">(C)成都金吉列</option>
-                <option value="19">(C)长沙金吉列</option>
-                <option value="25">(C)长春金吉列</option>
-                <option value="41">(C)常州金吉列</option>
-                <option value="13">(D)大连金吉列</option>
-                <option value="43">(D)东莞金吉列</option>
-                <option value="37">(F)佛山金吉列</option>
-                <option value="39">(F)福州金吉列</option>
-                <option value="3">(G)广州金吉列</option>
-                <option value="35">(G)贵阳金吉列</option>
-                <option value="24">(H)哈尔滨金吉列</option>
-                <option value="32">(H)邯郸金吉列</option>
-                <option value="26">(H)呼和浩特金吉列</option>
-                <option value="6">(H)杭州金吉列</option>
-                <option value="22">(H)合肥金吉列</option>
-                <option value="46">(H)海南金吉列</option>
-                <option value="9">(J)济南金吉列</option>
-                <option value="30">(J)吉林金吉列</option>
-                <option value="21">(K)昆明金吉列</option>
-                <option value="27">(L)兰州金吉列</option>
-                <option value="48">(L)洛阳金吉列</option>
-                <option value="16">(N)南京金吉列</option>
-                <option value="29">(N)南昌金吉列</option>
-                <option value="38">(N)南宁金吉列</option>
-                <option value="34">(N)宁波金吉列</option>
-                <option value="10">(Q)青岛金吉列</option>
-                <option value="2">(S)上海金吉列</option>
-                <option value="8">(S)沈阳金吉列</option>
-                <option value="12">(S)石家庄金吉列</option>
-                <option value="20">(S)深圳金吉列</option>
-                <option value="23">(S)苏州金吉列</option>
-                <option value="4">(T)天津金吉列</option>
-                <option value="17">(T)太原金吉列</option>
-                <option value="18">(T)唐山金吉列</option>
-                <option value="14">(W)武汉金吉列</option>
-                <option value="33">(W)无锡金吉列</option>
-                <option value="42">(W)温州金吉列</option>
-                <option value="47">(W)乌鲁木齐金吉列</option>
-                <option value="28">(X)厦门金吉列</option>
-                <option value="36">(X)徐州金吉列</option>
-                <option value="15">(X)西安金吉列</option>
-                <option value="45">(X)西宁金吉列</option>
-                <option value="31">(Y)烟台金吉列</option>
-                <option value="40">(Y)银川金吉列</option>
-                <option value="44">(Y)宜昌金吉列</option>
-                <option value="11">(Z)郑州金吉列</option>
-              </select>
-            </div>
-            <div class="textNum"><span class="numTip" id="city-num"></span></div>
-          </div>
-          <div class="leaveField clearfix">
-            <div class="title">留学需求：</div>
-            <div class="text1">
-              <textarea maxlength="500" onchange="this.value=this.value.substring(0, 500)" onkeydown="this.value=this.value.substring(0, 500)" onkeyup="this.value=this.value.substring(0, 500)" name="context" style="height: 42px;color:#333333;" id="context" placeholder="留言内容最多为500个字符"></textarea><i style="font-size: 14px;color: #c13232;line-height: 24px;padding-left: 4px;">*</i>
-            </div>
-            <div class="textNum"><span class="numTip" id="context-num"></span></div>
-          </div>
-          <div  class="leaveField1 clearfix">
-            <div class="btn"><button class="commit" id="evaluation-btn">提交</button></div>
-            <div class="btn"><button class="reset" id="reset-btn">重置</button></div>
-          </div>
         </div>
-      </div>
+
+    <div class="img clear" style="z-index: 2;margin-top: -10%;">
+        <!-- img -->
+        <img src="{{helper.cdnhost}}/assets/img/pic_3.png" alt="mingxiao">
+    </div>
+
+    <div class="img clear">
+        <!-- img -->
+        <img src="{{helper.cdnhost}}/assets/img/pic_04.png" alt="daka">
+    </div>
+
+    
+    
+    <!--<div class="return-navigation"><a href="#navigation">返回导航</a> <a href="#mao">立即报名</a></div>-->
+    <div class="img clear">
+      <!-- img -->
+      <a href="http://m.jjl.cn"><img src="{{helper.cdnhost}}/assets/img/footer.jpg" alt="金吉列留学"></a>
     </div>
     <div style="display: none;" id="pingguPop">
       <div class="weui-mask"></div>
@@ -546,7 +224,7 @@
         getUrlSetCookieByParam ('growingioId',grUserId);
     })
     </script>
-    <script src="{{helper.cdnhost}}/assets/js/online_evaluation.js"></script>
+    <script src="{{helper.cdnhost}}/assets/js/common_interface.js"></script>
     <script>
       $(function(){
         // /*点击广告位进行统计*/
