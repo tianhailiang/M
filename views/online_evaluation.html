@@ -47,7 +47,16 @@
         padding: 2% 0;
         border-radius: 5px;
     }
-    
+    #weixin-wrapper{
+        position: absolute;
+        top: px2em(50);
+        bottom: px2em(50);
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+    }　
     /*消除滚动条*/
     #city-bottom::-webkit-scrollbar,#username-bottom::-webkit-scrollbar,#firstCountry-bottom::-webkit-scrollbar,#tel-bottom::-webkit-scrollbar{
         width: 0;
