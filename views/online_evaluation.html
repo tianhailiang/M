@@ -56,12 +56,15 @@
         width: 100%;
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
-    }　
-    /*消除滚动条*/
-    #city-bottom::-webkit-scrollbar,#username-bottom::-webkit-scrollbar,#firstCountry-bottom::-webkit-scrollbar,#tel-bottom::-webkit-scrollbar{
-        width: 0;
-        height: 0;
     }
+    .footer_img{
+        display: flex;
+        left:0;
+        right:0;
+        bottom:0;
+        height:102px;
+        width: 100%;
+       }
     </style>
 </head>
 <body style="background: #ffffff;overflow: scroll;-webkit-overflow-scrolling: touch;">
@@ -213,7 +216,7 @@
     
     
     <!--<div class="return-navigation"><a href="#navigation">返回导航</a> <a href="#mao">立即报名</a></div>-->
-    <div class="img clear">
+    <div class="img clear footer_img">
       <!-- img -->
       <a href="http://m.jjl.cn"><img src="{{helper.cdnhost}}/assets/img/footer.jpg" alt="金吉列留学"></a>
     </div>
