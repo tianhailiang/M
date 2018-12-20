@@ -65,6 +65,13 @@
         height:102px;
         width: 100%;
        }
+    .talkBox {
+        position: absolute;
+        left:0;
+        top:0;
+        width: 100%;
+        height:190vh;
+    }
     </style>
 </head>
 <body style="background: #ffffff;overflow: auto;-webkit-overflow-scrolling: touch;min-height: 600px;">
@@ -74,14 +81,14 @@
           <img src="{{online[0].imageurl}}" alt="{{online[0].alt}}">
         </a>
       </div> -->
-      <div class="img clear" style="position: relative">
+      <div class="clear" style="position: relative">
         <!-- img -->
         <img src="{{helper.cdnhost}}/assets/img/pic_01_01.png" alt="daoyu">
       </div>
 
-    <div class="img clear form" id="mao" style="z-index: 1;">
+    <div class="clear form" id="mao" style="z-index: 1;height: auto;">
         <div class="bg" style="">
-            <div class="_submit_form" style="background-image: url('{{helper.cdnhost}}/assets/img/pic_2.png');background-size: 100% 92%;padding-top: 80px;">
+            <div class="_submit_form" style="background-image: url('{{helper.cdnhost}}/assets/img/pic_2.png');background-size: 100% 100%;padding-top: 80px;">
                 <div class="center">
                     <div class="invitation-info clear" >
                         <div class="clear" style="position: relative;border-radius: 20px;">
@@ -203,12 +210,12 @@
         </div>
     </div>
 
-    <div class="img clear" style="z-index: 2;margin-top: -10%;">
+    <div class="clear" style="z-index: 2;margin-top: 0%;">
         <!-- img -->
         <img src="{{helper.cdnhost}}/assets/img/pic_3.png" alt="mingxiao">
     </div>
 
-    <div class="img clear">
+    <div class="clear">
         <!-- img -->
         <img src="{{helper.cdnhost}}/assets/img/pic_04.png" alt="daka">
     </div>
@@ -216,7 +223,7 @@
     
     
     <!--<div class="return-navigation"><a href="#navigation">返回导航</a> <a href="#mao">立即报名</a></div>-->
-    <div class="img clear" style="margin-bottom: 0px;">
+    <div class="clear" style="margin-bottom: 0px;">
       <!-- img -->
       <a href="http://m.jjl.cn"><img src="{{helper.cdnhost}}/assets/img/footer.jpg" alt="金吉列留学"></a>
     </div>
