@@ -115,7 +115,7 @@ gulp.task('revJs',function(){
     .pipe(gulp.dest('dist/rev/js'));
 })
 gulp.task('img',function(){
-  return gulp.src(['public/assets/img/*'])
+  return gulp.src(['public/assets/img/**/*'])
     .pipe(rev())
     .pipe(gulp.dest('dist/public/assets/img'))
     .pipe(rev.manifest())
