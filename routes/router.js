@@ -38,7 +38,7 @@ exports = module.exports = function (app) {// routes
 
 
   /*所有栏目页路由 start===========================================================================*/
-  app.get(/^(\/*)([a-z]*)\/adviser(\/*)((?![0-9])[0-9A-Za-z\-_]*)$/, controller.advisor_list);//明星顾问列表页
+  // app.get(/^(\/*)([a-z]*)\/adviser(\/*)((?![0-9])[0-9A-Za-z\-_]*)$/, controller.advisor_list);//明星顾问列表页
   app.get('/canzan', controller.canzan_list);//参赞列表
   //最新资讯
   app.get(/^(\/*)((?!yimin)[a-z]*)\/news(\/*)((?![0-9])[0-9A-Za-z\-_]*)$/, controller.news_list);
