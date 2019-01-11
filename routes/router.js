@@ -38,8 +38,8 @@ exports = module.exports = function (app) {// routes
 
 
   /*所有栏目页路由 start===========================================================================*/
-  // app.get(/^(\/*)([a-z]*)\/adviser(\/*)((?![0-9])[0-9A-Za-z\-_]*)$/, controller.advisor_list);//明星顾问列表页
-  app.get('/canzan', controller.canzan_list);//参赞列表
+  // app.get('/adviser', controller.advisor_list);//明星顾问列表页
+  // app.get('/canzan', controller.canzan_list);//参赞列表
   //最新资讯
   app.get(/^(\/*)((?!yimin)[a-z]*)\/news(\/*)((?![0-9])[0-9A-Za-z\-_]*)$/, controller.news_list);
   //留学费用
@@ -73,7 +73,7 @@ exports = module.exports = function (app) {// routes
   app.get(/^(\/*)([a-z]*)\/prereq\/(\d+)/, controller.prereqdetail); //申请条件落地页
   app.get(/^(\/*)([a-z]*)\/cost\/(\d+)/, controller.costdetail); //留学费用落地页
   app.get(/^\/schoolrank\/school([a-z]*)\/(\d+)/, controller.schooldetail);//落地頁大学排名
-  app.get('/canzan/:id', controller.canzan_column);//参赞底页（专栏）
+  // app.get('/canzan/:id', controller.canzan_column);//参赞底页（专栏）
   app.get(/^(\/*)([a-z]*)schoollib\/(\d+)/, controller.schoollibdetail);//院校文章底页
   app.get(/^(\/*)([a-z]*)\/product\/(\d+)/,controller.productdetail);//落地页留学方案
   /*所有底页路由 end*/
