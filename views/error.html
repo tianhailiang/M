@@ -1,13 +1,64 @@
-<h1>{{ message}}</h1>
+{#<h1>{{ message}}</h1>
 <h2>{{ error.status }}</h2>
-<pre>{{ error.stack }}</pre>
-{#<!DOCTYPE html>
+<pre>{{ error.stack }}</pre>#}
+<!DOCTYPE html>
 <html lang="en">
-{% include "header_new.html" %}
-<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/error.css">
+    {% include "header.html" %}
+<style>
+    .talkBox {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 0px 13%;
+        text-align: center;
+    }
+    .talkBox img {
+        width: 100%;
+    }
+    .talkBox .title {
+        margin-top: 16%;
+        font-size: 15px;
+        color: #333;
+        font-weight: bold;
+    }
+    .talkBox .title1 {
+        margin-top: 5%;
+        font-size: 10px;
+        color: #666;
+    }
+    .talkBox .anniu {
+        margin-top: 16%;
+        text-align: center; 
+        width: 200px;
+        height: 30px;
+        background: #c13232;
+        border-radius: 3px;
+        line-height: 30px;
+        display: inline-block;
+    }
+    .talkBox .fan {
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold;
+        color: #fff;
+        line-height: 30px;
+    }
+</style>
 <body>
-<div class="error-con"><img src="{{helper.cdnhost}}/assets/img/404.png" alt=""></div>
-<p class="error-btn"><a  href="javascript:history.go(-1);" class="dui-btn btn-xlarge btn-appointment go-back-btn">返回上页</a></p>
+    <div class="talkBox">
+        <div class="clear" style="position: relative;margin-top: 62%;"><img src="{{helper.cdnhost}}/assets/img/error_else_404.png" alt=""></div>
+        <p class="title">Sorry...您访问的页面不在地球上！</p>
+        <p class="title1">您输入的网址有误或者链接已过期</p>
+        <div class="clear anniu">
+            <a href="http://m.jjl.cn" class="fan">返回首页</a>
+        </div>
+        <div class="clear anniu" style="margin-top: 5%;">
+            <a href="http://m.jjl.cn" class="fan">精彩攻略，助力轻松留学 >></a>
+        </div>
+    </div>
+
+
 </body>
 
-</html>#}
+</html>
