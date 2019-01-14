@@ -47,18 +47,24 @@
 </style>
 <body>
     <div class="talkBox">
-        <div class="clear" style="position: relative;margin-top: 62%;"><img src="{{helper.cdnhost}}/assets/img/error_else_404.png" alt=""></div>
+        <div class="clear" style="position: relative;margin-top: 55%;"><img src="{{helper.cdnhost}}/assets/img/error_else_404.png" alt=""></div>
         <p class="title">Sorry...您访问的页面不在地球上！</p>
         <p class="title1">您输入的网址有误或者链接已过期</p>
         <div class="clear anniu">
             <a href="http://m.jjl.cn" class="fan">返回首页</a>
         </div>
         <div class="clear anniu" style="margin-top: 5%;">
-            <a href="http://m.jjl.cn" class="fan">精彩攻略，助力轻松留学 >></a>
+            <a href="/articles" class="fan">精彩攻略，助力轻松留学 >></a>
         </div>
     </div>
 
 
 </body>
-
+<script>
+$(function(){
+  $('#liuxue').on('click', function () {
+    window.history.back(-1);
+  })
+})
+</script>
 </html>
