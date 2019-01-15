@@ -1581,7 +1581,7 @@ exports.sendCoupons = function (data, callback) {
 var redisPool_views = require('redis-connection-pool')('viewNumberCache', {
   host: config.redisCache.host,
   port: config.redisCache.port || 6379,
-  max_clients: config.redisCache.max || 30,
+  max_clients: 100,
   perform_checks: false,
   database: 6 // database number to use
 });
@@ -1589,6 +1589,7 @@ var redisPool_views = require('redis-connection-pool')('viewNumberCache', {
  浏览量统计detail_count
  * */
 exports.detail_count = function (data, callback) {
+  log.info('cms detail_count')
   //redis 缓存文章浏览数````·
   //判断用户访问是否在限制条件内 10min 5
   var condition_time = 60;
@@ -1624,6 +1625,7 @@ exports.detail_count = function (data, callback) {
                   callback(null, {"uuid":data.uuid, "num":reply});
                 }
               });
+              // redisPool_views.quit();
             }
           });
         }
@@ -1636,7 +1638,7 @@ exports.detail_count = function (data, callback) {
       }
     });
     //callback(null, data.uuid);
-
+    // redisPool_views.quit();
   }
 
 };
@@ -1662,9 +1664,11 @@ function update_viewnum(catid, id, uuid, callback){
         var viewListKey = "view_set";
         redisHits.sadd(viewListKey, id);
       });
+      redisHits.quit();
       if(callback){
         callback(null, {"uuid":uuid, "num":reply});
       }
     }
   });
+  // redisPool_views.quit();
 };
