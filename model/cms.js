@@ -1663,8 +1663,8 @@ function update_viewnum(catid, id, uuid, callback){
       redisHits.select('6', function(error){
         var viewListKey = "view_set";
         redisHits.sadd(viewListKey, id);
-      });
-      redisHits.quit();
+        redisHits.quit();
+      });      
       if(callback){
         callback(null, {"uuid":uuid, "num":reply});
       }
