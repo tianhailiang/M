@@ -2,57 +2,79 @@
 <html lang="en">
 
 <head>
-  {% include "header.html" %}
-  <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/common.css">
-  <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/news_detail.css">
-  <link rel="canonical" href="http://{{helper.pcHost}}/{% if wenzhangdiye.article_info.type == 2 %}article{% elif wenzhangdiye.article_info.type == 1 %}case{% endif %}/{{article_id}}.html" />
-  <script src="https://xiongzhang.baidu.com/sdk/c.js?appid=1612545228957158"></script>
-  <script src="//msite.baidu.com/sdk/c.js?appid=1612545228957158"></script>
-  <script type="application/ld+json">
-    {
-      "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
-      "@id": "{{helper.wwhost}}/{% if wenzhangdiye.article_info.type == 2 %}article{% elif wenzhangdiye.article_info.type == 1 %}case{% endif %}/{{article_id}}.html",
-      "appid": "1612545228957158",
-      "title": "{{wenzhangdiye.article_info.title}}",
-      "images": [{ %
-          if wenzhangdiye.article_info.imgInfo %
-        } { %
-          for item in wenzhangdiye.article_info.imgInfo %
-        }
-        "{{item}}" { %
-          if loop.index < 3 %
-        }, { % endif %
-        } { % endfor %
-        } { % endif %
-        }
-      ],
-      "pubDate": "{{wenzhangdiye.article_info.add_time|shorten(10)}}T{{wenzhangdiye.article_info.add_time|sliceShorten(11)}}"
-    }
-  </script>
+{% include "header.html" %}
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/common.css">
+<link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/news_detail.css">
+<link rel="canonical" href="http://{{helper.pcHost}}/{% if wenzhangdiye.article_info.type == 2 %}article{% elif wenzhangdiye.article_info.type == 1 %}case{% endif %}/{{article_id}}.html"/>
+<script src="https://xiongzhang.baidu.com/sdk/c.js?appid=1612545228957158"></script>
+<script src="//msite.baidu.com/sdk/c.js?appid=1612545228957158"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+  "@id": "{{helper.wwhost}}/{% if wenzhangdiye.article_info.type == 2 %}article{% elif wenzhangdiye.article_info.type == 1 %}case{% endif %}/{{article_id}}.html",
+  "appid": "1612545228957158",
+  "title": "{{wenzhangdiye.article_info.title}}",
+  "images": [{% if wenzhangdiye.article_info.imgInfo %}{% for item in wenzhangdiye.article_info.imgInfo %}"{{item}}"{% if loop.index < 3 %},{% endif %}{% endfor %}{% endif %}],
+  "pubDate": "{{wenzhangdiye.article_info.add_time|shorten(10)}}T{{wenzhangdiye.article_info.add_time|sliceShorten(11)}}"
+}
+</script>
+<style>
+.header-yuyue .fen{
+  width: 18px;
+  height: 18px;
+  background: url({{helper.cdnhost}}/assets/img/article_det_fen.png) center;
+  background-size: cover;
+}
+.header1 {
+  height: 30px;
+  padding: 0 10px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: fixed;
+  top: 43px;
+  background: #fff;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  z-index: 1000;
+  width: 100%;
+  background: #f5f5f5;
+}
+</style>
+>>>>>>> e9dab6ece567cbee149afabd5d5eb996ea6c1275
 </head>
 
 <body style="background: #f5f5f5;">
-  <div id="app">
-    <header class="header">
-      <div class="header-Catalog">
-        <span></span>
-      </div>
-      <div class="activity-biaoti">
-        {{wenzhangdiye.article_info.title}}
-      </div>
-      <div class="header-yuyue">
-        <div class="fenxiang_con" style="display: flex;justify-content: space-around;">
-          <div style="width: 30px;height: 30px" class="wenxin_con"></div>
-          <div class="bdsharebuttonbox bdshare-button-style0-16">
-            <a href="#" style="" class="bds_tsinas" data-cmd="tsina" title="分享到新浪微博"></a>
-          </div>
-          <!--</a>-->
-          <div style="width: 30px;height: 30px" class="cue_qq_con"></div>
-        </div>
-      </div>
-    </header>
+<div id="app">
+  <header class="header">
+    <div class="header-Catalog">
+      <span></span>
+    </div>
+    <div class="activity-biaoti">
+      {{wenzhangdiye.article_info.title}}
+    </div>
+    <div class="header-yuyue">
+      <div class="fen"></div>
+    </div>
+  </header>
+  <div class="header1" style="float: left;font-size: 12px;color: #666;">首页 > 顾问主页 > {{wenzhangdiye.article_info.title}}</div>
+  <div class="fenxiang_con fenxiang_top" style="right: 0px;position: fixed;top: 43px;z-index: 1001;width: 256px;height: 85px;padding: 20px 0 20px 10px;float: right;margin-right: 15px;display: flex;justify-content: space-around;background: url({{helper.cdnhost}}/assets/img/article_det_fen_bac.png);background-size: cover;display: none;">
+    <div style="width: 30px;height: 30px;text-align: center;" class="wenxin_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">朋友圈</span></div>
+    <div style="width: 30px;height:30px;text-align: center;" class="wenxin_con1"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 50px;margin-left: -10px;">微信好友</span></div>
+    <div style="width: 30px;height: 30px;text-align: center;" class="cue_qq_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">QQ好友</span></div>
+    <div class="bdsharebuttonbox bdshare-button-style0-16">
+      <a href="#" style="" class="bds_tsinas" data-cmd="tsina" title="分享到新浪微博"></a>
+      <span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;margin-left: -45px;">新浪好友</span>
+    </div>
+  </div>
     <!-- 页面主体部分 -->
-    <section class="new-details">
+    <section class="new-details" style="margin-top: 25px;">
       <div class="head_portrait">
         <a href="{{helper.urlgen(userinfo.uid)}}">
           <div class="head_portrait_left" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.version)}}) no-repeat 0 0;background-size:cover"></div>
@@ -67,7 +89,7 @@
           </div>
         </div>
       </div>
-      <h1 id="article_title">{{wenzhangdiye.article_info.title}}</h1>
+      <h1 id="article_title" style="font-size: 24px;font-weight: 400;">{{wenzhangdiye.article_info.title}}</h1>
       <p class="new-details-p2">
         {{wenzhangdiye.article_info.add_time|shorten(10)}}
       </p>
@@ -176,52 +198,69 @@
   <div>
     <input type="hidden" id="detail_id" value="{{article_id}}" />
   </div>
-  <script src="{{helper.cdnhost}}/assets/js/view_count_min.js"></script>
-  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-  <script>
-    //  document.domain='http://widget.weibo.com';
-    window.onload = function () {
-      window._bd_share_config = {
-        "common": {
-          "bdSnsKey": {},
-          "bdText": "",
-          "bdMini": "1",
-          "bdMiniList": false,
-          "bdPic": "",
-          "bdStyle": "0",
-          "bdSize": "16",
-          "bdUrl": window.location.href
-        },
-        "share": {}
-      };
-      with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src =
-        'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
-      $(".jiangzuo-btn").on("click", function () {
-        $(".mark").show();
-        $(".mark-box").show();
-      })
-      $('.mark').on('click', function () {
-        console.log('aaaa')
-        $(this).hide();
-        $(".mark-box").hide();
-      })
-
-      function isWeiXin() {
-        // 检查微信环境
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-          return true;
-        } else {
-          return false;
-        }
+  <script>cambrian.render('tail')</script>
+  <!--footer start-->
+  {% include "m_widget/footer/common_footer.html" %}
+  <!--footer end-->
+</div>
+<!-- ===侧边栏==== -->
+{% include "m_widget/slidebar/common_sliderbar.html" %}
+<!-- ======乐语底栏======= -->
+{% include 'm_widget/funtalk/funtalk1.html' %}
+<div>
+  <input type="hidden" id="detail_id" value="{{article_id}}"/>
+</div>
+<script src="{{helper.cdnhost}}/assets/js/view_count_min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" ></script>
+<script>
+  //  document.domain='http://widget.weibo.com';
+  window.onload =function(){
+    window._bd_share_config = {
+      "common": {
+        "bdSnsKey": {},
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": "",
+        "bdStyle": "0",
+        "bdSize": "16",
+        "bdUrl": window.location.href
+      },
+      "share": {}
+    };
+    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+    $(".jiangzuo-btn").on("click",function(){
+      $(".mark").show();
+      $(".mark-box").show();
+    })
+    $('.mark').on('click',function () {
+      console.log('aaaa')
+      $(this).hide();
+      $(".mark-box").hide();
+    })
+    $('.fen').on('click', function () {
+      console.log('ssss')
+      if ($('.fenxiang_top').css('display') == 'none')
+      $('.fenxiang_top').css('display', 'flex');
+      else
+      $('.fenxiang_top').css('display', 'none');
+    })
+    function isWeiXin() {
+      // 检查微信环境
+      var ua = window.navigator.userAgent.toLowerCase();
+      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+        return true;
+      } else {
+        return false;
       }
-      // if($("#get-share-img").attr('data-img')==''){
-      //   $("#get-share-img").append('<img src="'+getImage()+'" width="0" height="0" />');
-      // }
-      // function getImage() {
-      //   // 获取图片
-      //   return 'http://'+location.host+'/assets/img/share_logo.png';
-      // }
+    }
+    // if($("#get-share-img").attr('data-img')==''){
+    //   $("#get-share-img").append('<img src="'+getImage()+'" width="0" height="0" />');
+    // }
+    // function getImage() {
+    //   // 获取图片
+    //   return 'http://'+location.host+'/assets/img/share_logo.png';
+    // }
       if (isWeiXin()) {
         $('.wenxin_con').on('click', function (e) {
           e.stopPropagation();
