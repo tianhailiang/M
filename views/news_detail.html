@@ -17,6 +17,35 @@
   "pubDate": "{{wenzhangdiye.article_info.add_time|shorten(10)}}T{{wenzhangdiye.article_info.add_time|sliceShorten(11)}}"
 }
 </script>
+<style>
+.header-yuyue .fen{
+  width: 18px;
+  height: 18px;
+  background: url({{helper.cdnhost}}/assets/img/article_det_fen.png) center;
+  background-size: cover;
+}
+.header1 {
+  height: 30px;
+  padding: 0 10px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: fixed;
+  top: 43px;
+  background: #fff;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  z-index: 1000;
+  width: 100%;
+  background: #f5f5f5;
+}
+</style>
 </head>
 <body style="background: #f5f5f5;">
 <div id="app">
@@ -28,18 +57,21 @@
       {{wenzhangdiye.article_info.title}}
     </div>
     <div class="header-yuyue">
-      <div class="fenxiang_con" style="display: flex;justify-content: space-around;">
-        <div style="width: 30px;height: 30px" class="wenxin_con"></div>
-        <div class="bdsharebuttonbox bdshare-button-style0-16">
-          <a href="#" style="" class="bds_tsinas" data-cmd="tsina" title="分享到新浪微博"></a>
-        </div>
-        <!--</a>-->
-        <div style="width: 30px;height: 30px" class="cue_qq_con"></div>
-      </div>
+      <div class="fen"></div>
     </div>
   </header>
+  <div class="header1" style="float: left;font-size: 12px;color: #666;">首页 > 顾问主页 > {{wenzhangdiye.article_info.title}}</div>
+  <div class="fenxiang_con fenxiang_top" style="right: 0px;position: fixed;top: 43px;z-index: 1001;width: 256px;height: 85px;padding: 20px 0 20px 10px;float: right;margin-right: 15px;display: flex;justify-content: space-around;background: url({{helper.cdnhost}}/assets/img/article_det_fen_bac.png);background-size: cover;display: none;">
+    <div style="width: 30px;height: 30px;text-align: center;" class="wenxin_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">朋友圈</span></div>
+    <div style="width: 30px;height:30px;text-align: center;" class="wenxin_con1"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 50px;margin-left: -10px;">微信好友</span></div>
+    <div style="width: 30px;height: 30px;text-align: center;" class="cue_qq_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">QQ好友</span></div>
+    <div class="bdsharebuttonbox bdshare-button-style0-16">
+      <a href="#" style="" class="bds_tsinas" data-cmd="tsina" title="分享到新浪微博"></a>
+      <span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;margin-left: -45px;">新浪好友</span>
+    </div>
+  </div>
     <!-- 页面主体部分 -->
-    <section class="new-details">
+    <section class="new-details" style="margin-top: 25px;">
       <div class="head_portrait">
         <a href="{{helper.urlgen(userinfo.uid)}}">
           <div class="head_portrait_left" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.version)}}) no-repeat 0 0;background-size:cover"></div>
@@ -52,7 +84,7 @@
           {{wenzhangdiye.article_info.tag_list}}
         </div></div>
       </div>
-      <h1 id="article_title" >{{wenzhangdiye.article_info.title}}</h1>
+      <h1 id="article_title" style="font-size: 24px;font-weight: 400;">{{wenzhangdiye.article_info.title}}</h1>
       <p class="new-details-p2">
         {{wenzhangdiye.article_info.add_time|shorten(10)}}
       </p>
@@ -122,6 +154,13 @@
       console.log('aaaa')
       $(this).hide();
       $(".mark-box").hide();
+    })
+    $('.fen').on('click', function () {
+      console.log('ssss')
+      if ($('.fenxiang_top').css('display') == 'none')
+      $('.fenxiang_top').css('display', 'flex');
+      else
+      $('.fenxiang_top').css('display', 'none');
     })
     function isWeiXin() {
       // 检查微信环境
