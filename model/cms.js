@@ -906,6 +906,15 @@ exports.new_jingcaihuodong_list = function (data, callback) {
 
 }
 
+// 顾问主页-相关推荐
+exports.relation_recommend=function(data,callback){
+  var url = _api_url_path(data, config.apis.relation_recommend);
+  if (url == null) {
+    callback('404');
+    return;
+  }
+  api.apiRequest(url, callback);
+}
 
 //顾问文章 
 exports.wecenter = function (data, callback) {

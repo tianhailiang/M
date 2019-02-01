@@ -23,6 +23,7 @@ var prefix = apiconfig.prefix;
 var uc_prefix = apiconfig.uc_prefix;
 var shequ_prefix = apiconfig.shequ_prefix;
 var imageshost = apiconfig.imageshost;
+var so_prefix = apiconfig.so_prefix;
 var coupon = apiconfig.coupon;
 var pcHost = apiconfig.pcHost;
 var apis = {
@@ -188,7 +189,7 @@ var apis = {
   "get_wenzhangdiye": prefix + 'detail',
   //社区文章底页
   "get_shequwenzhang": "http://test.wecenter.com/?/api/article/",
-
+  "relation_recommend": so_prefix + 'article/correlation',//相关推荐
   //搜索结果页（案例）
   "get_search_case": shequ_prefix + 'search/search_case/',
   //搜索结果页（顾问）

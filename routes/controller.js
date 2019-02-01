@@ -1251,17 +1251,84 @@ exports.news_detail = function (req, res, next) {
                     "u_id": data.login_info.uid,
                     "to_uid": data.wenzhangdiye.article_info.uid
                 }, callback);
+            },
+            relation_recommend: function (callback) { // 相关推荐
+                cms.relation_recommend({
+                    "country_id":data.wenzhangdiye.article_info.country_id,
+                    "city_id":data.wenzhangdiye.article_info.city_id,
+                    //"is_immi":2,
+                    "is_news": data.wenzhangdiye.article_info.is_news,
+                    "tag_list": encodeURI(data.wenzhangdiye.article_info.tag_list),
+                    "per_page":5
+                }, callback)
             }
         }, function (err, result) {
             data.userinfo = returnData(result.userinfo, 'userinfo');
-            data.tdk = {
-                pagekey: 'ADVISOR_P_ARTICLE_DETAIL',
-                cityid: data.userinfo.organid,
-                title: data.wenzhangdiye.article_info.title,
-                description: helperfunc.cut(data.wenzhangdiye.article_info.introduce, 80),
-                keywords: data.wenzhangdiye.article_info.title
-            };
-            res.render('news_detail', data);
+            data.relation_recommend = returnData(result.relation_recommend, 'relation_recommend');
+            for (let index in data.relation_recommend) {
+                if (data.relation_recommend[index].id == data.wenzhangdiye.article_info.id) {
+                  data.relation_recommend.splice(index, 1);
+                }
+            }
+            console.log('relation_recommend',data.relation_recommend);
+            async.parallel({
+                //获取顾问文章列表
+                zhuanlanlist: function (callback) {
+                    cms.adviser_main({
+                        "type": 2,
+                        "uid": data.userinfo.uid,
+                        "order": encodeURI("add_time desc")
+                    }, callback)
+                }
+            }, function (err, result) {
+                data.total_count = returnData(result.zhuanlanlist, 'zhuanlanlist');
+                data.total_count = data.total_count.total_count
+                async.parallel({
+                    //获取顾问文章列表
+                    zhuanlanlist1: function (callback) {
+                        cms.adviser_main({
+                            "type": 2,
+                            "uid": data.userinfo.uid,
+                            "order": encodeURI("add_time desc"),
+                            "per_page": data.total_count,
+                            "page":1
+                        }, callback)
+                    }
+                }, function (err, result) {
+                    data.zhuanlanlist1 = returnData(result.zhuanlanlist1, 'zhuanlanlist1');
+                    // console.log('zhuanlanlist1', data.zhuanlanlist1);
+                    for (var i = 0; i < data.zhuanlanlist1.list.length; i++) {
+                        if (data.zhuanlanlist1.list[i].title == data.wenzhangdiye.article_info.title) {
+                            // 上一篇
+                            if (i + 1 < data.zhuanlanlist1.list.length) {
+                                data.toptitle = data.zhuanlanlist1.list[i+1].title
+                                data.topid = data.zhuanlanlist1.list[i+1].id
+                                console.log('toptitle', data.toptitle);
+                            } else {
+                                data.toptitle = ''
+                                console.log('toptitle', data.toptitle);
+                            }
+                            // 下一篇
+                            if (i - 1 >= 0) {
+                                data.lowertitle = data.zhuanlanlist1.list[i-1].title
+                                data.lowerid = data.zhuanlanlist1.list[i-1].id
+                                console.log('lowertitle', data.lowertitle);
+                            } else {
+                                data.lowertitle = ''
+                                console.log('lowertitle', data.lowertitle);
+                            }
+                        }
+                    }
+                    data.tdk = {
+                        pagekey: 'ADVISOR_P_ARTICLE_DETAIL',
+                        cityid: data.userinfo.organid,
+                        title: data.wenzhangdiye.article_info.title,
+                        description: helperfunc.cut(data.wenzhangdiye.article_info.introduce, 80),
+                        keywords: data.wenzhangdiye.article_info.title
+                    };
+                    res.render('news_detail', data);
+                })
+            })
         })
     });
 }
@@ -1298,17 +1365,84 @@ exports.case_detail = function (req, res, next) {
                     "u_id": data.login_info.uid,
                     "to_uid": data.wenzhangdiye.article_info.uid
                 }, callback);
+            },
+            relation_recommend: function (callback) { // 相关推荐
+                cms.relation_recommend({
+                    "country_id":data.wenzhangdiye.article_info.country_id,
+                    "city_id":data.wenzhangdiye.article_info.city_id,
+                    //"is_immi":2,
+                    "is_news": data.wenzhangdiye.article_info.is_news,
+                    "tag_list": encodeURI(data.wenzhangdiye.article_info.tag_list),
+                    "per_page":5
+                }, callback)
             }
         }, function (err, result) {
             data.userinfo = returnData(result.userinfo, 'userinfo');
-            data.tdk = {
-                pagekey: 'ADVISOR_P_CASE_DETAIL',
-                cityid: data.userinfo.organid,
-                title: data.wenzhangdiye.article_info.title,
-                description: helperfunc.cut(data.wenzhangdiye.article_info.introduce, 80),
-                keywords: data.wenzhangdiye.article_info.title
-            };
-            res.render('news_detail', data);
+            data.relation_recommend = returnData(result.relation_recommend, 'relation_recommend');
+            for (let index in data.relation_recommend) {
+                if (data.relation_recommend[index].id == data.wenzhangdiye.article_info.id) {
+                  data.relation_recommend.splice(index, 1);
+                }
+            }
+            console.log('relation_recommend',data.relation_recommend);
+            async.parallel({
+                //获取顾问文章列表
+                zhuanlanlist: function (callback) {
+                    cms.adviser_main({
+                        "type": 1,
+                        "uid": data.userinfo.uid,
+                        "order": encodeURI("add_time desc")
+                    }, callback)
+                }
+            }, function (err, result) {
+                data.total_count = returnData(result.zhuanlanlist, 'zhuanlanlist');
+                data.total_count = data.total_count.total_count
+                async.parallel({
+                    //获取顾问文章列表
+                    zhuanlanlist1: function (callback) {
+                        cms.adviser_main({
+                            "type": 1,
+                            "uid": data.userinfo.uid,
+                            "order": encodeURI("add_time desc"),
+                            "per_page": data.total_count,
+                            "page":1
+                        }, callback)
+                    }
+                }, function (err, result) {
+                    data.zhuanlanlist1 = returnData(result.zhuanlanlist1, 'zhuanlanlist1');
+                    // console.log('zhuanlanlist1', data.zhuanlanlist1);
+                    for (var i = 0; i < data.zhuanlanlist1.list.length; i++) {
+                        if (data.zhuanlanlist1.list[i].title == data.wenzhangdiye.article_info.title) {
+                            // 上一篇
+                            if (i + 1 < data.zhuanlanlist1.list.length) {
+                                data.toptitle = data.zhuanlanlist1.list[i+1].title
+                                data.topid = data.zhuanlanlist1.list[i+1].id
+                                console.log('toptitle', data.toptitle);
+                            } else {
+                                data.toptitle = ''
+                                console.log('toptitle', data.toptitle);
+                            }
+                            // 下一篇
+                            if (i - 1 >= 0) {
+                                data.lowertitle = data.zhuanlanlist1.list[i-1].title
+                                data.lowerid = data.zhuanlanlist1.list[i-1].id
+                                console.log('lowertitle', data.lowertitle);
+                            } else {
+                                data.lowertitle = ''
+                                console.log('lowertitle', data.lowertitle);
+                            }
+                        }
+                    }
+                    data.tdk = {
+                        pagekey: 'ADVISOR_P_CASE_DETAIL',
+                        cityid: data.userinfo.organid,
+                        title: data.wenzhangdiye.article_info.title,
+                        description: helperfunc.cut(data.wenzhangdiye.article_info.introduce, 80),
+                        keywords: data.wenzhangdiye.article_info.title
+                    };
+                    res.render('news_detail', data);
+                })
+            })
         })
     });
 }
@@ -1338,6 +1472,7 @@ exports.adviser_detail = function (req, res, next) {
         }
     }, function (err, result) {
         data.zhuanlanlist = returnData(result.zhuanlanlist, 'zhuanlanlist');
+        console.log('zhuanlan', data.zhuanlanlist);
         data.userinfo = returnData(result.userinfo, 'userinfo');
         data.article_id = '';
         data.tdk = {
