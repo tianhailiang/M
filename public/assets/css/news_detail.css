@@ -203,7 +203,7 @@
     padding: 40px 15px 28px 15px;
     vertical-align: middle;
 }
-.dianzan-list>img{
+.dianzan-list .avatar-block>img{
     display: inline;
     width: 25px;
     height: 25px;
@@ -213,7 +213,7 @@
     vertical-align: middle;
     border: 1px solid #fff;
 }
-.dianzan-list>img:first-child{
+.dianzan-list .avatar-block>img:first-child{
     margin-left: 0;
 }
 
