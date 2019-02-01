@@ -84,7 +84,7 @@
         </div>
         <div class="head_portrait_right" style="margin-top: 10px;">
           <div class="author_news_tags" style="color:#d51821;">
-            <span>{{wenzhangdiye.article_info.tag_list}}</span>
+            <a href="{{helper.active_urlgen('articles', 'tag=' + diyetag)}}"><span>{{wenzhangdiye.article_info.tag_list}}</span></a>
           </div>
         </div>
       </div>
@@ -146,15 +146,16 @@
       {% if item.uid != null %}
       {% if loop.index <= 4 %}
       <div class="tuijian_list_item">
-          
+        <a target="_blank" href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}">
         <div class="author_news_info">
-          <div class="author_news_title">{{item.title | ellipsis(21)}}</div>
+          <div class="author_news_title" style="font-size: 12px;color: #666;">{{item.title | ellipsis(21)}}</div>
           <div class="author_news_tags">
             <span>{{item.tag_list | ellipsis(14)}}</span>
           </div>
         </div>
+        </a>
         <div class="author_info" style="text-align: center;">
-          <img src="{{helper.avaterimg(item.user_info.uid, 'small', item.user_info.status,item.user_info.version)}}" alt="">
+          <a href="{{helper.urlgen(item.user_info.uid|string)}}"><img src="{{helper.avaterimg(item.user_info.uid, 'small', item.user_info.status,item.user_info.version)}}" alt=""></a>
           <span>{{item.user_info.realname}}</span>
         </div>
         
