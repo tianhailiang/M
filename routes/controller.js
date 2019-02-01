@@ -1360,6 +1360,8 @@ exports.case_detail = function (req, res, next) {
             return false;
         }
         data.wenzhangdiye = returnData(result.wenzhangdiye, 'wenzhangdiye');
+        data.diyetag = data.wenzhangdiye.article_info.tag_list.split("/");
+        data.diyetag = data.diyetag[0];
         data.wenzhangdiye.article_info.imgInfo = JSON.parse(data.wenzhangdiye.article_info.img_info);
         async.parallel({
             //获取用户信息（普通用户，顾问，参赞）
