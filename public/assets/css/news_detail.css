@@ -216,7 +216,20 @@
 .dianzan-list>img:first-child{
     margin-left: 0;
 }
-
+.jubao_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+}
+.jubao_icon{
+    width: 20px;
+    height: 18px;
+    background:url(../img/article_ju.png) no-repeat;
+    background-size: cover;
+    display: inline-block;
+    margin-right: 6px;
+}
 .tuijian{
     box-sizing: border-box;
     margin: 20px 0;
@@ -272,4 +285,36 @@
 .author_info > span{
     text-align: center;
     display: block;
+}
+
+/* 举报 */
+.report{
+    /* height: 102px; */
+    box-sizing: border-box;
+    padding: 0px 10px;  
+    background-color: #fff;
+}
+
+.report .content{
+    padding: 17px 0 7px 0;
+    border-top: 1px solid #f5f5f5;
+    border-bottom: 1px solid #f5f5f5;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.report .content span{
+    height: 30px;
+    border: 1px solid #f5f5f5;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #666666;
+    width: 156px;
+    line-height: 28px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.layui-m-layerchild .layui-m-layercont {
+    padding: 0 !important;
 }

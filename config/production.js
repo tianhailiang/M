@@ -267,7 +267,9 @@ var apis = {
   //新活动底页
   "get_activity_detail":prefix+'detail',
   //国家文章列表
-  "get_search_article_list": shequ_prefix + 'search/search_article_list/'
+  "get_search_article_list": shequ_prefix + 'search/search_article_list/',
+  //举报接口
+  "post_userReport":prefix +'userReport'
 };
 module.exports = {
   redisCache: redisCache,

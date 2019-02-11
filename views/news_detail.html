@@ -8,6 +8,7 @@
 <link rel="canonical" href="http://{{helper.pcHost}}/{% if wenzhangdiye.article_info.type == 2 %}article{% elif wenzhangdiye.article_info.type == 1 %}case{% endif %}/{{article_id}}.html"/>
 <script src="https://xiongzhang.baidu.com/sdk/c.js?appid=1612545228957158"></script>
 <script src="//msite.baidu.com/sdk/c.js?appid=1612545228957158"></script>
+<script src="{{helper.cdnhost}}/dep/js/layer/layer.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
@@ -142,8 +143,8 @@
         <!--</a>-->
         <div class="cue_qq_con"></div>
       </div>
-      <div>
-        <span class="jubao_icon"></span>
+      <div class="jubao_btn">
+        <span class="jubao_icon" data-artId="{{aitem.id}}" data-url="{{artUrl}}" ></span>
         举报
       </div>
     </div>
@@ -185,6 +186,16 @@
     <div class="cue_qq">
       <div></div>
     </div>
+    
+    <!-- <div class='report'>
+      <div class="content"> 
+        <span>垃圾、广告信息</span>
+        <span>色情、低俗内容</span>
+        <span>时政敏感话题</span>
+        <span>其他原因 ></span>
+      </div>
+    </div> -->
+
     <script>cambrian.render('tail')</script>
     <!--footer start-->
     {% include "m_widget/footer/common_footer.html" %}
@@ -369,6 +380,98 @@
         });
       }
     }
+
+    // $('.jubao_btn').on('click', function () {
+
+    //   $('#report').show();
+    // });
+    $('.jubao_btn').on('click', report)
+    function report() {
+    var report_content = null;
+    var that = this;
+
+    layer.open({
+      title: [
+        '举报原因',
+        ' color:#333;font-size:15px'
+      ],
+      anim: 'up',
+      content: "<div class='report'>" + 
+      "<div class='content'>" +
+        "<span>垃圾、广告信息</span>" + 
+        "<span>色情、低俗内容</span>" +
+        "<span>时政敏感话题</span>" + 
+        "<span>其他原因 ></span>" +
+      "</div></div>",
+      btn: ['提交'],
+      yes: function () {
+        if (report_content == undefined || report_content == '') {
+          layer.open({
+            content: '请选择举报理由',
+            style: 'padding: 50px 30px;',
+            time: 2,
+            skin: 'msg'
+          })
+          return false;
+        }
+        console.log(report_content);
+        $.ajax({
+          // url: ajaxUrlPrefix.cmsapi+'/api/userReport',
+          url: '/soapi/userReport',
+          type: 'POST',
+          data: {
+            report_source: '1',
+            report_type: '1',
+            report_content: report_content,
+            userid: '1',
+            article_id: $(that).attr("data-artId"),
+            article_url:$(that).attr('data-url'),
+            city_id:$('.advisor-bumen').attr('data-cityId')
+          },
+          dataType: 'json',
+          success: function (result) {
+            if (result.code == 0) {
+              layer.open({
+                content: '举报成功',
+                style: 'padding: 50px 30px;',
+                time: 2,
+                skin: 'msg'
+              })
+              layer.close(index);
+            }else{
+              layer.open({
+                content: result.message,
+                style: 'padding: 50px 30px;',
+                time: 2,
+                skin: 'msg'
+              })
+            }
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(errorThrown)
+          }
+        });
+      }
+    });
+
+    $(".report span").on('click', function (e) {
+      $(".report span").each(function () {
+        $(this).css({
+          borderColor: '#f5f5f5',
+          color: '#666666',
+        })
+      })
+      var index = $(this).index();
+      report_content = $(this).text();
+      $(this).css({
+        borderColor: '#c13232',
+        color: '#c13232',
+      })
+      if(index == 3) {
+        console.log(111);
+      }
+    })
+  }
   </script>
 </body>
 

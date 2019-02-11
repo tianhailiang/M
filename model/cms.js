@@ -1671,4 +1671,16 @@ function update_viewnum(catid, id, uuid, callback){
     }
   });
   // redisPool_views.quit();
+  
+};
+
+//举报接口
+exports.userReport = function(data,callback){
+  var url = config.apis.post_userReport;
+  if (url == null){
+    callback('404');
+    return;
+  }
+  console.log('url-----',url);
+  api.apiRequest_post(url ,data ,callback);
 };

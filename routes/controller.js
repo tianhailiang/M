@@ -3269,3 +3269,20 @@ exports.obtain = function (req, res, next) {
     };
     res.render('obtain', data);
 }
+
+
+//举报接口
+exports.userReport = function(req,res,next){
+    log.debug('举报接口')
+    var data =req.body;
+    console.log('data-------',JSON.stringify(data));
+    cms.userReport(data,function(err,result){
+        if(err){
+            console.log('err', err);
+            res.send(err);
+        }else{
+            console.log('res', result);
+            res.send(result);
+        }
+    })
+}

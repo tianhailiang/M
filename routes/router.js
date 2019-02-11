@@ -117,5 +117,8 @@ exports = module.exports = function (app) {// routes
   app.get('/obtain',controller.obtain);//获取优惠券二维码
   //手机验证码(孙立波接口)
   app.post('/sendcode_s', controller.sendcode_s);
+
+  //举报接口
+  app.post('/soapi/userReport',controller.userReport);
 };
 
