@@ -293,6 +293,15 @@
             $('.cue_weixin').css("display", "none");
           }
         });
+        $('.wenxin_con1').on('click', function (e) {
+          e.stopPropagation();
+          this.flag = !this.flag;
+          if (this.flag) {
+            $('.cue_weixin').css("display", "block");
+          } else {
+            $('.cue_weixin').css("display", "none");
+          }
+        });
         $('.wenxin_con2').on('click', function (e) {
           e.stopPropagation();
           this.flag = !this.flag;
@@ -371,6 +380,15 @@
         });
       } else {
         $('.wenxin_con').on('click', function (e) {
+          e.stopPropagation();
+          this.flag = !this.flag;
+          if (this.flag) {
+            $('.cue_weixin1').css("display", "block");
+          } else {
+            $('.cue_weixin1').css("display", "none");
+          }
+        });
+        $('.wenxin_con1').on('click', function (e) {
           e.stopPropagation();
           this.flag = !this.flag;
           if (this.flag) {
