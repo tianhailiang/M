@@ -3431,3 +3431,13 @@ exports.userReport = function(req,res,next){
         }
     })
 }
+
+// 举报其他原因页面
+exports.jubao = function (req, res, next) {
+    log.debug('举报其他原因页面')
+    var data = {};
+    data.tdk = {
+        pagekey: 'JUBAO'
+    };
+    res.render('jubao', data);
+}

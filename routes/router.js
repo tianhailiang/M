@@ -120,5 +120,7 @@ exports = module.exports = function (app) {// routes
 
   //举报接口
   app.post('/soapi/userReport',controller.userReport);
+  // 举报其他原因页面
+  app.get('/jubao', controller.jubao)
 };
 
