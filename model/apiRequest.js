@@ -63,15 +63,10 @@ var apiRequest = function (url, callback, isCache = 0, cacheKey = "") {
  */
 var apiRequest_post = function (url, data, callback) {
   log.info(url)
-  request.post(url, {
-    json: true,
-    headers: {
-      "content-type": "application/json"
-    },
-    body: data
-  }, function (err, response, receiveData) {
+  console.log('data+++++++', data)
+  request.post({url:url, form:data}, function (err, response, receiveData) {
     if (!err && response.statusCode == 200) {
-      callback(null, receiveData);
+      callback(null, JSON.parse(receiveData));
     }else if(response.statusCode != 200) {
       var err_msg = "接口地址："+url+"，HTTP 请求错误, response状态码："+response.statusCode;
       log.error(err_msg);

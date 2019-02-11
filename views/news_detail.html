@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 {% include "header.html" %}
 <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/common.css">
@@ -7,6 +8,7 @@
 <link rel="canonical" href="http://{{helper.pcHost}}/{% if wenzhangdiye.article_info.type == 2 %}article{% elif wenzhangdiye.article_info.type == 1 %}case{% endif %}/{{article_id}}.html"/>
 <script src="https://xiongzhang.baidu.com/sdk/c.js?appid=1612545228957158"></script>
 <script src="//msite.baidu.com/sdk/c.js?appid=1612545228957158"></script>
+<script src="{{helper.cdnhost}}/dep/js/layer/layer.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
@@ -17,7 +19,37 @@
   "pubDate": "{{wenzhangdiye.article_info.add_time|shorten(10)}}T{{wenzhangdiye.article_info.add_time|sliceShorten(11)}}"
 }
 </script>
+<style>
+.header-yuyue .fen{
+  width: 18px;
+  height: 18px;
+  background: url({{helper.cdnhost}}/assets/img/article_det_fen.png) center;
+  background-size: cover;
+}
+.header1 {
+  height: 30px;
+  padding: 0 10px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: fixed;
+  top: 43px;
+  background: #fff;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  z-index: 1000;
+  width: 100%;
+  background: #f5f5f5;
+}
+</style>
 </head>
+
 <body style="background: #f5f5f5;">
 <div id="app">
   <header class="header">
@@ -28,18 +60,21 @@
       {{wenzhangdiye.article_info.title}}
     </div>
     <div class="header-yuyue">
-      <div class="fenxiang_con" style="display: flex;justify-content: space-around;">
-        <div style="width: 30px;height: 30px" class="wenxin_con"></div>
-        <div class="bdsharebuttonbox bdshare-button-style0-16">
-          <a href="#" style="" class="bds_tsinas" data-cmd="tsina" title="分享到新浪微博"></a>
-        </div>
-        <!--</a>-->
-        <div style="width: 30px;height: 30px" class="cue_qq_con"></div>
-      </div>
+      <div class="fen"></div>
     </div>
   </header>
+  <div class="header1" style="float: left;font-size: 12px;color: #666;">首页 > 顾问主页 > {{wenzhangdiye.article_info.title}}</div>
+  <div class="fenxiang_con fenxiang_top" style="right: 0px;position: fixed;top: 43px;z-index: 1001;width: 256px;height: 85px;padding: 20px 0 20px 10px;float: right;margin-right: 15px;display: flex;justify-content: space-around;background: url({{helper.cdnhost}}/assets/img/article_det_fen_bac.png);background-size: cover;display: none;">
+    <div style="width: 30px;height: 30px;text-align: center;" class="wenxin_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">朋友圈</span></div>
+    <div style="width: 30px;height:30px;text-align: center;" class="wenxin_con1"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 50px;margin-left: -10px;">微信好友</span></div>
+    <div style="width: 30px;height: 30px;text-align: center;" class="cue_qq_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">QQ好友</span></div>
+    <div class="bdsharebuttonbox bdshare-button-style0-16">
+      <a href="#" style="" class="bds_tsinas" data-cmd="tsina" title="分享到新浪微博"></a>
+      <span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;margin-left: -45px;">新浪好友</span>
+    </div>
+  </div>
     <!-- 页面主体部分 -->
-    <section class="new-details">
+    <section class="new-details" style="margin-top: 25px;">
       <div class="head_portrait">
         <a href="{{helper.urlgen(userinfo.uid)}}">
           <div class="head_portrait_left" style="background:url({{helper.avaterimg(userinfo.uid, 'small', 0,userinfo.version)}}) no-repeat 0 0;background-size:cover"></div>
@@ -48,11 +83,13 @@
           <p style="">{{userinfo.realname}}</p>
           <i></i>
         </div>
-        <div class="head_portrait_right"><div class="adviser-label" style="color:#d51821;">
-          {{wenzhangdiye.article_info.tag_list}}
-        </div></div>
+        <div class="head_portrait_right" style="margin-top: 10px;">
+          <div class="author_news_tags" style="color:#d51821;">
+            <a href="{{helper.active_urlgen('articles', 'tag=' + diyetag)}}"><span>{{wenzhangdiye.article_info.tag_list}}</span></a>
+          </div>
+        </div>
       </div>
-      <h1 id="article_title" >{{wenzhangdiye.article_info.title}}</h1>
+      <h1 id="article_title" style="font-size: 24px;font-weight: 400;">{{wenzhangdiye.article_info.title}}</h1>
       <p class="new-details-p2">
         {{wenzhangdiye.article_info.add_time|shorten(10)}}
       </p>
@@ -62,43 +99,143 @@
         <span>评论：<em>{{wenzhangdiye.article_info.comments}}</em></span>
         <span>点赞：<em>{{wenzhangdiye.article_info.votes}}</em></span>
       </p>
-      <article class="news-content" style="clear: both" data-img="{{wenzhangdiye.article_info.imgInfo[0] if wenzhangdiye.article_info.imgInfo[0] else helper.cdnhost+'/assets/img/share_logo.png'}}" id="get-share-img" data-introduce ="{{wenzhangdiye.article_info.introduce}}" >
+      <div style="font-size: 17px;font-weight: 400;width: 100%;padding: 20px;background: #f5f5f5;color: #333;margin: 40px 0px;border-radius: 10px;">
+        文章摘要：{{wenzhangdiye.article_info.introduce}}
+      </div>
+      <article class="news-content" style="clear: both" data-img="{{wenzhangdiye.article_info.imgInfo[0] if wenzhangdiye.article_info.imgInfo[0] else helper.cdnhost+'/assets/img/share_logo.png'}}"
+        id="get-share-img" data-introduce="{{wenzhangdiye.article_info.introduce}}">
         {{wenzhangdiye.article_info.message | safe}}
       </article>
     </section>
-  <div class="fenxiang_con" style="background: #fff;height: 65px;display: flex;justify-content: space-around;">
-    <div class="wenxin_con"></div>
-    <div class="bdsharebuttonbox bdshare-button-style0-16">
-      <a href="#" class="bds_tsinax" data-cmd="tsina" title="分享到新浪微博"></a>
+    <!-- 点赞人数图像 -->
+    <div class="dianzan-list" id="fans-block" style="padding-left: 22px;">
     </div>
-    <!--</a>-->
-    <div class="cue_qq_con"></div>
-  </div>
-  <div class="cue_weixin">
+    <!-- 点赞人数图像end -->
+    <!-- 分享按钮 -->
+    <div class="fenxiang_con" style="background: #fff;height: 40px;display: flex;justify-content: space-between;align-items: center; box-sizing: border-box;padding: 0 15px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; height: 40px;">
+        <div style="font-size: 14px;color: #999; margin-right: 15px;">分享到</div>
+        <div class="wenxin_con"></div>
+        <div class="wenxin_con2"></div>
+        <div class="bdsharebuttonbox bdshare-button-style0-16">
+          <a href="#" class="bds_tsinax" data-cmd="tsina" title="分享到新浪微博"></a>
+        </div>
+        <!--</a>-->
+        <div class="cue_qq_con"></div>
+      </div>
+      <div class="jubao_btn" data-artId="{{wenzhangdiye.article_info.id}}" data-area="{{area}}">
+        <span class="jubao_icon" ></span>
+        举报
+      </div>
+    </div>
+    <div style="height:25px;background:#fff;"></div>
+    <div style="background:#fff;box-sizing: border-box; border-top: 1px solid #f5f5f5; padding: 30px 0 0px; ">
+        <div style="font-size:15px; color: #333;text-align: center; padding-bottom: 10px;" onclick="open_main('{{userinfo.uid}}')">去主页浏览TA的更多精彩内容 >></div>
+        {% if toptitle != '' %}
+        <div style="box-sizing: border-box; margin: 20px 15px; color: #666;font-size: 13px">
+          上一篇文章： <a href="{% if article == 'article' %}{{helper.urlgen('article',topid | safeId |string)}}{% else %}{{helper.urlgen('case',topid | safeId |string)}}{% endif %}" style="font-size:15px; color: #333;" >{{toptitle}}</a>
+        </div>
+        {% endif %}
+        {% if lowertitle != '' %}
+        <div style="box-sizing: border-box; padding: 20px 0; margin: 0 15px; color: #666;font-size: 13px; border-top:2px solid #f5f5f5;">
+          下一篇文章： <a href="{% if article == 'article' %}{{helper.urlgen('article',lowerid | safeId |string)}}{% else %}{{helper.urlgen('case',lowerid | safeId |string)}}{% endif %}" style="font-size:15px; color: #333;" >{{lowertitle}}</a>
+        </div>
+        {% endif %}
+    </div>
+    <!-- 分享按钮end -->
+    <!-- 相关推荐 -->
+    <div class="tuijian">
+      <div class="tuijian_title" style="font-size: 12px;color: #666;">相关推荐</div>
+      {% for item in relation_recommend %}
+      {% if item.uid != null %}
+      {% if loop.index <= 4 %}
+      <div class="tuijian_list_item">
+        <a target="_blank" href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}">
+        <div class="author_news_info">
+          <div class="author_news_title" style="font-size: 12px;color: #666;">{{item.title | ellipsis(21)}}</div>
+          <div class="author_news_tags">
+            <span>{{item.tag_list | ellipsis(14)}}</span>
+          </div>
+        </div>
+        </a>
+        <div class="author_info" style="text-align: center;">
+          <a href="{{helper.urlgen(item.user_info.uid|string)}}"><img src="{{helper.avaterimg(item.user_info.uid, 'small', item.user_info.status,item.user_info.version)}}" alt=""></a>
+          <span>{{item.user_info.realname}}</span>
+        </div>
+        
+      </div>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </div>
+    <!-- 相关推荐结束 -->
+    <div class="cue_weixin">
       <div></div>
-  </div>
-  <div class="cue_weixin1">
+    </div>
+    <div class="cue_weixin1">
       <div></div>
+    </div>
+    <div class="cue_qq">
+      <div></div>
+    </div>
+    
+    <!-- <div class='report'>
+      <div class="content"> 
+        <span>垃圾、广告信息</span>
+        <span>色情、低俗内容</span>
+        <span>时政敏感话题</span>
+        <span>其他原因 ></span>
+      </div>
+    </div> -->
+
+    <script>cambrian.render('tail')</script>
+    <!--footer start-->
+    {% include "m_widget/footer/common_footer.html" %}
+    <!--footer end-->
   </div>
-  <div class="cue_qq">
-       <div></div>
+  <!-- ===侧边栏==== -->
+  {% include "m_widget/slidebar/common_sliderbar.html" %}
+  <!-- ======乐语底栏======= -->
+  {% include 'm_widget/funtalk/funtalk1.html' %}
+  <div>
+    <input type="hidden" id="detail_id" value="{{article_id}}" />
   </div>
-  <script>cambrian.render('tail')</script>
-  <!--footer start-->
-  {% include "m_widget/footer/common_footer.html" %}
-  <!--footer end-->
-</div>
-<!-- ===侧边栏==== -->
-{% include "m_widget/slidebar/common_sliderbar.html" %}
-<!-- ======乐语底栏======= -->
-{% include 'm_widget/funtalk/funtalk1.html' %}
-<div>
-  <input type="hidden" id="detail_id" value="{{article_id}}"/>
-</div>
 <script src="{{helper.cdnhost}}/assets/js/view_count_min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" ></script>
 <script>
   //  document.domain='http://widget.weibo.com';
+  $(function(){
+    var articleid = $("#detail_id").val();
+    $.ajax({
+        url: ajaxUrlPrefix.nodeapi+'/vote_list',
+        data: {
+            article_id: articleid
+        },
+        type: 'GET',
+        dataType:'json',
+        success:function(msg){
+            if (msg.code == 0 && msg.data.length>0) {
+                var avatarArr = msg.data;
+                $('#fans-block').html(avatarGroup(avatarArr));
+            }
+        },
+        error:function(XMLHttpRequest, textStatus, errorThrown){
+            console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
+        }
+    })
+  })
+  function avatarGroup (arr) {
+    var html = '<div class="avatar-block">';
+    var fansNum = arr.length;
+    var maxNum = fansNum < 5 ? fansNum : 5;//限制显示5个
+    for (var i = 0; i<maxNum;i++) {
+        html+='<img src="'+ arr[i].avatar_file +'" alt="" style="margin-left:-8px;">';
+    }
+    return html+'<span style="font-size: 12px; color: #333;line-height: 25px;display: inline;vertical-align: middle;margin-left: 10px;">等'+ fansNum +'人点赞</span></div>';
+  }
+  function open_main(uid){
+    window.open('/' + uid);
+  }
   window.onload =function(){
     window._bd_share_config = {
       "common": {
@@ -123,6 +260,13 @@
       $(this).hide();
       $(".mark-box").hide();
     })
+    $('.fen').on('click', function () {
+      console.log('ssss')
+      if ($('.fenxiang_top').css('display') == 'none')
+      $('.fenxiang_top').css('display', 'flex');
+      else
+      $('.fenxiang_top').css('display', 'none');
+    })
     function isWeiXin() {
       // 检查微信环境
       var ua = window.navigator.userAgent.toLowerCase();
@@ -139,109 +283,221 @@
     //   // 获取图片
     //   return 'http://'+location.host+'/assets/img/share_logo.png';
     // }
-    if(isWeiXin()){
-      $('.wenxin_con').on('click',function(e){
-        e.stopPropagation();
-        this.flag =!this.flag;
-        if(this.flag){
-          $('.cue_weixin').css("display","block");
-        }else{
-          $('.cue_weixin').css("display","none");
-        }
-      });
-      $(document).on('click touchstart', function (){
-        if($('.cue_weixin').css("display")=='block'){
-          $('.cue_weixin').css("display","none");
-        }
-      });
-      $('.cue_qq_con').on('click',function(e){
-        e.stopPropagation();
-        this.flag =!this.flag;
-        if(this.flag){
-          $('.cue_qq').css("display","block");
-        }else{
-          $('.cue_qq').css("display","none");
-        }
-      });
-      $(document).on('click touchstart', function (e){
-        if($('.cue_qq').css("display")=='block') {
-          $('.cue_qq').css("display", "none");
-        }
-      });
-      // 去获取signature签名
-      $.ajax({
-        type: "POST",
-        url:"/wxJssdk/getJssdk",
-        dataType: "json",
-        data:{
-          url:location.href.split('#')[0]
-        },
-        success: function(result){
-          // console.log(result)
-          wx.config({
-            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-            appId: result.appId, // 必填，公众号的唯一标识
-            timestamp: result.timestamp, // 必填，生成签名的时间戳
-            nonceStr: result.nonceStr, // 必填，生成签名的随机串
-            signature: result.signature,// 必填，签名
-            jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表
-          });
-          wx.ready(function(){
-            // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
-            wx.onMenuShareTimeline({
-              title: $('#article_title').text(), // 分享标题
-              link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-              imgUrl: $("#get-share-img").attr('data-img')||getImage(), // 分享图标
-              success: function () {
-                // 用户确认分享后执行的回调函数
-              },
-              cancel: function () {
-                // 用户取消分享后执行的回调函数
-              }
+      if (isWeiXin()) {
+        $('.wenxin_con').on('click', function (e) {
+          e.stopPropagation();
+          this.flag = !this.flag;
+          if (this.flag) {
+            $('.cue_weixin').css("display", "block");
+          } else {
+            $('.cue_weixin').css("display", "none");
+          }
+        });
+        $('.wenxin_con2').on('click', function (e) {
+          e.stopPropagation();
+          this.flag = !this.flag;
+          if (this.flag) {
+            $('.cue_weixin').css("display", "block");
+          } else {
+            $('.cue_weixin').css("display", "none");
+          }
+        });
+        $(document).on('click touchstart', function () {
+          if ($('.cue_weixin').css("display") == 'block') {
+            $('.cue_weixin').css("display", "none");
+          }
+        });
+        $('.cue_qq_con').on('click', function (e) {
+          e.stopPropagation();
+          this.flag = !this.flag;
+          if (this.flag) {
+            $('.cue_qq').css("display", "block");
+          } else {
+            $('.cue_qq').css("display", "none");
+          }
+        });
+        $(document).on('click touchstart', function (e) {
+          if ($('.cue_qq').css("display") == 'block') {
+            $('.cue_qq').css("display", "none");
+          }
+        });
+        // 去获取signature签名
+        $.ajax({
+          type: "POST",
+          url: "/wxJssdk/getJssdk",
+          dataType: "json",
+          data: {
+            url: location.href.split('#')[0]
+          },
+          success: function (result) {
+            // console.log(result)
+            wx.config({
+              debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+              appId: result.appId, // 必填，公众号的唯一标识
+              timestamp: result.timestamp, // 必填，生成签名的时间戳
+              nonceStr: result.nonceStr, // 必填，生成签名的随机串
+              signature: result.signature, // 必填，签名
+              jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表
             });
-            wx.onMenuShareAppMessage({
-              title: $('#article_title').text(), // 分享标题
-              desc: $("#get-share-img").attr("data-introduce"), // 分享描述
-              link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-              imgUrl: $("#get-share-img").attr('data-img')||getImage(), // 分享图标
-              type: '', // 分享类型,music、video或link，不填默认为link
-              dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-              success: function () {
-                // 用户点击了分享后执行的回调函数
-              }
+            wx.ready(function () {
+              // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+              wx.onMenuShareTimeline({
+                title: $('#article_title').text(), // 分享标题
+                link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: $("#get-share-img").attr('data-img') || getImage(), // 分享图标
+                success: function () {
+                  // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                  // 用户取消分享后执行的回调函数
+                }
+              });
+              wx.onMenuShareAppMessage({
+                title: $('#article_title').text(), // 分享标题
+                desc: $("#get-share-img").attr("data-introduce"), // 分享描述
+                link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: $("#get-share-img").attr('data-img') || getImage(), // 分享图标
+                type: '', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+                  // 用户点击了分享后执行的回调函数
+                }
+              });
             });
-          });
-        },
-        error: function(error){
-          console.log(error)
-        }
-      });
-    }else{
-      $('.wenxin_con').on('click',function(e){
-        e.stopPropagation();
-        this.flag=!this.flag;
-        if(this.flag) {
-          $('.cue_weixin1').css("display","block");
-        }else{
-          $('.cue_weixin1').css("display","none");
-        }
-      });
-      $('.cue_qq_con').on('click',function(e){
-        e.stopPropagation();
-        this.flag=!this.flag;
-        if(this.flag) {
-          $('.cue_weixin1').css("display","block");
-        }else{
-          $('.cue_weixin1').css("display","none");
-        }
-      });
-      $(document).on('click touchstart', function (){
-        if($('.cue_weixin1').css("display")=='block'){
-          $('.cue_weixin1').css("display","none");
-        }
-      });
+          },
+          error: function (error) {
+            console.log(error)
+          }
+        });
+      } else {
+        $('.wenxin_con').on('click', function (e) {
+          e.stopPropagation();
+          this.flag = !this.flag;
+          if (this.flag) {
+            $('.cue_weixin1').css("display", "block");
+          } else {
+            $('.cue_weixin1').css("display", "none");
+          }
+        });
+        $('.wenxin_con2').on('click', function (e) {
+          e.stopPropagation();
+          this.flag = !this.flag;
+          if (this.flag) {
+            $('.cue_weixin1').css("display", "block");
+          } else {
+            $('.cue_weixin1').css("display", "none");
+          }
+        });
+        $('.cue_qq_con').on('click', function (e) {
+          e.stopPropagation();
+          this.flag = !this.flag;
+          if (this.flag) {
+            $('.cue_weixin1').css("display", "block");
+          } else {
+            $('.cue_weixin1').css("display", "none");
+          }
+        });
+        $(document).on('click touchstart', function () {
+          if ($('.cue_weixin1').css("display") == 'block') {
+            $('.cue_weixin1').css("display", "none");
+          }
+        });
+      }
     }
+
+    // $('.jubao_btn').on('click', function () {
+
+    //   $('#report').show();
+    // });
+    $('.jubao_btn').on('click', report)
+    function report() {
+    var report_content = null;
+    var that = this;
+
+    layer.open({
+      title: [
+        '举报原因',
+        ' color:#333;font-size:15px'
+      ],
+      anim: 'up',
+      content: "<div class='report'>" + 
+      "<div class='content'>" +
+        "<span>垃圾、广告信息</span>" + 
+        "<span>色情、低俗内容</span>" +
+        "<span>时政敏感话题</span>" + 
+        "<span>其他原因 ></span>" +
+      "</div></div>",
+      btn: ['提交'],
+      yes: function () {
+        if (report_content == undefined || report_content == '') {
+          layer.open({
+            content: '请选择举报理由',
+            style: 'padding: 50px 30px;',
+            time: 2,
+            skin: 'msg'
+          })
+          return false;
+        }
+        console.log(report_content);
+        var url = window.location.href;
+        $.ajax({
+          // url: ajaxUrlPrefix.cmsapi+'/api/userReport',
+          url: '/soapi/userReport',
+          type: 'POST',
+          data: {
+            report_source: '1',
+            report_type: '1',
+            report_content: report_content,
+            userid: '9999',
+            article_id: $(that).attr("data-artId"),
+            article_url:url,
+            city_id:$(that).attr('data-area')
+          },
+          dataType: 'json',
+          success: function (result) {
+            if (result.code == 0) {
+              layer.open({
+                content: '举报成功',
+                style: 'padding: 50px 30px;',
+                time: 2,
+                skin: 'msg'
+              })
+              layer.close(index);
+            }else{
+              layer.open({
+                content: result.message,
+                style: 'padding: 50px 30px;',
+                time: 2,
+                skin: 'msg'
+              })
+            }
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(errorThrown)
+          }
+        });
+      }
+    });
+
+    $(".report span").on('click', function (e) {
+      $(".report span").each(function () {
+        $(this).css({
+          borderColor: '#f5f5f5',
+          color: '#666666',
+        })
+      })
+      var index = $(this).index();
+      report_content = $(this).text();
+      $(this).css({
+        borderColor: '#c13232',
+        color: '#c13232',
+      })
+      if(index == 3) {
+        window.location = "/jubao?artId=" + $(that).attr("data-artId") + "&artUrl="+window.encodeURIComponent(window.location.href) + "&cityId=" + $(that).attr('data-area');
+      }
+    })
   }
-</script>
+  </script>
 </body>
+
 </html>

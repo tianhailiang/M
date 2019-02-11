@@ -906,6 +906,15 @@ exports.new_jingcaihuodong_list = function (data, callback) {
 
 }
 
+// 顾问主页-相关推荐
+exports.relation_recommend=function(data,callback){
+  var url = _api_url_path(data, config.apis.relation_recommend);
+  if (url == null) {
+    callback('404');
+    return;
+  }
+  api.apiRequest(url, callback);
+}
 
 //顾问文章 
 exports.wecenter = function (data, callback) {
@@ -1671,4 +1680,17 @@ function update_viewnum(catid, id, uuid, callback){
     }
   });
   // redisPool_views.quit();
+  
+};
+
+//举报接口
+exports.userReport = function(data,callback){
+  var url = config.apis.post_userReport;
+  if (url == null){
+    callback('404');
+    return;
+  }
+  console.log('data------', data);
+  console.log('url-----',url);
+  api.apiRequest_post(url ,data ,callback);
 };
