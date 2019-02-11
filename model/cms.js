@@ -1690,6 +1690,7 @@ exports.userReport = function(data,callback){
     callback('404');
     return;
   }
+  console.log('data------', data);
   console.log('url-----',url);
   api.apiRequest_post(url ,data ,callback);
 };

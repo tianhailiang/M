@@ -123,8 +123,8 @@
         <!--</a>-->
         <div class="cue_qq_con"></div>
       </div>
-      <div class="jubao_btn">
-        <span class="jubao_icon" data-artId="{{aitem.id}}" data-url="{{artUrl}}" ></span>
+      <div class="jubao_btn" data-artId="{{wenzhangdiye.article_info.id}}" data-area="{{area}}">
+        <span class="jubao_icon" ></span>
         举报
       </div>
     </div>
@@ -439,6 +439,7 @@
           return false;
         }
         console.log(report_content);
+        var url = window.location.href;
         $.ajax({
           // url: ajaxUrlPrefix.cmsapi+'/api/userReport',
           url: '/soapi/userReport',
@@ -447,10 +448,10 @@
             report_source: '1',
             report_type: '1',
             report_content: report_content,
-            userid: '1',
+            userid: '9999',
             article_id: $(that).attr("data-artId"),
-            article_url:$(that).attr('data-url'),
-            city_id:$('.advisor-bumen').attr('data-cityId')
+            article_url:url,
+            city_id:$(that).attr('data-area')
           },
           dataType: 'json',
           success: function (result) {

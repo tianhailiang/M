@@ -1222,7 +1222,9 @@ exports.advisor_list_moer = function (req, res, next) {
 /*资讯底页（rongfa）*/
 exports.news_detail = function (req, res, next) {
     log.debug('文章底页', req.params);
+    var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
     var data = [];
+    data.area = area;
     if (req.cookies.login_ss != undefined) {
         data.login_info = JSON.parse(req.cookies.login_ss);
     } else {
@@ -1340,6 +1342,7 @@ exports.news_detail = function (req, res, next) {
 /*资讯底页（rongfa）*/
 exports.case_detail = function (req, res, next) {
     log.debug('案例底页', req.params);
+    var area = req.cookies['currentarea'] ? req.cookies['currentarea'] : 1;
     var data = [];
     if (req.cookies.login_ss != undefined) {
         data.login_info = JSON.parse(req.cookies.login_ss);
@@ -3417,7 +3420,7 @@ exports.obtain = function (req, res, next) {
 exports.userReport = function(req,res,next){
     log.debug('举报接口')
     var data =req.body;
-    console.log('data-------',JSON.stringify(data));
+    console.log('data-------',data);
     cms.userReport(data,function(err,result){
         if(err){
             console.log('err', err);
