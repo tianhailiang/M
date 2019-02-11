@@ -83,9 +83,9 @@
           <p style="">{{userinfo.realname}}</p>
           <i></i>
         </div>
-        <div class="head_portrait_right">
-          <div class="adviser-label" style="color:#d51821;">
-            {{wenzhangdiye.article_info.tag_list}}
+        <div class="head_portrait_right" style="margin-top: 10px;">
+          <div class="author_news_tags" style="color:#d51821;">
+            <a href="{{helper.active_urlgen('articles', 'tag=' + diyetag)}}"><span>{{wenzhangdiye.article_info.tag_list}}</span></a>
           </div>
         </div>
       </div>
@@ -99,36 +99,16 @@
         <span>评论：<em>{{wenzhangdiye.article_info.comments}}</em></span>
         <span>点赞：<em>{{wenzhangdiye.article_info.votes}}</em></span>
       </p>
+      <div style="font-size: 17px;font-weight: 400;width: 100%;padding: 20px;background: #f5f5f5;color: #333;margin: 40px 0px;border-radius: 10px;">
+        文章摘要：{{wenzhangdiye.article_info.introduce}}
+      </div>
       <article class="news-content" style="clear: both" data-img="{{wenzhangdiye.article_info.imgInfo[0] if wenzhangdiye.article_info.imgInfo[0] else helper.cdnhost+'/assets/img/share_logo.png'}}"
         id="get-share-img" data-introduce="{{wenzhangdiye.article_info.introduce}}">
         {{wenzhangdiye.article_info.message | safe}}
       </article>
     </section>
     <!-- 点赞人数图像 -->
-    <div class="dianzan-list">
-      {% set userIconList = [
-        {
-          imgaeUrl: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=745096747,3395666420&fm=27&gp=0.jpg"
-        },
-        {
-          imgaeUrl: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=745096747,3395666420&fm=27&gp=0.jpg"
-        },
-        {
-          imgaeUrl: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=745096747,3395666420&fm=27&gp=0.jpg"
-        },
-        {
-          imgaeUrl: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=745096747,3395666420&fm=27&gp=0.jpg"
-        },
-        {
-          imgaeUrl: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=745096747,3395666420&fm=27&gp=0.jpg"
-        }
-      ] %}
-      {% for item in  userIconList %}
-        {% if loop.index < 6 %}
-        <img src="{{item.imgaeUrl}}" alt="">
-        {% endif %}
-      {% endfor %}
-      <span style="font-size: 12px; color: #333;line-height: 25px;display: inline;vertical-align: middle;margin-left: 10px;">等{{userIconList.length}}人点赞</span>
+    <div class="dianzan-list" id="fans-block" style="padding-left: 22px;">
     </div>
     <!-- 点赞人数图像end -->
     <!-- 分享按钮 -->
@@ -150,31 +130,43 @@
     </div>
     <div style="height:25px;background:#fff;"></div>
     <div style="background:#fff;box-sizing: border-box; border-top: 1px solid #f5f5f5; padding: 30px 0 0px; ">
-        <div style="font-size:15px; color: #333;text-align: center; padding-bottom: 10px;">去主页浏览TA的更多精彩内容 >></div>
+        <div style="font-size:15px; color: #333;text-align: center; padding-bottom: 10px;" onclick="open_main('{{userinfo.uid}}')">去主页浏览TA的更多精彩内容 >></div>
+        {% if toptitle != '' %}
         <div style="box-sizing: border-box; margin: 20px 15px; color: #666;font-size: 13px">
-          上一篇文章： 出国留学，哪的成本最高...
+          上一篇文章： <a href="{% if article == 'article' %}{{helper.urlgen('article',topid | safeId |string)}}{% else %}{{helper.urlgen('case',topid | safeId |string)}}{% endif %}" style="font-size:15px; color: #333;" >{{toptitle}}</a>
         </div>
+        {% endif %}
+        {% if lowertitle != '' %}
         <div style="box-sizing: border-box; padding: 20px 0; margin: 0 15px; color: #666;font-size: 13px; border-top:2px solid #f5f5f5;">
-          下一篇文章： 出国留学，哪的成本最高...
+          下一篇文章： <a href="{% if article == 'article' %}{{helper.urlgen('article',lowerid | safeId |string)}}{% else %}{{helper.urlgen('case',lowerid | safeId |string)}}{% endif %}" style="font-size:15px; color: #333;" >{{lowertitle}}</a>
         </div>
+        {% endif %}
     </div>
     <!-- 分享按钮end -->
     <!-- 相关推荐 -->
     <div class="tuijian">
-      <div class="tuijian_title">相关推荐</div>
+      <div class="tuijian_title" style="font-size: 12px;color: #666;">相关推荐</div>
+      {% for item in relation_recommend %}
+      {% if item.uid != null %}
+      {% if loop.index <= 4 %}
       <div class="tuijian_list_item">
+        <a target="_blank" href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}">
         <div class="author_news_info">
-          <div class="author_news_title">我的世界我的世界我的世界我的世界我的世界我的世界我的世界我的世界我的世界我的世界我的世界我的世界我的世界我的世界</div>
+          <div class="author_news_title" style="font-size: 12px;color: #666;">{{item.title | ellipsis(21)}}</div>
           <div class="author_news_tags">
-            <span>我的世界</span>
-            <span>我的世界</span>
+            <span>{{item.tag_list | ellipsis(14)}}</span>
           </div>
         </div>
+        </a>
         <div class="author_info" style="text-align: center;">
-          <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=745096747,3395666420&fm=27&gp=0.jpg" alt="">
-          <span>我的世界</span>
+          <a href="{{helper.urlgen(item.user_info.uid|string)}}"><img src="{{helper.avaterimg(item.user_info.uid, 'small', item.user_info.status,item.user_info.version)}}" alt=""></a>
+          <span>{{item.user_info.realname}}</span>
         </div>
+        
       </div>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
     </div>
     <!-- 相关推荐结束 -->
     <div class="cue_weixin">
@@ -212,6 +204,38 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" ></script>
 <script>
   //  document.domain='http://widget.weibo.com';
+  $(function(){
+    var articleid = $("#detail_id").val();
+    $.ajax({
+        url: ajaxUrlPrefix.nodeapi+'/vote_list',
+        data: {
+            article_id: articleid
+        },
+        type: 'GET',
+        dataType:'json',
+        success:function(msg){
+            if (msg.code == 0 && msg.data.length>0) {
+                var avatarArr = msg.data;
+                $('#fans-block').html(avatarGroup(avatarArr));
+            }
+        },
+        error:function(XMLHttpRequest, textStatus, errorThrown){
+            console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
+        }
+    })
+  })
+  function avatarGroup (arr) {
+    var html = '<div class="avatar-block">';
+    var fansNum = arr.length;
+    var maxNum = fansNum < 5 ? fansNum : 5;//限制显示5个
+    for (var i = 0; i<maxNum;i++) {
+        html+='<img src="'+ arr[i].avatar_file +'" alt="" style="margin-left:-8px;">';
+    }
+    return html+'<span style="font-size: 12px; color: #333;line-height: 25px;display: inline;vertical-align: middle;margin-left: 10px;">等'+ fansNum +'人点赞</span></div>';
+  }
+  function open_main(uid){
+    window.open('/' + uid);
+  }
   window.onload =function(){
     window._bd_share_config = {
       "common": {
