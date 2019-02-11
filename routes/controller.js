@@ -1303,9 +1303,10 @@ exports.news_detail = function (req, res, next) {
                     for (var i = 0; i < data.zhuanlanlist1.list.length; i++) {
                         if (data.zhuanlanlist1.list[i].title == data.wenzhangdiye.article_info.title) {
                             // 上一篇
+                            data.article = 'article';
                             if (i + 1 < data.zhuanlanlist1.list.length) {
-                                data.toptitle = data.zhuanlanlist1.list[i+1].title
-                                data.topid = data.zhuanlanlist1.list[i+1].id
+                                data.toptitle = data.zhuanlanlist1.list[i+1].title;
+                                data.topid = data.zhuanlanlist1.list[i+1].id;
                                 console.log('toptitle', data.toptitle);
                             } else {
                                 data.toptitle = ''
@@ -1313,8 +1314,8 @@ exports.news_detail = function (req, res, next) {
                             }
                             // 下一篇
                             if (i - 1 >= 0) {
-                                data.lowertitle = data.zhuanlanlist1.list[i-1].title
-                                data.lowerid = data.zhuanlanlist1.list[i-1].id
+                                data.lowertitle = data.zhuanlanlist1.list[i-1].title;
+                                data.lowerid = data.zhuanlanlist1.list[i-1].id;
                                 console.log('lowertitle', data.lowertitle);
                             } else {
                                 data.lowertitle = ''
@@ -1419,9 +1420,10 @@ exports.case_detail = function (req, res, next) {
                     for (var i = 0; i < data.zhuanlanlist1.list.length; i++) {
                         if (data.zhuanlanlist1.list[i].title == data.wenzhangdiye.article_info.title) {
                             // 上一篇
+                            data.article = '';
                             if (i + 1 < data.zhuanlanlist1.list.length) {
-                                data.toptitle = data.zhuanlanlist1.list[i+1].title
-                                data.topid = data.zhuanlanlist1.list[i+1].id
+                                data.toptitle = data.zhuanlanlist1.list[i+1].title;
+                                data.topid = data.zhuanlanlist1.list[i+1].id;
                                 console.log('toptitle', data.toptitle);
                             } else {
                                 data.toptitle = ''
@@ -1429,8 +1431,8 @@ exports.case_detail = function (req, res, next) {
                             }
                             // 下一篇
                             if (i - 1 >= 0) {
-                                data.lowertitle = data.zhuanlanlist1.list[i-1].title
-                                data.lowerid = data.zhuanlanlist1.list[i-1].id
+                                data.lowertitle = data.zhuanlanlist1.list[i-1].title;
+                                data.lowerid = data.zhuanlanlist1.list[i-1].id;
                                 console.log('lowertitle', data.lowertitle);
                             } else {
                                 data.lowertitle = ''
