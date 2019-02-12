@@ -511,7 +511,8 @@
         color: '#c13232',
       })
       if(index == 3) {
-        window.location = "/jubao?artId=" + $(that).attr("data-artId") + "&artUrl="+window.encodeURIComponent(window.location.href) + "&cityId=" + $(that).attr('data-area');
+        layer.closeAll();
+        window.location = "/jubao?artId=" + $(that).attr("data-artId") + "&artUrl="+window.encodeURIComponent(window.location.href) + "&cityId=" + $(that).attr('data-area');       
       }
     })
   }
