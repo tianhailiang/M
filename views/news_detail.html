@@ -9,6 +9,7 @@
 <script src="https://xiongzhang.baidu.com/sdk/c.js?appid=1612545228957158"></script>
 <script src="//msite.baidu.com/sdk/c.js?appid=1612545228957158"></script>
 <script src="{{helper.cdnhost}}/dep/js/layer/layer.js"></script>
+<!-- <script src="https://cdn.bootcss.com/vConsole/3.3.0/vconsole.min.js"></script> -->
 <script type="application/ld+json">
 {
   "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
@@ -223,6 +224,7 @@
         }
     })
   })
+  
   function avatarGroup (arr) {
     var html = '<div class="avatar-block">';
     var fansNum = arr.length;
@@ -425,8 +427,9 @@
     $('.jubao_btn').on('click', report)
     function report(even) {
     var report_content = null;
-    var top = null;
+    var scrollTop = null;
     var that = this;
+    var ua = navigator.userAgent;
     layer.open({
       title: [
         '举报原因',
@@ -442,19 +445,14 @@
       "</div></div>",
       btn: ['提交'],
       success: function (layero) {
-        
-        console.log(layero);
-        top = $(document).scrollTop();
-        console.log(top);
-        var ua = navigator.userAgent;
-        console.log(ua);
-        $('.layui-m-layershade').bind("touchmove",function(e){  
-          console.log('禁止花')
+        console.log('弹框成功事件');
+        scrollTop = $(document).scrollTop();
+        $('.layui-m-layershade').bind("touchmove",function(e){
           e.preventDefault();  
         });
         if(ua.indexOf('iPhone') > -1) {
           window.scrollTo(0,0)
-        }      
+        }  
       },
       yes: function (index) {
         if (report_content == undefined || report_content == '') {
@@ -466,7 +464,6 @@
           })
           return false;
         }
-        console.log(report_content);
         var url = window.location.href;
         $.ajax({
           // url: ajaxUrlPrefix.cmsapi+'/api/userReport',
@@ -506,9 +503,7 @@
         });
       },
       end: function () {
-        console.log('弹框销毁')
-        console.log(top);
-        window.scrollTo(0,top)
+        window.scrollTo(0,scrollTop);
       }
     });
 
