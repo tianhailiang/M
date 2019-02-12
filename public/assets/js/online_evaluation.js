@@ -78,6 +78,9 @@ $(function(){
     };
     var h = $.cookie('referweb'); // 获取来源url
     var grUserId = $.cookie('gr_user_id');
+    if (h == null || h == undefined) {
+      h = window.location.href;
+    }
     $.ajax({
       url: ajaxUrlPrefix.nodeapi + '/cmsapi/assessment',
       type:'GET',
