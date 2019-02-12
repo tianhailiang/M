@@ -423,17 +423,11 @@
       }
     }
 
-    // $('.jubao_btn').on('click', function () {
-
-    //   $('#report').show();
-    // });
     $('.jubao_btn').on('click', report)
     function report(even) {
     var report_content = null;
     var top = null;
     var that = this;
-    even.preventDefault();
-    debugger;
     layer.open({
       title: [
         '举报原因',
@@ -449,15 +443,18 @@
       "</div></div>",
       btn: ['提交'],
       success: function (layero) {
+        
         console.log(layero);
         top = $(document).scrollTop();
         console.log(top);
         var ua = navigator.userAgent;
         console.log(ua);
+        $('.layui-m-layershade').bind("touchmove",function(e){  
+          console.log('禁止花')
+          e.preventDefault();  
+        });
         if(ua.indexOf('iPhone') > -1) {
-          $('.layui-m-layer').css({
-            top: top + 'px'
-          })
+          window.scrollTo(0,0)
         }      
       },
       yes: function (index) {
@@ -512,6 +509,7 @@
       end: function () {
         console.log('弹框销毁')
         console.log(top);
+        window.scrollTo(0,top)
       }
     });
 
