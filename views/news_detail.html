@@ -178,16 +178,7 @@
     <div class="cue_qq">
       <div></div>
     </div>
-    
-    <!-- <div class='report'>
-      <div class="content"> 
-        <span>垃圾、广告信息</span>
-        <span>色情、低俗内容</span>
-        <span>时政敏感话题</span>
-        <span>其他原因 ></span>
-      </div>
-    </div> -->
-
+    <div class="jubao_result"></div>
     <script>cambrian.render('tail')</script>
     <!--footer start-->
     {% include "m_widget/footer/common_footer.html" %}
@@ -445,23 +436,24 @@
       "</div></div>",
       btn: ['提交'],
       success: function (layero) {
-        console.log('弹框成功事件');
         scrollTop = $(document).scrollTop();
+        var windowHeight = ($(window).height() + 100) + 'px'; 
         $('.layui-m-layershade').bind("touchmove",function(e){
           e.preventDefault();  
         });
+        $('.layui-m-layershade').css('height', windowHeight);
         if(ua.indexOf('iPhone') > -1) {
           window.scrollTo(0,0)
         }  
       },
       yes: function (index) {
         if (report_content == undefined || report_content == '') {
-          layer.open({
-            content: '请选择举报理由',
-            style: 'padding: 50px 30px;',
-            time: 2,
-            skin: 'msg'
-          })
+          layer.close(index);
+          $('.jubao_result').text('请选择举报理由');
+          $('.jubao_result').css('display', 'block');
+          setTimeout(function(){
+            $('.jubao_result').css('display', 'none')
+          }, 1500)
           return false;
         }
         var url = window.location.href;
@@ -481,20 +473,19 @@
           dataType: 'json',
           success: function (result) {
             if (result.code == 0) {
-              layer.open({
-                content: '举报成功',
-                style: 'padding: 50px 30px;',
-                time: 2,
-                skin: 'msg'
-              })
               layer.close(index);
+              $('.jubao_result').text('举报成功');
+              $('.jubao_result').css('display', 'block');
+              setTimeout(function(){
+                $('.jubao_result').css('display', 'none')
+              }, 1500)
             }else{
-              layer.open({
-                content: result.message,
-                style: 'padding: 50px 30px;',
-                time: 2,
-                skin: 'msg'
-              })
+              layer.close(index);
+              $('.jubao_result').text(result.message);
+              $('.jubao_result').css('display', 'block');
+              setTimeout(function(){
+                $('.jubao_result').css('display', 'none')
+              }, 1500)
             }
           },
           error: function (XMLHttpRequest, textStatus, errorThrown) {
