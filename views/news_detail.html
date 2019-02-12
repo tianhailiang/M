@@ -446,6 +446,16 @@
         "<span>其他原因 ></span>" +
       "</div></div>",
       btn: ['提交'],
+      success: function (layero) {
+        var os = new MobileDetect(navigator.userAgent).os();
+        if(os == "IOS" || os == "ios") {
+          $(layero).addClass('scroll-wrapper')
+          $('.layui-m-layer').css({
+            position: "fixed",
+            top: "50% !important"
+          })
+        }      
+      },
       yes: function () {
         if (report_content == undefined || report_content == '') {
           layer.open({
