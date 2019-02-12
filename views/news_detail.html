@@ -428,10 +428,12 @@
     //   $('#report').show();
     // });
     $('.jubao_btn').on('click', report)
-    function report() {
+    function report(even) {
     var report_content = null;
+    var top = null;
     var that = this;
-
+    even.preventDefault();
+    debugger;
     layer.open({
       title: [
         '举报原因',
@@ -447,16 +449,18 @@
       "</div></div>",
       btn: ['提交'],
       success: function (layero) {
-        var os = new MobileDetect(navigator.userAgent).os();
-        if(os == "IOS" || os == "ios") {
-          $(layero).addClass('scroll-wrapper')
+        console.log(layero);
+        top = $(document).scrollTop();
+        console.log(top);
+        var ua = navigator.userAgent;
+        console.log(ua);
+        if(ua.indexOf('iPhone') > -1) {
           $('.layui-m-layer').css({
-            position: "fixed",
-            top: "50% !important"
+            top: top + 'px'
           })
         }      
       },
-      yes: function () {
+      yes: function (index) {
         if (report_content == undefined || report_content == '') {
           layer.open({
             content: '请选择举报理由',
@@ -504,6 +508,10 @@
             console.log(errorThrown)
           }
         });
+      },
+      end: function () {
+        console.log('弹框销毁')
+        console.log(top);
       }
     });
 

@@ -319,8 +319,3 @@
 .layui-m-layerchild .layui-m-layercont {
     padding: 0 !important;
 }
-
-.scroll-wrapper {  
-    -webkit-overflow-scrolling: touch;  
-    overflow-y: scroll;  
-} 
