@@ -89,7 +89,12 @@
             var dataType = 3;
         } 
         if (fromUrl == null || fromUrl == undefined) {
-            fromUrl = window.location.href;
+            if (fromUrl.match(/[~|《|<|>|'|!|@|#|$|%|^|*|(|)|-|+|:]/)) {
+                alert('含有特殊字符')
+                return false;
+            } else {
+                fromUrl = window.location.href + '&wwj=007';
+            }
         }
         var subData = { grUserId: grUserId, dataType: dataType,relationId: relationId[0], name: username, phone: tel, city: city, country: firstCountry, source: fromUrl };
         // $.ajax({
@@ -250,7 +255,12 @@
             var dataType = 3;
         }
 		if (fromUrl == null || fromUrl == undefined) {
-            fromUrl = window.location.href;
+            if (fromUrl.match(/[~|《|<|>|'|!|@|#|$|%|^|*|(|)|-|+|:]/)) {
+                alert('含有特殊字符')
+                return false;
+            } else {
+                fromUrl = window.location.href + '&wwj=007';
+            }
         }
         var subData = { grUserId: grUserId, dataType: dataType,relationId: relationId[0], name: username, phone: tel, city: city, country: firstCountry, source: fromUrl };
         var dataBaidu = JSON.stringify({
