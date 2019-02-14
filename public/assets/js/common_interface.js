@@ -157,19 +157,19 @@
                 window.history.back(-1);
             }
 			});
-			$.ajax({
-            url: 'https://fengchao.baidu.com/taurus/open/api/ADD/userconvertinfo',
-            type: 'post',
-            dataType: 'json',
-            data: dataBaidu,
-            contentType: 'application/json;charset=UTF-8',
-            success: function (msg) {
-                console.log('成功')
-            },
-            error: function () {
-                console.log('失败')
-            }
-			});
+			// $.ajax({
+            // url: 'https://fengchao.baidu.com/taurus/open/api/ADD/userconvertinfo',
+            // type: 'post',
+            // dataType: 'json',
+            // data: dataBaidu,
+            // contentType: 'application/json;charset=UTF-8',
+            // success: function (msg) {
+            //     console.log('成功')
+            // },
+            // error: function () {
+            //     console.log('失败')
+            // }
+			// });
 		}
         return false;
     });
@@ -323,19 +323,19 @@
                 window.history.back(-1);
             }
 			});
-			$.ajax({
-				url: 'https://fengchao.baidu.com/taurus/open/api/ADD/userconvertinfo',
-				type: 'post',
-				dataType: 'json',
-				data: dataBaidu,
-				contentType: 'application/json;charset=UTF-8',
-				success: function (msg) {
-					console.log('成功')
-				},
-				error: function () {
-					console.log('失败')
-				}
-			});
+			// $.ajax({
+			// 	url: 'https://fengchao.baidu.com/taurus/open/api/ADD/userconvertinfo',
+			// 	type: 'post',
+			// 	dataType: 'json',
+			// 	data: dataBaidu,
+			// 	contentType: 'application/json;charset=UTF-8',
+			// 	success: function (msg) {
+			// 		console.log('成功')
+			// 	},
+			// 	error: function () {
+			// 		console.log('失败')
+			// 	}
+			// });
 		}
         
         return false;
