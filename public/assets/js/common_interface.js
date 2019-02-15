@@ -90,11 +90,23 @@
         } 
         if (fromUrl == null || fromUrl == undefined) {
             fromUrl = window.location.href;
-            if (fromUrl.match(/[~|《|<|>|'|!|@|#|$|%|^|*|(|)|+|:]/)) {
+            if (fromUrl.match(/[~|《|<|>|'|!|@|#|$|%|^|*|(|)|+]/)) {
                 alert('含有特殊字符')
                 return false;
             } else {
-                fromUrl = window.location.href + '&wwj=007';
+                if(document.referrer){
+                    try{
+                        var refer = document.referrer;
+                        console.log(3333);
+                        if(refer){
+                            fromUrl = refer
+                        }
+                    }catch(e){
+                        console.log('获取refer异常');
+                    };
+                } else {
+                    fromUrl = window.location.href;
+                }
             }
         }
         var subData = { grUserId: grUserId, dataType: dataType,relationId: relationId[0], name: username, phone: tel, city: city, country: firstCountry, source: fromUrl };
@@ -157,19 +169,19 @@
                 window.history.back(-1);
             }
 			});
-			$.ajax({
-            url: 'https://fengchao.baidu.com/taurus/open/api/ADD/userconvertinfo',
-            type: 'post',
-            dataType: 'json',
-            data: dataBaidu,
-            contentType: 'application/json;charset=UTF-8',
-            success: function (msg) {
-                console.log('成功')
-            },
-            error: function () {
-                console.log('失败')
-            }
-			});
+			// $.ajax({
+            // url: 'https://fengchao.baidu.com/taurus/open/api/ADD/userconvertinfo',
+            // type: 'post',
+            // dataType: 'json',
+            // data: dataBaidu,
+            // contentType: 'application/json;charset=UTF-8',
+            // success: function (msg) {
+            //     console.log('成功')
+            // },
+            // error: function () {
+            //     console.log('失败')
+            // }
+			// });
 		}
         return false;
     });
@@ -261,7 +273,19 @@
                 alert('含有特殊字符')
                 return false;
             } else {
-                fromUrl = window.location.href;
+                if(document.referrer){
+                    try{
+                        var refer = document.referrer;
+                        console.log(3333);
+                        if(refer){
+                            fromUrl = refer
+                        }
+                    }catch(e){
+                        console.log('获取refer异常');
+                    };
+                } else {
+                    fromUrl = window.location.href;
+                }
             }
         }
         var subData = { grUserId: grUserId, dataType: dataType,relationId: relationId[0], name: username, phone: tel, city: city, country: firstCountry, source: fromUrl };
@@ -323,19 +347,19 @@
                 window.history.back(-1);
             }
 			});
-			$.ajax({
-				url: 'https://fengchao.baidu.com/taurus/open/api/ADD/userconvertinfo',
-				type: 'post',
-				dataType: 'json',
-				data: dataBaidu,
-				contentType: 'application/json;charset=UTF-8',
-				success: function (msg) {
-					console.log('成功')
-				},
-				error: function () {
-					console.log('失败')
-				}
-			});
+			// $.ajax({
+			// 	url: 'https://fengchao.baidu.com/taurus/open/api/ADD/userconvertinfo',
+			// 	type: 'post',
+			// 	dataType: 'json',
+			// 	data: dataBaidu,
+			// 	contentType: 'application/json;charset=UTF-8',
+			// 	success: function (msg) {
+			// 		console.log('成功')
+			// 	},
+			// 	error: function () {
+			// 		console.log('失败')
+			// 	}
+			// });
 		}
         
         return false;

@@ -84,7 +84,19 @@ $(function(){
         alert('含有特殊字符')
         return false;
       } else {
-        h = window.location.href;
+        if(document.referrer){
+          try{
+              var refer = document.referrer;
+              console.log(3333);
+              if(refer){
+                fromUrl = refer
+              }
+          }catch(e){
+              console.log('获取refer异常');
+          };
+        } else {
+            fromUrl = window.location.href;
+        }
       }
     }
     $.ajax({
