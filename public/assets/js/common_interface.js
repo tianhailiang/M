@@ -336,7 +336,7 @@
                 $('#tel-bottom').val('');
                 // $('#firstCountry').val('');
                 window._agl && window._agl.push(['track', ['success', { t: 3 }]]);
-                // window.history.back(-1);
+                window.history.back(-1);
             },
             error: function () {
                 alert('老师将为您做出专业的评估');
@@ -344,7 +344,7 @@
                 $('#username-bottom').val('');
                 $('#tel-bottom').val('');
                 // $('#firstCountry').val('');
-                // window.history.back(-1);
+                window.history.back(-1);
             }
 			});
 			// $.ajax({
