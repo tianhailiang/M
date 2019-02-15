@@ -99,31 +99,8 @@
                         var refer = document.referrer;
                         console.log(3333);
                         if(refer){
-                            var referDomain = jesongGetDomain(refer);
-                            var currDomain = window.location.host;
-                            if(referDomain && referDomain == currDomain){
-                                // 推广来源和页面同源
-                                refer = "";
-                            } else {
-                                // 推广来源首次进入页面写入
-                                if (refer == window.location.href) {
-                                    // refer与url相同
-                                    fromUrl = refer
-                                    return false;
-                                } else {
-                                    // refer与url不同，以url为准
-                                    fromUrl = window.location.href;
-                                    return false;
-                                }
-                            }
-                         } else {
-                            console.log('推广来源refer异常,以url为准');
-                            fromUrl = window.location.href;
-                            return false;
-                         }
-                         //if(refer != ""){
-                            //return refer;
-                         //}
+                            fromUrl = refer
+                        }
                     }catch(e){
                         console.log('获取refer异常');
                     };
@@ -301,31 +278,8 @@
                         var refer = document.referrer;
                         console.log(3333);
                         if(refer){
-                            var referDomain = jesongGetDomain(refer);
-                            var currDomain = window.location.host;
-                            if(referDomain && referDomain == currDomain){
-                                // 推广来源和页面同源
-                                refer = "";
-                            } else {
-                                // 推广来源首次进入页面写入
-                                if (refer == window.location.href) {
-                                    // refer与url相同
-                                    fromUrl = refer
-                                    return false;
-                                } else {
-                                    // refer与url不同，以url为准
-                                    fromUrl = window.location.href;
-                                    return false;
-                                }
-                            }
-                         } else {
-                            console.log('推广来源refer异常,以url为准');
-                            fromUrl = window.location.href;
-                            return false;
-                         }
-                         //if(refer != ""){
-                            //return refer;
-                         //}
+                            fromUrl = refer
+                        }
                     }catch(e){
                         console.log('获取refer异常');
                     };
@@ -382,7 +336,7 @@
                 $('#tel-bottom').val('');
                 // $('#firstCountry').val('');
                 window._agl && window._agl.push(['track', ['success', { t: 3 }]]);
-                window.history.back(-1);
+                // window.history.back(-1);
             },
             error: function () {
                 alert('老师将为您做出专业的评估');
@@ -390,7 +344,7 @@
                 $('#username-bottom').val('');
                 $('#tel-bottom').val('');
                 // $('#firstCountry').val('');
-                window.history.back(-1);
+                // window.history.back(-1);
             }
 			});
 			// $.ajax({
