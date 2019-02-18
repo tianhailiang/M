@@ -119,7 +119,7 @@ exports = module.exports = function (app) {// routes
   app.post('/sendcode_s', controller.sendcode_s);
 
   //举报接口
-  app.post('/soapi/userReport',controller.userReport);
+  app.post('/soapi_m/userReport',controller.userReport);
   // 举报其他原因页面
   app.get('/jubao', controller.jubao)
 };
