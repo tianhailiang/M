@@ -84,11 +84,11 @@
   </header>
   <div class="header1" style="float: left;font-size: 12px;color: #666;overflow: hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;line-height: 30px;"><a href="{{helper.urlgen('branch_home','c='+tdk.cityid)}}" style="color: #666;">首页</a> > <a href="{{helper.urlgen(userinfo.uid)}}" style="color: #666;">顾问主页</a> > {{wenzhangdiye.article_info.title}}</div>
   <div class="fenxiang_con fenxiang_top" style="right: 0px;position: fixed;top: 43px;z-index: 1001;width: 73%;height: 85px;padding: 20px 0 20px 10px;float: right;margin-right: 15px;display: flex;justify-content: space-around;background: url({{helper.cdnhost}}/assets/img/article_det_fen_bac.png);background-size: cover;display: none;">
-    <div style="width: 30px;height: 30px;text-align: center;" class="wenxin_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">朋友圈</span></div>
-    <div style="width: 30px;height:30px;text-align: center;" class="wenxin_con2"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 50px;margin-left: -10px;">微信好友</span></div>
-    <div style="width: 30px;height: 30px;text-align: center;" class="cue_qq_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">QQ好友</span></div>
+    <div style="width: 30px;height: 30px;text-align: center;background: url({{helper.cdnhost}}/assets/img/weixin_new.png);background-position: 100% 100%;background-size: contain;" class="wenxin_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">朋友圈</span></div>
+    <div style="width: 30px;height:30px;text-align: center;background: url({{helper.cdnhost}}/assets/img/weixin1_new.png);background-position: 100% 100%;background-size: contain;" class="wenxin_con2"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 50px;margin-left: -10px;">微信好友</span></div>
+    <div style="width: 30px;height: 30px;text-align: center;background: url({{helper.cdnhost}}/assets/img/qq_new.png);background-position: 100% 100%;background-size: contain;margin-left: 0px;" class="cue_qq_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">QQ好友</span></div>
     <div class="bdsharebuttonbox bdshare-button-style0-16">
-      <a href="#" style="" class="bds_tsinas" data-cmd="tsina" title="分享到新浪微博"></a>
+      <a href="#" style="background: url({{helper.cdnhost}}/assets/img/xinlang_new.png);background-position: 100% 100%;background-size: contain;" class="bds_tsinas" data-cmd="tsina" title="分享到新浪微博"></a>
       <span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;margin-left: -45px;">新浪好友</span>
     </div>
   </div>
@@ -134,12 +134,12 @@
     <div class="fenxiang_con" style="background: #fff;height: 40px;display: flex;justify-content: space-between;align-items: center; box-sizing: border-box;padding: 0 15px;">
       <div style="display: flex; justify-content: space-between; align-items: center; height: 40px;">
         <div style="font-size: 14px;color: #999; margin-right: 15px;">分享到</div>
-        <div class="wenxin_con"></div>
-        <div class="wenxin_con2"></div>
+        <div class="wenxin_con" style="background: url({{helper.cdnhost}}/assets/img/weixin_new.png);background-position: 100% 100%;background-size: contain;" class="wenxin_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;"></div>
+        <div class="wenxin_con2" style="background: url({{helper.cdnhost}}/assets/img/weixin1_new.png);background-position: 100% 100%;background-size: contain;" class="wenxin_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;"></div>
         <!--</a>-->
-        <div class="cue_qq_con" style="margin-left: 0px;"></div>
+        <div class="cue_qq_con" style="margin-left: 0px;background: url({{helper.cdnhost}}/assets/img/qq_new.png);background-position: 100% 100%;background-size: contain;" class="wenxin_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;"></div>
         <div class="bdsharebuttonbox bdshare-button-style0-16" style="margin-left: 17px;">
-          <a href="#" class="bds_tsinax" data-cmd="tsina" title="分享到新浪微博"></a>
+          <a href="#" class="bds_tsinax" data-cmd="tsina" title="分享到新浪微博" style="background: url({{helper.cdnhost}}/assets/img/xinlang_new.png);background-position: 100% 100%;background-size: contain;" class="wenxin_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;"></a>
         </div>
       </div>
       <div class="jubao_btn" data-artId="{{wenzhangdiye.article_info.id}}" data-area="{{area}}">
