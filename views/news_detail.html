@@ -105,7 +105,7 @@
         <span>点赞：<em>{{wenzhangdiye.article_info.votes}}</em></span>
       </p>
       <div style="font-size: 17px;font-weight: 400;width: 100%;padding: 20px;background: #f5f5f5;color: #333;margin: 40px 0px 20px 0;border-radius: 10px;">
-        文章摘要：{{wenzhangdiye.article_info.introduce}}
+        {{wenzhangdiye.article_info.introduce}}
       </div>
       <article class="news-content" style="clear: both" data-img="{{wenzhangdiye.article_info.imgInfo[0] if wenzhangdiye.article_info.imgInfo[0] else helper.cdnhost+'/assets/img/share_logo.png'}}"
         id="get-share-img" data-introduce="{{wenzhangdiye.article_info.introduce}}">
@@ -159,7 +159,7 @@
         <div class="author_news_info">
           <div class="author_news_title" style="font-size: 12px;color: #666;">{{item.title | ellipsis(21)}}</div>
           <div class="author_news_tags">
-            <span>{{item.tag_list | ellipsis(14)}}</span>
+            <a href="{{helper.active_urlgen('articles', 'tag=' + diyetag)}}"><span>{{item.tag_list | ellipsis(14)}}</span></a>
           </div>
         </div>
         </a>
