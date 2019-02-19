@@ -161,12 +161,12 @@
     <div style="background:#fff;box-sizing: border-box; border-top: 1px solid #f5f5f5;padding: 30px 15px 0px 15px;">
         <div style="font-size:15px; color: #333;text-align: center; padding-bottom: 10px;" onclick="open_main('{{userinfo.uid}}')">去主页浏览TA的更多精彩内容 >></div>
         {% if toptitle != '' %}
-        <div style="box-sizing: border-box; margin: 20px 0px; color: #666;font-size: 13px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;width: 92%;box-sizing: border-box;align-items: center;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;">
+        <div style="box-sizing: border-box; margin: 20px 0px; color: #666;font-size: 13px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;width: 100%;box-sizing: border-box;align-items: center;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;">
           上一篇文章： <a href="{% if article == 'article' %}{{helper.urlgen('article',topid | safeId |string)}}{% else %}{{helper.urlgen('case',topid | safeId |string)}}{% endif %}" style="font-size:15px; color: #666;" >{{toptitle}}</a>
         </div>
         {% endif %}
         {% if lowertitle != '' %}
-        <div style="line-height: 39px;box-sizing: border-box; padding: 20px 0; margin: 0px; color: #666;font-size: 13px; border-top:2px solid #f5f5f5;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;width: 92%;box-sizing: border-box;align-items: center;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;">
+        <div style="line-height: 39px;box-sizing: border-box; padding: 20px 0; margin: 0px; color: #666;font-size: 13px; border-top:2px solid #f5f5f5;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;width: 100%;box-sizing: border-box;align-items: center;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;">
           下一篇文章： <a href="{% if article == 'article' %}{{helper.urlgen('article',lowerid | safeId |string)}}{% else %}{{helper.urlgen('case',lowerid | safeId |string)}}{% endif %}" style="font-size:15px; color: #666;" >{{lowertitle}}</a>
         </div>
         {% endif %}
