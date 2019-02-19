@@ -86,7 +86,7 @@
   <div class="fenxiang_con fenxiang_top" style="right: 0px;position: fixed;top: 43px;z-index: 1001;width: 73%;height: 85px;padding: 20px 0 20px 10px;float: right;margin-right: 15px;display: flex;justify-content: space-around;background: url({{helper.cdnhost}}/assets/img/article_det_fen_bac.png);background-size: cover;display: none;">
     <div style="width: 30px;height: 30px;text-align: center;background: url({{helper.cdnhost}}/assets/img/weixin_new.png);background-position: 100% 100%;background-size: contain;" class="wenxin_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">朋友圈</span></div>
     <div style="width: 30px;height:30px;text-align: center;background: url({{helper.cdnhost}}/assets/img/weixin1_new.png);background-position: 100% 100%;background-size: contain;" class="wenxin_con2"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 50px;margin-left: -10px;">微信好友</span></div>
-    <div style="width: 30px;height: 30px;text-align: center;background: url({{helper.cdnhost}}/assets/img/qq_new.png);background-position: 100% 100%;background-size: contain;margin-left: 0px;" class="cue_qq_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">QQ好友</span></div>
+    <div style="width: 30px;height: 30px;text-align: center;background: url({{helper.cdnhost}}/assets/img/qq_new.png);background-position: 100% 100%;background-size: contain;margin-left: 0px;margin-right: 15px;" class="cue_qq_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">QQ好友</span></div>
     <div class="bdsharebuttonbox bdshare-button-style0-16">
       <a href="#" style="background: url({{helper.cdnhost}}/assets/img/xinlang_new.png);background-position: 100% 100%;background-size: contain;" class="bds_tsinas" data-cmd="tsina" title="分享到新浪微博"></a>
       <span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;margin-left: -45px;">新浪好友</span>
@@ -151,12 +151,12 @@
     <div style="background:#fff;box-sizing: border-box; border-top: 1px solid #f5f5f5; padding: 30px 0 0px; ">
         <div style="font-size:15px; color: #333;text-align: center; padding-bottom: 10px;" onclick="open_main('{{userinfo.uid}}')">去主页浏览TA的更多精彩内容 >></div>
         {% if toptitle != '' %}
-        <div style="box-sizing: border-box; margin: 20px 15px; color: #666;font-size: 13px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;">
+        <div style="box-sizing: border-box; margin: 20px 15px; color: #666;font-size: 13px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;width: 92%;">
           上一篇文章： <a href="{% if article == 'article' %}{{helper.urlgen('article',topid | safeId |string)}}{% else %}{{helper.urlgen('case',topid | safeId |string)}}{% endif %}" style="font-size:15px; color: #666;" >{{toptitle}}</a>
         </div>
         {% endif %}
         {% if lowertitle != '' %}
-        <div style="line-height: 39px;box-sizing: border-box; padding: 20px 0; margin: 0 15px; color: #666;font-size: 13px; border-top:2px solid #f5f5f5;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;">
+        <div style="line-height: 39px;box-sizing: border-box; padding: 20px 0; margin: 0 15px; color: #666;font-size: 13px; border-top:2px solid #f5f5f5;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;width: 92%">
           下一篇文章： <a href="{% if article == 'article' %}{{helper.urlgen('article',lowerid | safeId |string)}}{% else %}{{helper.urlgen('case',lowerid | safeId |string)}}{% endif %}" style="font-size:15px; color: #666;" >{{lowertitle}}</a>
         </div>
         {% endif %}
@@ -328,6 +328,11 @@
         $(document).on('click touchstart', function () {
           if ($('.cue_weixin').css("display") == 'block') {
             $('.cue_weixin').css("display", "none");
+          }
+        });
+        $(document).on('click touchstart', function () {
+          if ($('.cue_weixin2').css("display") == 'block') {
+            $('.cue_weixin2').css("display", "none");
           }
         });
         $('.cue_qq_con').on('click', function (e) {
