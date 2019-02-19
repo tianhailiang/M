@@ -68,7 +68,7 @@
       <div class="fen"></div>
     </div>
   </header>
-  <div class="header1" style="float: left;font-size: 12px;color: #666;overflow: hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;line-height: 30px;">首页 > 顾问主页 > {{wenzhangdiye.article_info.title}}</div>
+  <div class="header1" style="float: left;font-size: 12px;color: #666;overflow: hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;line-height: 30px;"><a href="{{helper.urlgen('branch_home','c='+tdk.cityid)}}" style="color: #666;">首页</a> > <a href="{{helper.urlgen(userinfo.uid)}}" style="color: #666;">顾问主页</a> > {{wenzhangdiye.article_info.title}}</div>
   <div class="fenxiang_con fenxiang_top" style="right: 0px;position: fixed;top: 43px;z-index: 1001;width: 73%;height: 85px;padding: 20px 0 20px 10px;float: right;margin-right: 15px;display: flex;justify-content: space-around;background: url({{helper.cdnhost}}/assets/img/article_det_fen_bac.png);background-size: cover;display: none;">
     <div style="width: 30px;height: 30px;text-align: center;" class="wenxin_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">朋友圈</span></div>
     <div style="width: 30px;height:30px;text-align: center;" class="wenxin_con1"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 50px;margin-left: -10px;">微信好友</span></div>
