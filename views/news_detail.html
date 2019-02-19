@@ -52,6 +52,20 @@
   font-weight: 400;
   line-height: 23px;
 }
+.cue_weixin2 {
+    position: fixed;
+    right: 50%;
+    top: 50%;
+    margin-right: -134px;
+    margin-top: -47px;
+    display: none;
+}
+.cue_weixin2 div {
+  width: 268px;
+  height: 94px;
+  background: url({{helper.cdnhost}}/assets/img/fen_alert2.png) no-repeat;
+  background-size: cover;
+}
 </style>
 </head>
 
@@ -71,7 +85,7 @@
   <div class="header1" style="float: left;font-size: 12px;color: #666;overflow: hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;line-height: 30px;"><a href="{{helper.urlgen('branch_home','c='+tdk.cityid)}}" style="color: #666;">首页</a> > <a href="{{helper.urlgen(userinfo.uid)}}" style="color: #666;">顾问主页</a> > {{wenzhangdiye.article_info.title}}</div>
   <div class="fenxiang_con fenxiang_top" style="right: 0px;position: fixed;top: 43px;z-index: 1001;width: 73%;height: 85px;padding: 20px 0 20px 10px;float: right;margin-right: 15px;display: flex;justify-content: space-around;background: url({{helper.cdnhost}}/assets/img/article_det_fen_bac.png);background-size: cover;display: none;">
     <div style="width: 30px;height: 30px;text-align: center;" class="wenxin_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">朋友圈</span></div>
-    <div style="width: 30px;height:30px;text-align: center;" class="wenxin_con1"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 50px;margin-left: -10px;">微信好友</span></div>
+    <div style="width: 30px;height:30px;text-align: center;" class="wenxin_con2"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 50px;margin-left: -10px;">微信好友</span></div>
     <div style="width: 30px;height: 30px;text-align: center;" class="cue_qq_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">QQ好友</span></div>
     <div class="bdsharebuttonbox bdshare-button-style0-16">
       <a href="#" style="" class="bds_tsinas" data-cmd="tsina" title="分享到新浪微博"></a>
@@ -137,12 +151,12 @@
     <div style="background:#fff;box-sizing: border-box; border-top: 1px solid #f5f5f5; padding: 30px 0 0px; ">
         <div style="font-size:15px; color: #333;text-align: center; padding-bottom: 10px;" onclick="open_main('{{userinfo.uid}}')">去主页浏览TA的更多精彩内容 >></div>
         {% if toptitle != '' %}
-        <div style="box-sizing: border-box; margin: 20px 15px; color: #666;font-size: 13px">
+        <div style="box-sizing: border-box; margin: 20px 15px; color: #666;font-size: 13px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;">
           上一篇文章： <a href="{% if article == 'article' %}{{helper.urlgen('article',topid | safeId |string)}}{% else %}{{helper.urlgen('case',topid | safeId |string)}}{% endif %}" style="font-size:15px; color: #666;" >{{toptitle}}</a>
         </div>
         {% endif %}
         {% if lowertitle != '' %}
-        <div style="box-sizing: border-box; padding: 20px 0; margin: 0 15px; color: #666;font-size: 13px; border-top:2px solid #f5f5f5;">
+        <div style="line-height: 39px;box-sizing: border-box; padding: 20px 0; margin: 0 15px; color: #666;font-size: 13px; border-top:2px solid #f5f5f5;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;">
           下一篇文章： <a href="{% if article == 'article' %}{{helper.urlgen('article',lowerid | safeId |string)}}{% else %}{{helper.urlgen('case',lowerid | safeId |string)}}{% endif %}" style="font-size:15px; color: #666;" >{{lowertitle}}</a>
         </div>
         {% endif %}
@@ -174,6 +188,9 @@
       {% endfor %}
     </div>
     <!-- 相关推荐结束 -->
+    <div class="cue_weixin2">
+      <div></div>
+    </div>
     <div class="cue_weixin">
       <div></div>
     </div>
@@ -303,9 +320,9 @@
           e.stopPropagation();
           this.flag = !this.flag;
           if (this.flag) {
-            $('.cue_weixin').css("display", "block");
+            $('.cue_weixin2').css("display", "block");
           } else {
-            $('.cue_weixin').css("display", "none");
+            $('.cue_weixin2').css("display", "none");
           }
         });
         $(document).on('click touchstart', function () {
