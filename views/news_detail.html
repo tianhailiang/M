@@ -47,6 +47,11 @@
   width: 100%;
   background: #f5f5f5;
 }
+.news-content h2, .news-content p {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 30px;
+}
 </style>
 </head>
 
@@ -64,7 +69,7 @@
     </div>
   </header>
   <div class="header1" style="float: left;font-size: 12px;color: #666;overflow: hidden;text-overflow: ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;line-height: 30px;">首页 > 顾问主页 > {{wenzhangdiye.article_info.title}}</div>
-  <div class="fenxiang_con fenxiang_top" style="right: 0px;position: fixed;top: 43px;z-index: 1001;width: 256px;height: 85px;padding: 20px 0 20px 10px;float: right;margin-right: 15px;display: flex;justify-content: space-around;background: url({{helper.cdnhost}}/assets/img/article_det_fen_bac.png);background-size: cover;display: none;">
+  <div class="fenxiang_con fenxiang_top" style="right: 0px;position: fixed;top: 43px;z-index: 1001;width: 73%;height: 85px;padding: 20px 0 20px 10px;float: right;margin-right: 15px;display: flex;justify-content: space-around;background: url({{helper.cdnhost}}/assets/img/article_det_fen_bac.png);background-size: cover;display: none;">
     <div style="width: 30px;height: 30px;text-align: center;" class="wenxin_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">朋友圈</span></div>
     <div style="width: 30px;height:30px;text-align: center;" class="wenxin_con1"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 50px;margin-left: -10px;">微信好友</span></div>
     <div style="width: 30px;height: 30px;text-align: center;" class="cue_qq_con"><span style="font-size: 10px;color: #333;float: left;display: block;margin-top: 35px;width: 45px;margin-left: -10px;">QQ好友</span></div>
@@ -99,7 +104,7 @@
         <span>评论：<em>{{wenzhangdiye.article_info.comments}}</em></span>
         <span>点赞：<em>{{wenzhangdiye.article_info.votes}}</em></span>
       </p>
-      <div style="font-size: 17px;font-weight: 400;width: 100%;padding: 20px;background: #f5f5f5;color: #333;margin: 40px 0px;border-radius: 10px;">
+      <div style="font-size: 17px;font-weight: 400;width: 100%;padding: 20px;background: #f5f5f5;color: #333;margin: 40px 0px 20px 0;border-radius: 10px;">
         文章摘要：{{wenzhangdiye.article_info.introduce}}
       </div>
       <article class="news-content" style="clear: both" data-img="{{wenzhangdiye.article_info.imgInfo[0] if wenzhangdiye.article_info.imgInfo[0] else helper.cdnhost+'/assets/img/share_logo.png'}}"
@@ -133,12 +138,12 @@
         <div style="font-size:15px; color: #333;text-align: center; padding-bottom: 10px;" onclick="open_main('{{userinfo.uid}}')">去主页浏览TA的更多精彩内容 >></div>
         {% if toptitle != '' %}
         <div style="box-sizing: border-box; margin: 20px 15px; color: #666;font-size: 13px">
-          上一篇文章： <a href="{% if article == 'article' %}{{helper.urlgen('article',topid | safeId |string)}}{% else %}{{helper.urlgen('case',topid | safeId |string)}}{% endif %}" style="font-size:15px; color: #333;" >{{toptitle}}</a>
+          上一篇文章： <a href="{% if article == 'article' %}{{helper.urlgen('article',topid | safeId |string)}}{% else %}{{helper.urlgen('case',topid | safeId |string)}}{% endif %}" style="font-size:15px; color: #666;" >{{toptitle}}</a>
         </div>
         {% endif %}
         {% if lowertitle != '' %}
         <div style="box-sizing: border-box; padding: 20px 0; margin: 0 15px; color: #666;font-size: 13px; border-top:2px solid #f5f5f5;">
-          下一篇文章： <a href="{% if article == 'article' %}{{helper.urlgen('article',lowerid | safeId |string)}}{% else %}{{helper.urlgen('case',lowerid | safeId |string)}}{% endif %}" style="font-size:15px; color: #333;" >{{lowertitle}}</a>
+          下一篇文章： <a href="{% if article == 'article' %}{{helper.urlgen('article',lowerid | safeId |string)}}{% else %}{{helper.urlgen('case',lowerid | safeId |string)}}{% endif %}" style="font-size:15px; color: #666;" >{{lowertitle}}</a>
         </div>
         {% endif %}
     </div>
@@ -205,10 +210,10 @@
         type: 'GET',
         dataType:'json',
         success:function(msg){
-            if (msg.code == 0 && msg.data.length>0) {
-                var avatarArr = msg.data;
-                $('#fans-block').html(avatarGroup(avatarArr));
-            }
+          if (msg.code == 0 && msg.data.length>0) {
+            var avatarArr = msg.data;
+            $('#fans-block').html(avatarGroup(avatarArr));
+          }
         },
         error:function(XMLHttpRequest, textStatus, errorThrown){
             console.log("获取失败，请重试！CODE:"+XMLHttpRequest.status)
@@ -448,7 +453,7 @@
       },
       yes: function (index) {
         if (report_content == undefined || report_content == '') {
-          layer.close(index);
+          // layer.close(index);
           $('.jubao_result').text('请选择举报理由');
           $('.jubao_result').css('display', 'block');
           setTimeout(function(){
