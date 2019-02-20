@@ -4,7 +4,7 @@
 {% include "header.html" %}
 <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/common.css">
 <link rel="stylesheet" href="{{helper.cdnhost}}/assets/css/news_detail.css">
-<link rel="canonical" href="http://{{helper.pcHost}}/{% if wenzhangdiye.article_info.type == 2 %}article{% elif wenzhangdiye.article_info.type == 1 %}case{% endif %}/{{article_id}}.html"/>
+<link rel="canonical" href="//{{helper.pcHost}}/{% if wenzhangdiye.article_info.type == 2 %}article{% elif wenzhangdiye.article_info.type == 1 %}case{% endif %}/{{article_id}}.html"/>
 <script src="https://xiongzhang.baidu.com/sdk/c.js?appid=1612545228957158"></script>
 <script src="//msite.baidu.com/sdk/c.js?appid=1612545228957158"></script>
 <script type="application/ld+json">
@@ -96,9 +96,8 @@
   <input type="hidden" id="detail_id" value="{{article_id}}"/>
 </div>
 <script src="{{helper.cdnhost}}/assets/js/view_count_min.js"></script>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" ></script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js" ></script>
 <script>
-  //  document.domain='http://widget.weibo.com';
   window.onload =function(){
     window._bd_share_config = {
       "common": {
@@ -113,7 +112,7 @@
       },
       "share": {}
     };
-    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = '/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
     $(".jiangzuo-btn").on("click",function(){
       $(".mark").show();
       $(".mark-box").show();
@@ -137,7 +136,7 @@
     // }
     // function getImage() {
     //   // 获取图片
-    //   return 'http://'+location.host+'/assets/img/share_logo.png';
+    //   return '//'+location.host+'/assets/img/share_logo.png';
     // }
     if(isWeiXin()){
       $('.wenxin_con').on('click',function(e){

@@ -63,9 +63,11 @@ app.use(session({
 if(process.env.NODE_ENV == 'development'){
   app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
   app.use('/dep', express.static(path.join(__dirname, 'public/dep')));
+  app.use('/static', express.static(path.join(__dirname, 'public/static')));
 }else if(process.env.NODE_ENV == 'production'){
   app.use('/assets', express.static(path.join(__dirname, 'dist/public/assets')));
   app.use('/dep', express.static(path.join(__dirname, 'dist/public/dep')));
+  app.use('/static', express.static(path.join(__dirname, 'dist/public/static')));
 }
 
 /*�������� ajax�������*/

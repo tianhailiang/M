@@ -358,10 +358,10 @@
             var dir3 = uid.substr(5, 2);
             if(version == 0 || version == null){
                 if (usertype == 1) {
-                    return 'http://images.jjl.cn/avatar/default_avatar_small.jpg'
+                    return '//images.jjl.cn/avatar/default_avatar_small.jpg'
                 }
                 else {
-                    return 'http://images.jjl.cn/avatar/default_jjl.png'
+                    return '//images.jjl.cn/avatar/default_jjl.png'
                 }
             }else{
                 if (version == 1) {

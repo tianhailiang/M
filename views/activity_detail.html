@@ -33,7 +33,7 @@
       讲座地点：
       <span>{{ activity_detail.list.address_des }}</span>
       {% if activity_detail.list.longitude and activity_detail.list.address_des  %}
-      <a class="map-btn" href="http://api.map.baidu.com/marker?location={{ activity_detail.list.longitude }},{{ activity_detail.list.latitude }}&title=我的位置&content={{ activity_detail.list.address_des }}&output=html"><svg class="icon icon-map" aria-hidden="true">
+      <a class="map-btn" href="//api.map.baidu.com/marker?location={{ activity_detail.list.longitude }},{{ activity_detail.list.latitude }}&title=我的位置&content={{ activity_detail.list.address_des }}&output=html"><svg class="icon icon-map" aria-hidden="true">
         <use xlink:href="#icon-ditu"></use>
       </svg></a>
       {% endif %}
@@ -117,10 +117,9 @@
     {% include "m_widget/slidebar/slidebar.html" %}
     <!-- ======乐语底栏======= -->
     {% include 'm_widget/funtalk/funtalk.html' %}
-    <script src="http://api.map.baidu.com/getscript?v=2.0&ak=586c90bc5512edfcd7de1696749f8ef7"></script>
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" ></script>
+    <script src="//api.map.baidu.com/getscript?v=2.0&ak=586c90bc5512edfcd7de1696749f8ef7"></script>
+    <script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js" ></script>
     <script>
-      //  document.domain='http://widget.weibo.com';
       window.onload =function(){
         window._bd_share_config = {
           "common": {
@@ -135,7 +134,7 @@
           },
           "share": {}
         };
-        with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+        with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = '/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
         $(".jiangzuo-btn").on("click",function(){
           $(".mark").show();
           $(".mark-box").show();
@@ -159,7 +158,7 @@
         }
         function getImage() {
           // 获取图片
-          return 'http://'+location.host+'/assets/img/share_logo.png';
+          return '//'+location.host+'/assets/img/share_logo.png';
         }
         if(isWeiXin()){
           $('.wenxin_con').on('click',function(e){

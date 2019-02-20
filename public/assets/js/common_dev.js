@@ -3,15 +3,15 @@
  */
 ;(function (global, document) {
     var ajaxUrlPrefix = global.ajaxUrlPrefix = {
-        cdnhost: 'http://m.jjl.cn:7000',
-        imageshost: 'http://images.jjl.cn',
-        nodeapi: 'http://api.jjl.cn:3600'
+        cdnhost: '//m.jjl.cn:7000',
+        imageshost: '//images.jjl.cn',
+        nodeapi: '//api.jjl.cn:3600'
     };
     var js_api_config = global.js_api_config = {
         version: 'development',
-        wwhost: 'http://m.jjl.cn:7000',
-        yiminhost : 'http://yimin.jjl.cn',
-        imageshost: 'http://images.jjl.cn'
+        wwhost: '//m.jjl.cn:7000',
+        yiminhost : '//yimin.jjl.cn',
+        imageshost: '//images.jjl.cn'
     }
 })(this, document);
 
