@@ -1247,7 +1247,7 @@ exports.news_detail = function (req, res, next) {
         data.wenzhangdiye = returnData(result.wenzhangdiye, 'wenzhangdiye');
         console.log('wenzhangdiye', data.wenzhangdiye)
         data.diyetag = data.wenzhangdiye.article_info.tag_list.split("/");
-        data.diyetag = data.diyetag[0];
+        console.log('diyetag', data.diyetag)
         data.wenzhangdiye.article_info.imgInfo = JSON.parse(data.wenzhangdiye.article_info.img_info);
         async.parallel({
             //获取用户信息（普通用户，顾问，参赞）
@@ -1273,6 +1273,11 @@ exports.news_detail = function (req, res, next) {
             for (let index in data.relation_recommend) {
                 if (data.relation_recommend[index].id == data.wenzhangdiye.article_info.id) {
                   data.relation_recommend.splice(index, 1);
+                }
+            }
+            for (let i = 0; i < data.relation_recommend.length; i++) {
+                if (data.relation_recommend[i].tag_list != null) {
+                    data.relation_recommend[i].tag_list = data.relation_recommend[i].tag_list.split('/');
                 }
             }
             console.log('relation_recommend',data.relation_recommend);

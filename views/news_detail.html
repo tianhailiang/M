@@ -122,10 +122,18 @@
           <p style="">{{userinfo.realname}}</p>
           <i></i>
         </div>
-        <div class="head_portrait_right" style="margin-top: 10px;">
-          <div class="author_news_tags" style="color:#d51821;">
-            <a href="{{helper.active_urlgen('articles', 'tag=' + diyetag)}}"><span>{{wenzhangdiye.article_info.tag_list}}</span></a>
+        <div class="head_portrait_right" style="margin-top: 10px;width: 50%">
+          {% for item in diyetag %}
+          {% if loop.index == 1 %}
+          <div class="author_news_tags" style="color:#d51821;float: right;">
+            <a href="{{helper.active_urlgen('articles', 'tag=' + item)}}"><span>{{item}}</span></a>
           </div>
+          {% else %}
+          <div class="author_news_tags" style="color:#d51821;float: right;margin-right: 5px;">
+            <a href="{{helper.active_urlgen('articles', 'tag=' + item)}}"><span>{{item}}</span></a>
+          </div>
+          {% endif %}
+          {% endfor %}
         </div>
       </div>
       <h1 id="article_title" style="font-size: 24px;font-weight: 400;">{{wenzhangdiye.article_info.title}}</h1>
@@ -192,9 +200,17 @@
         <a target="_blank" href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}">
         <div class="author_news_info">
           <div class="author_news_title" style="font-size: 12px;color: #666;">{{item.title | ellipsis(21)}}</div>
-          <div class="author_news_tags">
-            <a href="{{helper.active_urlgen('articles', 'tag=' + diyetag)}}"><span>{{item.tag_list | ellipsis(14)}}</span></a>
+          {% for items in item.tag_list %}
+          {% if loop.index == item.tag_list.length %}
+          <div class="author_news_tags" style="float: left;">
+            <a href="{{helper.active_urlgen('articles', 'tag=' + items)}}"><span>{{items | ellipsis(14)}}</span></a>
           </div>
+          {% else %}
+          <div class="author_news_tags" style="float: left;margin-right: 5px;">
+            <a href="{{helper.active_urlgen('articles', 'tag=' + items)}}"><span>{{items | ellipsis(14)}}</span></a>
+          </div>
+          {% endif %}
+          {% endfor %}
         </div>
         </a>
         <div class="author_info" style="text-align: center;">
