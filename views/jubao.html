@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include "header.html" %}
+    <script src="{{helper.cdnhost}}/dep/js/layer/layer.js"></script>
+    <style>
+        body {
+            background: #fff;
+        }
+
+        .header-back {
+            height: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            z-index: 2000;
+            position: relative;
+        }
+
+        .header-back span {
+            display: block;
+            width: 14px;
+            height: 14px;
+            background: url(../../../assets/img/go_back.png) no-repeat 0 0;
+            background-size: 14px 14px;
+        }
+
+        .header-yuyue {
+            color: #c13232;
+        }
+
+        .formControl {
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .formControl textarea {
+            width: 100%;
+            color: #666666;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header" style="background: #f5f5f5; border-bottom: 1px solid #949494;position: static">
+        <div class="header-back">
+            <span></span>
+        </div>
+        <div class="activity-biaoti">
+            其他问题
+        </div>
+        <div class="header-yuyue">
+            提交
+        </div>
+    </header>
+    <div class="formControl">
+        <textarea class="value" rows="8" placeholder="请输入其他原因（500字）" maxlength="500"></textarea>
+    </div>
+</body>
+<script>
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
+    var artId = getQueryVariable('artId');
+    var artUrl = window.decodeURIComponent(getQueryVariable('artUrl'));
+    var cityId = getQueryVariable('cityId');
+    $('.header-back').on('click', function () {
+        window.history.back(-1);
+    })
+    $('.header-yuyue').on('click', function () {
+        var value = $('.value').val();
+        if (value.length <= 0) {
+            layer.open({
+                content: '请填写举报原因',
+                style: 'padding: 50px 30px;',
+                time: 2,
+                skin: 'msg'
+            })
+        } else {
+            $.ajax({
+                url: '/soapi_m/userReport',
+                type: 'POST',
+                data: {
+                    report_source: '1',
+                    report_type: '1',
+                    report_content: value,
+                    userid: '9999',
+                    article_id: artId,
+                    article_url: artUrl,
+                    city_id: cityId
+                },
+                dataType: 'json',
+                success: function (result) {
+                    if (result.code == 0) {
+                        layer.open({
+                            content: '举报成功',
+                            style: 'padding: 50px 30px;',
+                            time: 2,
+                            skin: 'msg'
+                        })
+                        setTimeout(function () {
+                            window.history.back(-1);
+                        }, 2000)
+                    } else {
+                        layer.open({
+                            content: result.message,
+                            style: 'padding: 50px 30px;',
+                            time: 2,
+                            skin: 'msg'
+                        })
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(errorThrown)
+                }
+            });
+        }
+    })
+</script>
+
+</html>

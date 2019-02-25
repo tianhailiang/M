@@ -157,7 +157,7 @@ function urlgen() {
   }
 
   if (config.version == 'development') { //如果是開發環境
-    url = config.wwhost + url;//social
+    url = config.wwhost + ':7000' + url;//social
   }
   if(url.match(/^(.*)\/article\/(\d+)$/g) || url.match(/^(.*)\/case\/(\d+)$/g)|| url.match(/(culture|events|cooperation|contact|canzan)/)){
     url = url + '.html';
