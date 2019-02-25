@@ -86,6 +86,15 @@
   background-position: 100% 100%;
   background-size: contain;
 }
+.new-details-p1 {
+  text-align: right;
+  width: 75%;
+}
+.new-details-p1 span {
+  margin-left: -4px;
+  display: inline-block;
+  width: 25%;
+}
 </style>
 </head>
 
@@ -137,11 +146,11 @@
         </div>
       </div>
       <h1 id="article_title" style="font-size: 24px;font-weight: 400;">{{wenzhangdiye.article_info.title}}</h1>
-      <p class="new-details-p2">
+      <p class="new-details-p2" style="width: 24%;">
         {{wenzhangdiye.article_info.add_time|shorten(10)}}
       </p>
-      <p class="new-details-p1">
-        <span>阅读：<em id="detail_views_num">{{wenzhangdiye.article_info.views}}</em></span>
+      <p class="new-details-p1" style="width: 75%;">
+        <span style="margin-left: 0px;">阅读：<em id="detail_views_num">{{wenzhangdiye.article_info.views}}</em></span>
         <span>收藏：<em>{{wenzhangdiye.article_info.favorites}}</em></span>
         <span>评论：<em>{{wenzhangdiye.article_info.comments}}</em></span>
         <span>点赞：<em>{{wenzhangdiye.article_info.votes}}</em></span>
