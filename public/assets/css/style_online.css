@@ -1,5 +1,5 @@
 *{margin: 0;padding: 0;}
-.clear:after{display:block;clear:both;content:".";visibility:hidden;height:0}
+.clear:after{display:block;clear:both;content:"";visibility:hidden;height:0}
 .clear{zoom:"1";}
 body{background: #fff;font-family: '微软雅黑';}
 img{width: 100%;}
@@ -557,7 +557,7 @@ div.form ._submit_form .form-h p:nth-child(2){position: relative;}
 /*
 *展会信息 
 */
-.clear:after{display:block;clear:both;content:".";visibility:hidden;height:0}
+.clear:after{display:block;clear:both;content:"";visibility:hidden;height:0}
 .clear{zoom:"1";}
 #page-content{width: 100%;max-width: 750px;margin: 0 auto;}
 .page{max-width: 750px;font-size: 30px;color: white;overflow: hidden;}
