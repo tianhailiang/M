@@ -1246,7 +1246,7 @@ exports.news_detail = function (req, res, next) {
         }
         data.wenzhangdiye = returnData(result.wenzhangdiye, 'wenzhangdiye');
         console.log('wenzhangdiye', data.wenzhangdiye)
-        if (data.wenzhangdiye.article_info.tag_list != null && data.wenzhangdiye.article_info.tag_list != '' && data.wenzhangdiye.article_info.tag_list != undefined) {
+        if (typeof(data.wenzhangdiye.article_info.tag_list) != "undefined" && data.wenzhangdiye.article_info.tag_list != null && data.wenzhangdiye.article_info.tag_list != '') {
             data.diyetag = data.wenzhangdiye.article_info.tag_list.split("/");
         }
         console.log('diyetag', data.diyetag)

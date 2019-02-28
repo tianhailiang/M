@@ -18,7 +18,7 @@ var httpRequest = function(requrl, callback){
     if (!err && response.statusCode == 200) {
       var res = JSON.parse(receiveData);
       callback(null, res);
-    }else if(response !== null && response !== undefined && response.statusCode != 200) {
+    }else if( response !== undefined && response !== null && response.statusCode != 200) {
       var err_msg = "接口地址："+requrl+"，HTTP 请求错误, response状态码："+response.statusCode;
       log.error(err_msg);
       callback(null, []);
