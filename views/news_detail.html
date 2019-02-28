@@ -142,11 +142,11 @@
           {% for item in diyetag %}
           {% if loop.index == 1 %}
           <div class="author_news_tags" style="color:#d51821;float: right;">
-            <a href="{{helper.active_urlgen('articles', 'type=' + item)}}"><span>{{item}}</span></a>
+            <a href="{{helper.active_urlgen('articles', 'tag=' + item)}}"><span>{{item}}</span></a>
           </div>
           {% else %}
           <div class="author_news_tags" style="color:#d51821;float: right;margin-right: 5px;">
-            <a href="{{helper.active_urlgen('articles', 'type=' + item)}}"><span>{{item}}</span></a>
+            <a href="{{helper.active_urlgen('articles', 'tag=' + item)}}"><span>{{item}}</span></a>
           </div>
           {% endif %}
           {% endfor %}
