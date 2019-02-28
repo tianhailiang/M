@@ -98,6 +98,10 @@
 .author_news_info {
   width: 78%;
 }
+.dianzan-list {
+  height: 50px;
+  padding: 0px 15px 0px 15px;
+}
 </style>
 </head>
 
@@ -138,11 +142,11 @@
           {% for item in diyetag %}
           {% if loop.index == 1 %}
           <div class="author_news_tags" style="color:#d51821;float: right;">
-            <a href="{{helper.active_urlgen('articles', 'tag=' + item)}}"><span>{{item}}</span></a>
+            <a href="{{helper.active_urlgen('articles', 'type=' + item)}}"><span>{{item}}</span></a>
           </div>
           {% else %}
           <div class="author_news_tags" style="color:#d51821;float: right;margin-right: 5px;">
-            <a href="{{helper.active_urlgen('articles', 'tag=' + item)}}"><span>{{item}}</span></a>
+            <a href="{{helper.active_urlgen('articles', 'type=' + item)}}"><span>{{item}}</span></a>
           </div>
           {% endif %}
           {% endfor %}
@@ -204,14 +208,14 @@
     <!-- 分享按钮end -->
     <!-- 相关推荐 -->
     <div class="tuijian">
-      <div class="tuijian_title" style="font-size: 12px;color: #666;">相关推荐</div>
+      <div class="tuijian_title" style="font-size: 15px;color: #666;">相关推荐</div>
       {% for item in relation_recommend %}
       {% if item.uid != null %}
       {% if loop.index <= 4 %}
       <div class="tuijian_list_item">
         <a target="_blank" href="{{helper.urlgen('case',item.id | string) if item.type == 1 else helper.urlgen('article',item.id | string)}}">
         <div class="author_news_info">
-          <div class="author_news_title" style="font-size: 12px;color: #666;">{{item.title | ellipsis(21)}}</div>
+          <div class="author_news_title" style="font-size: 15px;color: #666;">{{item.title | ellipsis(21)}}</div>
           {% for items in item.tag_list %}
           {% if loop.index == item.tag_list.length %}
           <div class="author_news_tags" style="float: left;">
