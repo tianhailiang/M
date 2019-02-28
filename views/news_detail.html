@@ -140,15 +140,27 @@
         </div>
         <div class="head_portrait_right" style="margin-top: 10px;width: 60%;">
           {% for item in diyetag %}
-          {% if loop.index == 1 %}
-          <div class="author_news_tags" style="color:#d51821;float: right;">
-            <a href="{{helper.active_urlgen('articles', 'tag=' + item)}}"><span>{{item}}</span></a>
-          </div>
-          {% else %}
-          <div class="author_news_tags" style="color:#d51821;float: right;margin-right: 5px;">
-            <a href="{{helper.active_urlgen('articles', 'tag=' + item)}}"><span>{{item}}</span></a>
-          </div>
-          {% endif %}
+            {% if wenzhangdiye.article_info.is_news == 2  %}
+              {% if loop.index == 1 %}
+              <div class="author_news_tags" style="color:#d51821;float: right;">
+                <a href="{{helper.active_urlgen('articles', 'type=时讯')}}"><span>{{item}}</span></a>
+              </div>
+              {% else %}
+              <div class="author_news_tags" style="color:#d51821;float: right;margin-right: 5px;">
+                <a href="{{helper.active_urlgen('articles', 'type=时讯')}}"><span>{{item}}</span></a>
+              </div>
+              {% endif %}
+            {% else %}
+              {% if loop.index == 1 %}
+              <div class="author_news_tags" style="color:#d51821;float: right;">
+                <a href="{{helper.active_urlgen('articles', 'tag=' + item)}}"><span>{{item}}</span></a>
+              </div>
+              {% else %}
+              <div class="author_news_tags" style="color:#d51821;float: right;margin-right: 5px;">
+                <a href="{{helper.active_urlgen('articles', 'tag=' + item)}}"><span>{{item}}</span></a>
+              </div>
+              {% endif %}
+            {% endif %}
           {% endfor %}
         </div>
       </div>
@@ -217,19 +229,31 @@
         <div class="author_news_info">
           <div class="author_news_title" style="font-size: 15px;color: #666;">{{item.title | ellipsis(21)}}</div>
           {% for items in item.tag_list %}
-          {% if loop.index == item.tag_list.length %}
-          <div class="author_news_tags" style="float: left;">
-            <a href="{{helper.active_urlgen('articles', 'tag=' + items)}}"><span>{{items | ellipsis(14)}}</span></a>
-          </div>
-          {% else %}
-          <div class="author_news_tags" style="float: left;margin-right: 5px;">
-            <a href="{{helper.active_urlgen('articles', 'tag=' + items)}}"><span>{{items | ellipsis(14)}}</span></a>
-          </div>
-          {% endif %}
+            {% if item.is_news == 2 %}
+              {% if loop.index == item.tag_list.length %}
+              <div class="author_news_tags" style="float: left;">
+                <a href="{{helper.active_urlgen('articles', 'type=时讯')}}"><span>{{items | ellipsis(14)}}</span></a>
+              </div>
+              {% else %}
+              <div class="author_news_tags" style="float: left;margin-right: 5px;">
+                <a href="{{helper.active_urlgen('articles', 'type=时讯')}}"><span>{{items | ellipsis(14)}}</span></a>
+              </div>
+              {% endif %}
+            {% else %}
+              {% if loop.index == item.tag_list.length %}
+              <div class="author_news_tags" style="float: left;">
+                <a href="{{helper.active_urlgen('articles', 'tag=' + items)}}"><span>{{items | ellipsis(14)}}</span></a>
+              </div>
+              {% else %}
+              <div class="author_news_tags" style="float: left;margin-right: 5px;">
+                <a href="{{helper.active_urlgen('articles', 'tag=' + items)}}"><span>{{items | ellipsis(14)}}</span></a>
+              </div>
+              {% endif %}
+            {% endif %}
           {% endfor %}
         </div>
         </a>
-        <div class="author_info" style="text-align: center;">
+        <div class="author_info" style="text-align: center;width: 22%;">
           <a href="{{helper.urlgen(item.user_info.uid|string)}}"><img src="{{helper.avaterimg(item.user_info.uid, 'small', item.user_info.status,item.user_info.version)}}" alt=""></a>
           <span>{{item.user_info.realname}}</span>
         </div>
