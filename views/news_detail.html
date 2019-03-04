@@ -142,11 +142,11 @@
           {% for item in diyetag %}
               {% if loop.index == 1 %}
               <div class="author_news_tags" style="color:#d51821;float: right;">
-                <a href="{% if wenzhangdiye.article_info.is_news == 2 %}{{helper.active_urlgen('articles', 'type=时讯')}}{% else %}{{helper.active_urlgen('articles', 'tag=' + item)}}{% endif %}"><span>{{item}}</span></a>
+                <a href="{% if wenzhangdiye.article_info.is_news == 2 %}{{helper.active_urlgen('articles', 'type=时讯', 'n=' + wenzhangdiye.article_info.country_id)}}{% else %}{{helper.active_urlgen('articles', 'tag=' + item, 'n=' + wenzhangdiye.article_info.country_id)}}{% endif %}"><span>{{item}}</span></a>
               </div>
               {% else %}
               <div class="author_news_tags" style="color:#d51821;float: right;margin-right: 5px;">
-                <a href="{% if wenzhangdiye.article_info.is_news == 2 %}{{helper.active_urlgen('articles', 'type=时讯')}}{% else %}{{helper.active_urlgen('articles', 'tag=' + item)}}{% endif %}"><span>{{item}}</span></a>
+                <a href="{% if wenzhangdiye.article_info.is_news == 2 %}{{helper.active_urlgen('articles', 'type=时讯', 'n=' + wenzhangdiye.article_info.country_id)}}{% else %}{{helper.active_urlgen('articles', 'tag=' + item, 'n=' + wenzhangdiye.article_info.country_id)}}{% endif %}"><span>{{item}}</span></a>
               </div>
               {% endif %}
           {% endfor %}
@@ -219,11 +219,11 @@
           {% for items in item.tag_list %}
               {% if loop.index == item.tag_list.length %}
               <div class="author_news_tags" style="float: left;">
-                <a href="{% if item.is_news == 2 %}{{helper.active_urlgen('articles', 'type=时讯')}}{% else %}{{helper.active_urlgen('articles', 'tag=' + items)}}{% endif %}"><span>{{items | ellipsis(14)}}</span></a>
+                <a href="{% if item.is_news == 2 %}{{helper.active_urlgen('articles', 'type=时讯', 'n=' + item.country_id)}}{% else %}{{helper.active_urlgen('articles', 'tag=' + items, 'n=' + item.country_id)}}{% endif %}"><span>{{items | ellipsis(14)}}</span></a>
               </div>
               {% else %}
               <div class="author_news_tags" style="float: left;margin-right: 5px;">
-                <a href="{% if item.is_news == 2 %}{{helper.active_urlgen('articles', 'type=时讯')}}{% else %}{{helper.active_urlgen('articles', 'tag=' + items)}}{% endif %}"><span>{{items | ellipsis(14)}}</span></a>
+                <a href="{% if item.is_news == 2 %}{{helper.active_urlgen('articles', 'type=时讯', 'n=' + item.country_id)}}{% else %}{{helper.active_urlgen('articles', 'tag=' + items, 'n=' + item.country_id)}}{% endif %}"><span>{{items | ellipsis(14)}}</span></a>
               </div>
               {% endif %}
           {% endfor %}
