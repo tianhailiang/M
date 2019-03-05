@@ -3016,33 +3016,31 @@ exports.wxtoken = function (req, res, next) {
   const grant_type = 'client_credential';
   const appid = 'wxe47804e220cb297b';
   const secret = '277723032be495d87dfa132107c0c8bb';
-  wechat.get_access_token(grant_type, appid, secret).then((access_token) = > {
-    wechat.get_jsapi_ticket(access_token).then((jsapi_ticket) = > {
+  wechat.get_access_token(grant_type, appid, secret).then((access_token) => {
+    wechat.get_jsapi_ticket(access_token).then((jsapi_ticket) => {
     let nonce_str = randomNum(6);    // 密钥，字符串任意，可以随机生成
-  let timestamp = new Date().getTime();  // 时间戳
-  log.debug('nonce_str ', nonce_str);
-  log.debug('timestamp', timestamp);
-  log.debug('url', req.body.url); // 使用接口的url链接，不包含#后的内容
-  // 将请求以上字符串，先按字典排序，再以'&'拼接，如下：其中j > n > t > u，此处直接手动排序
-  let str = 'jsapi_ticket=' + jsapi_ticket + '&noncestr=' + nonce_str + '&timestamp=' + timestamp + '&url=' + req.body.url;
-  // 用sha1加密
-  let signature = sha1(str);
-  res.send({
-    appId: appid,
-    timestamp: timestamp,
-    nonceStr: nonce_str,
-    signature: signature,
+    let timestamp = new Date().getTime();  // 时间戳
+    log.debug('nonce_str ', nonce_str);
+    log.debug('timestamp', timestamp);
+    log.debug('url', req.body.url); // 使用接口的url链接，不包含#后的内容
+    // 将请求以上字符串，先按字典排序，再以'&'拼接，如下：其中j > n > t > u，此处直接手动排序
+    let str = 'jsapi_ticket=' + jsapi_ticket + '&noncestr=' + nonce_str + '&timestamp=' + timestamp + '&url=' + req.body.url;
+    // 用sha1加密
+    let signature = sha1(str);
+    res.send({
+      appId: appid,
+      timestamp: timestamp,
+      nonceStr: nonce_str,
+      signature: signature,
+      });
+
+    }).catch(error => {
+        res.send(error);
+    });
+
+  }).catch(error => {
+      res.send(error);
   });
-}).
-  catch(error = > {
-    res.send(error);
-})
-  ;
-}).
-  catch(error = > {
-    res.send(error);
-})
-  ;
   function randomNum(n) {
     //生成随机数
     let t = '';
