@@ -143,11 +143,15 @@
     margin-bottom: 10px;
     border: 1px solid #dcdcdc;
 }
+.so-box-item .special {
+    width: 100px;
+}
 .so-box-item .focus-on{
     color: #fff;
     background: #c13232;
     border: 1px solid #c13232;
 }
+
 .so-box-item-title{
     padding: 20px 10px 19px;
     font-size: 15px
