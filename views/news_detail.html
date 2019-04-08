@@ -220,7 +220,7 @@
           <div class="author_news_title" style="font-size: 15px;color: #666;">{{item.title | ellipsis(21)}}</div>
           {% for items in item.tag_list %}
             {% if loop.index <= 2 %}
-              {% if loop.index == item.tag_list.length %}
+              {% if loop.index == 2 %}
               <div class="author_news_tags" style="float: left;">
                 <a href="{% if item.is_news == 2 %}{{helper.active_urlgen('articles', 'type=时讯', 'n=' + item.country_id)}}{% else %}{{helper.active_urlgen('articles', 'tag=' + items, 'n=' + item.country_id)}}{% endif %}"><span>{{items | ellipsis(14)}}</span></a>
               </div>
