@@ -8,11 +8,10 @@
 	
 }
 .country-ul:after {
-
-      content: "";
-      display: block;
-      clear: both;
-   }
+    content: "";
+    display: block;
+    clear: both;
+}
 
 .country-ul li{
 	margin-top: 18px;
