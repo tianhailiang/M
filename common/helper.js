@@ -118,7 +118,6 @@ function urlgen() {
   if(arguments.length == 0){
     return ;
   }
-  //get chan & subchan
   for(var i= 0 ; i < arguments.length;i++){
     if(arguments[i] == '' || arguments[i].split('=').length > 1)
     {
