@@ -412,6 +412,7 @@ function school_logo (school_id) {
  * @param flag        title, keywords, description
  * @returns {*}       string
  */
+//获取页面TDK数据
 function pageTDK(flag, tdkParam) {
   //console.log('tdkParam', tdkParam);
   var node_cache = require('memory-cache');
@@ -426,6 +427,9 @@ function pageTDK(flag, tdkParam) {
   var keywords = tdkParam.keywords;
   var pageNum = tdkParam.pageNum;
   var realname = tdkParam.realname;
+  var edu = tdkParam.edu;
+  var tag = tdkParam.tag;
+
   if(!page_name){
     //console.log("page_name is null !");
     tdk_string = tdkDefault.default_tdk[flag];
@@ -448,15 +452,15 @@ function pageTDK(flag, tdkParam) {
   }
   var nationName = '', cityName = '';
   if(nationid){
-    var nationName = common.getCountryEn(nationid);
+    var nationName = common.getCountryChinese(nationid);
   }
   if(cityid){
     var cityName = common.getCityChinese(cityid);
   }
-  return tdk_param_replace(tdk_string, nationName, cityName, title, description, keywords, pageNum, realname);
+  return tdk_param_replace(tdk_string, nationName, cityName, title, description, keywords, pageNum, realname, edu, tag);
 }
 
-function tdk_param_replace(tdk_string, nationName, cityName, title, description, keywords, pageNum, realname) {
+function tdk_param_replace(tdk_string, nationName, cityName, title, description, keywords, pageNum, realname, edu, tag) {
   var ret = tdk_string;
   if(nationName){
     ret = ret.replace(/\{nationName\}/g, nationName);
@@ -484,11 +488,29 @@ function tdk_param_replace(tdk_string, nationName, cityName, title, description,
     ret = ret.replace(/\{keywords\}/g, "");
   }
 
+  if(edu){
+      ret = ret.replace(/\{edu\}/g, edu);
+  }else{
+      ret = ret.replace(/\{edu\}/g, "");
+  }
+
+  if(tag){
+      ret = ret.replace(/\{tag\}/g, tag);
+  }else{
+      ret = ret.replace(/\{tag\}/g, "");
+  }
+
   //替换字符串中的{realname}
   if(realname){
     ret = ret.replace(/\{realname\}/g, realname);
   }else{
     ret = ret.replace(/\{realname\}/g, "");
+  }
+
+  if(edu){
+      ret = ret.replace(/\{edu\}/g, edu);
+  }else{
+      ret = ret.replace(/\{edu\}/g, "");
   }
 
   //替换year

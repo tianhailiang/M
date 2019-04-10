@@ -3219,9 +3219,11 @@ exports.country_list = function (req, res, next) {
     data.order = order;
     data.cur_page = page;
     data.tdk = {
-      pagekey: 'M_ARTICLE_LIST', //key
-      cityid: area
-      // keywords: keyword
+      pagekey: 'M_ARTICLE_LIST',
+      cityid: area,
+      nationid: country,
+      edu: type,
+      tag: tag
     };
     res.render('country_list', data);
   });
